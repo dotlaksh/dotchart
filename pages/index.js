@@ -11,8 +11,8 @@ import smallcap250Data from '/public/smallcap250.json';
 import microCap250Data from '/public/microcap250.json';
 
 const TIME_PERIODS = [
-  { label: 'YTD', days: 365, auto: 'ytd' },
-  { label: '1Y', days: 365 },
+  { label: 'YTD', days: 365},
+  { label: '1Y', days: 365 ,auto:1y},
   { label: '2Y', days: 730 },
   { label: '5Y', days: 1825 },
   { label: 'Max', days: 3650 },
@@ -41,16 +41,15 @@ const StockChart = () => {
   const [selectedPeriod, setSelectedPeriod] = useState('YTD');
   const [selectedInterval, setSelectedInterval] = useState('daily');
   const [currentStock, setCurrentStock] = useState(null);
+  const [todayChange, setTodayChange] = useState(null);
 
   const chartContainerRef = useRef(null);
   const chartInstanceRef = useRef(null);
 
-  // Mobile-first chart height
   const getChartHeight = useCallback(() => {
     return window.innerWidth < 768 ? 400 : 600;
   }, []);
 
-  // Initialize stocks when index is selected
   useEffect(() => {
     const selectedIndex = indexData[selectedIndexId];
     const stocksList = selectedIndex.data.map(item => ({
@@ -75,15 +74,28 @@ const StockChart = () => {
       const period = TIME_PERIODS.find(p => p.label === selectedPeriod);
       startDate.setDate(endDate.getDate() - (period?.days || 365));
 
-      const response = await axios.get('/api/stockData', {
-        params: {
-          symbol: currentStock.symbol,
-          startDate: startDate.toISOString().split('T')[0],
-          endDate: endDate.toISOString().split('T')[0]
-        }
-      });
+      // Fetch today's data specifically
+      const todayStart = new Date();
+      todayStart.setHours(0, 0, 0, 0);
+      
+      const [historicalResponse, todayResponse] = await Promise.all([
+        axios.get('/api/stockData', {
+          params: {
+            symbol: currentStock.symbol,
+            startDate: startDate.toISOString().split('T')[0],
+            endDate: endDate.toISOString().split('T')[0]
+          }
+        }),
+        axios.get('/api/stockData', {
+          params: {
+            symbol: currentStock.symbol,
+            startDate: todayStart.toISOString().split('T')[0],
+            endDate: endDate.toISOString().split('T')[0]
+          }
+        })
+      ]);
 
-      const formattedData = response.data.map(item => ({
+      const formattedData = historicalResponse.data.map(item => ({
         time: new Date(item.time).getTime() / 1000,
         open: item.open,
         high: item.high,
@@ -94,14 +106,19 @@ const StockChart = () => {
 
       const adjustedData = aggregateData(formattedData, selectedInterval);
       
+      // Calculate today's change
+      const todayData = todayResponse.data[0];
+      const todayChangePercent = todayData ? 
+        ((todayData.close - todayData.open) / todayData.open) * 100 : 0;
+      
       setChartData(adjustedData);
       setCurrentStock({
         name: currentStock.name,
         symbol: currentStock.symbol,
         industry: currentStock.industry,
         price: adjustedData[adjustedData.length - 1]?.close,
-        change: ((adjustedData[adjustedData.length - 1]?.close - adjustedData[0]?.open) / adjustedData[0]?.open) * 100,
       });
+      setTodayChange(todayChangePercent);
     } catch (err) {
       setError(err.response?.data?.details || 'Failed to fetch stock data');
     } finally {
@@ -113,6 +130,7 @@ const StockChart = () => {
     fetchStockData();
   }, [fetchStockData]);
 
+  // Rest of the aggregateData function and chart setup remains the same
   const aggregateData = (data, interval) => {
     if (interval === 'daily') return data;
 
@@ -151,67 +169,63 @@ const StockChart = () => {
   };
 
   useEffect(() => {
-  if (!chartContainerRef.current || !chartData.length) return;
+    if (!chartContainerRef.current || !chartData.length) return;
 
-  const chart = createChart(chartContainerRef.current, {
-    width: chartContainerRef.current.clientWidth,
-    height: getChartHeight(),
-    layout: { background: { type: 'solid', color: '#ffffff' }, textColor: '#000000' },
-    crosshair: { mode: CrosshairMode.Normal },
-    timeScale: {
-      timeVisible: true,
-      borderColor: '#cbd5e1',
-      rightOffset: 5,
-      minBarSpacing: 5,
-    },
-  });
-
-  // Candlestick series on the main pane with its own price scale
-  const candlestickSeries = chart.addCandlestickSeries({
-    upColor: '#26a69a',
-    downColor: '#ef5350',
-    borderUpColor: '#26a69a',
-    borderDownColor: '#ef5350',
-    wickUpColor: '#26a69a',
-    wickDownColor: '#ef5350',
-    priceScaleId: 'right', // Right-side price scale for candlestick chart
-  });
-
-  candlestickSeries.setData(chartData);
-
-  // Volume series in a new pane with a separate price scale
-  const volumeSeries = chart.addHistogramSeries({
-    color: '#26a69a',
-    priceFormat: { type: 'volume' }, // Volume format
-    priceScaleId: 'volume', // Separate price scale for volume
-    scaleMargins: { top: 0, bottom: 0.8 }, // Adjust size of the volume pane
-  });
-
-  volumeSeries.setData(chartData.map(d => ({
-    time: d.time,
-    value: d.volume,
-    color: d.close >= d.open ? '#26a69a80' : '#ef535080',
-  })));
-
-  chart.timeScale().fitContent(); // Ensure the chart fits the data
-  chartInstanceRef.current = chart;
-
-  const handleResize = () => {
-    chart.applyOptions({
+    const chart = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
       height: getChartHeight(),
+      layout: { background: { type: 'solid', color: '#ffffff' }, textColor: '#000000' },
+      crosshair: { mode: CrosshairMode.Normal },
+      timeScale: {
+        timeVisible: true,
+        borderColor: '#cbd5e1',
+        rightOffset: 5,
+        minBarSpacing: 5,
+      },
     });
-  };
 
-  window.addEventListener('resize', handleResize);
+    const candlestickSeries = chart.addCandlestickSeries({
+      upColor: '#26a69a',
+      downColor: '#ef5350',
+      borderUpColor: '#26a69a',
+      borderDownColor: '#ef5350',
+      wickUpColor: '#26a69a',
+      wickDownColor: '#ef5350',
+      priceScaleId: 'right',
+    });
 
-  return () => {
-    window.removeEventListener('resize', handleResize);
-    chart.remove();
-  };
-}, [chartData, getChartHeight]);
+    candlestickSeries.setData(chartData);
 
+    const volumeSeries = chart.addHistogramSeries({
+      color: '#26a69a',
+      priceFormat: { type: 'volume' },
+      priceScaleId: 'volume',
+      scaleMargins: { top: 0, bottom: 0.8 },
+    });
 
+    volumeSeries.setData(chartData.map(d => ({
+      time: d.time,
+      value: d.volume,
+      color: d.close >= d.open ? '#26a69a80' : '#ef535080',
+    })));
+
+    chart.timeScale().fitContent();
+    chartInstanceRef.current = chart;
+
+    const handleResize = () => {
+      chart.applyOptions({
+        width: chartContainerRef.current.clientWidth,
+        height: getChartHeight(),
+      });
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      chart.remove();
+    };
+  }, [chartData, getChartHeight]);
 
   const handleIntervalChange = (newInterval) => {
     const autoTimeframe = INTERVALS.find((i) => i.value === newInterval)?.autoTimeframe;
@@ -235,7 +249,6 @@ const StockChart = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      {/* Simplified Header */}
       <header className="bg-white border-b border-gray-200 px-4 py-3">
         <div className="flex items-center justify-between">
           <select
@@ -252,7 +265,6 @@ const StockChart = () => {
         </div>
       </header>
 
-      {/* Stock Info Card */}
       {currentStock && (
         <div className="px-4 py-3 bg-white">
           <div className="flex items-center justify-between">
@@ -264,15 +276,14 @@ const StockChart = () => {
               <p className="font-medium text-base">
                 ₹{currentStock.price?.toFixed(2)}
               </p>
-              <p className={`text-sm ${currentStock.change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                {currentStock.change >= 0 ? '+' : ''}{currentStock.change?.toFixed(2)}%
+              <p className={`text-sm ${todayChange >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                {todayChange >= 0 ? '+' : ''}{todayChange?.toFixed(2)}% today
               </p>
             </div>
           </div>
         </div>
       )}
 
-      {/* Time Controls */}
       <div className="px-4 py-2 bg-white border-b border-gray-200">
         <div className="flex justify-between items-center">
           <div className="flex gap-2">
@@ -308,8 +319,7 @@ const StockChart = () => {
         </div>
       </div>
 
-      {/* Chart Area */}
-      <main className="flex-grow flex items-center justify-center p-4">
+      <main className="flex-grow flex items-center justify-center p-4 pb-0">
         {loading ? (
           <div className="flex items-center justify-center h-full">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
@@ -321,8 +331,7 @@ const StockChart = () => {
         )}
       </main>
 
-      {/* Navigation Footer */}
-      <footer className="bg-white border-t border-gray-200 px-4 py-3">
+      <footer className="bg-white border-t border-gray-200 px-4 py-2">
         <div className="flex items-center justify-between">
           <button
             onClick={handlePrevious}
