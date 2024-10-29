@@ -237,6 +237,7 @@ const StockChart = () => {
       {/* Simplified Header */}
       <header className="bg-white border-b border-gray-200 px-4 py-3">
         <div className="flex items-center justify-between">
+        <span> Select an Index</span>
           <select
             className="text-sm font-medium bg-transparent focus:outline-none"
             value={selectedIndexId}
@@ -308,7 +309,7 @@ const StockChart = () => {
       </div>
 
       {/* Chart Area */}
-      <main className="flex-grow flex items-center justify-center p-4">
+      <main className="flex-grow flex items-center justify-center p-3">
         {loading ? (
           <div className="flex items-center justify-center h-full">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
@@ -321,7 +322,7 @@ const StockChart = () => {
       </main>
 
       {/* Navigation Footer */}
-      <footer className="bg-white border-t border-gray-200 px-4 py-3">
+      <footer className="bg-white border-t border-gray-200 px-2 py-2">
         <div className="flex items-center justify-between">
           <button
             onClick={handlePrevious}
