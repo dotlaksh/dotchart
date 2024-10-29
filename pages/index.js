@@ -212,7 +212,6 @@ const StockChart = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
       chart.remove();
-      legend.remove();
     };
   }, [chartData, getChartHeight]);
 
