@@ -158,6 +158,14 @@ const StockChart = () => {
       height: getChartHeight(),
       layout: { background: { type: 'solid', color: '#1E222D' }, textColor: '#FFFFFF' },
       crosshair: { mode: CrosshairMode.Normal },
+      grid: {
+        verticalLines: {
+          visible: false,
+        },
+        horizontalLines: {
+          visible: false,
+        },
+      },
       timeScale: {
         timeVisible: true,
         borderColor: '#cbd5e1',
