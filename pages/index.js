@@ -197,31 +197,31 @@ const StockChart = () => {
       color: d.close >= d.open ? '#26a69a80' : '#ef535080',
     })));
 
-    // Add Legend
-    const legend = chart.addLegend({
-      position: {
-        verticalAlign: 'top',
-        horzAlign: 'right',
-        visible: true,
-        marginRight: 20,
-        marginTop: 20
-      },
-      textColor: 'rgb(115, 118, 130)'
-    });
+    // Create a custom legend
+    const legend = document.createElement('div');
+    legend.classList.add('custom-legend', 'absolute', 'top-4', 'right-4', 'bg-white', 'p-2', 'rounded', 'shadow');
 
-    legend.addSeries(candlestickSeries, {
-      lineColor: '#26a69a',
-      lineWidth: 2,
-      lineStyle: 1,
-      title: 'Price'
-    });
+    const priceLabel = document.createElement('div');
+    priceLabel.classList.add('flex', 'items-center', 'mb-1');
+    const priceColor = document.createElement('div');
+    priceColor.classList.add('w-4', 'h-4', 'mr-2', 'bg-[#26a69a]');
+    const priceLabelText = document.createElement('span');
+    priceLabelText.textContent = 'Price';
+    priceLabel.appendChild(priceColor);
+    priceLabel.appendChild(priceLabelText);
 
-    legend.addSeries(volumeSeries, {
-      lineColor: '#26a69a',
-      lineWidth: 2,
-      lineStyle: 1,
-      title: 'Volume'
-    });
+    const volumeLabel = document.createElement('div');
+    volumeLabel.classList.add('flex', 'items-center');
+    const volumeColor = document.createElement('div');
+    volumeColor.classList.add('w-4', 'h-4', 'mr-2', 'bg-[#26a69a80]');
+    const volumeLabelText = document.createElement('span');
+    volumeLabelText.textContent = 'Volume';
+    volumeLabel.appendChild(volumeColor);
+    volumeLabel.appendChild(volumeLabelText);
+
+    legend.appendChild(priceLabel);
+    legend.appendChild(volumeLabel);
+    chartContainerRef.current.appendChild(legend);
 
     chart.timeScale().fitContent(); // Ensure the chart fits the data
     chartInstanceRef.current = chart;
@@ -238,6 +238,7 @@ const StockChart = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
       chart.remove();
+      legend.remove();
     };
   }, [chartData, getChartHeight]);
 
