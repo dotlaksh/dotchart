@@ -167,111 +167,8 @@ const StockChart = () => {
     return Object.values(periodMap).sort((a, b) => a.time - b.time);
   };
 
-  useEffect(() => {
-    if (!chartContainerRef.current || !chartData.length) return;
+  TypeError: Cannot read properties of null (reading 'appendChild')
 
-    const chart = createChart(chartContainerRef.current, {
-      width: chartContainerRef.current.clientWidth,
-      height: getChartHeight(),
-      layout: { background: { type: 'solid', color: '#ffffff' }, textColor: '#000000' },
-      crosshair: { mode: CrosshairMode.Normal },
-      timeScale: {
-        timeVisible: true,
-        borderColor: '#cbd5e1',
-        rightOffset: 5,
-        minBarSpacing: 5,
-      },
-    });
-
-    const candlestickSeries = chart.addCandlestickSeries({
-      upColor: '#26a69a',
-      downColor: '#ef5350',
-      borderUpColor: '#26a69a',
-      borderDownColor: '#ef5350',
-      wickUpColor: '#26a69a',
-      wickDownColor: '#ef5350',
-      priceScaleId: 'right',
-    });
-
-    candlestickSeries.setData(chartData);
-
-    const volumeSeries = chart.addHistogramSeries({
-      color: '#26a69a',
-      priceFormat: { type: 'volume' },
-      priceScaleId: 'volume',
-      scaleMargins: { top: 0, bottom: 0.8 },
-    });
-
-    volumeSeries.setData(chartData.map(d => ({
-      time: d.time,
-      value: d.volume,
-      color: d.close >= d.open ? '#26a69a80' : '#ef535080',
-    })));
-    
-    chart.applyOptions({
-        rightPriceScale: {
-            scaleMargins: {
-                top: 0.3, // leave some space for the legend
-                bottom: 0.25,
-            },
-        },
-        crosshair: {
-            // hide the horizontal crosshair line
-            horzLine: {
-                visible: false,
-                labelVisible: false,
-            },
-        },
-        // hide the grid lines
-        grid: {
-            vertLines: {
-                visible: false,
-            },
-            horzLines: {
-                visible: false,
-            },
-        },
-    });
-
-    const symbolName = currentStock.symbol;
-
-    const container = document.getElementById('container');
-    
-    const legend = document.createElement('div');
-    legend.style = `position: absolute; left: 12px; top: 12px; z-index: 1; font-size: 14px; font-family: sans-serif; line-height: 18px; font-weight: 300;`;
-    container.appendChild(legend);
-    
-    const firstRow = document.createElement('div');
-    firstRow.innerHTML = symbolName;
-    firstRow.style.color = 'black';
-    legend.appendChild(firstRow);
-    
-    chart.subscribeCrosshairMove(param => {
-        let priceFormatted = '';
-        if (param.time) {
-            const data = param.seriesData.get(areaSeries);
-            const price = data.value !== undefined ? data.value : data.close;
-            priceFormatted = price.toFixed(2);
-        }
-        firstRow.innerHTML = `${symbolName} <strong>${priceFormatted}</strong>`;
-    });
-    chart.timeScale().fitContent();
-    chartInstanceRef.current = chart;
-
-    const handleResize = () => {
-      chart.applyOptions({
-        width: chartContainerRef.current.clientWidth,
-        height: getChartHeight(),
-      });
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      chart.remove();
-    };
-  }, [chartData, getChartHeight]);
 
   const handleIntervalChange = (newInterval) => {
     const autoTimeframe = INTERVALS.find((i) => i.value === newInterval)?.autoTimeframe;
@@ -365,8 +262,8 @@ const StockChart = () => {
         </div>
       </div>
 
-      <main className="flex-grow flex flex-col">
-        <div className="flex-grow">
+     <main className="flex-grow flex flex-col">
+        <div className="flex-grow relative"> {/* Added relative positioning */}
           {loading ? (
             <div className="flex items-center justify-center h-full">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
