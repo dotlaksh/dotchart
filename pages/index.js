@@ -188,7 +188,7 @@ const StockChart = () => {
       color: '#26a69a',
       priceFormat: { type: 'volume' }, // Volume format
       priceScaleId: 'volume', // Separate price scale for volume
-      scaleMargins: { top: 0, bottom: 0.8 }, // Adjust size of the volume pane
+      scaleMargins: { top: 0.6, bottom: 0 }, // Adjust size of the volume pane
     });
 
     volumeSeries.setData(chartData.map(d => ({
@@ -219,6 +219,8 @@ const StockChart = () => {
     volumeLabel.appendChild(volumeColor);
     volumeLabel.appendChild(volumeLabelText);
 
+    legend.appendChild(priceLabel);
+    legend.appendChild(volumeLabel);
 
     chart.timeScale().fitContent(); // Ensure the chart fits the data
     chartInstanceRef.current = chart;
