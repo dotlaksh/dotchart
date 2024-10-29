@@ -164,7 +164,7 @@ const StockChart = () => {
     },
   });
 
-  // Price candlestick series
+  // Candlestick series on the main pane with its own price scale
   const candlestickSeries = chart.addCandlestickSeries({
     upColor: '#26a69a',
     downColor: '#ef5350',
@@ -172,17 +172,17 @@ const StockChart = () => {
     borderDownColor: '#ef5350',
     wickUpColor: '#26a69a',
     wickDownColor: '#ef5350',
-    priceScaleId: 'right', // Right side price scale for candlestick
+    priceScaleId: 'right', // Right-side price scale for candlestick chart
   });
 
   candlestickSeries.setData(chartData);
 
-  // Volume series in a new pane below
+  // Volume series in a new pane with a separate price scale
   const volumeSeries = chart.addHistogramSeries({
     color: '#26a69a',
-    priceFormat: { type: 'volume' },
-    priceScaleId: '', // Empty priceScaleId to create a new pane
-    scaleMargins: { top: 0.8, bottom: 0 }, // Align it to the bottom
+    priceFormat: { type: 'volume' }, // Volume format
+    priceScaleId: 'volume', // Separate price scale for volume
+    scaleMargins: { top: 0, bottom: 0.8 }, // Adjust size of the volume pane
   });
 
   volumeSeries.setData(chartData.map(d => ({
@@ -191,7 +191,7 @@ const StockChart = () => {
     color: d.close >= d.open ? '#26a69a80' : '#ef535080',
   })));
 
-  chart.timeScale().fitContent();
+  chart.timeScale().fitContent(); // Ensure the chart fits the data
   chartInstanceRef.current = chart;
 
   const handleResize = () => {
@@ -208,6 +208,7 @@ const StockChart = () => {
     chart.remove();
   };
 }, [chartData, getChartHeight]);
+
 
 
   const handleIntervalChange = (newInterval) => {
