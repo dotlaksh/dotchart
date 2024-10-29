@@ -156,7 +156,7 @@ const StockChart = () => {
     const chart = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
       height: getChartHeight(),
-      layout: { background: { type: 'solid', color: '#1E222D' }, textColor: '#FFFFFF' },
+      layout: { background: { type: 'solid', color: '#1e293b' }, textColor: '#e2e8f0' },
       crosshair: { mode: CrosshairMode.Normal },
       grid: {
         vertLines: {
@@ -201,7 +201,7 @@ const StockChart = () => {
     volumeSeries.setData(chartData.map(d => ({
       time: d.time,
       value: d.volume,
-      color: d.close >= d.open ? '#26a69a80' : '#ef535080',
+      color: d.close >= d.open ? '#00ff55' : '#ed4807',
     })));
 
     volumeSeries.priceScale().applyOptions({
@@ -253,7 +253,7 @@ const StockChart = () => {
     
     <div className="flex flex-col min-h-screen bg-[#1e293b]"> {/* Dark background color */}
       {/* Simplified Header */}
-      <header className="bg-[#1e293b] border-b border-gray-200 px-4 py-3">
+      <header className="bg-[#1e293b] border-b border-[#334155] px-4 py-3">
         <div className="flex items-center justify-between">
           <select
             className="text-sm font-medium bg-transparent focus:outline-none"
