@@ -109,10 +109,6 @@ const StockChart = () => {
     }
   }, [stocks, currentStockIndex, selectedPeriod, selectedInterval]);
 
-  useEffect(() => {
-    fetchStockData();
-  }, [fetchStockData]);
-
   const aggregateData = (data, interval) => {
     if (interval === 'daily') return data;
 
