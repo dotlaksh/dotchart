@@ -262,7 +262,7 @@ const StockChart = () => {
         </div>
       </div>
 
-     <main className="flex-grow flex flex-col">
+    <div className="flex flex-col h-screen bg-gray-50">
         <div className="flex-grow relative"> {/* Added relative positioning */}
           {loading ? (
             <div className="flex items-center justify-center h-full">
