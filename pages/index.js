@@ -47,7 +47,7 @@ const StockChart = () => {
   const chartInstanceRef = useRef(null);
 
   const getChartHeight = useCallback(() => {
-    return window.innerWidth < 768 ? 400 : 600;
+    return window.innerWidth < 768 ? 500 : 700;
   }, []);
 
   useEffect(() => {
