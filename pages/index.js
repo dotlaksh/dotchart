@@ -251,83 +251,84 @@ const StockChart = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#1e293b] items-center justify-center md:pt-4">
-      <div className="max-w-4xl w-full">
-        {/* Header */}
-        <header className="bg-[#1e293b] border-b border-[#334155] px-4 py-3">
+    
+    <div className="flex flex-col min-h-screen bg-[#1e293b]"> {/* Dark background color */}
+      {/* Simplified Header */}
+      <header className="bg-[#1e293b] border-b border-[#334155] px-4 py-3">
+        <div className="flex items-center justify-between">
+          <select
+            className="text-sm font-medium bg-transparent text-[#e2e8f0] focus:outline-none"
+            value={selectedIndexId}
+            onChange={(e) => setSelectedIndexId(parseInt(e.target.value))}
+          >
+            {indexData.map((item, index) => (
+              <option key={index} value={index}>
+                {item.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      </header>
+
+      {/* Stock Info Card */}
+      {currentStock && (
+        <div className="px-4 py-3 bg-[#1e293b] text-[#e2e8f0]"> {/* Dark background and light text */}
           <div className="flex items-center justify-between">
-            <select
-              className="text-sm font-medium bg-transparent text-[#e2e8f0] focus:outline-none"
-              value={selectedIndexId}
-              onChange={(e) => setSelectedIndexId(parseInt(e.target.value))}
-            >
-              {indexData.map((item, index) => (
-                <option key={index} value={index}>
-                  {item.label}
-                </option>
-              ))}
-            </select>
-          </div>
-        </header>
-
-        {/* Stock Info Card */}
-        {currentStock && (
-          <div className="px-4 py-3 bg-[#1e293b] text-[#e2e8f0]">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="font-semibold text-base">{currentStock.symbol}</h2>
-                <p className="text-xs text-gray-500 mt-0.5">{currentStock.name}</p>
-              </div>
-              <div className="text-right">
-                <p className="font-medium text-base">
-                  ₹{currentStock.price?.toFixed(2)}
-                </p>
-                <p className={`text-sm ${currentStock.todayChange >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                  {currentStock.todayChange >= 0 ? '+' : ''}{currentStock.todayChange?.toFixed(2)}%
-                </p>
-              </div>
+            <div>
+              <h2 className="font-semibold text-base">{currentStock.symbol}</h2>
+              <p className="text-xs text-gray-500 mt-0.5">{currentStock.name}</p>
             </div>
-          </div>
-        )}
-
-        {/* Time Controls */}
-        <div className="px-4 py-2 bg-[#1e293b] border-b border-[#334155] text-[#e2e8f0]">
-          <div className="flex justify-between items-center">
-            <div className="flex gap-2">
-              {TIME_PERIODS.map((period) => (
-                <button
-                  key={period.label}
-                  onClick={() => setSelectedPeriod(period.label)}
-                  className={`px-3 py-1 text-xs rounded-full ${
-                    selectedPeriod === period.label
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-600'
-                  }`}
-                >
-                  {period.label}
-                </button>
-              ))}
-            </div>
-            <div className="flex gap-1">
-              {INTERVALS.map((interval) => (
-                <button
-                  key={interval.value}
-                  onClick={() => handleIntervalChange(interval.value)}
-                  className={`px-3 py-1 text-xs rounded-full ${
-                    selectedInterval === interval.value
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-600'
-                  }`}
-                >
-                  {interval.label}
-                </button>
-              ))}
+            <div className="text-right">
+              <p className="font-medium text-base">
+                ₹{currentStock.price?.toFixed(2)}
+              </p>
+              <p className={`text-sm ${currentStock.todayChange >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                {currentStock.todayChange >= 0 ? '+' : ''}{currentStock.todayChange?.toFixed(2)}%
+              </p>
             </div>
           </div>
         </div>
-        {/* Chart Area */}
+      )}
+
+      {/* Time Controls */}
+      <div className="px-4 py-2 bg-[#1e293b] border-b border-[#334155] text-[#e2e8f0]"> {/* Dark background and light text */}
+        <div className="flex justify-between items-center">
+          <div className="flex gap-2">
+            {TIME_PERIODS.map((period) => (
+              <button
+                key={period.label}
+                onClick={() => setSelectedPeriod(period.label)}
+                className={`px-3 py-1 text-xs rounded-full ${
+                  selectedPeriod === period.label
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 text-gray-600'
+                }`}
+              >
+                {period.label}
+              </button>
+            ))}
+          </div>
+          <div className="flex gap-1">
+            {INTERVALS.map((interval) => (
+              <button
+                key={interval.value}
+                onClick={() => handleIntervalChange(interval.value)}
+                className={`px-3 py-1 text-xs rounded-full ${
+                  selectedInterval === interval.value
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 text-gray-600'
+                }`}
+              >
+                {interval.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Chart Area */}
       <main className="flex-grow bg-[#1e293b] p-4 md:p-6 lg:p-8 relative">
-          <div className="bg-[#1e293b] rounded-lg shadow-sm h-full flex flex-col justify-center items-center">
+        <div className="bg-[#1e293b] rounded-lg shadow-sm h-full flex flex-col">
           {loading ? (
             <div className="flex items-center justify-center h-full">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
@@ -339,31 +340,31 @@ const StockChart = () => {
           )}
         </div>
       </main>
-        {/* Navigation Footer */}
-        <footer className="bg-[#1e293b] border-t border-[#334155] px-1 py-1 fixed bottom-0 left-0 right-0 text-[#e2e8f0]">
-          <div className="flex items-center justify-between">
-            <button
-              onClick={handlePrevious}
-              disabled={currentStockIndex === 0}
-              className="flex items-center gap-1 text-lg text-[#e2e8f0]-600 disabled:text-gray-300"
-            >
-              <ChevronLeft size={16} />
-              Previous
-            </button>
-            <span className="text-sm text-[#e2e8f0]">
-              {currentStockIndex + 1} of {stocks.length}
-            </span>
-            <button
-              onClick={handleNext}
-              disabled={currentStockIndex === stocks.length - 1}
-              className="flex items-center gap-1 text-lg text-[#e2e8f0]-600 disabled:text-gray-300"
-            >
-              Next
-              <ChevronRight size={16} />
-            </button>
-          </div>
-        </footer>
-      </div>
+
+      {/* Navigation Footer */}
+      <footer className="bg-[#1e293b] border-t border-[#334155] px-1 py-1 fixed bottom-0 left-0 right-0 text-[#e2e8f0]"> {/* Dark background and light text */}
+        <div className="flex items-center justify-between">
+          <button
+            onClick={handlePrevious}
+            disabled={currentStockIndex === 0}
+            className="flex items-center gap-1 text-lg text-[#e2e8f0]-600 disabled:text-gray-300"
+          >
+            <ChevronLeft size={16} />
+            Previous
+          </button>
+          <span className="text-sm text-[#e2e8f0]">
+            {currentStockIndex + 1} of {stocks.length}
+          </span>
+          <button
+            onClick={handleNext}
+            disabled={currentStockIndex === stocks.length - 1}
+            className="flex items-center gap-1 text-lg text-[#e2e8f0]-600 disabled:text-gray-300"
+          >
+            Next
+            <ChevronRight size={16} />
+          </button>
+        </div>
+      </footer>
     </div>
   );
 };
