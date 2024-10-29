@@ -11,7 +11,6 @@ import smallcap250Data from '/public/smallcap250.json';
 import microCap250Data from '/public/microcap250.json';
 
 const TIME_PERIODS = [
-  { label: 'YTD', days: 365},
   { label: '1Y', days: 365 ,auto:'1y'},
   { label: '2Y', days: 730 },
   { label: '5Y', days: 1825 },
@@ -208,7 +207,54 @@ const StockChart = () => {
       value: d.volume,
       color: d.close >= d.open ? '#26a69a80' : '#ef535080',
     })));
+    
+    chart.applyOptions({
+        rightPriceScale: {
+            scaleMargins: {
+                top: 0.3, // leave some space for the legend
+                bottom: 0.25,
+            },
+        },
+        crosshair: {
+            // hide the horizontal crosshair line
+            horzLine: {
+                visible: false,
+                labelVisible: false,
+            },
+        },
+        // hide the grid lines
+        grid: {
+            vertLines: {
+                visible: false,
+            },
+            horzLines: {
+                visible: false,
+            },
+        },
+    });
 
+    const symbolName = currentStock.symbol;
+
+    const container = document.getElementById('container');
+    
+    const legend = document.createElement('div');
+    legend.style = `position: absolute; left: 12px; top: 12px; z-index: 1; font-size: 14px; font-family: sans-serif; line-height: 18px; font-weight: 300;`;
+    container.appendChild(legend);
+    
+    const firstRow = document.createElement('div');
+    firstRow.innerHTML = symbolName;
+    firstRow.style.color = 'black';
+    legend.appendChild(firstRow);
+    
+    chart.subscribeCrosshairMove(param => {
+        let priceFormatted = '';
+        if (param.time) {
+            const data = param.seriesData.get(areaSeries);
+            const price = data.value !== undefined ? data.value : data.close;
+            priceFormatted = price.toFixed(2);
+        }
+        firstRow.innerHTML = `${symbolName} <strong>${priceFormatted}</strong>`;
+    });
     chart.timeScale().fitContent();
     chartInstanceRef.current = chart;
 
@@ -320,7 +366,7 @@ const StockChart = () => {
       </div>
 
       <main className="flex-grow flex flex-col">
-        <div className="flex-grow px-4">
+        <div className="flex-grow">
           {loading ? (
             <div className="flex items-center justify-center h-full">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
@@ -328,7 +374,7 @@ const StockChart = () => {
           ) : error ? (
             <div className="text-red-500 text-center p-4">{error}</div>
           ) : (
-            <div ref={chartContainerRef} className="w-full h-full rounded-lg bg-white shadow-sm" />
+            <div ref={chartContainerRef} className="w-full h-full bg-white" />
           )}
         </div>
       </main>
