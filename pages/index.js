@@ -347,7 +347,7 @@ const StockChart = () => {
           <button
             onClick={handlePrevious}
             disabled={currentStockIndex === 0}
-            className="flex items-center gap-1 text-md text-[#e2e8f0]-600 disabled:text-gray-300"
+            className="flex items-center gap-1 text-lg text-[#e2e8f0]-600 disabled:text-gray-300"
           >
             <ChevronLeft size={16} />
             Previous
@@ -358,7 +358,7 @@ const StockChart = () => {
           <button
             onClick={handleNext}
             disabled={currentStockIndex === stocks.length - 1}
-            className="flex items-center gap-1 text-md text-[#e2e8f0]-600 disabled:text-gray-300"
+            className="flex items-center gap-1 text-lg text-[#e2e8f0]-600 disabled:text-gray-300"
           >
             Next
             <ChevronRight size={16} />
