@@ -154,7 +154,7 @@ const StockChart = () => {
   const chart = createChart(chartContainerRef.current, {
     width: chartContainerRef.current.clientWidth,
     height: getChartHeight(),
-    layout: { background: { type: 'solid', color: '#f8fafc' }, textColor: '#1f2937' },
+    layout: { background: { type: 'solid', color: '#ffffff' }, textColor: '#000000' },
     crosshair: { mode: CrosshairMode.Normal },
     timeScale: {
       timeVisible: true,
