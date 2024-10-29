@@ -18,7 +18,7 @@ const TIME_PERIODS = [
 ];
 
 const INTERVALS = [
-  { label: 'D', value: 'daily', autoTimeframe: 'YTD' },
+  { label: 'D', value: 'daily', autoTimeframe: '1Y' },
   { label: 'W', value: 'weekly', autoTimeframe: '2Y' },
   { label: 'M', value: 'monthly', autoTimeframe: '5Y' },
 ];
@@ -310,7 +310,7 @@ const StockChart = () => {
       {/* Chart Area */}
       <main className="flex-grow flex items-center justify-center p-1">
         {loading ? (
-          <div className="flex items-center justify-center h-full">
+          <div className="flex items-center justify-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
           </div>
         ) : error ? (
