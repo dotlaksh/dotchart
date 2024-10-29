@@ -327,12 +327,10 @@ const StockChart = () => {
       </div>
 
       {/* Chart Area */}
-      <main className="flex-grow bg-[#1e293b] p-4 md:p-6 lg:p-8 relative">
-        <div className="bg-[#1e293b] rounded-lg shadow-sm h-full flex flex-col">
+       <main className="flex-grow bg-[#1e293b] p-4 md:p-6 lg:p-8 relative">
+        <div className="bg-[#1e293b] rounded-lg shadow-sm h-full flex flex-col justify-center items-center">
           {loading ? (
-            <div className="flex items-center justify-center h-full">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-            </div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
           ) : error ? (
             <div className="text-red-500 text-center p-4">{error}</div>
           ) : (
