@@ -46,7 +46,7 @@ const StockChart = () => {
 
   // Mobile-first chart height
   const getChartHeight = useCallback(() => {
-    return window.innerWidth < 768 ? 500 : 700;
+    return window.innerWidth < 768 ? 550 : 700;
   }, []);
 
   // Initialize stocks when index is selected
@@ -237,7 +237,6 @@ const StockChart = () => {
       {/* Simplified Header */}
       <header className="bg-white border-b border-gray-200 px-4 py-3">
         <div className="flex items-center justify-between">
-        <span> Select an Index</span>
           <select
             className="text-sm font-medium bg-transparent focus:outline-none"
             value={selectedIndexId}
