@@ -159,10 +159,10 @@ const StockChart = () => {
       layout: { background: { type: 'solid', color: '#1E222D' }, textColor: '#FFFFFF' },
       crosshair: { mode: CrosshairMode.Normal },
       grid: {
-        verticalLines: {
+        vertLines: {
           visible: false,
         },
-        horizontalLines: {
+        horzLines: {
           visible: false,
         },
       },
