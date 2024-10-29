@@ -193,7 +193,8 @@ const StockChart = () => {
 
     // Volume series in a new pane with a separate price scale
     const volumeSeries = chart.addHistogramSeries({
-      color: '#00ff55',
+      upColor: '#00ff55',
+      downColor: '#ed4807',
       priceFormat: { type: 'volume' }, // Volume format
       priceScaleId: 'volume', // Separate price scale for volume
     });
@@ -256,7 +257,7 @@ const StockChart = () => {
       <header className="bg-[#1e293b] border-b border-[#334155] px-4 py-3">
         <div className="flex items-center justify-between">
           <select
-            className="text-sm font-medium bg-transparent focus:outline-none"
+            className="text-sm font-medium bg-transparent text-[#e2e8f0] focus:outline-none"
             value={selectedIndexId}
             onChange={(e) => setSelectedIndexId(parseInt(e.target.value))}
           >
