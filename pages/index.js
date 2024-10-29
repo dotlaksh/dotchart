@@ -349,7 +349,7 @@ const StockChart = () => {
       </main>
 
       {/* Navigation Footer */}
-      <footer className="bg-white border-t border-gray-200 px-1 py-1">
+     <footer className="bg-white border-t border-gray-200 px-1 py-1 fixed bottom-0 left-0 right-0">
         <div className="flex items-center justify-between">
           <button
             onClick={handlePrevious}
