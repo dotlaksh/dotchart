@@ -156,7 +156,7 @@ const StockChart = () => {
     const chart = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
       height: getChartHeight(),
-      layout: { background: { type: 'solid', color: '#ffffff' }, textColor: '#000000' },
+      layout: { background: { type: 'solid', color: '#1E222D' }, textColor: '#FFFFFF' },
       crosshair: { mode: CrosshairMode.Normal },
       timeScale: {
         timeVisible: true,
@@ -172,12 +172,12 @@ const StockChart = () => {
 
     // Candlestick series on the main pane with its own price scale
     const candlestickSeries = chart.addCandlestickSeries({
-      upColor: '#26a69a',
-      downColor: '#ef5350',
-      borderUpColor: '#26a69a',
-      borderDownColor: '#ef5350',
-      wickUpColor: '#26a69a',
-      wickDownColor: '#ef5350',
+      upColor: '#00ff55',
+      downColor: '#ed4807',
+      borderUpColor: '#00ff55',
+      borderDownColor: '#ed4807',
+      wickUpColor: '#00ff55',
+      wickDownColor: '#ed4807',
       priceScaleId: 'right', // Right-side price scale for candlestick chart
     });
 
@@ -185,7 +185,7 @@ const StockChart = () => {
 
     // Volume series in a new pane with a separate price scale
     const volumeSeries = chart.addHistogramSeries({
-      color: '#26a69a',
+      color: '#00ff55',
       priceFormat: { type: 'volume' }, // Volume format
       priceScaleId: 'volume', // Separate price scale for volume
       scaleMargins: { top: 0.6, bottom: 0 }, // Adjust size of the volume pane
@@ -196,31 +196,6 @@ const StockChart = () => {
       value: d.volume,
       color: d.close >= d.open ? '#26a69a80' : '#ef535080',
     })));
-
-    // Create a custom legend
-    const legend = document.createElement('div');
-    legend.classList.add('custom-legend', 'absolute', 'top-4', 'right-4', 'bg-white', 'p-2', 'rounded', 'shadow');
-
-    const priceLabel = document.createElement('div');
-    priceLabel.classList.add('flex', 'items-center', 'mb-1');
-    const priceColor = document.createElement('div');
-    priceColor.classList.add('w-4', 'h-4', 'mr-2', 'bg-[#26a69a]');
-    const priceLabelText = document.createElement('span');
-    priceLabelText.textContent = 'Price';
-    priceLabel.appendChild(priceColor);
-    priceLabel.appendChild(priceLabelText);
-
-    const volumeLabel = document.createElement('div');
-    volumeLabel.classList.add('flex', 'items-center');
-    const volumeColor = document.createElement('div');
-    volumeColor.classList.add('w-4', 'h-4', 'mr-2', 'bg-[#26a69a80]');
-    const volumeLabelText = document.createElement('span');
-    volumeLabelText.textContent = 'Volume';
-    volumeLabel.appendChild(volumeColor);
-    volumeLabel.appendChild(volumeLabelText);
-
-    legend.appendChild(priceLabel);
-    legend.appendChild(volumeLabel);
 
     chart.timeScale().fitContent(); // Ensure the chart fits the data
     chartInstanceRef.current = chart;
