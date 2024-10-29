@@ -167,9 +167,6 @@ const StockChart = () => {
     return Object.values(periodMap).sort((a, b) => a.time - b.time);
   };
 
-  TypeError: Cannot read properties of null (reading 'appendChild')
-
-
   const handleIntervalChange = (newInterval) => {
     const autoTimeframe = INTERVALS.find((i) => i.value === newInterval)?.autoTimeframe;
     setSelectedInterval(newInterval);
@@ -191,7 +188,7 @@ const StockChart = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gray-50">
+    <div className="flex flex-col bg-gray-50">
       <header className="bg-white border-b border-gray-200 px-4 py-3">
         <div className="flex items-center justify-between">
           <select
