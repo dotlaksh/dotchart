@@ -208,11 +208,7 @@ const StockChart = () => {
     chartContainerRef.current.appendChild(legend);
     legendRef.current = legend;
 
-    const updateLegend = (param) => {
-      if (!param.time) {
-        legend.innerHTML = 'Hover over the chart';
-        return;
-      }
+   
 
       const data = param.seriesData.get(candlestickSeries);
       if (data) {
@@ -262,9 +258,7 @@ const StockChart = () => {
   };
 
   return (
-    <div className="flex-grow flex items-center justify-center p-1">
-      <div ref={chartContainerRef} className="w-full h-full relative" />
-    </div>
+    
     <div className="flex flex-col min-h-screen bg-gray-50">
       {/* Simplified Header */}
       <header className="bg-white border-b border-gray-200 px-4 py-3">
