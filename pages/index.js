@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createChart, CrosshairMode } from 'lightweight-charts';
 import axios from 'axios';
+import { ChevronLeft, ChevronRight, Calendar, BarChart2 } from 'lucide-react';
 import nifty50Data from '/public/nifty50.json';
 import niftyNext50Data from '/public/niftynext50.json';
 import midcap150Data from '/public/midcap150.json';
@@ -18,9 +19,9 @@ const TIME_PERIODS = [
 ];
 
 const INTERVALS = [
-  { label: 'Daily', value: 'daily', autoTimeframe: 'YTD' },
-  { label: 'Weekly', value: 'weekly', autoTimeframe: '2Y' },
-  { label: 'Monthly', value: 'monthly', autoTimeframe: '5Y' },
+  { label: 'D', value: 'daily', autoTimeframe: 'YTD' },
+  { label: 'W', value: 'weekly', autoTimeframe: '2Y' },
+  { label: 'M', value: 'monthly', autoTimeframe: '5Y' },
 ];
 
 const StockChart = () => {
@@ -44,8 +45,9 @@ const StockChart = () => {
   const chartContainerRef = useRef(null);
   const chartInstanceRef = useRef(null);
 
+  // Mobile-first chart height
   const getChartHeight = useCallback(() => {
-    return window.innerWidth < 768 ? 500 : 800;
+    return window.innerWidth < 768 ? 400 : 600;
   }, []);
 
   // Initialize stocks when index is selected
@@ -233,90 +235,114 @@ const StockChart = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <header className="sticky top-0 bg-gray-600 text-white py-3 px-4 flex justify-between items-center">
-        <h1 className="text-lg font-semibold">dotCharts</h1>
-        <select
-          className="bg-white text-gray-700 rounded px-2 py-1 text-sm"
-          value={selectedIndexId}
-          onChange={(e) => setSelectedIndexId(parseInt(e.target.value))}
-        >
-          {indexData.map((item, index) => (
-            <option key={index} value={index}>
-              {item.label}
-            </option>
-          ))}
-        </select>
+      {/* Simplified Header */}
+      <header className="bg-white border-b border-gray-200 px-4 py-3">
+        <div className="flex items-center justify-between">
+          <select
+            className="text-sm font-medium bg-transparent focus:outline-none"
+            value={selectedIndexId}
+            onChange={(e) => setSelectedIndexId(parseInt(e.target.value))}
+          >
+            {indexData.map((item, index) => (
+              <option key={index} value={index}>
+                {item.label}
+              </option>
+            ))}
+          </select>
+        </div>
       </header>
 
+      {/* Stock Info Card */}
       {currentStock && (
-        <div className="flex flex-col items-center py-2 bg-white shadow-sm">
-          <div className="flex items-center gap-2">
-            <span className="text-sm font-bold">{currentStock.name}</span>
-            <span className="text-xs text-gray-500">({currentStock.symbol})</span>
+        <div className="px-4 py-3 bg-white">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="font-semibold text-base">{currentStock.symbol}</h2>
+              <p className="text-xs text-gray-500 mt-0.5">{currentStock.name}</p>
+            </div>
+            <div className="text-right">
+              <p className="font-medium text-base">
+                ₹{currentStock.price?.toFixed(2)}
+              </p>
+              <p className={`text-sm ${currentStock.change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                {currentStock.change >= 0 ? '+' : ''}{currentStock.change?.toFixed(2)}%
+              </p>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="text-sm font-medium">{currentStock.price?.toFixed(2)}</span>
-            <span className={`text-sm ${currentStock.change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-              ({currentStock.change?.toFixed(2)}%)
-            </span>
-          </div>
-          <span className="text-xs text-gray-500">{currentStock.industry}</span>
         </div>
       )}
 
+      {/* Time Controls */}
+      <div className="px-4 py-2 bg-white border-b border-gray-200">
+        <div className="flex justify-between items-center">
+          <div className="flex gap-2">
+            {TIME_PERIODS.map((period) => (
+              <button
+                key={period.label}
+                onClick={() => setSelectedPeriod(period.label)}
+                className={`px-3 py-1 text-xs rounded-full ${
+                  selectedPeriod === period.label
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 text-gray-600'
+                }`}
+              >
+                {period.label}
+              </button>
+            ))}
+          </div>
+          <div className="flex gap-1">
+            {INTERVALS.map((interval) => (
+              <button
+                key={interval.value}
+                onClick={() => handleIntervalChange(interval.value)}
+                className={`px-3 py-1 text-xs rounded-full ${
+                  selectedInterval === interval.value
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 text-gray-600'
+                }`}
+              >
+                {interval.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Chart Area */}
       <main className="flex-grow flex items-center justify-center p-4">
         {loading ? (
-          <div className="text-center">Loading...</div>
+          <div className="flex items-center justify-center h-full">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+          </div>
         ) : error ? (
-          <div className="text-red-500">{error}</div>
+          <div className="text-red-500 text-center p-4">{error}</div>
         ) : (
-          <div ref={chartContainerRef} className="w-full h-full shadow-lg rounded-lg bg-white" />
+          <div ref={chartContainerRef} className="w-full h-full rounded-lg bg-white shadow-sm" />
         )}
       </main>
 
-      <footer className="sticky bottom-0 bg-white py-3 px-4 flex justify-between items-center border-t">
-        <div className="flex items-center gap-4">
+      {/* Navigation Footer */}
+      <footer className="bg-white border-t border-gray-200 px-4 py-3">
+        <div className="flex items-center justify-between">
           <button
             onClick={handlePrevious}
             disabled={currentStockIndex === 0}
-            className="text-blue-600 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center gap-1 text-sm text-blue-600 disabled:text-gray-300"
           >
+            <ChevronLeft size={16} />
             Previous
           </button>
-          <span className="text-sm">
-            {currentStockIndex + 1} / {stocks.length}
+          <span className="text-sm text-gray-600">
+            {currentStockIndex + 1} of {stocks.length}
           </span>
           <button
             onClick={handleNext}
             disabled={currentStockIndex === stocks.length - 1}
-            className="text-blue-600 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center gap-1 text-sm text-blue-600 disabled:text-gray-300"
           >
             Next
+            <ChevronRight size={16} />
           </button>
-        </div>
-        <div className="flex items-center gap-2">
-          <select
-            className="bg-white text-gray-700 rounded px-2 py-1 text-sm"
-            value={selectedPeriod}
-            onChange={(e) => setSelectedPeriod(e.target.value)}
-          >
-            {TIME_PERIODS.map((p) => (
-              <option key={p.label} value={p.label}>
-                {p.label}
-              </option>
-            ))}
-          </select>
-          <select
-            className="bg-white text-gray-700 rounded px-2 py-1 text-sm"
-            value={selectedInterval}
-            onChange={(e) => handleIntervalChange(e.target.value)}
-          >
-            {INTERVALS.map((interval) => (
-              <option key={interval.value} value={interval.value}>
-                {interval.label}
-              </option>
-            ))}
-          </select>
         </div>
       </footer>
     </div>
