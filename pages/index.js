@@ -251,9 +251,9 @@ const StockChart = () => {
 
   return (
     
-    <div className="flex flex-col min-h-screen bg-gray-50">
+    <div className="flex flex-col min-h-screen bg-[#1e293b]"> {/* Dark background color */}
       {/* Simplified Header */}
-      <header className="bg-white border-b border-gray-200 px-4 py-3">
+      <header className="bg-[#1e293b] border-b border-gray-200 px-4 py-3">
         <div className="flex items-center justify-between">
           <select
             className="text-sm font-medium bg-transparent focus:outline-none"
@@ -271,7 +271,7 @@ const StockChart = () => {
 
       {/* Stock Info Card */}
       {currentStock && (
-        <div className="px-4 py-3 bg-white">
+        <div className="px-4 py-3 bg-[#1e293b] text-[#e2e8f0]"> {/* Dark background and light text */}
           <div className="flex items-center justify-between">
             <div>
               <h2 className="font-semibold text-base">{currentStock.symbol}</h2>
@@ -290,7 +290,7 @@ const StockChart = () => {
       )}
 
       {/* Time Controls */}
-      <div className="px-4 py-2 bg-white border-b border-gray-200">
+      <div className="px-4 py-2 bg-[#1e293b] border-b border-[#334155] text-[#e2e8f0]"> {/* Dark background and light text */}
         <div className="flex justify-between items-center">
           <div className="flex gap-2">
             {TIME_PERIODS.map((period) => (
@@ -326,8 +326,8 @@ const StockChart = () => {
       </div>
 
       {/* Chart Area */}
-      <main className="flex-grow bg-gray-100 p-4 md:p-6 lg:p-8 relative">
-        <div className="bg-white rounded-lg shadow-sm h-full">
+      <main className="flex-grow bg-[#1e293b] p-4 md:p-6 lg:p-8 relative">
+        <div className="bg-[#1e293b] rounded-lg shadow-sm h-full flex flex-col">
           {loading ? (
             <div className="flex items-center justify-center h-full">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
@@ -341,7 +341,7 @@ const StockChart = () => {
       </main>
 
       {/* Navigation Footer */}
-     <footer className="bg-white border-t border-gray-200 px-4 py-3 fixed bottom-0 left-0 right-0">
+      <footer className="bg-[#1e293b] border-t border-[#334155] px-1 py-1 fixed bottom-0 left-0 right-0 text-[#e2e8f0]"> {/* Dark background and light text */}
         <div className="flex items-center justify-between">
           <button
             onClick={handlePrevious}
