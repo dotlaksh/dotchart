@@ -12,7 +12,7 @@ import microCap250Data from '/public/microcap250.json';
 
 const TIME_PERIODS = [
   { label: 'YTD', days: 365},
-  { label: '1Y', days: 365 ,auto:1y},
+  { label: '1Y', days: 365 ,auto:'1y'},
   { label: '2Y', days: 730 },
   { label: '5Y', days: 1825 },
   { label: 'Max', days: 3650 },
