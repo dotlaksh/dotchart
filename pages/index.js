@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { createChart, CrosshairMode } from 'lightweight-charts';
+import { createChart, CrosshairMode, ScaleDirection } from 'lightweight-charts';
 import axios from 'axios';
 import { ChevronLeft, ChevronRight, Calendar, BarChart2 } from 'lucide-react';
 import nifty50Data from '/public/nifty50.json';
@@ -43,7 +43,6 @@ const StockChart = () => {
 
   const chartContainerRef = useRef(null);
   const chartInstanceRef = useRef(null);
-
 
   // Mobile-first chart height
   const getChartHeight = useCallback(() => {
@@ -101,6 +100,7 @@ const StockChart = () => {
         industry: currentStock.industry,
         price: adjustedData[adjustedData.length - 1]?.close,
         change: ((adjustedData[adjustedData.length - 1]?.close - adjustedData[0]?.open) / adjustedData[0]?.open) * 100,
+        todayChange: ((adjustedData[adjustedData.length - 1]?.close - adjustedData[adjustedData.length - 2]?.close) / adjustedData[adjustedData.length - 2]?.close) * 100
       });
     } catch (err) {
       setError(err.response?.data?.details || 'Failed to fetch stock data');
@@ -151,66 +151,95 @@ const StockChart = () => {
   };
 
   useEffect(() => {
-  if (!chartContainerRef.current || !chartData.length) return;
+    if (!chartContainerRef.current || !chartData.length) return;
 
-  const chart = createChart(chartContainerRef.current, {
-    width: chartContainerRef.current.clientWidth,
-    height: getChartHeight(),
-    layout: { background: { type: 'solid', color: '#ffffff' }, textColor: '#000000' },
-    crosshair: { mode: CrosshairMode.Normal },
-    timeScale: {
-      timeVisible: true,
-      borderColor: '#cbd5e1',
-      rightOffset: 5,
-      minBarSpacing: 5,
-    },
-  });
-
-  // Candlestick series on the main pane with its own price scale
-  const candlestickSeries = chart.addCandlestickSeries({
-    upColor: '#26a69a',
-    downColor: '#ef5350',
-    borderUpColor: '#26a69a',
-    borderDownColor: '#ef5350',
-    wickUpColor: '#26a69a',
-    wickDownColor: '#ef5350',
-    priceScaleId: 'right', // Right-side price scale for candlestick chart
-  });
-
-  candlestickSeries.setData(chartData);
-
-  // Volume series in a new pane with a separate price scale
-  const volumeSeries = chart.addHistogramSeries({
-    color: '#26a69a',
-    priceFormat: { type: 'volume' }, // Volume format
-    priceScaleId: 'volume', // Separate price scale for volume
-    scaleMargins: { top: 0, bottom: 0.8 }, // Adjust size of the volume pane
-  });
-
-  volumeSeries.setData(chartData.map(d => ({
-    time: d.time,
-    value: d.volume,
-    color: d.close >= d.open ? '#26a69a80' : '#ef535080',
-  })));
-  chart.timeScale().fitContent(); // Ensure the chart fits the data
-  chartInstanceRef.current = chart;
-
-  const handleResize = () => {
-    chart.applyOptions({
+    const chart = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
       height: getChartHeight(),
+      layout: { background: { type: 'solid', color: '#ffffff' }, textColor: '#000000' },
+      crosshair: { mode: CrosshairMode.Normal },
+      timeScale: {
+        timeVisible: true,
+        borderColor: '#cbd5e1',
+        rightOffset: 5,
+        minBarSpacing: 5,
+        scaleMargins: {
+          top: 0.1,
+          bottom: 0.1,
+        },
+      },
     });
-  };
 
-  window.addEventListener('resize', handleResize);
+    // Candlestick series on the main pane with its own price scale
+    const candlestickSeries = chart.addCandlestickSeries({
+      upColor: '#26a69a',
+      downColor: '#ef5350',
+      borderUpColor: '#26a69a',
+      borderDownColor: '#ef5350',
+      wickUpColor: '#26a69a',
+      wickDownColor: '#ef5350',
+      priceScaleId: 'right', // Right-side price scale for candlestick chart
+    });
 
-  return () => {
-    window.removeEventListener('resize', handleResize);
-    chart.remove();
-  };
-}, [chartData, getChartHeight]);
+    candlestickSeries.setData(chartData);
 
+    // Volume series in a new pane with a separate price scale
+    const volumeSeries = chart.addHistogramSeries({
+      color: '#26a69a',
+      priceFormat: { type: 'volume' }, // Volume format
+      priceScaleId: 'volume', // Separate price scale for volume
+      scaleMargins: { top: 0, bottom: 0.8 }, // Adjust size of the volume pane
+    });
 
+    volumeSeries.setData(chartData.map(d => ({
+      time: d.time,
+      value: d.volume,
+      color: d.close >= d.open ? '#26a69a80' : '#ef535080',
+    })));
+
+    // Add Legend
+    const legend = chart.addLegend({
+      position: {
+        verticalAlign: 'top',
+        horzAlign: 'right',
+        visible: true,
+        marginRight: 20,
+        marginTop: 20
+      },
+      textColor: 'rgb(115, 118, 130)'
+    });
+
+    legend.addSeries(candlestickSeries, {
+      lineColor: '#26a69a',
+      lineWidth: 2,
+      lineStyle: 1,
+      title: 'Price'
+    });
+
+    legend.addSeries(volumeSeries, {
+      lineColor: '#26a69a',
+      lineWidth: 2,
+      lineStyle: 1,
+      title: 'Volume'
+    });
+
+    chart.timeScale().fitContent(); // Ensure the chart fits the data
+    chartInstanceRef.current = chart;
+
+    const handleResize = () => {
+      chart.applyOptions({
+        width: chartContainerRef.current.clientWidth,
+        height: getChartHeight(),
+      });
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      chart.remove();
+    };
+  }, [chartData, getChartHeight]);
 
   const handleIntervalChange = (newInterval) => {
     const autoTimeframe = INTERVALS.find((i) => i.value === newInterval)?.autoTimeframe;
@@ -264,8 +293,8 @@ const StockChart = () => {
               <p className="font-medium text-base">
                 ₹{currentStock.price?.toFixed(2)}
               </p>
-              <p className={`text-sm ${currentStock.change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                {currentStock.change >= 0 ? '+' : ''}{currentStock.change?.toFixed(2)}%
+              <p className={`text-sm ${currentStock.todayChange >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                {currentStock.todayChange >= 0 ? '+' : ''}{currentStock.todayChange?.toFixed(2)}%
               </p>
             </div>
           </div>
