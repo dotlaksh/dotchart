@@ -149,65 +149,66 @@ const StockChart = () => {
   };
 
   useEffect(() => {
-    if (!chartContainerRef.current || !chartData.length) return;
+  if (!chartContainerRef.current || !chartData.length) return;
 
-    const chart = createChart(chartContainerRef.current, {
+  const chart = createChart(chartContainerRef.current, {
+    width: chartContainerRef.current.clientWidth,
+    height: getChartHeight(),
+    layout: { background: { type: 'solid', color: '#f8fafc' }, textColor: '#1f2937' },
+    crosshair: { mode: CrosshairMode.Normal },
+    timeScale: {
+      timeVisible: true,
+      borderColor: '#cbd5e1',
+      rightOffset: 5,
+      minBarSpacing: 5,
+    },
+  });
+
+  // Price candlestick series
+  const candlestickSeries = chart.addCandlestickSeries({
+    upColor: '#26a69a',
+    downColor: '#ef5350',
+    borderUpColor: '#26a69a',
+    borderDownColor: '#ef5350',
+    wickUpColor: '#26a69a',
+    wickDownColor: '#ef5350',
+    priceScaleId: 'right', // Right side price scale for candlestick
+  });
+
+  candlestickSeries.setData(chartData);
+
+  // Volume series in a new pane below
+  const volumeSeries = chart.addHistogramSeries({
+    color: '#26a69a',
+    priceFormat: { type: 'volume' },
+    priceScaleId: '', // Empty priceScaleId to create a new pane
+    scaleMargins: { top: 0.8, bottom: 0 }, // Align it to the bottom
+  });
+
+  volumeSeries.setData(chartData.map(d => ({
+    time: d.time,
+    value: d.volume,
+    color: d.close >= d.open ? '#26a69a80' : '#ef535080',
+  })));
+
+  chart.timeScale().fitContent();
+  chartInstanceRef.current = chart;
+
+  const handleResize = () => {
+    chart.applyOptions({
       width: chartContainerRef.current.clientWidth,
       height: getChartHeight(),
-      layout: { background: { type: 'solid', color: '#f8fafc' }, textColor: '#1f2937' },
-      crosshair: { mode: CrosshairMode.Normal },
-      timeScale: {
-        timeVisible: true,
-        borderColor: '#cbd5e1',
-        rightOffset: 5,
-        minBarSpacing: 5,
-      },
-      rightPriceScale: {
-        autoScale: true,
-      },
     });
+  };
 
-    const candlestickSeries = chart.addCandlestickSeries({
-      upColor: '#26a69a',
-      downColor: '#ef5350',
-      borderUpColor: '#26a69a',
-      borderDownColor: '#ef5350',
-      wickUpColor: '#26a69a',
-      wickDownColor: '#ef5350',
-    });
+  window.addEventListener('resize', handleResize);
 
-    candlestickSeries.setData(chartData);
+  return () => {
+    window.removeEventListener('resize', handleResize);
+    chart.remove();
+  };
+}, [chartData, getChartHeight]);
 
-    const volumeSeries = chart.addHistogramSeries({
-      color: '#26a69a',
-      priceFormat: { type: 'volume' },
-      priceScaleId: 'volume',
-      scaleMargins: { top: 0.8, bottom: 0 },
-    });
-
-    volumeSeries.setData(chartData.map(d => ({
-      time: d.time,
-      value: d.volume,
-      color: d.close >= d.open ? '#26a69a80' : '#ef535080',
-    })));
-
-    chart.timeScale().fitContent();
-    chartInstanceRef.current = chart;
-
-    const handleResize = () => {
-      chart.applyOptions({
-        width: chartContainerRef.current.clientWidth,
-        height: getChartHeight(),
-      });
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      chart.remove();
-    };
-  }, [chartData, getChartHeight]);
 
   const handleIntervalChange = (newInterval) => {
     const autoTimeframe = INTERVALS.find((i) => i.value === newInterval)?.autoTimeframe;
