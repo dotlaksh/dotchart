@@ -248,7 +248,7 @@ const StockChart = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
+    <div className="flex flex-col h-screen bg-gray-50">
       <header className="bg-white border-b border-gray-200 px-4 py-3">
         <div className="flex items-center justify-between">
           <select
@@ -319,19 +319,21 @@ const StockChart = () => {
         </div>
       </div>
 
-      <main className="flex-grow flex items-center justify-center p-4 pb-0">
-        {loading ? (
-          <div className="flex items-center justify-center h-full">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-          </div>
-        ) : error ? (
-          <div className="text-red-500 text-center p-4">{error}</div>
-        ) : (
-          <div ref={chartContainerRef} className="w-full h-full rounded-lg bg-white shadow-sm" />
-        )}
+      <main className="flex-grow flex flex-col">
+        <div className="flex-grow px-4">
+          {loading ? (
+            <div className="flex items-center justify-center h-full">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+            </div>
+          ) : error ? (
+            <div className="text-red-500 text-center p-4">{error}</div>
+          ) : (
+            <div ref={chartContainerRef} className="w-full h-full rounded-lg bg-white shadow-sm" />
+          )}
+        </div>
       </main>
 
-      <footer className="bg-white border-t border-gray-200 px-4 py-2">
+      <footer className="bg-white border-t border-gray-200 px-4 py-2 mt-auto">
         <div className="flex items-center justify-between">
           <button
             onClick={handlePrevious}
