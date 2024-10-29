@@ -46,7 +46,7 @@ const StockChart = () => {
 
   // Mobile-first chart height
   const getChartHeight = useCallback(() => {
-    return window.innerWidth < 768 ? 400 : 600;
+    return window.innerWidth < 768 ? 500 : 700;
   }, []);
 
   // Initialize stocks when index is selected
