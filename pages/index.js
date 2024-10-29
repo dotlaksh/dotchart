@@ -188,7 +188,7 @@ const StockChart = () => {
   };
 
   return (
-    <div className="flex flex-col bg-gray-50">
+    <div className="flex flex-col h-screen bg-gray-50">
       <header className="bg-white border-b border-gray-200 px-4 py-3">
         <div className="flex items-center justify-between">
           <select
@@ -259,8 +259,8 @@ const StockChart = () => {
         </div>
       </div>
 
-    <div className="flex flex-col h-screen bg-gray-50">
-        <div className="flex-grow relative"> {/* Added relative positioning */}
+      <main className="flex-grow flex flex-col">
+        <div className="flex-grow relative">
           {loading ? (
             <div className="flex items-center justify-center h-full">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
