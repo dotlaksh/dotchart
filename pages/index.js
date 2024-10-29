@@ -196,7 +196,6 @@ const StockChart = () => {
       color: '#00ff55',
       priceFormat: { type: 'volume' }, // Volume format
       priceScaleId: 'volume', // Separate price scale for volume
-      scaleMargins: { top: 0.6, bottom: 0 }, // Adjust size of the volume pane
     });
 
     volumeSeries.setData(chartData.map(d => ({
@@ -205,6 +204,13 @@ const StockChart = () => {
       color: d.close >= d.open ? '#26a69a80' : '#ef535080',
     })));
 
+    volumeSeries.priceScale().applyOptions({
+      // set the positioning of the volume series
+      scaleMargins: {
+          top: 0.7, // highest point of the series will be 70% away from the top
+          bottom: 0,
+      },
+    });
     chart.timeScale().fitContent(); // Ensure the chart fits the data
     chartInstanceRef.current = chart;
 
