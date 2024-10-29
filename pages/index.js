@@ -328,9 +328,9 @@ const StockChart = () => {
 
       {/* Chart Area */}
       <main className="flex-grow bg-[#1e293b] m-5">
-        <div className="bg-[#1e293b] rounded-lg shadow-sm h-full flex flex-col relative"> {/* Added relative positioning */}
+        <div className="bg-[#1e293b] rounded-lg shadow-sm h-[700px]"> {/* Fixed height container */}
           {loading ? (
-            <div className="absolute inset-0 flex items-center justify-center"> {/* Changed to absolute positioning with inset-0 */}
+            <div className="h-full w-full flex items-center justify-center"> {/* Simple full-size flex container */}
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
             </div>
           ) : error ? (
