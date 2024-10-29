@@ -327,7 +327,7 @@ const StockChart = () => {
       </div>
 
       {/* Chart Area */}
-      <main className="flex-grow bg-[#1e293b] py-4 p-4 md:p-6 lg:p-8 relative">
+      <main className="flex-grow bg-[#1e293b] m-5">
         <div className="bg-[#1e293b] rounded-lg shadow-sm h-full flex flex-col">
           {loading ? (
             <div className="flex items-center justify-center h-full">
