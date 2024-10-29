@@ -61,9 +61,7 @@ const StockChart = () => {
     try {
       const currentStock = stocks[currentStockIndex];
       const response = await axios.get('/api/stockData', {
-        params: {
-          symbol: currentStock.symbol,
-        },
+        params: { symbol: currentStock.symbol },
       });
 
       const formattedData = response.data.map(item => ({
@@ -111,6 +109,7 @@ const StockChart = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 text-gray-800">
+      {/* Header */}
       <header className="bg-white py-3 px-4 shadow-md">
         <h1 className="text-xl font-bold text-center">dotCharts</h1>
         <select
@@ -126,6 +125,7 @@ const StockChart = () => {
         </select>
       </header>
 
+      {/* Stock Details */}
       {currentStock && (
         <div className="p-4 bg-white shadow-sm rounded-md my-2 text-center">
           <p className="text-lg font-semibold">{currentStock.name}</p>
@@ -134,6 +134,7 @@ const StockChart = () => {
         </div>
       )}
 
+      {/* Chart Container */}
       <main className="flex-grow p-2">
         {loading ? (
           <div className="text-center text-gray-500">Loading...</div>
@@ -142,6 +143,7 @@ const StockChart = () => {
         )}
       </main>
 
+      {/* Footer with Navigation */}
       <footer className="bg-white py-2 px-4 shadow-t border-t mt-2 flex items-center justify-between">
         <button
           onClick={() => setCurrentStockIndex((i) => Math.max(i - 1, 0))}
