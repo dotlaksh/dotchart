@@ -336,16 +336,17 @@ const StockChart = () => {
       </div>
 
       {/* Chart Area */}
-      <main className="flex-grow flex items-center justify-center py-4 px-4">
+      <main className="flex-grow bg-gray-100 p-4 md:p-6 lg:p-8 relative">
         {loading ? (
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center h-full">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
           </div>
         ) : error ? (
           <div className="text-red-500 text-center p-4">{error}</div>
         ) : (
-          <div ref={chartContainerRef} className="w-full h-full rounded-lg bg-white shadow-sm" />
+          <div className="w-full h-full rounded-lg bg-white shadow-sm"></div>
         )}
+        <div ref={chartContainerRef} className="absolute top-0 left-0 w-full h-full" />
       </main>
 
       {/* Navigation Footer */}
