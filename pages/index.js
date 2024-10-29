@@ -109,6 +109,10 @@ const StockChart = () => {
     }
   }, [stocks, currentStockIndex, selectedPeriod, selectedInterval]);
 
+  useEffect(() => {
+    fetchStockData();
+  }, [fetchStockData]);
+
   const aggregateData = (data, interval) => {
     if (interval === 'daily') return data;
 
@@ -323,8 +327,8 @@ const StockChart = () => {
       </div>
 
       {/* Chart Area */}
-        <main className="flex-grow bg-[#1e293b] p-4 md:p-6 lg:p-8 relative">
-        <div className="bg-[#1e293b] rounded-lg shadow-md h-full flex flex-col">
+      <main className="flex-grow bg-[#1e293b] p-4 md:p-6 lg:p-8 relative">
+        <div className="bg-[#1e293b] rounded-lg shadow-sm h-full flex flex-col">
           {loading ? (
             <div className="flex items-center justify-center h-full">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
