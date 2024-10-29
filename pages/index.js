@@ -251,7 +251,7 @@ const StockChart = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#1e293b] items-center justify-center">
+    <div className="flex flex-col min-h-screen bg-[#1e293b] items-center justify-center md:pt-4">
       <div className="max-w-4xl w-full">
         {/* Header */}
         <header className="bg-[#1e293b] border-b border-[#334155] px-4 py-3">
