@@ -219,9 +219,6 @@ const StockChart = () => {
     volumeLabel.appendChild(volumeColor);
     volumeLabel.appendChild(volumeLabelText);
 
-    legend.appendChild(priceLabel);
-    legend.appendChild(volumeLabel);
-    chartContainerRef.current.appendChild(legend);
 
     chart.timeScale().fitContent(); // Ensure the chart fits the data
     chartInstanceRef.current = chart;
