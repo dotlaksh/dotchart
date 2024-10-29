@@ -43,6 +43,8 @@ const StockChart = () => {
 
   const chartContainerRef = useRef(null);
   const chartInstanceRef = useRef(null);
+  const legendRef = useRef(null);
+
 
   // Mobile-first chart height
   const getChartHeight = useCallback(() => {
@@ -191,7 +193,34 @@ const StockChart = () => {
     value: d.volume,
     color: d.close >= d.open ? '#26a69a80' : '#ef535080',
   })));
+// Setup legend
+    const legend = document.createElement('div');
+    legend.style = `
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      z-index: 1;
+      font-size: 14px;
+      font-family: sans-serif;
+      line-height: 18px;
+      font-weight: 300;
+    `;
+    chartContainerRef.current.appendChild(legend);
+    legendRef.current = legend;
 
+    const updateLegend = (param) => {
+      if (!param.time) {
+        legend.innerHTML = 'Hover over the chart';
+        return;
+      }
+
+      const data = param.seriesData.get(candlestickSeries);
+      if (data) {
+        legend.innerHTML = `<strong>Close:</strong> ${data.close.toFixed(2)}`;
+      }
+    };
+
+    chart.subscribeCrosshairMove(updateLegend);
   chart.timeScale().fitContent(); // Ensure the chart fits the data
   chartInstanceRef.current = chart;
 
