@@ -328,9 +328,9 @@ const StockChart = () => {
 
       {/* Chart Area */}
       <main className="flex-grow bg-[#1e293b] m-5">
-        <div className="bg-[#1e293b] rounded-lg shadow-sm h-full flex flex-col">
+        <div className="bg-[#1e293b] rounded-lg shadow-sm h-full flex flex-col relative"> {/* Added relative positioning */}
           {loading ? (
-            <div className="flex items-center justify-center h-full">
+            <div className="absolute inset-0 flex items-center justify-center"> {/* Changed to absolute positioning with inset-0 */}
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
             </div>
           ) : error ? (
@@ -340,7 +340,6 @@ const StockChart = () => {
           )}
         </div>
       </main>
-
       {/* Navigation Footer */}
       <footer className="bg-[#1e293b] border-t border-[#334155] px-1 py-1 fixed bottom-0 left-0 right-0 text-[#e2e8f0]"> {/* Dark background and light text */}
         <div className="flex items-center justify-between">
