@@ -43,7 +43,47 @@ const StockChart = () => {
 
   const chartContainerRef = useRef(null);
   const chartInstanceRef = useRef(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
+  const [filteredStocks, setFilteredStocks] = useState([]);
+  const searchRef = useRef(null);
 
+  // Add click outside handler for search results
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setIsSearching(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Add search handler
+  const handleSearch = (value) => {
+    setSearchTerm(value);
+    if (value.trim() === '') {
+      setFilteredStocks([]);
+      setIsSearching(false);
+      return;
+    }
+
+    setIsSearching(true);
+    const searchResults = stocks.filter(stock => 
+      stock.symbol.toLowerCase().includes(value.toLowerCase()) ||
+      stock.name.toLowerCase().includes(value.toLowerCase())
+    ).slice(0, 5); // Limit to 5 results
+    setFilteredStocks(searchResults);
+  };
+
+  // Add select stock handler
+  const handleSelectStock = (stockIndex) => {
+    setCurrentStockIndex(stockIndex);
+    setSearchTerm('');
+    setIsSearching(false);
+    setFilteredStocks([]);
+  };
   // Mobile-first chart height
   const getChartHeight = useCallback(() => {
     return window.innerWidth < 768 ? 550 : 700;
@@ -254,7 +294,7 @@ const StockChart = () => {
     <div className="flex flex-col min-h-screen bg-[#1e293b] overflow-x-hidden">
       {/* Header */}
       <header className="bg-[#1e293b] border-b border-[#334155] px-2 sm:px-4 py-3">
-        <div className="max-w-6xl mx-auto w-full">
+        <div className="max-w-6xl mx-auto w-full flex justify-between items-center">
           <select
             className="text-sm font-medium bg-transparent text-[#e2e8f0] focus:outline-none"
             value={selectedIndexId}
@@ -266,6 +306,67 @@ const StockChart = () => {
               </option>
             ))}
           </select>
+
+          {/* Search Box */}
+          <div className="relative" ref={searchRef}>
+            <div className="flex items-center bg-slate-800 rounded-lg">
+              <Search className="h-4 w-4 text-slate-400 ml-2" />
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => handleSearch(e.target.value)}
+                placeholder="Search stocks..."
+                className="w-40 sm:w-64 px-2 py-1.5 text-sm bg-transparent text-white placeholder-slate-400 focus:outline-none"
+              />
+              {searchTerm && (
+                <button
+                  onClick={() => {
+                    setSearchTerm('');
+                    setFilteredStocks([]);
+                    setIsSearching(false);
+                  }}
+                  className="p-1.5 text-slate-400 hover:text-white"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+
+            {/* Search Results Dropdown */}
+            {isSearching && filteredStocks.length > 0 && (
+              <div className="absolute right-0 mt-2 w-full sm:w-96 bg-slate-800 rounded-lg shadow-lg border border-slate-700 z-50">
+                <ul className="py-1">
+                  {filteredStocks.map((stock) => {
+                    const stockIndex = stocks.findIndex(s => s.symbol === stock.symbol);
+                    return (
+                      <li key={stock.symbol}>
+                        <button
+                          onClick={() => handleSelectStock(stockIndex)}
+                          className="w-full px-4 py-2 text-left hover:bg-slate-700 focus:outline-none"
+                        >
+                          <div className="flex justify-between items-center">
+                            <div>
+                              <p className="text-white font-medium">{stock.symbol}</p>
+                              <p className="text-slate-400 text-sm truncate">{stock.name}</p>
+                            </div>
+                          </div>
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
+
+            {/* No Results Message */}
+            {isSearching && searchTerm && filteredStocks.length === 0 && (
+              <div className="absolute right-0 mt-2 w-full sm:w-96 bg-slate-800 rounded-lg shadow-lg border border-slate-700 z-50">
+                <div className="px-4 py-3 text-slate-400 text-sm">
+                  No stocks found
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </header>
 
