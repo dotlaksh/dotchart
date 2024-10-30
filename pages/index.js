@@ -12,15 +12,13 @@ import smallcap250Data from '/public/smallcap250.json';
 import microCap250Data from '/public/microcap250.json';
 
 const TIME_PERIODS = [
-  { label: '3M', range:'3mo'},
-  { label: '6M', range:'6mo'},
-  { label: '1Y', range: '1y' },
-  { label: '5Y', range: '5y' },
-  { label: 'Max', range: 'max' },
+  { label: '1Y', range: '1y' ,autoInterval: 'daily'},
+  { label: '5Y', range: '5y' ,autoInterval: 'weekly' },
+  { label: 'Max', range: 'max' ,autoInterval: 'monthly' },
 ];
 
 const INTERVALS = [
-  { label: 'D', value: 'daily', interval: '1d', autoTimeframe: '3M' },
+  { label: 'D', value: 'daily', interval: '1d', autoTimeframe: '1Y' },
   { label: 'W', value: 'weekly', interval: '1wk', autoTimeframe: '5Y' },
   { label: 'M', value: 'monthly', interval: '1mo', autoTimeframe: 'Max' },
 ];
@@ -39,7 +37,7 @@ const StockChart = () => {
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedPeriod, setSelectedPeriod] = useState('3M');
+  const [selectedPeriod, setSelectedPeriod] = useState('1Y');
   const [selectedInterval, setSelectedInterval] = useState('daily');
   const [currentStock, setCurrentStock] = useState(null);
 
@@ -156,12 +154,15 @@ const StockChart = () => {
         timezone: 'Asia/Kolkata',  // Set to Indian timezone
         timeVisible: false,
         borderColor: '#cbd5e1',
-        rightOffset: 10,
+        rightOffset: 5,
         minBarSpacing: 5,
         scaleMargins: {
           top: 0.1,
           bottom: 0.1,
         },
+      },
+      priceScale: {
+        mode: 'logarithmic',
       },
     });
 
@@ -190,6 +191,12 @@ const StockChart = () => {
       color: d.close >= d.open ? '#00ff55' : '#ed4807',
     })));
 
+    candlestickSeries.priceScale().applyOptions({
+      scaleMargins: {
+        top: 0.1,
+        bottom: 0.2,
+      }
+    });
     volumeSeries.priceScale().applyOptions({
       scaleMargins: {
         top: 0.7,
@@ -215,6 +222,13 @@ const StockChart = () => {
     };
   }, [chartData, getChartHeight]);
 
+  const handlePeriodChange = (newPeriod) => {
+    setSelectedPeriod(newPeriod);
+    const autoInterval = TIME_PERIODS.find((p) => p.label === newPeriod)?.autoInterval;
+    if (autoInterval) {
+      setSelectedInterval(autoInterval);
+    }
+  };
   const handleIntervalChange = (newInterval) => {
     const autoTimeframe = INTERVALS.find((i) => i.value === newInterval)?.autoTimeframe;
     setSelectedInterval(newInterval);
@@ -238,7 +252,7 @@ const StockChart = () => {
   return (
     <div className="flex flex-col min-h-screen bg-[#1e293b] overflow-x-hidden">
       <header className="bg-[#1e293b] border-b border-[#334155] px-2 sm:px-4 py-3">
-        <div className="max-w-screen mx-auto w-full flex justify-between items-center">
+        <div className="max-w-screen max-w-6xl mx-auto w-full flex justify-between items-center">
           <select
             className="text-sm font-medium bg-[#1e293b] text-[#e2e8f0] focus:outline-none"
             value={selectedIndexId}
@@ -252,7 +266,7 @@ const StockChart = () => {
           </select>
 
           <div className="relative" ref={searchRef}>
-            <div className="flex items-center bg-slate-800 rounded-lg">
+            <div className="flex items-center bg-slate-800 rounded-lg border border-slate-500">
               <Search className="h-4 w-4 text-slate-400 ml-2" />
               <input
                 type="text"
@@ -370,7 +384,7 @@ const StockChart = () => {
       </div>
 
       {/* Chart Area */}
-      <main className="flex-grow bg-[#1e293b] pt-4 pb-20">
+      <main className="flex-grow bg-[#1e293b]">
         <div className="max-w-6xl mx-auto px-2 sm:px-4">
           <div className="bg-[#1e293b] rounded-lg shadow-lg border border-[#334155] overflow-hidden">
             {loading ? (
