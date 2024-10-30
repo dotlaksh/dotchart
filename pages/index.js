@@ -351,25 +351,26 @@ const StockChart = () => {
       {/* Navigation Footer */}
       <footer className="bg-[#1e293b] border-t border-[#334155] fixed bottom-0 left-0 right-0 text-[#e2e8f0]">
         <div className="max-w-6xl mx-auto px-4 py-2">
-          <div className="flex items-center justify-between px-4 py-3 bg-slate-800 rounded-lg shadow-lg">
+         <div className="flex items-center justify-between px-2 sm:px-4 py-3 bg-slate-800 rounded-lg shadow-lg">
       <button
         onClick={handlePrevious}
         disabled={currentStockIndex === 0}
-        className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-slate-700 rounded-md 
+        className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 text-sm font-medium text-white bg-slate-700 rounded-md 
                  transition-all duration-200 ease-in-out
                  hover:bg-slate-600 hover:shadow-md
                  disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-slate-700 disabled:hover:shadow-none
                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
       >
         <ChevronLeft size={16} className="transition-transform group-hover:-translate-x-0.5" />
-        Previous
+        <span className="hidden sm:inline">Previous</span>
+        <span className="sm:hidden">Prev</span>
       </button>
       
-      <div className="flex items-center px-4 py-2 bg-slate-700 rounded-md">
+      <div className="flex items-center px-2 sm:px-4 py-2 bg-slate-700 rounded-md">
         <span className="text-sm font-medium text-slate-200">
           {currentStockIndex + 1}
         </span>
-        <span className="mx-2 text-slate-400">/</span>
+        <span className="mx-1 sm:mx-2 text-slate-400">/</span>
         <span className="text-sm font-medium text-slate-400">
           {stocks.length}
         </span>
@@ -378,13 +379,13 @@ const StockChart = () => {
       <button
         onClick={handleNext}
         disabled={currentStockIndex === stocks.length - 1}
-        className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-slate-700 rounded-md 
+        className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 text-sm font-medium text-white bg-slate-700 rounded-md 
                  transition-all duration-200 ease-in-out
                  hover:bg-slate-600 hover:shadow-md
                  disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-slate-700 disabled:hover:shadow-none
                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
       >
-        Next
+        <span>Next</span>
         <ChevronRight size={16} className="transition-transform group-hover:translate-x-0.5" />
       </button>
     </div>
