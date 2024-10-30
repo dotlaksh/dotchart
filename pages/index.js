@@ -351,27 +351,43 @@ const StockChart = () => {
       {/* Navigation Footer */}
       <footer className="bg-[#1e293b] border-t border-[#334155] fixed bottom-0 left-0 right-0 text-[#e2e8f0]">
         <div className="max-w-6xl mx-auto px-4 py-2">
-          <div className="flex items-center justify-between">
-            <button
-              onClick={handlePrevious}
-              disabled={currentStockIndex === 0}
-              className="flex items-center gap-1 text-lg font-semibold text-[#e2e8f0] disabled:text-gray-600 disabled:cursor-not-allowed hover:text-blue-400 transition-colors"
-            >
-              <ChevronLeft size={16} />
-              Previous
-            </button>
-            <span className="text-sm text-[#e2e8f0]">
-              {currentStockIndex + 1} of {stocks.length}
-            </span>
-            <button
-              onClick={handleNext}
-              disabled={currentStockIndex === stocks.length - 1}
-              className="flex items-center gap-1 text-lg font-semibold text-[#e2e8f0] disabled:text-gray-600 disabled:cursor-not-allowed hover:text-blue-400 transition-colors"
-            >
-              Next
-              <ChevronRight size={16} />
-            </button>
-          </div>
+          <div className="flex items-center justify-between px-4 py-3 bg-slate-800 rounded-lg shadow-lg">
+      <button
+        onClick={onPrevious}
+        disabled={currentStockIndex === 0}
+        className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-slate-700 rounded-md 
+                 transition-all duration-200 ease-in-out
+                 hover:bg-slate-600 hover:shadow-md
+                 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-slate-700 disabled:hover:shadow-none
+                 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+      >
+        <ChevronLeft size={16} className="transition-transform group-hover:-translate-x-0.5" />
+        Previous
+      </button>
+      
+      <div className="flex items-center px-4 py-2 bg-slate-700 rounded-md">
+        <span className="text-sm font-medium text-slate-200">
+          {currentStockIndex + 1}
+        </span>
+        <span className="mx-2 text-slate-400">/</span>
+        <span className="text-sm font-medium text-slate-400">
+          {totalStocks}
+        </span>
+      </div>
+      
+      <button
+        onClick={onNext}
+        disabled={currentStockIndex === totalStocks - 1}
+        className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-slate-700 rounded-md 
+                 transition-all duration-200 ease-in-out
+                 hover:bg-slate-600 hover:shadow-md
+                 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-slate-700 disabled:hover:shadow-none
+                 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+      >
+        Next
+        <ChevronRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+      </button>
+    </div>
         </div>
       </footer>
     </div>
