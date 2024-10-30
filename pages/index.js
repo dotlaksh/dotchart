@@ -11,14 +11,15 @@ import smallcap250Data from '/public/smallcap250.json';
 import microCap250Data from '/public/microcap250.json';
 
 const TIME_PERIODS = [
+  { label: '3M' range:'3mo'},
+  { label: '6M' range:'6mo'},
   { label: '1Y', range: '1y' },
-  { label: '2Y', range: '2y' },
   { label: '5Y', range: '5y' },
   { label: 'Max', range: 'max' },
 ];
 
 const INTERVALS = [
-  { label: 'D', value: 'daily', interval: '1d', autoTimeframe: '1Y' },
+  { label: 'D', value: 'daily', interval: '1d', autoTimeframe: '3M' },
   { label: 'W', value: 'weekly', interval: '1wk', autoTimeframe: '2Y' },
   { label: 'M', value: 'monthly', interval: '1mo', autoTimeframe: '5Y' },
 ];
