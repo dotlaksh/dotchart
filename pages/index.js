@@ -153,9 +153,10 @@ const StockChart = () => {
         horzLines: { visible: false },
       },
       timeScale: {
-        timeVisible: true,
+        timezone: 'Asia/Kolkata',  // Set to Indian timezone
+        timeVisible: false,
         borderColor: '#cbd5e1',
-        rightOffset: 5,
+        rightOffset: 10,
         minBarSpacing: 5,
         scaleMargins: {
           top: 0.1,
