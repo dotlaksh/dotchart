@@ -450,8 +450,8 @@ const StockChart = () => {
       </main>
 
       {/* Navigation Footer */}
-      <footer className="bg-[#1e293b]  fixed bottom-0 left-0 right-0 text-[#e2e8f0] w-full">
-        <div className="max-w-6xl mx-auto px-2 sm:px-4 py-2 border-t border-[#334155]">
+      <footer className="bg-[#1e293b] fixed bottom-0 left-0 right-0 text-[#e2e8f0] w-full">
+        <div className="max-w-6xl mx-auto px-2 sm:px-4 py-1">
           <div className="flex items-center justify-between px-2 sm:px-4 py-2 bg-slate-800 rounded-lg shadow-lg">
             <button
               onClick={handlePrevious}
