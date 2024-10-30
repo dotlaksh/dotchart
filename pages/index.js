@@ -296,7 +296,7 @@ const StockChart = () => {
       <header className="bg-[#1e293b] border-b border-[#334155] px-2 sm:px-4 py-3">
         <div className="max-w-6xl mx-auto w-full flex justify-between items-center">
           <select
-            className="text-sm font-medium bg-transparent text-[#e2e8f0] focus:outline-none"
+            className="text-sm font-medium bg-transparent text-[#000000] focus:outline-none"
             value={selectedIndexId}
             onChange={(e) => setSelectedIndexId(parseInt(e.target.value))}
           >
