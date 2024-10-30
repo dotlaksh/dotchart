@@ -37,7 +37,7 @@ export default async function handler(req, res) {
     const period2 = getUnixTimestamp(endDate);
 
     // Fetch data from Yahoo Finance
-    const response = await axios.get(`https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=${range}&interval=${interval}`, {
+    const response = await axios.get(`https://query1.finance.yahoo.com/v8/finance/chart/${formattedSymbol}`, {
       params: {
         period1,
         period2,
