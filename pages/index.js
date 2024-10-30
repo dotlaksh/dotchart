@@ -353,7 +353,7 @@ const StockChart = () => {
         <div className="max-w-6xl mx-auto px-4 py-2">
           <div className="flex items-center justify-between px-4 py-3 bg-slate-800 rounded-lg shadow-lg">
       <button
-        onClick={onPrevious}
+        onClick={handlePrevious}
         disabled={currentStockIndex === 0}
         className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-slate-700 rounded-md 
                  transition-all duration-200 ease-in-out
@@ -376,7 +376,7 @@ const StockChart = () => {
       </div>
       
       <button
-        onClick={onNext}
+        onClick={handleNext}
         disabled={currentStockIndex === totalStocks - 1}
         className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-slate-700 rounded-md 
                  transition-all duration-200 ease-in-out
