@@ -397,7 +397,7 @@ const StockChart = () => {
               {TIME_PERIODS.map((period) => (
                 <button
                   key={period.label}
-                  onClick={() => setSelectedPeriod(period.label)}
+                  onClick={() => selectedInterval(period.label)}
                   className={`px-2 sm:px-3 py-1 text-xs rounded-full ${
                     selectedRange === period.label
                       ? 'bg-blue-600 text-white'
