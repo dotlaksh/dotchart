@@ -11,16 +11,16 @@ import smallcap250Data from '/public/smallcap250.json';
 import microCap250Data from '/public/microcap250.json';
 
 const TIME_PERIODS = [
-  { label: '1Y', days: 365 ,auto:'1y'},
-  { label: '2Y', days: 730 },
-  { label: '5Y', days: 1825 },
-  { label: 'Max', days: 3650 },
+  { label: '1Y', range: '1y' },
+  { label: '2Y', range: '2y' },
+  { label: '5Y', range: '5y' },
+  { label: 'Max', range: 'max' }
 ];
 
 const INTERVALS = [
-  { label: 'D', value: 'daily', autoTimeframe: '1Y' },
-  { label: 'W', value: 'weekly', autoTimeframe: '2Y' },
-  { label: 'M', value: 'monthly', autoTimeframe: '5Y' },
+  { label: 'D', value: '1d', defaultRange: '1y' },
+  { label: 'W', value: '1wk', defaultRange: '2y' },
+  { label: 'M', value: '1mo', defaultRange: '5y' }
 ];
 
 const StockChart = () => {
@@ -101,6 +101,9 @@ const StockChart = () => {
     setCurrentStockIndex(0);
   }, [selectedIndexId, indexData]);
 
+  const [selectedRange, setSelectedRange] = useState('1y');
+  const [selectedInterval, setSelectedInterval] = useState('1d');
+
   const fetchStockData = useCallback(async () => {
     if (!stocks.length) return;
     
@@ -109,16 +112,12 @@ const StockChart = () => {
     
     try {
       const currentStock = stocks[currentStockIndex];
-      const endDate = new Date();
-      const startDate = new Date();
-      const period = TIME_PERIODS.find(p => p.label === selectedPeriod);
-      startDate.setDate(endDate.getDate() - (period?.days || 365));
-
+      
       const response = await axios.get('/api/stockData', {
         params: {
           symbol: currentStock.symbol,
-          startDate: startDate.toISOString().split('T')[0],
-          endDate: endDate.toISOString().split('T')[0]
+          range: selectedRange,
+          interval: selectedInterval
         }
       });
 
@@ -130,24 +129,30 @@ const StockChart = () => {
         close: item.close,
         volume: item.volume
       }));
-
-      const adjustedData = aggregateData(formattedData, selectedInterval);
       
-      setChartData(adjustedData);
+      setChartData(formattedData);
       setCurrentStock({
         name: currentStock.name,
         symbol: currentStock.symbol,
         industry: currentStock.industry,
-        price: adjustedData[adjustedData.length - 1]?.close,
-        change: ((adjustedData[adjustedData.length - 1]?.close - adjustedData[0]?.open) / adjustedData[0]?.open) * 100,
-        todayChange: ((adjustedData[adjustedData.length - 1]?.close - adjustedData[adjustedData.length - 2]?.close) / adjustedData[adjustedData.length - 2]?.close) * 100
+        price: formattedData[formattedData.length - 1]?.close,
+        change: ((formattedData[formattedData.length - 1]?.close - formattedData[0]?.open) / formattedData[0]?.open) * 100,
+        todayChange: ((formattedData[formattedData.length - 1]?.close - formattedData[formattedData.length - 2]?.close) / formattedData[formattedData.length - 2]?.close) * 100
       });
     } catch (err) {
       setError(err.response?.data?.details || 'Failed to fetch stock data');
     } finally {
       setLoading(false);
     }
-  }, [stocks, currentStockIndex, selectedPeriod, selectedInterval]);
+  }, [stocks, currentStockIndex, selectedRange, selectedInterval]);
+
+  const handleIntervalChange = (newInterval) => {
+    const interval = INTERVALS.find(i => i.value === newInterval);
+    setSelectedInterval(newInterval);
+    if (interval?.defaultRange) {
+      setSelectedRange(interval.defaultRange);
+    }
+  };
 
   useEffect(() => {
     fetchStockData();
