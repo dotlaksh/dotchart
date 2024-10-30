@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { createChart, CrosshairMode } from 'lightweight-charts';
+import { createChart, CrosshairMode, ScaleDirection } from 'lightweight-charts';
 import axios from 'axios';
 import { ChevronLeft, ChevronRight, Search, X } from 'lucide-react';
 import nifty50Data from '/public/nifty50.json';
@@ -49,19 +49,16 @@ const StockChart = () => {
   const [filteredStocks, setFilteredStocks] = useState([]);
   const searchRef = useRef(null);
 
-  // Handle click outside search box to close dropdown
   useEffect(() => {
     function handleClickOutside(event) {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
         setIsSearching(false);
       }
     }
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Handle search input changes
   const handleSearch = (value) => {
     setSearchTerm(value);
     if (value.trim() === '') {
@@ -80,7 +77,6 @@ const StockChart = () => {
     setFilteredStocks(searchResults);
   };
 
-  // Handle stock selection from search results
   const handleSelectStock = (stockIndex) => {
     setCurrentStockIndex(stockIndex);
     setSearchTerm('');
@@ -88,7 +84,6 @@ const StockChart = () => {
     setFilteredStocks([]);
   };
 
-  // Populate stocks when an index is selected
   useEffect(() => {
     const selectedIndex = indexData[selectedIndexId];
     const stocksList = selectedIndex.data.map(item => ({
@@ -100,7 +95,6 @@ const StockChart = () => {
     setCurrentStockIndex(0);
   }, [selectedIndexId, indexData]);
 
-  // Fetch stock data from API
   const fetchStockData = useCallback(async () => {
     if (!stocks.length) return;
 
@@ -141,7 +135,6 @@ const StockChart = () => {
     fetchStockData();
   }, [fetchStockData]);
 
-  // Initialize and render chart
   useEffect(() => {
     if (!chartContainerRef.current || !chartData.length) return;
 
@@ -202,7 +195,6 @@ const StockChart = () => {
               <option key={index} value={index}>{item.label}</option>
             ))}
           </select>
-
           <div className="relative" ref={searchRef}>
             <div className="flex items-center bg-slate-800 rounded-lg">
               <Search className="h-4 w-4 text-slate-400 ml-2" />
@@ -219,7 +211,6 @@ const StockChart = () => {
                 </button>
               )}
             </div>
-
             {isSearching && filteredStocks.length > 0 && (
               <div className="absolute w-full bg-slate-800 z-50">
                 <ul>
@@ -234,17 +225,9 @@ const StockChart = () => {
           </div>
         </div>
       </header>
-
       <main className="flex-grow">
         {loading ? <p>Loading...</p> : <div ref={chartContainerRef} />}
       </main>
-
-      <footer className="bg-[#1e293b] fixed bottom-0 w-full">
-        <div className="flex justify-between max-w-6xl mx-auto px-2 sm:px-4 py-1">
-          <button onClick={handlePrevious} disabled={currentStockIndex === 0}>Previous</button>
-          <button onClick={handleNext} disabled={currentStockIndex === stocks.length - 1}>Next</button>
-        </div>
-      </footer>
     </div>
   );
 };
