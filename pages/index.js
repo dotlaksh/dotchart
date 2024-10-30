@@ -399,7 +399,7 @@ const StockChart = () => {
                   key={period.label}
                   onClick={() => setSelectedPeriod(period.label)}
                   className={`px-2 sm:px-3 py-1 text-xs rounded-full ${
-                    selectedPeriod === period.label
+                    selectedRange === period.label
                       ? 'bg-blue-600 text-white'
                       : 'bg-gray-700 text-gray-200 hover:bg-gray-600'
                   }`}
