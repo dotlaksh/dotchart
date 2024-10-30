@@ -11,16 +11,16 @@ import smallcap250Data from '/public/smallcap250.json';
 import microCap250Data from '/public/microcap250.json';
 
 const TIME_PERIODS = [
-  { label: '1Y', range: '1y' },
-  { label: '2Y', range: '2y' },
-  { label: '5Y', range: '5y' },
-  { label: 'Max', range: 'max' }
+  { label: '1Y', days: 365 ,auto:'1y'},
+  { label: '2Y', days: 730 },
+  { label: '5Y', days: 1825 },
+  { label: 'Max', days: 3650 },
 ];
 
 const INTERVALS = [
-  { label: 'D', value: '1d', defaultRange: '1y' },
-  { label: 'W', value: '1wk', defaultRange: '2y' },
-  { label: 'M', value: '1mo', defaultRange: '5y' }
+  { label: 'D', value: 'daily', autoTimeframe: '1Y' },
+  { label: 'W', value: 'weekly', autoTimeframe: '2Y' },
+  { label: 'M', value: 'monthly', autoTimeframe: '5Y' },
 ];
 
 const StockChart = () => {
@@ -37,8 +37,8 @@ const StockChart = () => {
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedRange, setSelectedRange] = useState('1y');
-  const [selectedInterval, setSelectedInterval] = useState('1d');
+  const [selectedPeriod, setSelectedPeriod] = useState('YTD');
+  const [selectedInterval, setSelectedInterval] = useState('daily');
   const [currentStock, setCurrentStock] = useState(null);
 
   const chartContainerRef = useRef(null);
@@ -101,56 +101,54 @@ const StockChart = () => {
     setCurrentStockIndex(0);
   }, [selectedIndexId, indexData]);
 
-
   const fetchStockData = useCallback(async () => {
-  if (!stocks.length) return;
-  
-  setLoading(true);
-  setError(null);
-  
-  try {
-    const currentStock = stocks[currentStockIndex];
-    const endDate = new Date();
-    const startDate = new Date();
-    const period = TIME_PERIODS.find(p => p.label === selectedPeriod);
-    startDate.setDate(endDate.getDate() - (period?.days || 365));
-
-    const response = await axios.get('/api/stockData', {
-      params: {
-        symbol: currentStock.symbol,
-        startDate: startDate.toISOString().split('T')[0],
-        endDate: endDate.toISOString().split('T')[0]
-      }
-    });
-
-    const formattedData = response.data.map(item => ({
-      time: new Date(item.time).getTime() / 1000,
-      open: item.open,
-      high: item.high,
-      low: item.low,
-      close: item.close,
-      volume: item.volume
-    }));
-
-    const adjustedData = aggregateData(formattedData, selectedInterval);
+    if (!stocks.length) return;
     
-    setChartData(adjustedData);
-    setCurrentStock({
-      name: currentStock.name,
-      symbol: currentStock.symbol,
-      industry: currentStock.industry,
-      price: adjustedData[adjustedData.length - 1]?.close,
-      change: ((adjustedData[adjustedData.length - 1]?.close - adjustedData[0]?.open) / adjustedData[0]?.open) * 100,
-      todayChange: ((adjustedData[adjustedData.length - 1]?.close - adjustedData[adjustedData.length - 2]?.close) / adjustedData[adjustedData.length - 2]?.close) * 100
-    });
-  } catch (err) {
-    setError(err.response?.data?.details || 'Failed to fetch stock data');
-  } finally {
-    setLoading(false);
-  }
-}, [stocks, currentStockIndex, selectedPeriod, selectedInterval]);
+    setLoading(true);
+    setError(null);
+    
+    try {
+      const currentStock = stocks[currentStockIndex];
+      const endDate = new Date();
+      const startDate = new Date();
+      const period = TIME_PERIODS.find(p => p.label === selectedPeriod);
+      startDate.setDate(endDate.getDate() - (period?.days || 365));
 
-  
+      const response = await axios.get('/api/stockData', {
+        params: {
+          symbol: currentStock.symbol,
+          startDate: startDate.toISOString().split('T')[0],
+          endDate: endDate.toISOString().split('T')[0]
+        }
+      });
+
+      const formattedData = response.data.map(item => ({
+        time: new Date(item.time).getTime() / 1000,
+        open: item.open,
+        high: item.high,
+        low: item.low,
+        close: item.close,
+        volume: item.volume
+      }));
+
+      const adjustedData = aggregateData(formattedData, selectedInterval);
+      
+      setChartData(adjustedData);
+      setCurrentStock({
+        name: currentStock.name,
+        symbol: currentStock.symbol,
+        industry: currentStock.industry,
+        price: adjustedData[adjustedData.length - 1]?.close,
+        change: ((adjustedData[adjustedData.length - 1]?.close - adjustedData[0]?.open) / adjustedData[0]?.open) * 100,
+        todayChange: ((adjustedData[adjustedData.length - 1]?.close - adjustedData[adjustedData.length - 2]?.close) / adjustedData[adjustedData.length - 2]?.close) * 100
+      });
+    } catch (err) {
+      setError(err.response?.data?.details || 'Failed to fetch stock data');
+    } finally {
+      setLoading(false);
+    }
+  }, [stocks, currentStockIndex, selectedPeriod, selectedInterval]);
+
   useEffect(() => {
     fetchStockData();
   }, [fetchStockData]);
@@ -273,13 +271,12 @@ const StockChart = () => {
   }, [chartData, getChartHeight]);
 
   const handleIntervalChange = (newInterval) => {
-    const interval = INTERVALS.find(i => i.value === newInterval);
+    const autoTimeframe = INTERVALS.find((i) => i.value === newInterval)?.autoTimeframe;
     setSelectedInterval(newInterval);
-    if (interval?.defaultRange) {
-      setSelectedRange(interval.defaultRange);
+    if (autoTimeframe) {
+      setSelectedPeriod(autoTimeframe);
     }
   };
-
 
   const handlePrevious = () => {
     if (currentStockIndex > 0) {
@@ -403,9 +400,9 @@ const StockChart = () => {
               {TIME_PERIODS.map((period) => (
                 <button
                   key={period.label}
-                  onClick={() => selectedInterval(period.label)}
+                  onClick={() => setSelectedPeriod(period.label)}
                   className={`px-2 sm:px-3 py-1 text-xs rounded-full ${
-                    selectedRange === period.label
+                    selectedPeriod === period.label
                       ? 'bg-blue-600 text-white'
                       : 'bg-gray-700 text-gray-200 hover:bg-gray-600'
                   }`}
