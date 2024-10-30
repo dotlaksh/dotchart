@@ -251,9 +251,9 @@ const StockChart = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#1e293b]">
+    <div className="flex flex-col min-h-screen bg-[#1e293b] overflow-x-hidden">
       {/* Header */}
-      <header className="bg-[#1e293b] border-b border-[#334155] px-4 py-3">
+      <header className="bg-[#1e293b] border-b border-[#334155] px-2 sm:px-4 py-3">
         <div className="max-w-6xl mx-auto w-full">
           <select
             className="text-sm font-medium bg-transparent text-[#e2e8f0] focus:outline-none"
@@ -272,13 +272,13 @@ const StockChart = () => {
       {/* Stock Info Card */}
       {currentStock && (
         <div className="bg-[#1e293b] text-[#e2e8f0]">
-          <div className="max-w-6xl mx-auto px-4 py-3">
+          <div className="max-w-6xl mx-auto px-2 sm:px-4 py-3">
             <div className="flex items-center justify-between">
-              <div>
-                <h2 className="font-semibold text-base">{currentStock.symbol}</h2>
-                <p className="text-xs text-gray-500 mt-0.5">{currentStock.name}</p>
+              <div className="min-w-0 flex-1">
+                <h2 className="font-semibold text-base truncate">{currentStock.symbol}</h2>
+                <p className="text-xs text-gray-500 mt-0.5 truncate">{currentStock.name}</p>
               </div>
-              <div className="text-right">
+              <div className="text-right ml-4">
                 <p className="font-medium text-base">
                   ₹{currentStock.price?.toFixed(2)}
                 </p>
@@ -292,15 +292,15 @@ const StockChart = () => {
       )}
 
       {/* Time Controls */}
-      <div className="bg-[#1e293b] border-b border-[#334155] text-[#e2e8f0]">
-        <div className="max-w-6xl mx-auto px-4 py-2">
-          <div className="flex justify-between items-center">
-            <div className="flex gap-2">
+      <div className="bg-[#1e293b] border-b border-[#334155] text-[#e2e8f0] overflow-x-auto">
+        <div className="max-w-6xl mx-auto px-2 sm:px-4 py-2">
+          <div className="flex justify-between items-center min-w-max">
+            <div className="flex gap-1 sm:gap-2">
               {TIME_PERIODS.map((period) => (
                 <button
                   key={period.label}
                   onClick={() => setSelectedPeriod(period.label)}
-                  className={`px-3 py-1 text-xs rounded-full ${
+                  className={`px-2 sm:px-3 py-1 text-xs rounded-full ${
                     selectedPeriod === period.label
                       ? 'bg-blue-600 text-white'
                       : 'bg-gray-700 text-gray-200 hover:bg-gray-600'
@@ -310,12 +310,12 @@ const StockChart = () => {
                 </button>
               ))}
             </div>
-            <div className="flex gap-1">
+            <div className="flex gap-1 ml-2 sm:ml-4">
               {INTERVALS.map((interval) => (
                 <button
                   key={interval.value}
                   onClick={() => handleIntervalChange(interval.value)}
-                  className={`px-3 py-1 text-xs rounded-full ${
+                  className={`px-2 sm:px-3 py-1 text-xs rounded-full ${
                     selectedInterval === interval.value
                       ? 'bg-blue-600 text-white'
                       : 'bg-gray-700 text-gray-200 hover:bg-gray-600'
@@ -330,8 +330,8 @@ const StockChart = () => {
       </div>
 
       {/* Chart Area */}
-      <main className="flex-grow bg-[#1e293b] pt-4 pb-2">
-        <div className="max-w-6xl mx-auto px-4">
+      <main className="flex-grow bg-[#1e293b] pt-4 pb-20">
+        <div className="max-w-6xl mx-auto px-2 sm:px-4">
           <div className="bg-[#1e293b] rounded-lg shadow-lg border border-[#334155] overflow-hidden">
             {loading ? (
               <div className="h-[505px] md:h-[700px] w-full flex items-center justify-center">
@@ -349,46 +349,33 @@ const StockChart = () => {
       </main>
 
       {/* Navigation Footer */}
-      <footer className="bg-[#1e293b] border-t border-[#334155] fixed bottom-0 left-0 right-0 text-[#e2e8f0]">
-        <div className="max-w-6xl mx-auto px-4 py-2">
-         <div className="flex items-center justify-between px-2 sm:px-4 py-3 bg-slate-800 rounded-lg shadow-lg">
-      <button
-        onClick={handlePrevious}
-        disabled={currentStockIndex === 0}
-        className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 text-sm font-medium text-white bg-slate-700 rounded-md 
-                 transition-all duration-200 ease-in-out
-                 hover:bg-slate-600 hover:shadow-md
-                 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-slate-700 disabled:hover:shadow-none
-                 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-      >
-        <ChevronLeft size={16} className="transition-transform group-hover:-translate-x-0.5" />
-        <span className="hidden sm:inline">Previous</span>
-        <span className="sm:hidden">Prev</span>
-      </button>
-      
-      <div className="flex items-center px-2 sm:px-4 py-2 bg-slate-700 rounded-md">
-        <span className="text-sm font-medium text-slate-200">
-          {currentStockIndex + 1}
-        </span>
-        <span className="mx-1 sm:mx-2 text-slate-400">/</span>
-        <span className="text-sm font-medium text-slate-400">
-          {stocks.length}
-        </span>
-      </div>
-      
-      <button
-        onClick={handleNext}
-        disabled={currentStockIndex === stocks.length - 1}
-        className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 text-sm font-medium text-white bg-slate-700 rounded-md 
-                 transition-all duration-200 ease-in-out
-                 hover:bg-slate-600 hover:shadow-md
-                 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-slate-700 disabled:hover:shadow-none
-                 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-      >
-        <span>Next</span>
-        <ChevronRight size={16} className="transition-transform group-hover:translate-x-0.5" />
-      </button>
-    </div>
+      <footer className="bg-[#1e293b] border-t border-[#334155] fixed bottom-0 left-0 right-0 text-[#e2e8f0] w-full">
+        <div className="max-w-6xl mx-auto px-2 sm:px-4 py-2">
+          <div className="flex items-center justify-between px-2 sm:px-4 py-2 bg-slate-800 rounded-lg shadow-lg">
+            <button
+              onClick={handlePrevious}
+              disabled={currentStockIndex === 0}
+              className="flex items-center gap-1 px-2 py-2 text-sm font-medium text-white bg-slate-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <ChevronLeft size={16} />
+              <span className="sr-only sm:not-sr-only sm:inline">Previous</span>
+            </button>
+            
+            <div className="flex items-center px-2 py-2 bg-slate-700 rounded-md">
+              <span className="text-sm font-medium text-slate-200">{currentStockIndex + 1}</span>
+              <span className="mx-1 text-slate-400">/</span>
+              <span className="text-sm font-medium text-slate-400">{stocks.length}</span>
+            </div>
+            
+            <button
+              onClick={handleNext}
+              disabled={currentStockIndex === stocks.length - 1}
+              className="flex items-center gap-1 px-2 py-2 text-sm font-medium text-white bg-slate-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <span className="sr-only sm:not-sr-only sm:inline">Next</span>
+              <ChevronRight size={16} />
+            </button>
+          </div>
         </div>
       </footer>
     </div>
