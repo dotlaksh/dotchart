@@ -103,46 +103,52 @@ const StockChart = () => {
 
 
   const fetchStockData = useCallback(async () => {
-    if (!stocks.length) return;
-    
-    setLoading(true);
-    setError(null);
-    
-    try {
-      const currentStock = stocks[currentStockIndex];
-      
-      const response = await axios.get('/api/stockData', {
-        params: {
-          symbol: currentStock.symbol,
-          range: selectedRange,
-          interval: selectedInterval
-        }
-      });
+  if (!stocks.length) return;
+  
+  setLoading(true);
+  setError(null);
+  
+  try {
+    const currentStock = stocks[currentStockIndex];
+    const endDate = new Date();
+    const startDate = new Date();
+    const period = TIME_PERIODS.find(p => p.label === selectedPeriod);
+    startDate.setDate(endDate.getDate() - (period?.days || 365));
 
-      const formattedData = response.data.map(item => ({
-        time: new Date(item.time).getTime() / 1000,
-        open: item.open,
-        high: item.high,
-        low: item.low,
-        close: item.close,
-        volume: item.volume
-      }));
-      
-      setChartData(formattedData);
-      setCurrentStock({
-        name: currentStock.name,
+    const response = await axios.get('/api/stockData', {
+      params: {
         symbol: currentStock.symbol,
-        industry: currentStock.industry,
-        price: formattedData[formattedData.length - 1]?.close,
-        change: ((formattedData[formattedData.length - 1]?.close - formattedData[0]?.open) / formattedData[0]?.open) * 100,
-        todayChange: ((formattedData[formattedData.length - 1]?.close - formattedData[formattedData.length - 2]?.close) / formattedData[formattedData.length - 2]?.close) * 100
-      });
-    } catch (err) {
-      setError(err.response?.data?.details || 'Failed to fetch stock data');
-    } finally {
-      setLoading(false);
-    }
-  }, [stocks, currentStockIndex, selectedRange, selectedInterval]);
+        startDate: startDate.toISOString().split('T')[0],
+        endDate: endDate.toISOString().split('T')[0]
+      }
+    });
+
+    const formattedData = response.data.map(item => ({
+      time: new Date(item.time).getTime() / 1000,
+      open: item.open,
+      high: item.high,
+      low: item.low,
+      close: item.close,
+      volume: item.volume
+    }));
+
+    const adjustedData = aggregateData(formattedData, selectedInterval);
+    
+    setChartData(adjustedData);
+    setCurrentStock({
+      name: currentStock.name,
+      symbol: currentStock.symbol,
+      industry: currentStock.industry,
+      price: adjustedData[adjustedData.length - 1]?.close,
+      change: ((adjustedData[adjustedData.length - 1]?.close - adjustedData[0]?.open) / adjustedData[0]?.open) * 100,
+      todayChange: ((adjustedData[adjustedData.length - 1]?.close - adjustedData[adjustedData.length - 2]?.close) / adjustedData[adjustedData.length - 2]?.close) * 100
+    });
+  } catch (err) {
+    setError(err.response?.data?.details || 'Failed to fetch stock data');
+  } finally {
+    setLoading(false);
+  }
+}, [stocks, currentStockIndex, selectedPeriod, selectedInterval]);
 
   
   useEffect(() => {
