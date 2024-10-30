@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createChart, CrosshairMode, ScaleDirection } from 'lightweight-charts';
 import axios from 'axios';
-import { ChevronLeft, ChevronRight, Calendar, BarChart2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Calendar, BarChart2 ,Search, X } from 'lucide-react';
 import nifty50Data from '/public/nifty50.json';
 import niftyNext50Data from '/public/niftynext50.json';
 import midcap150Data from '/public/midcap150.json';
