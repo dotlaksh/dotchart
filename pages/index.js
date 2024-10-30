@@ -46,7 +46,7 @@ const StockChart = () => {
 
   // Mobile-first chart height
   const getChartHeight = useCallback(() => {
-    return window.innerWidth < 768 ? 550 : 760;
+    return window.innerWidth < 768 ? 550 : 700;
   }, []);
 
   // Initialize stocks when index is selected
@@ -334,15 +334,15 @@ const StockChart = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="bg-[#1e293b] rounded-lg shadow-lg border border-[#334155] overflow-hidden">
             {loading ? (
-              <div className="h-[505px] md:h-[760px] w-full flex items-center justify-center">
+              <div className="h-[505px] md:h-[700px] w-full flex items-center justify-center">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
               </div>
             ) : error ? (
-              <div className="h-[550px] md:h-[760px] w-full flex items-center justify-center text-red-500">
+              <div className="h-[550px] md:h-[700px] w-full flex items-center justify-center text-red-500">
                 {error}
               </div>
             ) : (
-              <div ref={chartContainerRef} className="w-full h-[550px] md:h-[760px]" />
+              <div ref={chartContainerRef} className="w-full h-[550px] md:h-[700px]" />
             )}
           </div>
         </div>
