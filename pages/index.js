@@ -69,16 +69,14 @@ const StockChart = () => {
     
     try {
       const currentStock = stocks[currentStockIndex];
-      const endDate = new Date();
       const startDate = new Date();
       const period = TIME_PERIODS.find(p => p.label === selectedPeriod);
-      startDate.setDate(endDate.getDate() - (period?.days || 365));
+      startDate.setDate(startDate.getDate() - (period?.days || 365));
 
       const response = await axios.get('/api/stockData', {
         params: {
           symbol: currentStock.symbol,
-          startDate: startDate.toISOString().split('T')[0],
-          endDate: endDate.toISOString().split('T')[0]
+          startDate: startDate.toISOString().split('T')[0]
         }
       });
 
@@ -94,14 +92,22 @@ const StockChart = () => {
       const adjustedData = aggregateData(formattedData, selectedInterval);
       
       setChartData(adjustedData);
-      setCurrentStock({
-        name: currentStock.name,
-        symbol: currentStock.symbol,
-        industry: currentStock.industry,
-        price: adjustedData[adjustedData.length - 1]?.close,
-        change: ((adjustedData[adjustedData.length - 1]?.close - adjustedData[0]?.open) / adjustedData[0]?.open) * 100,
-        todayChange: ((adjustedData[adjustedData.length - 1]?.close - adjustedData[adjustedData.length - 2]?.close) / adjustedData[adjustedData.length - 2]?.close) * 100
-      });
+      setLastUpdateTime(new Date());
+      
+      // Update current stock info with latest data
+      if (adjustedData.length >= 2) {
+        const latestData = adjustedData[adjustedData.length - 1];
+        const previousData = adjustedData[adjustedData.length - 2];
+        
+        setCurrentStock({
+          name: currentStock.name,
+          symbol: currentStock.symbol,
+          industry: currentStock.industry,
+          price: latestData.close,
+          change: ((latestData.close - adjustedData[0].open) / adjustedData[0].open) * 100,
+          todayChange: ((latestData.close - previousData.close) / previousData.close) * 100
+        });
+      }
     } catch (err) {
       setError(err.response?.data?.details || 'Failed to fetch stock data');
     } finally {
