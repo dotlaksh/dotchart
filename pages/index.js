@@ -371,13 +371,13 @@ const StockChart = () => {
         </span>
         <span className="mx-2 text-slate-400">/</span>
         <span className="text-sm font-medium text-slate-400">
-          {totalStocks}
+          {stocks.length}
         </span>
       </div>
       
       <button
         onClick={handleNext}
-        disabled={currentStockIndex === totalStocks - 1}
+        disabled={currentStockIndex === stocks.length - 1}
         className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-slate-700 rounded-md 
                  transition-all duration-200 ease-in-out
                  hover:bg-slate-600 hover:shadow-md
