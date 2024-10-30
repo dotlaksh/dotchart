@@ -355,7 +355,7 @@ const StockChart = () => {
             <button
               onClick={handlePrevious}
               disabled={currentStockIndex === 0}
-              className="flex items-center gap-1 text-sm font-medium text-[#e2e8f0] disabled:text-gray-600 disabled:cursor-not-allowed hover:text-blue-400 transition-colors"
+              className="flex items-center gap-1 text-lg font-semibold text-[#e2e8f0] disabled:text-gray-600 disabled:cursor-not-allowed hover:text-blue-400 transition-colors"
             >
               <ChevronLeft size={16} />
               Previous
@@ -366,7 +366,7 @@ const StockChart = () => {
             <button
               onClick={handleNext}
               disabled={currentStockIndex === stocks.length - 1}
-              className="flex items-center gap-1 text-sm font-medium text-[#e2e8f0] disabled:text-gray-600 disabled:cursor-not-allowed hover:text-blue-400 transition-colors"
+              className="flex items-center gap-1 text-lg font-semibold text-[#e2e8f0] disabled:text-gray-600 disabled:cursor-not-allowed hover:text-blue-400 transition-colors"
             >
               Next
               <ChevronRight size={16} />
