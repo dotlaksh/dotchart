@@ -330,7 +330,7 @@ const StockChart = () => {
       </div>
 
       {/* Chart Area */}
-      <main className="flex-grow bg-[#1e293b] py-6">
+      <main className="flex-grow bg-[#1e293b] pt-4 pb-2">
         <div className="max-w-6xl mx-auto px-4">
           <div className="bg-[#1e293b] rounded-lg shadow-lg border border-[#334155] overflow-hidden">
             {loading ? (
