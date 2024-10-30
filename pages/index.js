@@ -39,7 +39,7 @@ const StockChart = () => {
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedPeriod, setSelectedPeriod] = useState('1Y');
+  const [selectedPeriod, setSelectedPeriod] = useState('3M');
   const [selectedInterval, setSelectedInterval] = useState('daily');
   const [currentStock, setCurrentStock] = useState(null);
 
