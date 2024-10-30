@@ -3,7 +3,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createChart, CrosshairMode } from 'lightweight-charts';
 import axios from 'axios';
+import 'styles/globals.css';
 import { ChevronLeft, ChevronRight, Search, X } from 'lucide-react';
+
 import nifty50Data from '/public/nifty50.json';
 import niftyNext50Data from '/public/niftynext50.json';
 import midcap150Data from '/public/midcap150.json';
@@ -236,7 +238,7 @@ const StockChart = () => {
   return (
     <div className="flex flex-col min-h-screen bg-[#1e293b] overflow-x-hidden">
       <header className="bg-[#1e293b] border-b border-[#334155] px-2 sm:px-4 py-3">
-        <div className="max-w-6xl mx-auto w-full flex justify-between items-center">
+        <div className="max-w-screen mx-auto w-full flex justify-between items-center">
           <select
             className="text-sm font-medium bg-[#1e293b] text-[#e2e8f0] focus:outline-none"
             value={selectedIndexId}
