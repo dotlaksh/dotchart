@@ -144,14 +144,7 @@ const StockChart = () => {
     }
   }, [stocks, currentStockIndex, selectedRange, selectedInterval]);
 
-  const handleIntervalChange = (newInterval) => {
-    const interval = INTERVALS.find(i => i.value === newInterval);
-    setSelectedInterval(newInterval);
-    if (interval?.defaultRange) {
-      setSelectedRange(interval.defaultRange);
-    }
-  };
-
+  
   useEffect(() => {
     fetchStockData();
   }, [fetchStockData]);
@@ -274,12 +267,13 @@ const StockChart = () => {
   }, [chartData, getChartHeight]);
 
   const handleIntervalChange = (newInterval) => {
-    const autoTimeframe = INTERVALS.find((i) => i.value === newInterval)?.autoTimeframe;
+    const interval = INTERVALS.find(i => i.value === newInterval);
     setSelectedInterval(newInterval);
-    if (autoTimeframe) {
-      setSelectedPeriod(autoTimeframe);
+    if (interval?.defaultRange) {
+      setSelectedRange(interval.defaultRange);
     }
   };
+
 
   const handlePrevious = () => {
     if (currentStockIndex > 0) {
