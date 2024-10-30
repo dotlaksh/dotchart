@@ -11,8 +11,8 @@ import smallcap250Data from '/public/smallcap250.json';
 import microCap250Data from '/public/microcap250.json';
 
 const TIME_PERIODS = [
-  { label: '3M' range:'3mo'},
-  { label: '6M' range:'6mo'},
+  { label: '3M', range:'3mo'},
+  { label: '6M', range:'6mo'},
   { label: '1Y', range: '1y' },
   { label: '5Y', range: '5y' },
   { label: 'Max', range: 'max' },
