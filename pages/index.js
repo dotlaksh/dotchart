@@ -3,24 +3,26 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createChart, CrosshairMode, ScaleDirection } from 'lightweight-charts';
 import axios from 'axios';
-import { ChevronLeft, ChevronRight, Calendar, BarChart2 ,Search, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Calendar, BarChart2, Search, X } from 'lucide-react';
 import nifty50Data from '/public/nifty50.json';
 import niftyNext50Data from '/public/niftynext50.json';
 import midcap150Data from '/public/midcap150.json';
 import smallcap250Data from '/public/smallcap250.json';
 import microCap250Data from '/public/microcap250.json';
 
+// Updated time periods for Yahoo Finance
 const TIME_PERIODS = [
-  { label: '1Y', days: 365 ,auto:'1y'},
-  { label: '2Y', days: 730 },
-  { label: '5Y', days: 1825 },
-  { label: 'Max', days: 3650 },
+  { label: '1Y', range: '1y' },
+  { label: '2Y', range: '2y' },
+  { label: '5Y', range: '5y' },
+  { label: 'Max', range: 'max' },
 ];
 
+// Updated intervals for Yahoo Finance
 const INTERVALS = [
-  { label: 'D', value: 'daily', autoTimeframe: '1Y' },
-  { label: 'W', value: 'weekly', autoTimeframe: '2Y' },
-  { label: 'M', value: 'monthly', autoTimeframe: '5Y' },
+  { label: 'D', value: 'daily', interval: '1d', autoTimeframe: '1Y' },
+  { label: 'W', value: 'weekly', interval: '1wk', autoTimeframe: '2Y' },
+  { label: 'M', value: 'monthly', interval: '1mo', autoTimeframe: '5Y' },
 ];
 
 const StockChart = () => {
@@ -37,7 +39,7 @@ const StockChart = () => {
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedPeriod, setSelectedPeriod] = useState('YTD');
+  const [selectedPeriod, setSelectedPeriod] = useState('1Y');
   const [selectedInterval, setSelectedInterval] = useState('daily');
   const [currentStock, setCurrentStock] = useState(null);
 
@@ -48,7 +50,7 @@ const StockChart = () => {
   const [filteredStocks, setFilteredStocks] = useState([]);
   const searchRef = useRef(null);
 
-  // Add click outside handler for search results
+  // Click outside handler
   useEffect(() => {
     function handleClickOutside(event) {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
@@ -60,7 +62,7 @@ const StockChart = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Add search handler
+  // Search handler
   const handleSearch = (value) => {
     setSearchTerm(value);
     if (value.trim() === '') {
@@ -73,23 +75,24 @@ const StockChart = () => {
     const searchResults = stocks.filter(stock => 
       stock.symbol.toLowerCase().includes(value.toLowerCase()) ||
       stock.name.toLowerCase().includes(value.toLowerCase())
-    ).slice(0, 5); // Limit to 5 results
+    ).slice(0, 5);
     setFilteredStocks(searchResults);
   };
 
-  // Add select stock handler
+  // Stock selection handler
   const handleSelectStock = (stockIndex) => {
     setCurrentStockIndex(stockIndex);
     setSearchTerm('');
     setIsSearching(false);
     setFilteredStocks([]);
   };
-  // Mobile-first chart height
+
+  // Chart height calculator
   const getChartHeight = useCallback(() => {
     return window.innerWidth < 768 ? 550 : 700;
   }, []);
 
-  // Initialize stocks when index is selected
+  // Initialize stocks
   useEffect(() => {
     const selectedIndex = indexData[selectedIndexId];
     const stocksList = selectedIndex.data.map(item => ({
@@ -101,6 +104,7 @@ const StockChart = () => {
     setCurrentStockIndex(0);
   }, [selectedIndexId, indexData]);
 
+  // Fetch stock data from Yahoo Finance
   const fetchStockData = useCallback(async () => {
     if (!stocks.length) return;
     
@@ -109,102 +113,74 @@ const StockChart = () => {
     
     try {
       const currentStock = stocks[currentStockIndex];
-      const endDate = new Date();
-      const startDate = new Date();
+      const formattedSymbol = `${currentStock.symbol}.NS`; // Add .NS for NSE stocks
       const period = TIME_PERIODS.find(p => p.label === selectedPeriod);
-      startDate.setDate(endDate.getDate() - (period?.days || 365));
+      const interval = INTERVALS.find(i => i.value === selectedInterval);
 
-      const response = await axios.get('/api/stockData', {
+      const response = await axios.get(`https://query1.finance.yahoo.com/v8/finance/chart/${formattedSymbol}`, {
         params: {
-          symbol: currentStock.symbol,
-          startDate: startDate.toISOString().split('T')[0],
-          endDate: endDate.toISOString().split('T')[0]
+          range: period.range,
+          interval: interval.interval,
+          events: 'history',
+          includeAdjustedClose: true
+        },
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
         }
       });
 
-      const formattedData = response.data.map(item => ({
-        time: new Date(item.time).getTime() / 1000,
-        open: item.open,
-        high: item.high,
-        low: item.low,
-        close: item.close,
-        volume: item.volume
-      }));
+      const quotes = response.data.chart.result[0];
+      const timestamps = quotes.timestamp;
+      const ohlc = quotes.indicators.quote[0];
 
-      const adjustedData = aggregateData(formattedData, selectedInterval);
+      const formattedData = timestamps.map((time, i) => ({
+        time,
+        open: ohlc.open[i],
+        high: ohlc.high[i],
+        low: ohlc.low[i],
+        close: ohlc.close[i],
+        volume: ohlc.volume[i]
+      })).filter(item => item.open && item.high && item.low && item.close);
+
+      setChartData(formattedData);
       
-      setChartData(adjustedData);
+      // Update current stock info
       setCurrentStock({
         name: currentStock.name,
         symbol: currentStock.symbol,
         industry: currentStock.industry,
-        price: adjustedData[adjustedData.length - 1]?.close,
-        change: ((adjustedData[adjustedData.length - 1]?.close - adjustedData[0]?.open) / adjustedData[0]?.open) * 100,
-        todayChange: ((adjustedData[adjustedData.length - 1]?.close - adjustedData[adjustedData.length - 2]?.close) / adjustedData[adjustedData.length - 2]?.close) * 100
+        price: formattedData[formattedData.length - 1]?.close,
+        change: ((formattedData[formattedData.length - 1]?.close - formattedData[0]?.open) / formattedData[0]?.open) * 100,
+        todayChange: ((formattedData[formattedData.length - 1]?.close - formattedData[formattedData.length - 2]?.close) / formattedData[formattedData.length - 2]?.close) * 100
       });
     } catch (err) {
-      setError(err.response?.data?.details || 'Failed to fetch stock data');
+      console.error('Error fetching stock data:', err);
+      setError('Failed to fetch stock data');
     } finally {
       setLoading(false);
     }
   }, [stocks, currentStockIndex, selectedPeriod, selectedInterval]);
 
+  // Fetch data when dependencies change
   useEffect(() => {
     fetchStockData();
   }, [fetchStockData]);
 
-  const aggregateData = (data, interval) => {
-    if (interval === 'daily') return data;
-
-    const aggregatedData = [];
-    const periodMap = {};
-
-    data.forEach((item) => {
-      const date = new Date(item.time * 1000);
-      let periodKey;
-
-      if (interval === 'weekly') {
-        const startOfWeek = new Date(date.setDate(date.getDate() - date.getDay()));
-        periodKey = startOfWeek.toISOString().slice(0, 10);
-      } else if (interval === 'monthly') {
-        periodKey = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}`;
-      }
-
-      if (!periodMap[periodKey]) {
-        periodMap[periodKey] = {
-          time: item.time,
-          open: item.open,
-          high: item.high,
-          low: item.low,
-          close: item.close,
-          volume: item.volume,
-        };
-      } else {
-        periodMap[periodKey].high = Math.max(periodMap[periodKey].high, item.high);
-        periodMap[periodKey].low = Math.min(periodMap[periodKey].low, item.low);
-        periodMap[periodKey].close = item.close;
-        periodMap[periodKey].volume += item.volume;
-      }
-    });
-
-    return Object.values(periodMap).sort((a, b) => a.time - b.time);
-  };
-
+  // Chart creation and updates
   useEffect(() => {
     if (!chartContainerRef.current || !chartData.length) return;
 
     const chart = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
       height: getChartHeight(),
-      layout: { background: { type: 'solid', color: '#1e293b' }, textColor: '#e2e8f0' },
+      layout: { 
+        background: { type: 'solid', color: '#1e293b' }, 
+        textColor: '#e2e8f0' 
+      },
       crosshair: { mode: CrosshairMode.Normal },
       grid: {
-        vertLines: {
-          visible: false,
-        },
-        horzLines: {
-          visible: false,
-        },
+        vertLines: { visible: false },
+        horzLines: { visible: false },
       },
       timeScale: {
         timeVisible: true,
@@ -218,7 +194,7 @@ const StockChart = () => {
       },
     });
 
-    // Candlestick series on the main pane with its own price scale
+    // Candlestick series
     const candlestickSeries = chart.addCandlestickSeries({
       upColor: '#00ff55',
       downColor: '#ed4807',
@@ -226,17 +202,17 @@ const StockChart = () => {
       borderDownColor: '#ed4807',
       wickUpColor: '#00ff55',
       wickDownColor: '#ed4807',
-      priceScaleId: 'right', // Right-side price scale for candlestick chart
+      priceScaleId: 'right',
     });
 
     candlestickSeries.setData(chartData);
 
-    // Volume series in a new pane with a separate price scale
+    // Volume series
     const volumeSeries = chart.addHistogramSeries({
       upColor: '#00ff55',
       downColor: '#ed4807',
-      priceFormat: { type: 'volume' }, // Volume format
-      priceScaleId: 'volume', // Separate price scale for volume
+      priceFormat: { type: 'volume' },
+      priceScaleId: 'volume',
     });
 
     volumeSeries.setData(chartData.map(d => ({
@@ -246,13 +222,13 @@ const StockChart = () => {
     })));
 
     volumeSeries.priceScale().applyOptions({
-      // set the positioning of the volume series
       scaleMargins: {
-          top: 0.7, // highest point of the series will be 70% away from the top
-          bottom: 0,
+        top: 0.7,
+        bottom: 0,
       },
     });
-    chart.timeScale().fitContent(); // Ensure the chart fits the data
+
+    chart.timeScale().fitContent();
     chartInstanceRef.current = chart;
 
     const handleResize = () => {
@@ -270,6 +246,7 @@ const StockChart = () => {
     };
   }, [chartData, getChartHeight]);
 
+  // Interval change handler
   const handleIntervalChange = (newInterval) => {
     const autoTimeframe = INTERVALS.find((i) => i.value === newInterval)?.autoTimeframe;
     setSelectedInterval(newInterval);
@@ -278,6 +255,7 @@ const StockChart = () => {
     }
   };
 
+  // Navigation handlers
   const handlePrevious = () => {
     if (currentStockIndex > 0) {
       setCurrentStockIndex(prev => prev - 1);
@@ -295,7 +273,7 @@ const StockChart = () => {
       {/* Header */}
       <header className="bg-[#1e293b] border-b border-[#334155] px-2 sm:px-4 py-3">
         <div className="max-w-6xl mx-auto w-full flex justify-between items-center">
-           <select
+          <select
             className="text-sm font-medium bg-[#1e293b] text-[#e2e8f0] focus:outline-none"
             value={selectedIndexId}
             onChange={(e) => setSelectedIndexId(parseInt(e.target.value))}
@@ -332,7 +310,7 @@ const StockChart = () => {
               )}
             </div>
 
-            {/* Search Results Dropdown */}
+            {/* Search Results */}
             {isSearching && filteredStocks.length > 0 && (
               <div className="absolute right-0 mt-2 w-full sm:w-96 bg-slate-800 rounded-lg shadow-lg border border-slate-700 z-50">
                 <ul className="py-1">
@@ -370,7 +348,7 @@ const StockChart = () => {
         </div>
       </header>
 
-      {/* Stock Info Card */}
+      {/* Stock Info */}
       {currentStock && (
         <div className="bg-[#1e293b] text-[#e2e8f0]">
           <div className="max-w-6xl mx-auto px-2 sm:px-4 py-3">
