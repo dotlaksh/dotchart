@@ -37,8 +37,8 @@ const StockChart = () => {
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedPeriod, setSelectedPeriod] = useState('YTD');
-  const [selectedInterval, setSelectedInterval] = useState('daily');
+  const [selectedRange, setSelectedRange] = useState('1y');
+  const [selectedInterval, setSelectedInterval] = useState('1d');
   const [currentStock, setCurrentStock] = useState(null);
 
   const chartContainerRef = useRef(null);
@@ -101,8 +101,6 @@ const StockChart = () => {
     setCurrentStockIndex(0);
   }, [selectedIndexId, indexData]);
 
-  const [selectedRange, setSelectedRange] = useState('1y');
-  const [selectedInterval, setSelectedInterval] = useState('1d');
 
   const fetchStockData = useCallback(async () => {
     if (!stocks.length) return;
