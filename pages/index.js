@@ -295,19 +295,13 @@ const StockChart = () => {
       {/* Header */}
       <header className="bg-[#1e293b] border-b border-[#334155] px-2 sm:px-4 py-3">
         <div className="max-w-6xl mx-auto w-full flex justify-between items-center">
-          <select 
-            className="text-sm font-medium text-[#e2e8f0] focus:outline-none appearance-none 
-                       [&>option]:bg-slate-800 [&>option]:text-white hover:[&>option]:bg-slate-700
-                       bg-transparent"
+           <select
+            className="text-sm font-medium bg-transparent text-[#e2e8f0] focus:outline-none"
             value={selectedIndexId}
             onChange={(e) => setSelectedIndexId(parseInt(e.target.value))}
           >
             {indexData.map((item, index) => (
-              <option 
-                key={index} 
-                value={index}
-                className="bg-slate-800 text-white"
-              >
+              <option key={index} value={index}>
                 {item.label}
               </option>
             ))}
