@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { symbol, range = '1mo', interval = '1d' } = req.query;
+    const { symbol, range = '1y', interval = '1d' } = req.query;
 
     if (!symbol) {
       return res.status(400).json({ details: 'Symbol is required' });
