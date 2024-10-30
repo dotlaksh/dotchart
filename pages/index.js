@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createChart, CrosshairMode } from 'lightweight-charts';
 import axios from 'axios';
-import '/styles/globals.css';
 import { ChevronLeft, ChevronRight, Search, X } from 'lucide-react';
 
 import nifty50Data from '/public/nifty50.json';
