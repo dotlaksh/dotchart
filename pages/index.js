@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createChart, CrosshairMode } from 'lightweight-charts';
 import axios from 'axios';
-import 'styles/globals.css';
+import '/styles/globals.css';
 import { ChevronLeft, ChevronRight, Search, X } from 'lucide-react';
 
 import nifty50Data from '/public/nifty50.json';
@@ -22,8 +22,8 @@ const TIME_PERIODS = [
 
 const INTERVALS = [
   { label: 'D', value: 'daily', interval: '1d', autoTimeframe: '3M' },
-  { label: 'W', value: 'weekly', interval: '1wk', autoTimeframe: '2Y' },
-  { label: 'M', value: 'monthly', interval: '1mo', autoTimeframe: '5Y' },
+  { label: 'W', value: 'weekly', interval: '1wk', autoTimeframe: '5Y' },
+  { label: 'M', value: 'monthly', interval: '1mo', autoTimeframe: 'Max' },
 ];
 
 const StockChart = () => {
