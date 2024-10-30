@@ -393,7 +393,7 @@ const StockChart = () => {
       )}
 
       {/* Time Controls */}
-      <div className="bg-[#1e293b] border-b border-[#334155] text-[#e2e8f0] overflow-x-auto">
+      <div className="bg-[#1e293b] text-[#e2e8f0] overflow-x-auto">
         <div className="max-w-6xl mx-auto px-2 sm:px-4 py-2">
           <div className="flex justify-between items-center min-w-max">
             <div className="flex gap-1 sm:gap-2">
@@ -450,8 +450,8 @@ const StockChart = () => {
       </main>
 
       {/* Navigation Footer */}
-      <footer className="bg-[#1e293b] border-t border-[#334155] fixed bottom-0 left-0 right-0 text-[#e2e8f0] w-full">
-        <div className="max-w-6xl mx-auto px-2 sm:px-4 py-2">
+      <footer className="bg-[#1e293b]  fixed bottom-0 left-0 right-0 text-[#e2e8f0] w-full">
+        <div className="max-w-6xl mx-auto px-2 sm:px-4 py-2 border-t border-[#334155]">
           <div className="flex items-center justify-between px-2 sm:px-4 py-2 bg-slate-800 rounded-lg shadow-lg">
             <button
               onClick={handlePrevious}
