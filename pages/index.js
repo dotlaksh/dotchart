@@ -83,7 +83,7 @@ const StockChart = () => {
   };
 
   const getChartHeight = useCallback(() => {
-    return window.innerWidth < 768 ? 550 : 700;
+    return window.innerWidth < 768 ? 580 : 700;
   }, []);
 
   useEffect(() => {
@@ -155,7 +155,7 @@ const StockChart = () => {
         timeVisible: false,
         borderColor: '#cbd5e1',
         rightOffset: 5,
-        minBarSpacing: 5,
+        minBarSpacing: 10,
         scaleMargins: {
           top: 0.1,
           bottom: 0.1,
@@ -251,8 +251,8 @@ const StockChart = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#1e293b] overflow-x-hidden">
-      <header className="bg-[#1e293b] border-b border-[#334155] px-2 sm:px-4 py-3">
-        <div className="max-w-screen max-w-6xl mx-auto w-full flex justify-between items-center">
+      <header className="bg-[#1e293b] border-b border-[#334155] px-4 sm:px-4 py-3">
+        <div className="max-w-screen max-w-6xl mx-auto w-full flex justify-between items-center px-4">
           <select
             className="text-sm font-medium bg-[#1e293b] text-[#e2e8f0] focus:outline-none"
             value={selectedIndexId}
@@ -389,7 +389,6 @@ const StockChart = () => {
           <div className="bg-[#1e293b] rounded-lg shadow-lg border border-[#334155] overflow-hidden">
             {loading ? (
               <div className="h-[505px] md:h-[700px] w-full flex items-center justify-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
               </div>
             ) : error ? (
               <div className="h-[550px] md:h-[700px] w-full flex items-center justify-center text-red-500">
@@ -404,8 +403,8 @@ const StockChart = () => {
 
       {/* Navigation Footer */}
       <footer className="bg-[#1e293b] fixed bottom-0 left-0 right-0 text-[#e2e8f0] w-full">
-        <div className="max-w-6xl mx-auto px-2 sm:px-4 py-1">
-          <div className="flex items-center justify-between px-2 sm:px-4 py-2 bg-slate-800 rounded-lg shadow-lg">
+        <div className="max-w-6xl mx-auto px-2 sm:px-4">
+          <div className="flex items-center justify-between px-4 sm:px-4 py-2 bg-slate-800 rounded-lg shadow-lg">
             <button
               onClick={handlePrevious}
               disabled={currentStockIndex === 0}
