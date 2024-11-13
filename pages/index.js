@@ -292,9 +292,6 @@ export default function StockChart() {
           </div>
         </div>
       </main>
-    </div>
-
-
       <footer className="bg-white shadow-lg mt-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
