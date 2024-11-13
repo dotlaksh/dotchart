@@ -346,6 +346,7 @@ export default function StockChart() {
               </div>
             ) : (
               <div className="h-[600px]">
+              console.log(chartData);
                 <AgChartsReact options={chartOptions} data={chartData} />
               </div>
             )}
