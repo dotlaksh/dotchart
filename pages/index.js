@@ -111,7 +111,17 @@ export default function StockChart() {
       })
 
       if (response.data && Array.isArray(response.data)) {
-        setChartData(response.data)
+        const transformedData = response.data.map((item) => ({
+          time: new Date(item.date), // Date or string format
+          open: item.open,
+          high: item.high,
+          low: item.low,
+          close: item.close,
+          volume: item.volume,
+        }))
+        setChartData(transformedData)
+        console.log('Chart Data:', transformedData) // Debugging log
+
         const latestData = response.data[response.data.length - 1]
         setCurrentStock({
           name: currentStock.name,
@@ -164,6 +174,7 @@ export default function StockChart() {
   }
 
   const chartOptions = {
+    data: chartData, // Ensure data is directly inside options
     autoSize: true,
     title: {
       text: currentStock?.symbol,
@@ -214,6 +225,7 @@ export default function StockChart() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
+      {/* Header */}
       <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
           <select
@@ -225,58 +237,20 @@ export default function StockChart() {
               <option key={index} value={index}>{item.label}</option>
             ))}
           </select>
-
           <div className="relative" ref={searchRef}>
-            <div className="flex items-center">
-              <Search className="h-5 w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
-              <input
-                type="text"
-                value={searchTerm}
-                onChange={(e) => handleSearch(e.target.value)}
-                placeholder="Search stocks..."
-                className="w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              {searchTerm && (
-                <button
-                  onClick={() => {
-                    setSearchTerm('')
-                    setFilteredStocks([])
-                    setIsSearching(false)
-                  }}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2"
-                >
-                  <X className="h-5 w-5 text-gray-400" />
-                </button>
-              )}
-            </div>
-
-            {isSearching && filteredStocks.length > 0 && (
-              <div className="absolute right-0 mt-2 w-full bg-white border border-gray-300 rounded-md shadow-lg z-10">
-                {filteredStocks.map((stock) => {
-                  const stockIndex = stocks.findIndex(s => s.symbol === stock.symbol)
-                  return (
-                    <button
-                      key={stock.symbol}
-                      onClick={() => handleSelectStock(stockIndex)}
-                      className="w-full text-left px-4 py-2 hover:bg-gray-100 focus:outline-none"
-                    >
-                      <p className="font-medium">{stock.symbol}</p>
-                      <p className="text-sm text-gray-500 truncate">{stock.name}</p>
-                    </button>
-                  )
-                })}
-              </div>
-            )}
-
-            {isSearching && searchTerm && filteredStocks.length === 0 && (
-              <div className="absolute right-0 mt-2 w-full bg-white border border-gray-300 rounded-md shadow-lg z-10">
-                <p className="px-4 py-2 text-sm text-gray-500">No stocks found</p>
-              </div>
-            )}
+            {/* Search bar */}
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => handleSearch(e.target.value)}
+              placeholder="Search stocks..."
+              className="w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
           </div>
         </div>
       </header>
 
+      {/* Stock Details */}
       {currentStock && (
         <div className="bg-white shadow-sm mt-4">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
@@ -296,43 +270,7 @@ export default function StockChart() {
         </div>
       )}
 
-      <div className="bg-white shadow-sm mt-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
-          <div className="flex justify-between items-center">
-            <div className="flex space-x-2">
-              {TIME_PERIODS.map((period) => (
-                <button
-                  key={period.label}
-                  onClick={() => handlePeriodChange(period.label)}
-                  className={`px-4 py-2 rounded-md ${
-                    selectedPeriod === period.label
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
-                >
-                  {period.label}
-                </button>
-              ))}
-            </div>
-            <div className="flex space-x-2">
-              {INTERVALS.map((interval) => (
-                <button
-                  key={interval.value}
-                  onClick={() => handleIntervalChange(interval.value)}
-                  className={`px-4 py-2 rounded-md ${
-                    selectedInterval === interval.value
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
-                >
-                  {interval.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
+      {/* Chart Section */}
       <main className="flex-grow bg-white mt-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
@@ -344,15 +282,18 @@ export default function StockChart() {
               <div className="h-[600px] flex items-center justify-center">
                 <p className="text-red-500">{error}</p>
               </div>
+            ) : chartData.length > 0 ? (
+              <AgChartsReact options={chartOptions} />
             ) : (
-              <div className="h-[600px]">
-              console.log(chartData);
-                <AgChartsReact options={chartOptions} data={chartData} />
+              <div className="h-[600px] flex items-center justify-center">
+                <p className="text-gray-500">No chart data available</p>
               </div>
             )}
           </div>
         </div>
       </main>
+    </div>
+
 
       <footer className="bg-white shadow-lg mt-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
