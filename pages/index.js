@@ -5,11 +5,6 @@ import axios from 'axios'
 import { AgChartsReact } from 'ag-charts-react'
 import { ChevronLeft, ChevronRight, Search, X } from 'lucide-react'
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-
 import nifty50Data from '/public/nifty50.json'
 import niftyNext50Data from '/public/niftynext50.json'
 import midcap150Data from '/public/midcap150.json'
@@ -222,95 +217,81 @@ export default function StockChart() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
-      <header className="border-b px-4 sm:px-6 py-4">
-        <div className="max-w-7xl mx-auto w-full flex justify-between items-center">
-          <Select value={selectedIndexId.toString()} onValueChange={(value) => setSelectedIndexId(parseInt(value))}>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select an index" />
-            </SelectTrigger>
-            <SelectContent>
-              {indexData.map((item, index) => (
-                <SelectItem key={index} value={index.toString()}>{item.label}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+    <div className="flex flex-col min-h-screen bg-gray-100">
+      <header className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+          <select
+            className="bg-white border border-gray-300 rounded-md text-gray-700 py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={selectedIndexId}
+            onChange={(e) => setSelectedIndexId(parseInt(e.target.value))}
+          >
+            {indexData.map((item, index) => (
+              <option key={index} value={index}>{item.label}</option>
+            ))}
+          </select>
 
           <div className="relative" ref={searchRef}>
             <div className="flex items-center">
-              <Search className="h-4 w-4 text-muted-foreground absolute left-2" />
-              <Input
+              <Search className="h-5 w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
+              <input
                 type="text"
                 value={searchTerm}
                 onChange={(e) => handleSearch(e.target.value)}
                 placeholder="Search stocks..."
-                className="w-64 pl-8"
+                className="w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               {searchTerm && (
-                <Button
-                  variant="ghost"
-                  size="icon"
+                <button
                   onClick={() => {
                     setSearchTerm('')
                     setFilteredStocks([])
                     setIsSearching(false)
                   }}
-                  className="absolute right-2"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2"
                 >
-                  <X className="h-4 w-4" />
-                </Button>
+                  <X className="h-5 w-5 text-gray-400" />
+                </button>
               )}
             </div>
 
             {isSearching && filteredStocks.length > 0 && (
-              <Card className="absolute right-0 mt-2 w-full">
-                <CardContent className="p-0">
-                  {filteredStocks.map((stock) => {
-                    const stockIndex = stocks.findIndex(s => s.symbol === stock.symbol)
-                    return (
-                      <Button
-                        key={stock.symbol}
-                        variant="ghost"
-                        onClick={() => handleSelectStock(stockIndex)}
-                        className="w-full justify-start"
-                      >
-                        <div>
-                          <p className="font-medium">{stock.symbol}</p>
-                          <p className="text-sm text-muted-foreground truncate">{stock.name}</p>
-                        </div>
-                      </Button>
-                    )
-                  })}
-                </CardContent>
-              </Card>
+              <div className="absolute right-0 mt-2 w-full bg-white border border-gray-300 rounded-md shadow-lg z-10">
+                {filteredStocks.map((stock) => {
+                  const stockIndex = stocks.findIndex(s => s.symbol === stock.symbol)
+                  return (
+                    <button
+                      key={stock.symbol}
+                      onClick={() => handleSelectStock(stockIndex)}
+                      className="w-full text-left px-4 py-2 hover:bg-gray-100 focus:outline-none"
+                    >
+                      <p className="font-medium">{stock.symbol}</p>
+                      <p className="text-sm text-gray-500 truncate">{stock.name}</p>
+                    </button>
+                  )
+                })}
+              </div>
             )}
 
             {isSearching && searchTerm && filteredStocks.length === 0 && (
-              <Card className="absolute right-0 mt-2 w-full">
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">No stocks found</p>
-                </CardContent>
-              </Card>
+              <div className="absolute right-0 mt-2 w-full bg-white border border-gray-300 rounded-md shadow-lg z-10">
+                <p className="px-4 py-2 text-sm text-gray-500">No stocks found</p>
+              </div>
             )}
           </div>
         </div>
       </header>
 
       {currentStock && (
-        <div className="bg-background">
+        <div className="bg-white shadow-sm mt-4">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
             <div className="flex items-center justify-between">
-              <div className="min-w-0 flex-1">
-                <h2 className="text-2xl font-bold leading-7 text-foreground sm:truncate sm:text-3xl sm:tracking-tight">
-                  {currentStock.symbol}
-                </h2>
-                <p className="mt-1 max-w-2xl text-sm text-muted-foreground">{currentStock.name}</p>
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900">{currentStock.symbol}</h2>
+                <p className="text-sm text-gray-500">{currentStock.name}</p>
               </div>
-              <div className="mt-4 flex md:ml-4 md:mt-0">
-                <p className="font-medium text-2xl">
-                  ₹{currentStock.price?.toFixed(2)}
-                </p>
-                <p className={`ml-2 text-sm ${currentStock.todayChange >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+              <div className="text-right">
+                <p className="text-2xl font-bold text-gray-900">₹{currentStock.price?.toFixed(2)}</p>
+                <p className={`text-sm ${currentStock.todayChange >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                   {currentStock.todayChange >= 0 ? '+' : ''}{currentStock.todayChange?.toFixed(2)}%
                 </p>
               </div>
@@ -319,88 +300,90 @@ export default function StockChart() {
         </div>
       )}
 
-      <div className="bg-background">
+      <div className="bg-white shadow-sm mt-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex justify-between items-center">
-            <div className="flex gap-2">
+            <div className="flex space-x-2">
               {TIME_PERIODS.map((period) => (
-                <Button
+                <button
                   key={period.label}
-                  variant={selectedPeriod === period.label ? 'default' : 'outline'}
                   onClick={() => handlePeriodChange(period.label)}
+                  className={`px-4 py-2 rounded-md ${
+                    selectedPeriod === period.label
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  }`}
                 >
                   {period.label}
-                </Button>
+                </button>
               ))}
             </div>
-            <div className="flex gap-2">
+            <div className="flex space-x-2">
               {INTERVALS.map((interval) => (
-                <Button
+                <button
                   key={interval.value}
-                  variant={selectedInterval === interval.value ? 'default' : 'outline'}
                   onClick={() => handleIntervalChange(interval.value)}
+                  className={`px-4 py-2 rounded-md ${
+                    selectedInterval === interval.value
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  }`}
                 >
                   {interval.label}
-                </Button>
+                </button>
               ))}
             </div>
           </div>
         </div>
       </div>
 
-      <main className="flex-grow bg-background">
+      <main className="flex-grow bg-white mt-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <Card>
-            <CardContent className="p-0">
-              {loading ? (
-                <div className="h-[600px] flex items-center justify-center">
-                  <p>Loading...</p>
-                </div>
-              ) : error ? (
-                <div className="h-[600px] flex items-center justify-center text-red-500">
-                  {error}
-                </div>
-              ) : (
-                <div className="h-[600px]">
-                  <AgChartsReact options={chartOptions} data={chartData} />
-                </div>
-              )}
-            </CardContent>
-          </Card>
+          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+            {loading ? (
+              <div className="h-[600px] flex items-center justify-center">
+                <p className="text-gray-500">Loading...</p>
+              </div>
+            ) : error ? (
+              <div className="h-[600px] flex items-center justify-center">
+                <p className="text-red-500">{error}</p>
+              </div>
+            ) : (
+              <div className="h-[600px]">
+                <AgChartsReact options={chartOptions} data={chartData} />
+              </div>
+            )}
+          </div>
         </div>
       </main>
 
-      <footer className="bg-background fixed bottom-0 left-0 right-0 w-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between">
-                <Button
-                  onClick={handlePrevious}
-                  disabled={currentStockIndex === 0}
-                  variant="outline"
-                >
-                  <ChevronLeft className="h-4 w-4 mr-2" />
-                  Previous
-                </Button>
-                
-                <div className="flex items-center px-4 py-2 bg-muted rounded-md">
-                  <span className="text-sm font-medium">{currentStockIndex + 1}</span>
-                  <span className="mx-1 text-muted-foreground">/</span>
-                  <span className="text-sm font-medium text-muted-foreground">{stocks.length}</span>
-                </div>
-                
-                <Button
-                  onClick={handleNext}
-                  disabled={currentStockIndex === stocks.length - 1}
-                  variant="outline"
-                >
-                  Next
-                  <ChevronRight className="h-4 w-4 ml-2" />
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+      <footer className="bg-white shadow-lg mt-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+          <div className="flex items-center justify-between">
+            <button
+              onClick={handlePrevious}
+              disabled={currentStockIndex === 0}
+              className="px-4 py-2 bg-blue-600 text-white rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <ChevronLeft className="h-5 w-5 inline-block mr-1" />
+              Previous
+            </button>
+            
+            <div className="px-4 py-2 bg-gray-200 rounded-md">
+              <span className="font-medium">{currentStockIndex + 1}</span>
+              <span className="mx-1 text-gray-500">/</span>
+              <span className="text-gray-500">{stocks.length}</span>
+            </div>
+            
+            <button
+              onClick={handleNext}
+              disabled={currentStockIndex === stocks.length - 1}
+              className="px-4 py-2 bg-blue-600 text-white rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Next
+              <ChevronRight className="h-5 w-5 inline-block ml-1" />
+            </button>
+          </div>
         </div>
       </footer>
     </div>
