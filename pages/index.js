@@ -111,25 +111,21 @@ export default function StockChart() {
       })
 
       if (response.data && Array.isArray(response.data)) {
-        setChartData(response.data.map(item => ({
-          date: new Date(item.date),
-          open: item.open,
-          high: item.high,
-          low: item.low,
-          close: item.close,
-          volume: item.volume
-        })))
+        setChartData(response.data)
+        const latestData = response.data[response.data.length - 1]
         setCurrentStock({
           name: currentStock.name,
           symbol: currentStock.symbol,
           industry: currentStock.industry,
-          price: response.data[response.data.length - 1]?.close,
-          change: ((response.data[response.data.length - 1]?.close - response.data[0]?.open) / response.data[0]?.open) * 100,
-          todayChange: ((response.data[response.data.length - 1]?.close - response.data[response.data.length - 2]?.close) / response.data[response.data.length - 2]?.close) * 100
+          price: latestData.close,
+          change: ((latestData.close - response.data[0].open) / response.data[0].open) * 100,
+          todayChange: ((latestData.close - response.data[response.data.length - 2].close) / response.data[response.data.length - 2].close) * 100
         })
+      } else {
+        throw new Error('Invalid data format received from API')
       }
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to fetch stock data')
+      setError(err.response?.data?.details || err.message || 'Failed to fetch stock data')
     } finally {
       setLoading(false)
     }
@@ -176,7 +172,7 @@ export default function StockChart() {
     series: [
       {
         type: 'candlestick',
-        xKey: 'date',
+        xKey: 'time',
         openKey: 'open',
         highKey: 'high',
         lowKey: 'low',
@@ -187,7 +183,7 @@ export default function StockChart() {
       },
       {
         type: 'column',
-        xKey: 'date',
+        xKey: 'time',
         yKey: 'volume',
         yName: 'Volume',
         fill: 'rgba(100, 100, 100, 0.5)',
