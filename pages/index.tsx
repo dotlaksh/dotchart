@@ -306,101 +306,110 @@ export default function StockChart() {
   return (
     <div className="flex flex-col h-screen bg-background text-foreground transition-colors duration-300">
       {/* Sticky Top Bar */}
-      <div className="sticky top-0 z-20 flex items-center justify-between bg-background/80 backdrop-blur-sm p-2 border-b">
-        {/* Brand Name */}
-        <div className="text-lg font-bold">dotChart</div>
+      {/* Sticky Top Bar */}
+<div className="sticky top-0 z-20 flex items-center justify-between bg-background/80 backdrop-blur-sm p-2 border-b space-x-2">
+  {/* Brand Name */}
+  <div className="text-lg font-bold mr-4">dotChart</div>
 
-        {/* Right-side elements */}
-        <div className="flex items-center space-x-2">
-          {/* Intervals Select Box */}
-          <Select
-            value={selectedInterval}
-            onValueChange={(value) => setSelectedInterval(value)}
-          >
-            <SelectTrigger className="w-[70px] h-8 text-xs">
-              <SelectValue placeholder="Interval" />
-            </SelectTrigger>
-            <SelectContent>
-              {INTERVALS.map((interval) => (
-                <SelectItem key={interval.value} value={interval.value} className="text-xs">
-                  {interval.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+  {/* Right-side elements */}
+  <div className="flex items-center space-x-2 flex-wrap">
+    {/* Intervals Select Box */}
+    <Select
+      value={selectedInterval}
+      onValueChange={(value) => setSelectedInterval(value)}
+    >
+      <SelectTrigger className="w-[70px] h-8 text-xs">
+        <SelectValue placeholder="Interval" />
+      </SelectTrigger>
+      <SelectContent>
+        {INTERVALS.map((interval) => (
+          <SelectItem key={interval.value} value={interval.value} className="text-xs">
+            {interval.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
 
-          {/* Search Box */}
-          <div className="w-48 sm:w-48 relative" ref={searchRef}>
-            <Input
-              type="text"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={(e) => {
-                setSearchTerm(e.target.value);
-                setShowDropdown(true);
+    {/* Search Box */}
+    <div 
+      className="relative" 
+      ref={searchRef} 
+      style={{
+        width: 'calc(100vw - 200px)', // Adjusted width for better mobile responsiveness
+        maxWidth: '250px'             // Ensuring a cap on the search box width
+      }}
+    >
+      <Input
+        type="text"
+        placeholder="Search..."
+        value={searchTerm}
+        onChange={(e) => {
+          setSearchTerm(e.target.value);
+          setShowDropdown(true);
+        }}
+        className="pr-6 text-sm h-8 bg-background/80 backdrop-blur-sm"
+        aria-label="Search stocks"
+      />
+      {searchTerm ? (
+        <X
+          className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground hover:text-foreground cursor-pointer"
+          onClick={() => {
+            setSearchTerm('');
+            setShowDropdown(false);
+          }}
+        />
+      ) : (
+        <Search className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground" />
+      )}
+      {showDropdown && searchTerm && (
+        <div className="absolute w-full mt-1 py-1 bg-background border border-slate-200/5 rounded-lg shadow-lg max-h-60 overflow-y-auto z-50 left-0">
+          {filteredStocks.map((stock) => (
+            <button
+              key={stock.symbol}
+              onClick={() => {
+                const stockIndex = stocks.findIndex((s) => s.symbol === stock.symbol);
+                setCurrentStockIndex(stockIndex);
+                setSearchTerm('');
+                setShowDropdown(false);
               }}
-              className="pr-6 text-sm h-8 bg-background/80 backdrop-blur-sm"
-              aria-label="Search stocks"
-            />
-            {searchTerm ? (
-              <X
-                className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground hover:text-foreground cursor-pointer"
-                onClick={() => {
-                  setSearchTerm('');
-                  setShowDropdown(false);
-                }}
-              />
-            ) : (
-              <Search className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground" />
-            )}
-            {showDropdown && searchTerm && (
-              <div className="absolute w-full mt-1 py-1 bg-background border border-slate-200/5 rounded-lg shadow-lg max-h-60 overflow-y-auto z-50 left-0">
-                {filteredStocks.map((stock) => (
-                  <button
-                    key={stock.symbol}
-                    onClick={() => {
-                      const stockIndex = stocks.findIndex((s) => s.symbol === stock.symbol);
-                      setCurrentStockIndex(stockIndex);
-                      setSearchTerm('');
-                      setShowDropdown(false);
-                    }}
-                    className="w-full px-3 py-1.5 text-left hover:bg-muted/50 transition-colors"
-                  >
-                    <div className="font-medium text-sm">{stock.symbol}</div>
-                    <div className="text-sm text-muted-foreground truncate">{stock.name}</div>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Theme Toggle Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            className="h-8 w-8 p-0"
-          >
-            {theme === 'dark' ? (
-              <Sun className="h-4 w-4" />
-            ) : (
-              <Moon className="h-4 w-4" />
-            )}
-            <span className="sr-only">Toggle theme</span>
-          </Button>
-
-          {/* Full Screen Button (visible only on mobile) */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-8 w-8 p-0 sm:hidden"
-            onClick={handleFullScreen}
-          >
-            <Maximize2 className="h-4 w-4" />
-            <span className="sr-only">Full Screen</span>
-          </Button>
+              className="w-full px-3 py-1.5 text-left hover:bg-muted/50 transition-colors"
+            >
+              <div className="font-medium text-sm">{stock.symbol}</div>
+              <div className="text-sm text-muted-foreground truncate">{stock.name}</div>
+            </button>
+          ))}
         </div>
-      </div>
+      )}
+    </div>
+
+    {/* Theme Toggle Button */}
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={toggleTheme}
+      className="h-8 w-8 p-0"
+    >
+      {theme === 'dark' ? (
+        <Sun className="h-4 w-4" />
+      ) : (
+        <Moon className="h-4 w-4" />
+      )}
+      <span className="sr-only">Toggle theme</span>
+    </Button>
+
+    {/* Full Screen Button (visible only on mobile) */}
+    <Button
+      variant="ghost"
+      size="icon"
+      className="h-8 w-8 p-0 sm:hidden"
+      onClick={handleFullScreen}
+    >
+      <Maximize2 className="h-4 w-4" />
+      <span className="sr-only">Full Screen</span>
+    </Button>
+  </div>
+</div>
+
 
       <main className="flex-1 relative overflow-hidden">
         {/* Stock Info Overlay */}
