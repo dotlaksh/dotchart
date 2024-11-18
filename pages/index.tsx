@@ -304,7 +304,7 @@ export default function StockChart() {
   };
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-background text-foreground transition-colors duration-300">
+    <div className="flex flex-col h-screen bg-background text-foreground transition-colors duration-300">
       {/* Sticky Top Bar */}
       {/* Sticky Top Bar */}
 <div className="sticky top-0 z-20 flex items-center justify-between bg-background/80 backdrop-blur-sm p-2 border-b space-x-2">
