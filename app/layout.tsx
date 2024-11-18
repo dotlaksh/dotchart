@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/src/components/theme-provider"
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
