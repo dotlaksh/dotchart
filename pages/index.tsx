@@ -17,7 +17,6 @@ import niftyNext50Data from '../public/niftynext50.json';
 import midcap150Data from '../public/midcap150.json';
 import smallcap250Data from '../public/smallcap250.json';
 import microCap250Data from '../public/microcap250.json';
-import othersData from '../public/others.json';
 
 interface StockData {
   Symbol: string;
@@ -96,7 +95,6 @@ export default function StockChart() {
     { label: 'Midcap 150', data: midcap150Data },
     { label: 'Smallcap 250', data: smallcap250Data },
     { label: 'MicroCap 250', data: microCap250Data },
-    { label: 'Others', data: othersData },
   ]);
   
   const [selectedIndexId, setSelectedIndexId] = useState(0);
