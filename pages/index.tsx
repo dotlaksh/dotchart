@@ -335,8 +335,8 @@ export default function StockChart() {
       className="relative" 
       ref={searchRef} 
       style={{
-        width: 'calc(100vw - 200px)', // Adjusted width for better mobile responsiveness
-        maxWidth: '250px'             // Ensuring a cap on the search box width
+        width: 'calc(50vw - 100px)', // Adjusted width for better mobile responsiveness
+        maxWidth: '150px'             // Ensuring a cap on the search box width
       }}
     >
       <Input
