@@ -4,12 +4,6 @@ import { ThemeProvider } from "../src/components/theme-provider"
 
 import "../styles/globals.css"; 
 
-export const metadata: Metadata = {
-  title: 'dotChart',
-  description: 'Stock chart application',
-}
-
-
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <>
