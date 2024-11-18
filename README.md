@@ -55,7 +55,7 @@ This project is ready for deployment on platforms like Vercel or Netlify. Follow
 
 - **Frontend Framework:** [Next.js](https://nextjs.org/)
 - **Charting Library:** [Lightweight Charts](https://tradingview.github.io/lightweight-charts/)
-- **CSS Framework:** [Bootstrap](https://getbootstrap.com/) (for styling)
+- **CSS Framework:** Tailwind CSS (for styling)
 
 ## Contributing
 
