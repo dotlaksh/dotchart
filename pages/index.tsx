@@ -202,7 +202,7 @@ export default function StockChart() {
         borderColor: chartColors.borderColor,
         timeVisible: false,
         rightOffset: 10,
-        minBarSpacing: 5,
+        minBarSpacing: 3,
       },
     });
 
