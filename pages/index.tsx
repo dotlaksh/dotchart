@@ -329,7 +329,7 @@ export default function StockChart() {
     <div className="flex flex-col h-screen bg-background text-foreground transition-colors duration-300">
       {/* Sticky Top Bar */}
       {!isFullscreen && ( // Conditionally render top bar
-        <div className="sticky top-0 z-20 flex items-center justify-between bg-background/80 backdrop-blur-sm p-2 border-b">
+        <div className="top-0 z-20 flex items-center justify-between bg-background/80 backdrop-blur-sm p-2 border-b">
           {/* Brand Name */}
           <div className="text-lg font-bold">dotChart</div>
 
