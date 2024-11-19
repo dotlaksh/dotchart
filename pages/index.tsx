@@ -121,7 +121,7 @@ export default function StockChart() {
   const { theme, setTheme } = useTheme();
 
   const getChartHeight = useCallback(() => {
-    return window.innerWidth < 640 ? 750 : window.innerWidth < 1024 ? 385 : 800;
+    return window.innerWidth < 640 ? 750 : window.innerWidth < 1024 ? 380 : 800;
   }, []);
 
   useEffect(() => {
@@ -342,7 +342,7 @@ export default function StockChart() {
               value={selectedInterval}
               onValueChange={(value) => setSelectedInterval(value)}
             >
-              <SelectTrigger className="w-[70px] h-8 text-xs">
+              <SelectTrigger className="w-[50px] h-8 text-xs">
                 <SelectValue placeholder="Interval" />
               </SelectTrigger>
               <SelectContent>
@@ -355,7 +355,7 @@ export default function StockChart() {
             </Select>
 
             {/* Search Box */}
-            <div className="w-48 sm:w-48 relative" ref={searchRef}>
+            <div className="w-48 sm:w-36 relative" ref={searchRef}>
               <Input
                 type="text"
                 placeholder="Search..."
