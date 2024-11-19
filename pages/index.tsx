@@ -121,7 +121,7 @@ export default function StockChart() {
   const { theme, setTheme } = useTheme();
 
   const getChartHeight = useCallback(() => {
-    return window.innerWidth < 640 ? 750 : window.innerWidth < 1024 ? 380 : 800;
+    return window.innerWidth < 640 ? 750 : window.innerWidth < 1024 ? 375 : 800;
   }, []);
 
   useEffect(() => {
