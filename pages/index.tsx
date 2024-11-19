@@ -204,8 +204,8 @@ export default function StockChart() {
       timeScale: {
         borderColor: chartColors.borderColor,
         timeVisible: false,
-        rightOffset: 10,
-        minBarSpacing: 4,
+        rightOffset: 25,
+        minBarSpacing: 10,
       },
     });
 
