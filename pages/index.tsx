@@ -336,47 +336,49 @@ export default function StockChart() {
           {/* Right-side elements */}
           <div className="flex items-center space-x-2">
             {/* Search Box */}
-            <div className="w-48 sm:w-36 relative" ref={searchRef}>
-              <Input
-                type="text"
-                placeholder="Search..."
-                value={searchTerm}
-                onChange={(e) => {
-                  setSearchTerm(e.target.value);
-                  setShowDropdown(true);
+           <div className="w-48 sm:w-64 relative" ref={searchRef}>
+            <Input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setShowDropdown(true);
+              }}
+              className="pr-6 text-sm h-8 bg-background/80 backdrop-blur-sm"
+              aria-label="Search stocks"
+            />
+            {searchTerm ? (
+              <X
+                className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground hover:text-foreground cursor-pointer"
+                onClick={() => {
+                  setSearchTerm('');
+                  setShowDropdown(false);
                 }}
-                className="pr-6 text-sm h-8 bg-background/80 backdrop-blur-sm"
-                aria-label="Search stocks"
               />
-              {searchTerm ? (
-                <X
-                  className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground hover:text-foreground cursor-pointer"
-                  onClick={() => {
-                    setSearchTerm('');
-                    setShowDropdown(false);
-                  }}
-                />
-              ) : (
-                <Search className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground" />
-              )}
-              {showDropdown && searchTerm && (
-                <div className="absolute w-full max-h-48 overflow-auto bg-background rounded-md shadow-md py-1">
-                  {filteredStocks.map((stock) => (
-                    <div
-                      key={stock.symbol}
-                      className="px-2 py-1 hover:bg-muted-foreground cursor-pointer"
-                      onClick={() => {
-                        setSearchTerm(stock.symbol);
-                        setShowDropdown(false);
-                        // Logic to select the stock
-                      }}
-                    >
-                      {stock.symbol} - {stock.name}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+            ) : (
+              <Search className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground" />
+            )}
+            {showDropdown && searchTerm && (
+              <div className="absolute w-full mt-1 py-1 bg-background border border-slate-200/5 rounded-lg shadow-lg max-h-60 overflow-y-auto z-50 left-0">
+                {filteredStocks.map((stock) => (
+                  <button
+                    key={stock.symbol}
+                    onClick={() => {
+                      const stockIndex = stocks.findIndex((s) => s.symbol === stock.symbol);
+                      setCurrentStockIndex(stockIndex);
+                      setSearchTerm('');
+                      setShowDropdown(false);
+                    }}
+                    className="w-full px-3 py-1.5 text-left hover:bg-muted/50 transition-colors"
+                  >
+                    <div className="font-medium text-sm">{stock.symbol}</div>
+                    <div className="text-sm text-muted-foreground truncate">{stock.name}</div>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
 
             {/* Fullscreen Button */}
             <Button
