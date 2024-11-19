@@ -121,7 +121,7 @@ export default function StockChart() {
   const { theme, setTheme } = useTheme();
 
   const getChartHeight = useCallback(() => {
-    return window.innerWidth < 640 ? 700 : window.innerWidth < 1024 ? 380 : 800;
+    return window.innerWidth < 640 ? 750 : window.innerWidth < 1024 ? 400 : 800;
   }, []);
 
   useEffect(() => {
@@ -333,7 +333,7 @@ export default function StockChart() {
       {!isFullscreen && ( // Conditionally render top bar
         <div className="sticky top-0 z-20 flex items-center justify-between bg-background/80 backdrop-blur-sm p-2 border-b">
           {/* Brand Name */}
-          <div className="text-lg font-bold">DotChart</div>
+          <div className="text-lg font-bold">dotChart</div>
 
           {/* Right-side elements */}
           <div className="flex items-center space-x-2">
@@ -355,7 +355,7 @@ export default function StockChart() {
             </Select>
 
             {/* Search Box */}
-            <div className="w-48 sm:w-64 relative" ref={searchRef}>
+            <div className="w-48 sm:w-48 relative" ref={searchRef}>
               <Input
                 type="text"
                 placeholder="Search..."
