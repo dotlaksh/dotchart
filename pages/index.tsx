@@ -335,23 +335,6 @@ export default function StockChart() {
 
           {/* Right-side elements */}
           <div className="flex items-center space-x-2">
-            {/* Intervals Select Box */}
-            <Select
-              value={selectedInterval}
-              onValueChange={(value) => setSelectedInterval(value)}
-            >
-              <SelectTrigger className="w-[50px] h-8 text-xs">
-                <SelectValue placeholder="Interval" />
-              </SelectTrigger>
-              <SelectContent>
-                {INTERVALS.map((interval) => (
-                  <SelectItem key={interval.value} value={interval.value} className="text-xs">
-                    {interval.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-
             {/* Search Box */}
             <div className="w-48 sm:w-36 relative" ref={searchRef}>
               <Input
@@ -464,6 +447,26 @@ export default function StockChart() {
                   ))}
                 </SelectContent>
               </Select>
+              
+            </div>
+            <div className="flex space-x-1 flex-shrink-0">
+
+             {/* Intervals Select Box */}
+            <Select
+              value={selectedInterval}
+              onValueChange={(value) => setSelectedInterval(value)}
+            >
+              <SelectTrigger className="w-[50px] h-8 text-xs">
+                <SelectValue placeholder="Interval" />
+              </SelectTrigger>
+              <SelectContent>
+                {INTERVALS.map((interval) => (
+                  <SelectItem key={interval.value} value={interval.value} className="text-xs">
+                    {interval.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             </div>
 
             {/* Pagination */}
