@@ -449,14 +449,14 @@ export default function StockChart() {
               </Select>
               
             </div>
-            <div className="flex space-x-1 flex-shrink-0">
+            <div className="flex space-x-1">
 
              {/* Intervals Select Box */}
             <Select
               value={selectedInterval}
               onValueChange={(value) => setSelectedInterval(value)}
             >
-              <SelectTrigger className="w-[50px] h-8 text-xs">
+              <SelectTrigger className="w-[75px] h-8 text-sm">
                 <SelectValue placeholder="Interval" />
               </SelectTrigger>
               <SelectContent>
