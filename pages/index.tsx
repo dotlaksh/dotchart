@@ -116,7 +116,7 @@ export default function StockChart() {
   const searchRef = useRef<HTMLDivElement>(null);
 
   const [mounted, setMounted] = useState(false);
-  const { setTheme } = useTheme();
+  const { theme,setTheme } = useTheme();
 
   const getChartHeight = useCallback(() => {
     return window.innerWidth < 640 ? 750 : window.innerWidth < 1024 ? 375 : 800;
