@@ -439,14 +439,14 @@ export default function StockChart() {
         )}
 
         {/* Chart Container */}
-        <div className="h-full" ref={chartContainerRef}></div>
+        <div className="h-full w-full" ref={chartContainerRef}></div>
       </main>
       {loading && <div className="flex justify-center items-center h-full"><Loader2 className="animate-spin h-8 w-8 text-muted-foreground"/></div>}
       {error && <div className="text-red-500">{error}</div>}
       {/* Sticky Footer */}
       <footer className="sticky bottom-0 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t border-slate-200/5">
         <div className="mx-auto px-2 sm:px-4">
-          <div className="flex justify-between py-2 sm:py-4 min-w-0">
+          <div className="flex flex-wrap justify-between py-2 sm:py-4 min-w-0">
             {/* Index Select Box */}
             <div className="flex-shrink-0 min-w-[120px] sm:min-w-[180px]">
               <Select
