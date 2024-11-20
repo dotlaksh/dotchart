@@ -448,17 +448,17 @@ export default function StockChart() {
         <div className="mx-auto px-2 sm:px-4">
           <div className="flex flex-wrap justify-between py-2 sm:py-4 min-w-0">
             {/* Index Select Box */}
-            <div className="flex-shrink-0 min-w-[120px] sm:min-w-[180px]">
+            <div className="flex-shrink-0 min-w-[120px] sm:min-w-[200px]">
               <Select
                 value={selectedIndexId.toString()}
                 onValueChange={(value) => setSelectedIndexId(parseInt(value))}
               >
-                <SelectTrigger className="h-8 text-xs sm:text-sm bg-background">
+                <SelectTrigger className="h-8 text-xs sm:text-md bg-background">
                   <SelectValue placeholder="Select Index" />
                 </SelectTrigger>
                 <SelectContent>
                   {indexData.map((item, index) => (
-                    <SelectItem key={index} value={index.toString()} className="text-xs sm:text-sm">
+                    <SelectItem key={index} value={index.toString()} className="text-xs sm:text-md">
                       {item.label}
                     </SelectItem>
                   ))}
@@ -473,7 +473,7 @@ export default function StockChart() {
               value={selectedInterval}
               onValueChange={(value) => setSelectedInterval(value)}
             >
-              <SelectTrigger className="w-[75px] h-8 text-sm">
+              <SelectTrigger className="w-[60px] h-8 text-sm">
                 <SelectValue placeholder="Interval" />
               </SelectTrigger>
               <SelectContent>
