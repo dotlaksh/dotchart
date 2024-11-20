@@ -50,7 +50,7 @@ interface ChartDataPoint {
 
 const INTERVALS = [
   { label: 'D', value: 'daily', interval: '1d', range: '2y' },
-  { label: 'W', value: 'weekly', interval: '1wk', range: 'max' },
+  { label: 'W', value: 'weekly', interval: '1wk', range: '5y' },
   { label: 'M', value: 'monthly', interval: '1mo', range: 'max' },
 ];
 
@@ -119,7 +119,15 @@ export default function StockChart() {
   const { theme,setTheme } = useTheme();
 
   const getChartHeight = useCallback(() => {
-    return window.innerWidth < 640 ? 750 : window.innerWidth < 1024 ? 375 : 800;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    if (width < 640) {
+      return Math.max(height * 0.6, 300); // 60% of screen height, minimum 300px
+    } else if (width < 1024) {
+      return Math.max(height * 0.7, 375); // 70% of screen height, minimum 375px
+    } else {
+      return Math.max(height * 0.8, 500); // 80% of screen height, minimum 500px
+    }
   }, []);
 
   useEffect(() => {
