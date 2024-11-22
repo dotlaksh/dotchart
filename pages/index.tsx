@@ -189,7 +189,6 @@ export default function ModernStockChart() {
     const isDark = theme === 'dark';
     const chartColors = getChartColors(isDark);
 
-    // Add chart title
     const chart = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
       height: chartContainerRef.current.clientHeight,
@@ -244,10 +243,6 @@ export default function ModernStockChart() {
         type: 'volume',
       },
       priceScaleId: '',
-      scaleMargins: {
-        top: 0.8,
-        bottom: 0,
-      },
     });
 
     volumeSeriesRef.current = volumeSeries;
