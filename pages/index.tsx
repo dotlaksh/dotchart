@@ -50,7 +50,7 @@ interface ChartDataPoint {
 
 const INTERVALS = [
   { label: 'D', value: 'daily', interval: '1d', range: '2y' },
-  { label: 'W', value: 'weekly', interval: '1wk', range: '5y' },
+  { label: 'W', value: 'weekly', interval: '1wk', range: 'max' },
   { label: 'M', value: 'monthly', interval: '1mo', range: 'max' },
 ];
 
@@ -119,15 +119,7 @@ export default function StockChart() {
   const { theme,setTheme } = useTheme();
 
   const getChartHeight = useCallback(() => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    if (width < 640) {
-      return Math.max(height * 0.6, 300); // 60% of screen height, minimum 300px
-    } else if (width < 1024) {
-      return Math.max(height * 0.7, 375); // 70% of screen height, minimum 375px
-    } else {
-      return Math.max(height * 0.8, 500); // 80% of screen height, minimum 500px
-    }
+    return window.innerWidth < 640 ? 750 : window.innerWidth < 1024 ? 375 : 800;
   }, []);
 
   useEffect(() => {
@@ -439,26 +431,26 @@ export default function StockChart() {
         )}
 
         {/* Chart Container */}
-        <div className="h-full w-full" ref={chartContainerRef}></div>
+        <div className="h-full" ref={chartContainerRef}></div>
       </main>
       {loading && <div className="flex justify-center items-center h-full"><Loader2 className="animate-spin h-8 w-8 text-muted-foreground"/></div>}
       {error && <div className="text-red-500">{error}</div>}
       {/* Sticky Footer */}
       <footer className="sticky bottom-0 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t border-slate-200/5">
         <div className="mx-auto px-2 sm:px-4">
-          <div className="flex flex-wrap justify-between py-2 sm:py-4 min-w-0">
+          <div className="flex justify-between py-2 sm:py-4 min-w-0">
             {/* Index Select Box */}
-            <div className="flex-shrink-0 min-w-[120px] sm:min-w-[200px]">
+            <div className="flex-shrink-0 min-w-[120px] sm:min-w-[180px]">
               <Select
                 value={selectedIndexId.toString()}
                 onValueChange={(value) => setSelectedIndexId(parseInt(value))}
               >
-                <SelectTrigger className="h-8 text-xs sm:text-md bg-background">
+                <SelectTrigger className="h-8 text-xs sm:text-sm bg-background">
                   <SelectValue placeholder="Select Index" />
                 </SelectTrigger>
                 <SelectContent>
                   {indexData.map((item, index) => (
-                    <SelectItem key={index} value={index.toString()} className="text-xs sm:text-md">
+                    <SelectItem key={index} value={index.toString()} className="text-xs sm:text-sm">
                       {item.label}
                     </SelectItem>
                   ))}
@@ -473,7 +465,7 @@ export default function StockChart() {
               value={selectedInterval}
               onValueChange={(value) => setSelectedInterval(value)}
             >
-              <SelectTrigger className="w-[60px] h-8 text-sm">
+              <SelectTrigger className="w-[75px] h-8 text-sm">
                 <SelectValue placeholder="Interval" />
               </SelectTrigger>
               <SelectContent>
