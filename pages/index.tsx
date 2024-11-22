@@ -70,22 +70,22 @@ const getCssVariableColor = (variableName: string): string => {
   }
   
   const fallbacks: Record<string, string> = {
-    '--background': '#ffffff',
-    '--foreground': '#000000',
-    '--border': '#e5e7eb',
-    '--success': '#089981',
-    '--destructive': '#ef4444',
+    '--background': '#1e1e1e',
+    '--foreground': '#ffffff',
+    '--border': '#333333',
+    '--success': '#26a69a',
+    '--destructive': '#ef5350',
   };
   
-  return fallbacks[variableName] || '#000000';
+  return fallbacks[variableName] || '#ffffff';
 };
 
-const getChartColors = (isDark: boolean) => ({
-  upColor: isDark ? '#26a69a' : '#089981',
-  downColor: isDark ? '#ef5350' : '#ef4444',
-  backgroundColor: isDark ? '#1e1e1e' : '#ffffff',
-  textColor: isDark ? '#d4d4d4' : '#1e1e1e',
-  borderColor: isDark ? '#333333' : '#e5e7eb',
+const getChartColors = () => ({
+  upColor: '#26a69a',
+  downColor: '#ef5350',
+  backgroundColor: '#1e1e1e',
+  textColor: '#d4d4d4',
+  borderColor: '#333333',
 });
 
 export default function StockChart() {
@@ -107,7 +107,7 @@ export default function StockChart() {
   const [currentStock, setCurrentStock] = useState<CurrentStock | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
-  const [isFullscreen, setIsFullscreen] = useState(false); // Added state for fullscreen
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const chartInstanceRef = useRef<IChartApi | null>(null);
@@ -116,10 +116,18 @@ export default function StockChart() {
   const searchRef = useRef<HTMLDivElement>(null);
 
   const [mounted, setMounted] = useState(false);
-  const { theme,setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   const getChartHeight = useCallback(() => {
-    return window.innerWidth < 640 ? 750 : window.innerWidth < 1024 ? 375 : 800;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    if (width < 640) {
+      return Math.max(height * 0.6, 300);
+    } else if (width < 1024) {
+      return Math.max(height * 0.7, 375);
+    } else {
+      return Math.max(height * 0.8, 500);
+    }
   }, []);
 
   useEffect(() => {
@@ -184,8 +192,7 @@ export default function StockChart() {
       }
     };
 
-    const isDark = theme === 'dark';
-    const chartColors = getChartColors(isDark);
+    const chartColors = getChartColors();
 
     const chart = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
@@ -283,7 +290,7 @@ export default function StockChart() {
 
     document.addEventListener('fullscreenchange', handleFullscreenChange);
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
-  }, []); // Added effect for fullscreen changes
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -313,74 +320,64 @@ export default function StockChart() {
         setIsFullscreen(false);
       });
     }
-  }; // Updated handleFullScreen function
+  };
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+    setTheme('dark');
+  }, [setTheme]);
 
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light')
-  }
-
-  if (!mounted) return null
+  if (!mounted) return null;
 
   return (
-    <div className="flex flex-col h-screen bg-background text-foreground transition-colors duration-300">
-      {/* Sticky Top Bar */}
-      {!isFullscreen && ( // Conditionally render top bar
-        <div className="top-0 z-20 flex items-center justify-between bg-background/80 backdrop-blur-sm p-2 border-b">
-          {/* Brand Name */}
+    <div className="flex flex-col h-screen bg-background text-foreground transition-colors duration-300 dark">
+      {!isFullscreen && (
+        <div className="sticky top-0 z-20 flex items-center justify-between bg-background/80 backdrop-blur-sm p-2 border-b border-border">
           <div className="text-lg font-bold">dotChart</div>
-
-          {/* Right-side elements */}
           <div className="flex items-center space-x-2">
-            {/* Search Box */}
-           <div className="w-48 sm:w-64 relative" ref={searchRef}>
-            <Input
-              type="text"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={(e) => {
-                setSearchTerm(e.target.value);
-                setShowDropdown(true);
-              }}
-              className="pr-6 text-sm h-8 bg-background/80 backdrop-blur-sm"
-              aria-label="Search stocks"
-            />
-            {searchTerm ? (
-              <X
-                className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground hover:text-foreground cursor-pointer"
-                onClick={() => {
-                  setSearchTerm('');
-                  setShowDropdown(false);
+            <div className="w-48 sm:w-64 relative" ref={searchRef}>
+              <Input
+                type="text"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                  setShowDropdown(true);
                 }}
+                className="pr-6 text-sm h-8 bg-background/80 backdrop-blur-sm"
+                aria-label="Search stocks"
               />
-            ) : (
-              <Search className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground" />
-            )}
-            {showDropdown && searchTerm && (
-              <div className="absolute w-full mt-1 py-1 bg-background border border-slate-200/5 rounded-lg shadow-lg max-h-60 overflow-y-auto z-50 left-0">
-                {filteredStocks.map((stock) => (
-                  <button
-                    key={stock.symbol}
-                    onClick={() => {
-                      const stockIndex = stocks.findIndex((s) => s.symbol === stock.symbol);
-                      setCurrentStockIndex(stockIndex);
-                      setSearchTerm('');
-                      setShowDropdown(false);
-                    }}
-                    className="w-full px-3 py-1.5 text-left hover:bg-muted/50 transition-colors"
-                  >
-                    <div className="font-medium text-sm">{stock.symbol}</div>
-                    <div className="text-sm text-muted-foreground truncate">{stock.name}</div>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-            {/* Fullscreen Button */}
+              {searchTerm ? (
+                <X
+                  className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground hover:text-foreground cursor-pointer"
+                  onClick={() => {
+                    setSearchTerm('');
+                    setShowDropdown(false);
+                  }}
+                />
+              ) : (
+                <Search className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground" />
+              )}
+              {showDropdown && searchTerm && (
+                <div className="absolute w-full mt-1 py-1 bg-background border border-border rounded-lg shadow-lg max-h-60 overflow-y-auto z-50 left-0">
+                  {filteredStocks.map((stock) => (
+                    <button
+                      key={stock.symbol}
+                      onClick={() => {
+                        const stockIndex = stocks.findIndex((s) => s.symbol === stock.symbol);
+                        setCurrentStockIndex(stockIndex);
+                        setSearchTerm('');
+                        setShowDropdown(false);
+                      }}
+                      className="w-full px-3 py-1.5 text-left hover:bg-muted/50 transition-colors"
+                    >
+                      <div className="font-medium text-sm">{stock.symbol}</div>
+                      <div className="text-sm text-muted-foreground truncate">{stock.name}</div>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
             <Button
               variant="ghost"
               size="icon"
@@ -394,58 +391,42 @@ export default function StockChart() {
               )}
               <span className="sr-only">{isFullscreen ? 'Exit Full Screen' : 'Full Screen'}</span>
             </Button>
-
-            {/* Theme Toggle Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="h-8 w-8 p-0"
-            >
-              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
           </div>
         </div>
       )}
 
       <main className="flex-1 relative overflow-hidden">
-        {/* Stock Info Overlay */}
         {currentStock && (
           <div className="absolute top-2 left-2 z-10 bg-background/80 backdrop-blur-sm p-2 rounded-lg">
             <h2 className="text-md font-semibold">{currentStock.symbol}</h2>
             <div className="text-sm">
               <span className={`text-[14px] font-medium ${
-                currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-green-500' : 'text-red-500'
+                currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-success' : 'text-destructive'
               }`}>
                 {currentStock.price?.toFixed(2)}
               </span>
               <span className={`text-[14px] ml-1 ${
-                currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-green-500' : 'text-red-500'
+                currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-success' : 'text-destructive'
               }`}>
                 {currentStock.todayChange && currentStock.todayChange >= 0 ? '↑' : '↓'} {Math.abs(currentStock.todayChange || 0).toFixed(1)}%
               </span>
             </div>
           </div>
         )}
-
-        {/* Chart Container */}
-        <div className="h-full" ref={chartContainerRef}></div>
+        <div className="h-full w-full" ref={chartContainerRef}></div>
       </main>
-      {loading && <div className="flex justify-center items-center h-full"><Loader2 className="animate-spin h-8 w-8 text-muted-foreground"/></div>}
-      {error && <div className="text-red-500">{error}</div>}
-      {/* Sticky Footer */}
-      <footer className="sticky bottom-0 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t border-slate-200/5">
+      {loading && <div className="absolute inset-0 flex justify-center items-center bg-background/50"><Loader2 className="animate-spin h-8 w-8 text-muted-foreground"/></div>}
+      {error && <div className="absolute inset-0 flex justify-center items-center bg-background/50"><div className="text-destructive bg-background p-4 rounded-lg">{error}</div></div>}
+      
+      <footer className="sticky bottom-0 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t border-border">
         <div className="mx-auto px-2 sm:px-4">
-          <div className="flex justify-between py-2 sm:py-4 min-w-0">
-            {/* Index Select Box */}
-            <div className="flex-shrink-0 min-w-[120px] sm:min-w-[180px]">
+          <div className="flex flex-wrap justify-between py-2 sm:py-4 gap-2">
+            <div className="flex-grow sm:flex-grow-0 min-w-[120px] sm:min-w-[180px]">
               <Select
                 value={selectedIndexId.toString()}
                 onValueChange={(value) => setSelectedIndexId(parseInt(value))}
               >
-                <SelectTrigger className="h-8 text-xs sm:text-sm bg-background">
+                <SelectTrigger className="h-8 text-xs sm:text-sm bg-background w-full">
                   <SelectValue placeholder="Select Index" />
                 </SelectTrigger>
                 <SelectContent>
@@ -456,35 +437,32 @@ export default function StockChart() {
                   ))}
                 </SelectContent>
               </Select>
-              
             </div>
-            <div className="flex space-x-1">
-
-             {/* Intervals Select Box */}
-            <Select
-              value={selectedInterval}
-              onValueChange={(value) => setSelectedInterval(value)}
-            >
-              <SelectTrigger className="w-[75px] h-8 text-sm">
-                <SelectValue placeholder="Interval" />
-              </SelectTrigger>
-              <SelectContent>
-                {INTERVALS.map((interval) => (
-                  <SelectItem key={interval.value} value={interval.value} className="text-xs">
-                    {interval.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            
+            <div className="flex space-x-1 order-last sm:order-none">
+              <Select
+                value={selectedInterval}
+                onValueChange={(value) => setSelectedInterval(value)}
+              >
+                <SelectTrigger className="w-[75px] h-8 text-sm">
+                  <SelectValue placeholder="Interval" />
+                </SelectTrigger>
+                <SelectContent>
+                  {INTERVALS.map((interval) => (
+                    <SelectItem key={interval.value} value={interval.value} className="text-xs">
+                      {interval.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
 
-            {/* Pagination */}
             <div className="flex items-center space-x-1 flex-shrink-0">
               <Button
                 variant="ghost"
                 onClick={handlePrevious}
                 disabled={currentStockIndex === 0}
-                className="h-8 px-1.5 sm:px-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                className="h-8 px-1.5 sm:px-2 text-muted-foreground hover:text-foreground hover:bg-muted"
                 size="sm"
               >
                 <ChevronLeft className="h-4 w-4" />
@@ -492,10 +470,10 @@ export default function StockChart() {
               </Button>
 
               <div className="flex items-center min-w-[60px] justify-center">
-                <span className="text-sm sm:text-sm text-gray-600 whitespace-nowrap">
+                <span className="text-sm sm:text-sm text-muted-foreground whitespace-nowrap">
                   <span className="font-medium">{currentStockIndex + 1}</span>
-                  <span className="text-gray-400 mx-1">/</span>
-                  <span className="text-gray-400">{stocks.length}</span>
+                  <span className="text-muted-foreground mx-1">/</span>
+                  <span className="text-muted-foreground">{stocks.length}</span>
                 </span>
               </div>
 
@@ -503,7 +481,7 @@ export default function StockChart() {
                 variant="ghost"
                 onClick={handleNext}
                 disabled={currentStockIndex === stocks.length - 1}
-                className="h-8 px-1.5 sm:px-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                className="h-8 px-1.5 sm:px-2 text-muted-foreground hover:text-foreground hover:bg-muted"
                 size="sm"
               >
                 <span className="sr-only sm:not-sr-only sm:mr-1">Next</span>
