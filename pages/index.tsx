@@ -189,6 +189,7 @@ export default function ModernStockChart() {
     const isDark = theme === 'dark';
     const chartColors = getChartColors(isDark);
 
+    // Add chart title
     const chart = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
       height: chartContainerRef.current.clientHeight,
@@ -197,8 +198,8 @@ export default function ModernStockChart() {
         textColor: chartColors.textColor,
       },
       grid: {
-        vertLines: { visible: false },
-        horzLines: { visible: false },
+        vertLines: { color: chartColors.borderColor, style: 1, visible: true },
+        horzLines: { color: chartColors.borderColor, style: 1, visible: true },
       },
       rightPriceScale: {
         borderColor: chartColors.borderColor,
@@ -207,6 +208,21 @@ export default function ModernStockChart() {
         borderColor: chartColors.borderColor,
         timeVisible: true,
         secondsVisible: false,
+        tickMarkFormatter: (time: number) => {
+          const date = new Date(time * 1000);
+          return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        },
+      },
+    });
+
+    chart.applyOptions({
+      watermark: {
+        color: 'rgba(11, 94, 29, 0.4)',
+        visible: true,
+        text: 'dotChart',
+        fontSize: 24,
+        horzAlign: 'left',
+        vertAlign: 'bottom',
       },
     });
 
@@ -215,7 +231,7 @@ export default function ModernStockChart() {
     const candlestickSeries = chart.addCandlestickSeries({
       upColor: chartColors.upColor,
       downColor: chartColors.downColor,
-      borderVisible: false,
+      borderVisible: true,
       wickUpColor: chartColors.upColor,
       wickDownColor: chartColors.downColor,
     });
@@ -228,6 +244,10 @@ export default function ModernStockChart() {
         type: 'volume',
       },
       priceScaleId: '',
+      scaleMargins: {
+        top: 0.8,
+        bottom: 0,
+      },
     });
 
     volumeSeriesRef.current = volumeSeries;
@@ -561,7 +581,7 @@ export default function ModernStockChart() {
         )}
 
         {/* Chart Container */}
-        <AspectRatio ratio={16 / 9} className="w-full h-full">
+        <AspectRatio ratio={16 / 9} className="w-full h-full min-h-[300px] sm:min-h-[400px] lg:min-h-[600px]">
           <div className="w-full h-full" ref={chartContainerRef}></div>
         </AspectRatio>
 
@@ -631,6 +651,4 @@ export default function ModernStockChart() {
         </div>
       </footer>
     </div>
-  );
-}
 
