@@ -651,4 +651,6 @@ export default function ModernStockChart() {
         </div>
       </footer>
     </div>
+  );
+}
 
