@@ -3,14 +3,13 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createChart, ColorType, IChartApi, ISeriesApi, CandlestickData, HistogramData } from 'lightweight-charts';
 import axios from 'axios';
-import { ChevronLeft, ChevronRight, Search, X, Loader2, Maximize2, Minimize2, Moon, Sun } from 'lucide-react';
-import { useTheme } from 'next-themes';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useSwipeable } from 'react-swipeable';
+import { ChevronLeft, ChevronRight, Search, X, Loader2, Maximize2, Minimize2, Focus, ZoomIn } from 'lucide-react';
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
 
 import nifty50Data from '../public/nifty50.json';
 import niftyNext50Data from '../public/niftynext50.json';
@@ -53,7 +52,13 @@ const INTERVALS = [
   { label: 'W', value: 'weekly', interval: '1wk', range: 'max' },
   { label: 'M', value: 'monthly', interval: '1mo', range: 'max' },
 ];
-
+const getPerformanceColor = (change: number): string => {
+  if (change > 5) return '#22c55e';
+  if (change > 0) return '#4ade80';
+  if (change < -5) return '#ef4444';
+  if (change < 0) return '#f87171';
+  return '#94a3b8';
+};
 const getCssVariableColor = (variableName: string): string => {
   if (typeof window === 'undefined') return '#000000';
   const root = document.documentElement;
@@ -96,7 +101,8 @@ export default function StockChart() {
     { label: 'Smallcap 250', data: smallcap250Data },
     { label: 'MicroCap 250', data: microCap250Data },
   ]);
-  
+  const [focusMode, setFocusMode] = useState(false);
+  const [animationDirection, setAnimationDirection] = useState<'left' | 'right' | null>(null);
   const [selectedIndexId, setSelectedIndexId] = useState(0);
   const [currentStockIndex, setCurrentStockIndex] = useState(0);
   const [stocks, setStocks] = useState<Stock[]>([]);
@@ -118,17 +124,10 @@ export default function StockChart() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
-  const getChartHeight = useCallback(() => {
-    const width = window.innerWidth;
+ const getChartHeight = useCallback(() => {
     const height = window.innerHeight;
-    if (width < 640) {
-      return Math.max(height * 0.6, 300);
-    } else if (width < 1024) {
-      return Math.max(height * 0.7, 375);
-    } else {
-      return Math.max(height * 0.8, 500);
-    }
-  }, []);
+    return focusMode ? height : Math.max(height * 0.6, 300);
+  }, [focusMode]);
 
   useEffect(() => {
     const selectedIndex = indexData[selectedIndexId];
@@ -180,6 +179,27 @@ export default function StockChart() {
     fetchStockData();
   }, [fetchStockData]);
 
+  const handleSwipe = (direction: 'left' | 'right') => {
+    if (direction === 'left' && currentStockIndex < stocks.length - 1) {
+      setAnimationDirection('left');
+      setCurrentStockIndex(prev => prev + 1);
+    } else if (direction === 'right' && currentStockIndex > 0) {
+      setAnimationDirection('right');
+      setCurrentStockIndex(prev => prev - 1);
+    }
+  };
+
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => handleSwipe('left'),
+    onSwipedRight: () => handleSwipe('right'),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true
+  });
+
+  const toggleFocusMode = () => {
+    setFocusMode(prev => !prev);
+  };
+
   useEffect(() => {
     if (!chartContainerRef.current || !chartData.length) return;
 
@@ -192,44 +212,43 @@ export default function StockChart() {
       }
     };
 
-    const chartColors = getChartColors();
+    const performanceColor = getPerformanceColor(currentStock?.change || 0);
 
     const chart = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
       height: getChartHeight(),
       layout: {
-        background: { type: ColorType.Solid, color: chartColors.backgroundColor },
-        textColor: chartColors.textColor,
+        background: { type: ColorType.Solid, color: '#000000' },
+        textColor: '#d1d5db',
       },
       grid: {
         vertLines: { visible: false },
         horzLines: { visible: false },
       },
       rightPriceScale: {
-        borderColor: chartColors.borderColor,
+        borderColor: '#374151',
       },
       timeScale: {
-        borderColor: chartColors.borderColor,
-        timeVisible: false,
-        rightOffset: 10,
-        minBarSpacing: 3,
+        borderColor: '#374151',
+        timeVisible: true,
+        secondsVisible: false,
       },
     });
 
     chartInstanceRef.current = chart;
 
     const candlestickSeries = chart.addCandlestickSeries({
-      upColor: chartColors.upColor,
-      downColor: chartColors.downColor,
+      upColor: performanceColor,
+      downColor: '#ef4444',
       borderVisible: false,
-      wickUpColor: chartColors.upColor,
-      wickDownColor: chartColors.downColor,
+      wickUpColor: performanceColor,
+      wickDownColor: '#ef4444',
     });
 
     candlestickSeriesRef.current = candlestickSeries;
 
     const volumeSeries = chart.addHistogramSeries({
-      color: chartColors.upColor,
+      color: performanceColor,
       priceFormat: {
         type: 'volume',
       },
@@ -242,21 +261,23 @@ export default function StockChart() {
     volumeSeries.setData(chartData.map(d => ({
       time: d.time,
       value: d.volume,
-      color: d.close >= d.open ? chartColors.upColor : chartColors.downColor,
+      color: d.close >= d.open ? performanceColor : '#ef4444',
     } as HistogramData)));
 
     candlestickSeries.priceScale().applyOptions({
       scaleMargins: {
         top: 0.1,
         bottom: 0.2,
-      }
+      },
     });
+
     volumeSeries.priceScale().applyOptions({
       scaleMargins: {
-        top: 0.7,
+        top: 0.8,
         bottom: 0,
       },
     });
+
     chart.timeScale().fitContent();
 
     window.addEventListener('resize', handleResize);
@@ -265,7 +286,7 @@ export default function StockChart() {
       window.removeEventListener('resize', handleResize);
       chart.remove();
     };
-  }, [chartData, getChartHeight, theme]);
+  }, [chartData, getChartHeight, currentStock]);
 
   const handleIntervalChange = (newInterval: string) => {
     setSelectedInterval(newInterval);
@@ -330,164 +351,132 @@ export default function StockChart() {
   if (!mounted) return null;
 
   return (
-    <div className="flex flex-col h-screen bg-background text-foreground transition-colors duration-300 dark">
-      {!isFullscreen && (
-        <div className="sticky top-0 z-20 flex items-center justify-between bg-background/80 backdrop-blur-sm p-2 border-b border-border">
-          <div className="text-lg font-bold">dotChart</div>
-          <div className="flex items-center space-x-2">
-            <div className="w-48 sm:w-64 relative" ref={searchRef}>
-              <Input
-                type="text"
-                placeholder="Search..."
-                value={searchTerm}
-                onChange={(e) => {
-                  setSearchTerm(e.target.value);
-                  setShowDropdown(true);
-                }}
-                className="pr-6 text-sm h-8 bg-background/80 backdrop-blur-sm"
-                aria-label="Search stocks"
-              />
-              {searchTerm ? (
-                <X
-                  className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground hover:text-foreground cursor-pointer"
-                  onClick={() => {
-                    setSearchTerm('');
-                    setShowDropdown(false);
-                  }}
-                />
-              ) : (
-                <Search className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground" />
-              )}
-              {showDropdown && searchTerm && (
-                <div className="absolute w-full mt-1 py-1 bg-background border border-border rounded-lg shadow-lg max-h-60 overflow-y-auto z-50 left-0">
-                  {filteredStocks.map((stock) => (
-                    <button
-                      key={stock.symbol}
-                      onClick={() => {
-                        const stockIndex = stocks.findIndex((s) => s.symbol === stock.symbol);
-                        setCurrentStockIndex(stockIndex);
-                        setSearchTerm('');
-                        setShowDropdown(false);
-                      }}
-                      className="w-full px-3 py-1.5 text-left hover:bg-muted/50 transition-colors"
-                    >
-                      <div className="font-medium text-sm">{stock.symbol}</div>
-                      <div className="text-sm text-muted-foreground truncate">{stock.name}</div>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 p-0 sm:hidden"
-              onClick={handleFullScreen}
-            >
-              {isFullscreen ? (
-                <Minimize2 className="h-4 w-4" />
-              ) : (
-                <Maximize2 className="h-4 w-4" />
-              )}
-              <span className="sr-only">{isFullscreen ? 'Exit Full Screen' : 'Full Screen'}</span>
-            </Button>
+    <div className="flex flex-col h-screen bg-gray-900 text-gray-100" {...swipeHandlers}>
+      <header className="sticky top-0 z-20 bg-gray-800 p-4 shadow-md">
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+            InnoStock
+          </h1>
+          <div className="relative w-full max-w-md mx-4">
+            <Input
+              type="text"
+              placeholder="Search stocks..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full bg-gray-700 text-gray-100 placeholder-gray-400 border-gray-600 focus:border-blue-500 focus:ring-blue-500"
+            />
+            <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
           </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleFocusMode}
+            className="text-gray-300 hover:text-gray-100"
+          >
+            {focusMode ? <Minimize2 /> : <Maximize2 />}
+          </Button>
         </div>
-      )}
+      </header>
 
-      <main className="flex-1 relative overflow-hidden">
-        {currentStock && (
-          <div className="absolute top-2 left-2 z-10 bg-background/80 backdrop-blur-sm p-2 rounded-lg">
-            <h2 className="text-md font-semibold">{currentStock.symbol}</h2>
-            <div className="text-sm">
-              <span className={`text-[14px] font-medium ${
-                currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-success' : 'text-destructive'
-              }`}>
-                {currentStock.price?.toFixed(2)}
-              </span>
-              <span className={`text-[14px] ml-1 ${
-                currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-success' : 'text-destructive'
-              }`}>
-                {currentStock.todayChange && currentStock.todayChange >= 0 ? '↑' : '↓'} {Math.abs(currentStock.todayChange || 0).toFixed(1)}%
-              </span>
+      <main className="flex-1 overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentStockIndex}
+            initial={{ opacity: 0, x: animationDirection === 'left' ? 50 : -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: animationDirection === 'left' ? -50 : 50 }}
+            transition={{ duration: 0.3 }}
+            className="h-full"
+          >
+            {currentStock && (
+              <div className="absolute top-4 left-4 z-10 bg-gray-800/80 backdrop-blur-sm p-4 rounded-lg shadow-lg">
+                <h2 className="text-2xl font-bold">{currentStock.symbol}</h2>
+                <p className="text-lg">{currentStock.name}</p>
+                <div className="mt-2">
+                  <span className={`text-2xl font-semibold ${
+                    currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-green-400' : 'text-red-400'
+                  }`}>
+                    {currentStock.price?.toFixed(2)}
+                  </span>
+                  <span className={`ml-2 ${
+                    currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-green-400' : 'text-red-400'
+                  }`}>
+                    {currentStock.todayChange && currentStock.todayChange >= 0 ? '▲' : '▼'} {Math.abs(currentStock.todayChange || 0).toFixed(2)}%
+                  </span>
+                </div>
+              </div>
+            )}
+            <div className="h-full" ref={chartContainerRef}></div>
+          </motion.div>
+        </AnimatePresence>
+        {loading && (
+          <div className="absolute inset-0 flex justify-center items-center bg-gray-900/50 backdrop-blur-sm">
+            <Loader2 className="animate-spin h-12 w-12 text-blue-500" />
+          </div>
+        )}
+        {error && (
+          <div className="absolute inset-0 flex justify-center items-center bg-gray-900/50 backdrop-blur-sm">
+            <div className="bg-red-600 text-white p-4 rounded-lg shadow-lg">
+              {error}
             </div>
           </div>
         )}
-        <div className="h-full w-full" ref={chartContainerRef}></div>
       </main>
-      {loading && <div className="absolute inset-0 flex justify-center items-center bg-background/50"><Loader2 className="animate-spin h-8 w-8 text-muted-foreground"/></div>}
-      {error && <div className="absolute inset-0 flex justify-center items-center bg-background/50"><div className="text-destructive bg-background p-4 rounded-lg">{error}</div></div>}
-      
-      <footer className="sticky bottom-0 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t border-border">
-        <div className="mx-auto px-2 sm:px-4">
-          <div className="flex flex-wrap justify-between py-2 sm:py-4 gap-2">
-            <div className="flex-grow sm:flex-grow-0 min-w-[120px] sm:min-w-[180px]">
-              <Select
-                value={selectedIndexId.toString()}
-                onValueChange={(value) => setSelectedIndexId(parseInt(value))}
-              >
-                <SelectTrigger className="h-8 text-xs sm:text-sm bg-background w-full">
-                  <SelectValue placeholder="Select Index" />
-                </SelectTrigger>
-                <SelectContent>
-                  {indexData.map((item, index) => (
-                    <SelectItem key={index} value={index.toString()} className="text-xs sm:text-sm">
-                      {item.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            
-            <div className="flex space-x-1 order-last sm:order-none">
-              <Select
-                value={selectedInterval}
-                onValueChange={(value) => setSelectedInterval(value)}
-              >
-                <SelectTrigger className="w-[75px] h-8 text-sm">
-                  <SelectValue placeholder="Interval" />
-                </SelectTrigger>
-                <SelectContent>
-                  {INTERVALS.map((interval) => (
-                    <SelectItem key={interval.value} value={interval.value} className="text-xs">
-                      {interval.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
 
-            <div className="flex items-center space-x-1 flex-shrink-0">
+      <footer className="sticky bottom-0 bg-gray-800 p-4 shadow-lg">
+        <div className="flex items-center justify-between">
+          <Select
+            value={selectedIndexId.toString()}
+            onValueChange={(value) => setSelectedIndexId(parseInt(value))}
+          >
+            <SelectTrigger className="w-[180px] bg-gray-700 text-gray-100 border-gray-600">
+              <SelectValue placeholder="Select Index" />
+            </SelectTrigger>
+            <SelectContent>
+              {indexData.map((item, index) => (
+                <SelectItem key={index} value={index.toString()}>
+                  {item.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+
+          <div className="flex space-x-2">
+            {INTERVALS.map((interval) => (
               <Button
-                variant="ghost"
-                onClick={handlePrevious}
-                disabled={currentStockIndex === 0}
-                className="h-8 px-1.5 sm:px-2 text-muted-foreground hover:text-foreground hover:bg-muted"
+                key={interval.value}
+                variant={selectedInterval === interval.value ? "default" : "outline"}
                 size="sm"
+                onClick={() => setSelectedInterval(interval.value)}
+                className={selectedInterval === interval.value ? "bg-blue-600 text-white" : "bg-gray-700 text-gray-300"}
               >
-                <ChevronLeft className="h-4 w-4" />
-                <span className="sr-only sm:not-sr-only sm:ml-1">Prev</span>
+                {interval.label}
               </Button>
+            ))}
+          </div>
 
-              <div className="flex items-center min-w-[60px] justify-center">
-                <span className="text-sm sm:text-sm text-muted-foreground whitespace-nowrap">
-                  <span className="font-medium">{currentStockIndex + 1}</span>
-                  <span className="text-muted-foreground mx-1">/</span>
-                  <span className="text-muted-foreground">{stocks.length}</span>
-                </span>
-              </div>
-
-              <Button
-                variant="ghost"
-                onClick={handleNext}
-                disabled={currentStockIndex === stocks.length - 1}
-                className="h-8 px-1.5 sm:px-2 text-muted-foreground hover:text-foreground hover:bg-muted"
-                size="sm"
-              >
-                <span className="sr-only sm:not-sr-only sm:mr-1">Next</span>
-                <ChevronRight className="h-4 w-4" />
-              </Button>
-            </div>
+          <div className="flex items-center space-x-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={handlePrevious}
+              disabled={currentStockIndex === 0}
+              className="text-gray-300 hover:text-gray-100 disabled:opacity-50"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </Button>
+            <span className="text-gray-300">
+              {currentStockIndex + 1} / {stocks.length}
+            </span>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={handleNext}
+              disabled={currentStockIndex === stocks.length - 1}
+              className="text-gray-300 hover:text-gray-100 disabled:opacity-50"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </Button>
           </div>
         </div>
       </footer>
