@@ -85,7 +85,6 @@ export default function ModernStockChart() {
   const [selectedInterval, setSelectedInterval] = useState('daily');
   const [currentStock, setCurrentStock] = useState<CurrentStock | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [showDropdown, setShowDropdown] = useState(false);
   const [activeTab, setActiveTab] = useState('chart');
   const [searchResults, setSearchResults] = useState<Stock[]>([]);
 
@@ -275,7 +274,6 @@ export default function ModernStockChart() {
   const handleStockSelection = (stockIndex: number) => {
     setCurrentStockIndex(stockIndex);
     setSearchTerm('');
-    setShowDropdown(false);
     setActiveTab('chart');
     fetchStockData();
   };
@@ -290,17 +288,14 @@ export default function ModernStockChart() {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
-        setShowDropdown(false);
-      }
+      //This function is no longer needed because showDropdown state is removed.
     }
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    // document.addEventListener('mousedown', handleClickOutside);
+    // return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   const filteredStocks = stocks.filter(stock => 
-    searchTerm === '' || 
     stock.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
     stock.name.toLowerCase().includes(searchTerm.toLowerCase())
   ).slice(0, 10);
@@ -313,18 +308,6 @@ export default function ModernStockChart() {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
-  const handleSearch = useCallback((value: string) => {
-    setSearchTerm(value);
-    if (value.length > 0) {
-      const filtered = stocks.filter(stock => 
-        stock.symbol.toLowerCase().includes(value.toLowerCase()) ||
-        stock.name.toLowerCase().includes(value.toLowerCase())
-      );
-      setSearchResults(filtered.slice(0, 10));
-    } else {
-      setSearchResults([]);
-    }
-  }, [stocks]);
 
   if (!mounted) return null
 
@@ -333,7 +316,7 @@ export default function ModernStockChart() {
       {/* Header */}
       <header className="sticky top-0 z-20 bg-background/80 backdrop-blur-sm border-b p-4 flex items-center justify-between">
         <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">StockVue</h1>
-        <div className="flex items-center space-x-4 flex-grow max-w-2xl mx-4">
+        <div className="flex items-center space-x-4">
           <Select
             value={selectedIndexId.toString()}
             onValueChange={handleIndexChange}
@@ -349,30 +332,33 @@ export default function ModernStockChart() {
               ))}
             </SelectContent>
           </Select>
-          <div className="relative flex-grow">
-            <Command className="rounded-lg border shadow-md">
-              <CommandInput
-                placeholder="Search stocks..."
-                value={searchTerm}
-                onValueChange={handleSearch}
-              />
-              {searchResults.length > 0 && (
-                <CommandList>
-                  {searchResults.map((stock) => (
-                    <CommandItem
+          <div className="relative">
+            <Input
+              type="text"
+              placeholder="Search stocks..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-[200px]"
+            />
+            {searchTerm && filteredStocks.length > 0 && (
+              <Card className="absolute mt-1 w-full z-10">
+                <ScrollArea className="h-[200px]">
+                  {filteredStocks.map((stock) => (
+                    <Button
                       key={stock.symbol}
-                      onSelect={() => handleStockSelection(stocks.findIndex((s) => s.symbol === stock.symbol))}
+                      variant="ghost"
+                      className="w-full justify-start"
+                      onClick={() => handleStockSelection(stocks.findIndex((s) => s.symbol === stock.symbol))}
                     >
-                      <div className="flex flex-col">
+                      <div className="flex flex-col items-start">
                         <span className="font-medium">{stock.symbol}</span>
                         <span className="text-sm text-muted-foreground">{stock.name}</span>
                       </div>
-                    </CommandItem>
+                    </Button>
                   ))}
-                </CommandList>
-              )}
-              {searchResults.length === 0 && searchTerm.length > 0 && <CommandEmpty>No results found.</CommandEmpty>}
-            </Command>
+                </ScrollArea>
+              </Card>
+            )}
           </div>
           <Button variant="outline" size="icon" onClick={toggleTheme}>
             {theme === 'light' ? <Moon className="h-[1.2rem] w-[1.2rem]" /> : <Sun className="h-[1.2rem] w-[1.2rem]" />}
