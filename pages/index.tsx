@@ -146,7 +146,7 @@ export default function ModernStockChart() {
 
   useEffect(() => {
     fetchStockData();
-  }, [fetchStockData]);
+  }, [fetchStockData, currentStockIndex]);
 
   const createOrUpdateChart = useCallback(() => {
     if (!chartContainerRef.current || !chartData.length) return;
@@ -277,6 +277,7 @@ export default function ModernStockChart() {
     setSearchTerm('');
     setShowDropdown(false);
     setActiveTab('chart');
+    fetchStockData();
   };
 
   useEffect(() => {
@@ -291,10 +292,9 @@ export default function ModernStockChart() {
   }, []);
 
   const filteredStocks = stocks.filter(stock => 
-    searchTerm && (
-      stock.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      stock.name.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+    searchTerm === '' || 
+    stock.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    stock.name.toLowerCase().includes(searchTerm.toLowerCase())
   ).slice(0, 10);
 
   useEffect(() => {
@@ -369,10 +369,8 @@ export default function ModernStockChart() {
                         type="text"
                         placeholder="Search stocks..."
                         value={searchTerm}
-                        onChange={(e) => {
-                          setSearchTerm(e.target.value);
-                          setShowDropdown(true);
-                        }}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onFocus={() => setShowDropdown(true)}
                       />
                       {searchTerm && (
                         <Button
@@ -386,7 +384,7 @@ export default function ModernStockChart() {
                       )}
                     </div>
                   </div>
-                  {showDropdown && searchTerm && (
+                  {showDropdown && (
                     <Card>
                       <ScrollArea className="h-[300px]">
                         {filteredStocks.map((stock, index) => (
@@ -437,10 +435,8 @@ export default function ModernStockChart() {
                   type="text"
                   placeholder="Search stocks..."
                   value={searchTerm}
-                  onChange={(e) => {
-                    setSearchTerm(e.target.value);
-                    setShowDropdown(true);
-                  }}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onFocus={() => setShowDropdown(true)}
                 />
                 {searchTerm && (
                   <Button
@@ -453,7 +449,7 @@ export default function ModernStockChart() {
                   </Button>
                 )}
               </div>
-              {showDropdown && searchTerm && (
+              {showDropdown && (
                 <Card>
                   <ScrollArea className="h-[300px]">
                     {filteredStocks.map((stock, index) => (
