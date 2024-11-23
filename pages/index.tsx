@@ -476,8 +476,15 @@ export default function ModernStockChart() {
                           <h2 className="text-2xl font-bold">{currentStock.symbol}</h2>
                           <p className="text-muted-foreground">{currentStock.name}</p>
                         </div>
-                        <Badge variant={currentStock.todayChange && currentStock.todayChange >= 0 ? "success" : "destructive"} className="text-lg px-2 py-1">
-                          {currentStock.todayChange && currentStock.todayChange >= 0 ? <ArrowUpRight className="inline mr-1" /> : <ArrowDownRight className="inline mr-1" />}
+                        <Badge 
+                          variant={currentStock.todayChange && currentStock.todayChange >= 0 ? "default" : "destructive"} 
+                          className="text-lg px-2 py-1"
+                        >
+                          {currentStock.todayChange && currentStock.todayChange >= 0 ? (
+                            <ArrowUpRight className="inline mr-1" />
+                          ) : (
+                            <ArrowDownRight className="inline mr-1" />
+                          )}
                           {Math.abs(currentStock.todayChange || 0).toFixed(2)}%
                         </Badge>
                       </div>
