@@ -15,7 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 
 import nifty50Data from '../public/nifty50.json';
 import niftyNext50Data from '../public/niftynext50.json';
@@ -87,6 +87,7 @@ export default function ModernStockChart() {
   const [searchTerm, setSearchTerm] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
   const [activeTab, setActiveTab] = useState('chart');
+  const [searchResults, setSearchResults] = useState<Stock[]>([]);
 
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const chartInstanceRef = useRef<IChartApi | null>(null);
@@ -312,6 +313,19 @@ export default function ModernStockChart() {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
+  const handleSearch = useCallback((value: string) => {
+    setSearchTerm(value);
+    if (value.length > 0) {
+      const filtered = stocks.filter(stock => 
+        stock.symbol.toLowerCase().includes(value.toLowerCase()) ||
+        stock.name.toLowerCase().includes(value.toLowerCase())
+      );
+      setSearchResults(filtered.slice(0, 10));
+    } else {
+      setSearchResults([]);
+    }
+  }, [stocks]);
+
   if (!mounted) return null
 
   return (
@@ -319,7 +333,7 @@ export default function ModernStockChart() {
       {/* Header */}
       <header className="sticky top-0 z-20 bg-background/80 backdrop-blur-sm border-b p-4 flex items-center justify-between">
         <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">StockVue</h1>
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 flex-grow max-w-2xl mx-4">
           <Select
             value={selectedIndexId.toString()}
             onValueChange={handleIndexChange}
@@ -335,55 +349,34 @@ export default function ModernStockChart() {
               ))}
             </SelectContent>
           </Select>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button variant="outline" size="icon">
-                <Search className="h-[1.2rem] w-[1.2rem]" />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-80">
-              <div className="space-y-4">
-                <div className="relative" ref={searchRef}>
-                  <Input
-                    type="text"
-                    placeholder="Search stocks..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    onFocus={() => setShowDropdown(true)}
-                  />
-                  {searchTerm && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="absolute right-0 top-0 h-full"
-                      onClick={() => setSearchTerm('')}
+          <div className="relative flex-grow">
+            <Command className="rounded-lg border shadow-md">
+              <CommandInput
+                placeholder="Search stocks..."
+                value={searchTerm}
+                onValueChange={handleSearch}
+              />
+              {searchResults.length > 0 && (
+                <CommandList>
+                  {searchResults.map((stock) => (
+                    <CommandItem
+                      key={stock.symbol}
+                      onSelect={() => handleStockSelection(stocks.findIndex((s) => s.symbol === stock.symbol))}
                     >
-                      <X className="h-4 w-4" />
-                    </Button>
-                  )}
-                </div>
-                {showDropdown && (
-                  <Card>
-                    <ScrollArea className="h-[300px]">
-                      {filteredStocks.map((stock, index) => (
-                        <Button
-                          key={stock.symbol}
-                          variant="ghost"
-                          className="w-full justify-start"
-                          onClick={() => handleStockSelection(stocks.findIndex((s) => s.symbol === stock.symbol))}
-                        >
-                          <div className="flex flex-col items-start">
-                            <span className="font-medium">{stock.symbol}</span>
-                            <span className="text-sm text-muted-foreground">{stock.name}</span>
-                          </div>
-                        </Button>
-                      ))}
-                    </ScrollArea>
-                  </Card>
-                )}
-              </div>
-            </PopoverContent>
-          </Popover>
+                      <div className="flex flex-col">
+                        <span className="font-medium">{stock.symbol}</span>
+                        <span className="text-sm text-muted-foreground">{stock.name}</span>
+                      </div>
+                    </CommandItem>
+                  ))}
+                </CommandList>
+              )}
+              {searchResults.length === 0 && searchTerm.length > 0 && <CommandEmpty>No results found.</CommandEmpty>}
+            </Command>
+          </div>
+          <Button variant="outline" size="icon" onClick={toggleTheme}>
+            {theme === 'light' ? <Moon className="h-[1.2rem] w-[1.2rem]" /> : <Sun className="h-[1.2rem] w-[1.2rem]" />}
+          </Button>
         </div>
       </header>
 
@@ -394,8 +387,7 @@ export default function ModernStockChart() {
             <AnimatePresence mode="wait">
               {currentStock && (
                 <motion.div
-                  key
-={currentStock.symbol}
+                  key={currentStock.symbol}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
