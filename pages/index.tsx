@@ -87,6 +87,7 @@ export default function ModernStockChart() {
   const [searchTerm, setSearchTerm] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('chart');
 
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const chartInstanceRef = useRef<IChartApi | null>(null);
@@ -147,17 +148,8 @@ export default function ModernStockChart() {
     fetchStockData();
   }, [fetchStockData]);
 
-  useEffect(() => {
+  const createOrUpdateChart = useCallback(() => {
     if (!chartContainerRef.current || !chartData.length) return;
-
-    const handleResize = () => {
-      if (chartInstanceRef.current) {
-        chartInstanceRef.current.applyOptions({
-          width: chartContainerRef.current!.clientWidth,
-          height: chartContainerRef.current!.clientHeight,
-        });
-      }
-    };
 
     const isDark = theme === 'dark';
     const chartColors = getChartColors(isDark);
@@ -219,8 +211,6 @@ export default function ModernStockChart() {
           bottom: 0,
         },
       });
-
-      window.addEventListener('resize', handleResize);
     }
 
     if (candlestickSeriesRef.current && volumeSeriesRef.current) {
@@ -233,11 +223,27 @@ export default function ModernStockChart() {
     }
 
     chartInstanceRef.current.timeScale().fitContent();
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
   }, [chartData, theme]);
+
+  useEffect(() => {
+    if (activeTab === 'chart') {
+      createOrUpdateChart();
+    }
+  }, [activeTab, createOrUpdateChart]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (chartInstanceRef.current && chartContainerRef.current) {
+        chartInstanceRef.current.applyOptions({
+          width: chartContainerRef.current.clientWidth,
+          height: chartContainerRef.current.clientHeight,
+        });
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleIntervalChange = (newInterval: string) => {
     setSelectedInterval(newInterval);
@@ -520,7 +526,7 @@ export default function ModernStockChart() {
 
             <Card>
               <CardContent className="p-0">
-                <Tabs defaultValue="chart" className="w-full">
+                <Tabs defaultValue="chart" className="w-full" onValueChange={(value) => setActiveTab(value)}>
                   <TabsList className="w-full justify-start rounded-none border-b">
                     <TabsTrigger value="chart">Chart</TabsTrigger>
                     <TabsTrigger value="overview">Overview</TabsTrigger>
