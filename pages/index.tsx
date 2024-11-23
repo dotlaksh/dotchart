@@ -175,9 +175,8 @@ export default function ModernStockChart() {
       },
       timeScale: {
         borderColor: chartColors.gridColor,
-        timeVisible: false,
-        rightOffset: 10,
-        minBarSpacing: 3,
+        timeVisible: true,
+        secondsVisible: false,
       },
     });
 
@@ -333,81 +332,6 @@ export default function ModernStockChart() {
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="h-9 w-9 lg:hidden">
-                <Menu className="h-4 w-4" />
-                <span className="sr-only">Open menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[300px]">
-              <nav className="flex flex-col h-full">
-                <h2 className="font-semibold mb-4">Menu</h2>
-                <div className="space-y-4 flex-grow">
-                  <div>
-                    <label htmlFor="mobileIndexSelect" className="block text-sm font-medium mb-1">Select Index</label>
-                    <Select
-                      value={selectedIndexId.toString()}
-                      onValueChange={(value) => setSelectedIndexId(parseInt(value))}
-                    >
-                      <SelectTrigger id="mobileIndexSelect">
-                        <SelectValue placeholder="Select Index" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {indexData.map((item, index) => (
-                          <SelectItem key={index} value={index.toString()}>
-                            {item.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div>
-                    <label htmlFor="mobileSearch" className="block text-sm font-medium mb-1">Search Stocks</label>
-                    <div className="relative">
-                      <Input
-                        id="mobileSearch"
-                        type="text"
-                        placeholder="Search stocks..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        onFocus={() => setShowDropdown(true)}
-                      />
-                      {searchTerm && (
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="absolute right-0 top-0 h-full"
-                          onClick={() => setSearchTerm('')}
-                        >
-                          <X className="h-4 w-4" />
-                        </Button>
-                      )}
-                    </div>
-                  </div>
-                  {showDropdown && (
-                    <Card>
-                      <ScrollArea className="h-[300px]">
-                        {filteredStocks.map((stock, index) => (
-                          <Button
-                            key={stock.symbol}
-                            variant="ghost"
-                            className="w-full justify-start"
-                            onClick={() => handleStockSelection(stocks.findIndex((s) => s.symbol === stock.symbol))}
-                          >
-                            <div className="flex flex-col items-start">
-                              <span className="font-medium">{stock.symbol}</span>
-                              <span className="text-sm text-muted-foreground">{stock.name}</span>
-                            </div>
-                          </Button>
-                        ))}
-                      </ScrollArea>
-                    </Card>
-                  )}
-                </div>
-              </nav>
-            </SheetContent>
-          </Sheet>
         </div>
       </header>
 
@@ -532,9 +456,86 @@ export default function ModernStockChart() {
             <Card>
               <CardContent className="p-0">
                 <Tabs defaultValue="chart" className="w-full" onValueChange={(value) => setActiveTab(value)}>
-                  <TabsList className="w-full justify-start rounded-none border-b">
+                  <TabsList className="w-full justify-start rounded-none border-b flex items-center">
                     <TabsTrigger value="chart">Chart</TabsTrigger>
                     <TabsTrigger value="overview">Overview</TabsTrigger>
+                    <div className="ml-auto">
+                      <Sheet>
+                        <SheetTrigger asChild>
+                          <Button variant="outline" size="icon" className="h-9 w-9 lg:hidden">
+                            <Menu className="h-4 w-4" />
+                            <span className="sr-only">Open menu</span>
+                          </Button>
+                        </SheetTrigger>
+                        <SheetContent side="right" className="w-[300px]">
+                          <nav className="flex flex-col h-full">
+                            <h2 className="font-semibold mb-4">Menu</h2>
+                            <div className="space-y-4 flex-grow">
+                              <div>
+                                <label htmlFor="mobileIndexSelect" className="block text-sm font-medium mb-1">Select Index</label>
+                                <Select
+                                  value={selectedIndexId.toString()}
+                                  onValueChange={(value) => setSelectedIndexId(parseInt(value))}
+                                >
+                                  <SelectTrigger id="mobileIndexSelect">
+                                    <SelectValue placeholder="Select Index" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {indexData.map((item, index) => (
+                                      <SelectItem key={index} value={index.toString()}>
+                                        {item.label}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                              <div>
+                                <label htmlFor="mobileSearch" className="block text-sm font-medium mb-1">Search Stocks</label>
+                                <div className="relative">
+                                  <Input
+                                    id="mobileSearch"
+                                    type="text"
+                                    placeholder="Search stocks..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    onFocus={() => setShowDropdown(true)}
+                                  />
+                                  {searchTerm && (
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      className="absolute right-0 top-0 h-full"
+                                      onClick={() => setSearchTerm('')}
+                                    >
+                                      <X className="h-4 w-4" />
+                                    </Button>
+                                  )}
+                                </div>
+                              </div>
+                              {showDropdown && (
+                                <Card>
+                                  <ScrollArea className="h-[300px]">
+                                    {filteredStocks.map((stock, index) => (
+                                      <Button
+                                        key={stock.symbol}
+                                        variant="ghost"
+                                        className="w-full justify-start"
+                                        onClick={() => handleStockSelection(stocks.findIndex((s) => s.symbol === stock.symbol))}
+                                      >
+                                        <div className="flex flex-col items-start">
+                                          <span className="font-medium">{stock.symbol}</span>
+                                          <span className="text-sm text-muted-foreground">{stock.name}</span>
+                                        </div>
+                                      </Button>
+                                    ))}
+                                  </ScrollArea>
+                                </Card>
+                              )}
+                            </div>
+                          </nav>
+                        </SheetContent>
+                      </Sheet>
+                    </div>
                   </TabsList>
                   <TabsContent value="chart" className="p-4">
                     <div className="h-[400px]" ref={chartContainerRef}></div>
@@ -597,6 +598,4 @@ export default function ModernStockChart() {
         </div>
       )}
     </div>
-  );
-}
 
