@@ -86,7 +86,6 @@ export default function ModernStockChart() {
   const [currentStock, setCurrentStock] = useState<CurrentStock | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('chart');
 
   const chartContainerRef = useRef<HTMLDivElement>(null);
@@ -226,7 +225,6 @@ export default function ModernStockChart() {
 
     chart.timeScale().fitContent();
 
-    // Force a resize of the chart
     setTimeout(() => {
       if (chartInstanceRef.current && chartContainerRef.current) {
         chartInstanceRef.current.applyOptions({
@@ -387,7 +385,8 @@ export default function ModernStockChart() {
                   onClick={toggleTheme}
                   className="h-9 w-9"
                 >
-                  <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-
+90 dark:scale-0" />
                   <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                   <span className="sr-only">Toggle theme</span>
                 </Button>
@@ -400,67 +399,8 @@ export default function ModernStockChart() {
         </div>
       </header>
 
-     <main className="flex-grow overflow-hidden">
+      <main className="flex-grow overflow-hidden">
         <div className="h-full flex flex-col">
-          {/* Sidebar */}
-          <aside className="w-full lg:w-80 border-r hidden lg:block overflow-y-auto">
-          <div className="flex-grow p-4 overflow-y-auto">
-              <Select
-                value={selectedIndexId.toString()}
-                onValueChange={(value) => setSelectedIndexId(parseInt(value))}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select Index" />
-                </SelectTrigger>
-                <SelectContent>
-                  {indexData.map((item, index) => (
-                    <SelectItem key={index} value={index.toString()}>
-                      {item.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <div className="relative" ref={searchRef}>
-                <Input
-                  type="text"
-                  placeholder="Search stocks..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  onFocus={() => setShowDropdown(true)}
-                />
-                {searchTerm && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="absolute right-0 top-0 h-full"
-                    onClick={() => setSearchTerm('')}
-                  >
-                    <X className="h-4 w-4" />
-                  </Button>
-                )}
-              </div>
-              {showDropdown && (
-                <Card>
-                  <ScrollArea className="h-[300px]">
-                    {filteredStocks.map((stock, index) => (
-                      <Button
-                        key={stock.symbol}
-                        variant="ghost"
-                        className="w-full justify-start"
-                        onClick={() => handleStockSelection(stocks.findIndex((s) => s.symbol === stock.symbol))}
-                      >
-                        <div className="flex flex-col items-start">
-                          <span className="font-medium">{stock.symbol}</span>
-                          <span className="text-sm text-muted-foreground">{stock.name}</span>
-                        </div>
-                      </Button>
-                    ))}
-                  </ScrollArea>
-                </Card>
-              )}
-            </div>
-          </aside>
-
           {/* Chart and Info */}
           <div className="flex-grow p-4 overflow-y-auto">
             <AnimatePresence mode="wait">
@@ -525,81 +465,78 @@ export default function ModernStockChart() {
                     <TabsTrigger value="chart">Chart</TabsTrigger>
                     <TabsTrigger value="overview">Overview</TabsTrigger>
                     <div className="ml-auto">
-                      <Sheet>
-                        <SheetTrigger asChild>
+                      <Popover>
+                        <PopoverTrigger asChild>
                           <Button variant="outline" size="icon" className="h-9 w-9 lg:hidden">
                             <Menu className="h-4 w-4" />
                             <span className="sr-only">Open menu</span>
                           </Button>
-                        </SheetTrigger>
-                        <SheetContent side="right" className="w-[300px]">
-                          <nav className="flex flex-col h-full">
-                            <h2 className="font-semibold mb-4">Menu</h2>
-                            <div className="space-y-4 flex-grow">
-                              <div>
-                                <label htmlFor="mobileIndexSelect" className="block text-sm font-medium mb-1">Select Index</label>
-                                <Select
-                                  value={selectedIndexId.toString()}
-                                  onValueChange={(value) => setSelectedIndexId(parseInt(value))}
-                                >
-                                  <SelectTrigger id="mobileIndexSelect">
-                                    <SelectValue placeholder="Select Index" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    {indexData.map((item, index) => (
-                                      <SelectItem key={index} value={index.toString()}>
-                                        {item.label}
-                                      </SelectItem>
-                                    ))}
-                                  </SelectContent>
-                                </Select>
-                              </div>
-                              <div>
-                                <label htmlFor="mobileSearch" className="block text-sm font-medium mb-1">Search Stocks</label>
-                                <div className="relative">
-                                  <Input
-                                    id="mobileSearch"
-                                    type="text"
-                                    placeholder="Search stocks..."
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                    onFocus={() => setShowDropdown(true)}
-                                  />
-                                  {searchTerm && (
-                                    <Button
-                                      variant="ghost"
-                                      size="sm"
-                                      className="absolute right-0 top-0 h-full"
-                                      onClick={() => setSearchTerm('')}
-                                    >
-                                      <X className="h-4 w-4" />
-                                    </Button>
-                                  )}
-                                </div>
-                              </div>
-                              {showDropdown && (
-                                <Card>
-                                  <ScrollArea className="h-[300px]">
-                                    {filteredStocks.map((stock, index) => (
-                                      <Button
-                                        key={stock.symbol}
-                                        variant="ghost"
-                                        className="w-full justify-start"
-                                        onClick={() => handleStockSelection(stocks.findIndex((s) => s.symbol === stock.symbol))}
-                                      >
-                                        <div className="flex flex-col items-start">
-                                          <span className="font-medium">{stock.symbol}</span>
-                                          <span className="text-sm text-muted-foreground">{stock.name}</span>
-                                        </div>
-                                      </Button>
-                                    ))}
-                                  </ScrollArea>
-                                </Card>
-                              )}
+                        </PopoverTrigger>
+                        <PopoverContent className="w-80" align="end">
+                          <div className="space-y-4">
+                            <div>
+                              <label htmlFor="mobileIndexSelect" className="block text-sm font-medium mb-1">Select Index</label>
+                              <Select
+                                value={selectedIndexId.toString()}
+                                onValueChange={(value) => setSelectedIndexId(parseInt(value))}
+                              >
+                                <SelectTrigger id="mobileIndexSelect">
+                                  <SelectValue placeholder="Select Index" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {indexData.map((item, index) => (
+                                    <SelectItem key={index} value={index.toString()}>
+                                      {item.label}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
                             </div>
-                          </nav>
-                        </SheetContent>
-                      </Sheet>
+                            <div>
+                              <label htmlFor="mobileSearch" className="block text-sm font-medium mb-1">Search Stocks</label>
+                              <div className="relative">
+                                <Input
+                                  id="mobileSearch"
+                                  type="text"
+                                  placeholder="Search stocks..."
+                                  value={searchTerm}
+                                  onChange={(e) => setSearchTerm(e.target.value)}
+                                  onFocus={() => setShowDropdown(true)}
+                                />
+                                {searchTerm && (
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="absolute right-0 top-0 h-full"
+                                    onClick={() => setSearchTerm('')}
+                                  >
+                                    <X className="h-4 w-4" />
+                                  </Button>
+                                )}
+                              </div>
+                            </div>
+                            {showDropdown && (
+                              <Card>
+                                <ScrollArea className="h-[300px]">
+                                  {filteredStocks.map((stock, index) => (
+                                    <Button
+                                      key={stock.symbol}
+                                      variant="ghost"
+                                      className="w-full justify-start"
+                                      onClick={() => handleStockSelection(stocks.findIndex((s) => s.symbol === stock.symbol))}
+                                    >
+                                      <div className="flex flex-col items-start">
+                                        <span className="font-medium">{stock.symbol}</span>
+                                        <span className="text-sm text-muted-foreground">{stock.name}</span>
+                                      </div>
+                                    </Button>
+                                  ))}
+                                </ScrollArea>
+                              </Card>
+                            )}
+                          </div>
+                        </PopoverContent>
+                      </Popover>
                     </div>
                   </TabsList>
                   <TabsContent value="chart" className="p-4">
