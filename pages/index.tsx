@@ -175,8 +175,9 @@ export default function ModernStockChart() {
       },
       timeScale: {
         borderColor: chartColors.gridColor,
-        timeVisible: true,
-        secondsVisible: false,
+        timeVisible: false,
+        rightOffset: 5,
+        minBarSpacing: 2,
       },
     });
 
