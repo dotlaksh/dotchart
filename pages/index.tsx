@@ -469,29 +469,29 @@ export default function ModernStockChart() {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Card className="mb-4">
-                    <CardContent className="p-6">
-                      <div className="flex justify-between items-start mb-4">
+                  <Card className="mb-2">
+                    <CardContent className="p-4">
+                      <div className="flex justify-between items-start mb-2">
                         <div>
-                          <h2 className="text-2xl font-bold">{currentStock.symbol}</h2>
-                          <p className="text-muted-foreground">{currentStock.name}</p>
+                          <h2 className="text-xl font-bold">{currentStock.symbol}</h2>
+                          <p className="text-sm text-muted-foreground">{currentStock.name}</p>
                         </div>
                         <Badge 
                           variant={currentStock.todayChange && currentStock.todayChange >= 0 ? "default" : "destructive"} 
-                          className="text-lg px-2 py-1"
+                          className="text-sm px-2 py-0.5"
                         >
                           {currentStock.todayChange && currentStock.todayChange >= 0 ? (
-                            <ArrowUpRight className="inline mr-1" />
+                            <ArrowUpRight className="inline mr-1 h-3 w-3" />
                           ) : (
-                            <ArrowDownRight className="inline mr-1" />
+                            <ArrowDownRight className="inline mr-1 h-3 w-3" />
                           )}
                           {Math.abs(currentStock.todayChange || 0).toFixed(2)}%
                         </Badge>
                       </div>
-                      <div className="text-3xl font-bold mb-4">
+                      <div className="text-2xl font-bold mb-2">
                         ₹{currentStock.price?.toFixed(2)}
                       </div>
-                      <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div className="grid grid-cols-2 gap-2 text-xs">
                         <div>
                           <p className="text-muted-foreground">Open</p>
                           <p className="font-medium">₹{chartData[chartData.length - 1]?.open.toFixed(2)}</p>
@@ -522,8 +522,9 @@ export default function ModernStockChart() {
                     <TabsTrigger value="chart">Chart</TabsTrigger>
                     <TabsTrigger value="overview">Overview</TabsTrigger>
                   </TabsList>
-                  <TabsContent value="chart" className="p-6">
-                    <div className="mb-4 flex justify-between items-center">
+                  <TabsContent value="chart" className="p-4">
+                    <div className="h-[400px]" ref={chartContainerRef}></div>
+                    <div className="mt-4 flex justify-between items-center">
                       <div className="space-x-2">
                         {INTERVALS.map((interval) => (
                           <Button
@@ -555,7 +556,6 @@ export default function ModernStockChart() {
                         </Button>
                       </div>
                     </div>
-                    <div className="h-[400px]" ref={chartContainerRef}></div>
                   </TabsContent>
                   <TabsContent value="overview" className="p-6">
                     <p>Overview content here...</p>
