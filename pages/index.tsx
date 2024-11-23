@@ -288,6 +288,15 @@ export default function ModernStockChart() {
     fetchStockData();
   };
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      //This function is no longer needed because showDropdown state is removed.
+    }
+
+    // document.addEventListener('mousedown', handleClickOutside);
+    // return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const filteredStocks = stocks.filter(stock => 
     stock.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
     stock.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -312,7 +321,7 @@ export default function ModernStockChart() {
     <div className="flex flex-col h-screen bg-background text-foreground overflow-hidden">
       {/* Header */}
       <header className="sticky top-0 z-20 bg-background/80 backdrop-blur-sm border-b p-4 flex items-center justify-between">
-        <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">StockVue</h1>
+        <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">dotChart</h1>
         <div className="flex items-center space-x-4">
           <Select
             value={selectedIndexId.toString()}
@@ -368,10 +377,7 @@ export default function ModernStockChart() {
               </div>
             </DialogContent>
           </Dialog>
-          <Button variant="outline" size="icon" onClick={toggleTheme}>
-            {theme === 'light' ? <Moon className="h-[1.2rem] w-[1.2rem]" /> : <Sun className="h-[1.2rem] w-[1.2rem]" />}
-            <span className="sr-only">Toggle theme</span>
-          </Button>
+          
         </div>
       </header>
 
@@ -399,7 +405,9 @@ export default function ModernStockChart() {
                           <p className="text-lg font-bold">₹{currentStock.price?.toFixed(2)}</p>
                           <Badge 
                             variant={currentStock.todayChange && currentStock.todayChange >= 0 ? "default" : "destructive"} 
-                            className="text-sm px-2 py-0.5"
+                            className={`text-xs px-2 py-0.5 ${
+                              currentStock.todayChange && currentStock.todayChange >= 0 ? "bg-green-500 text-white" : "bg-red-500 text-white"
+                            }`}
                           >
                             {currentStock.todayChange && currentStock.todayChange >= 0 ? (
                               <ArrowUpRight className="inline mr-1 h-3 w-3" />
