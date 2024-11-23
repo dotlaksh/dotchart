@@ -162,77 +162,80 @@ export default function ModernStockChart() {
     const isDark = theme === 'dark';
     const chartColors = getChartColors(isDark);
 
-    const chart = createChart(chartContainerRef.current, {
-      width: chartContainerRef.current.clientWidth,
-      height: chartContainerRef.current.clientHeight,
-      layout: {
-        background: { type: ColorType.Solid, color: chartColors.backgroundColor },
-        textColor: chartColors.textColor,
-      },
-      grid: {
-        vertLines: { color: chartColors.gridColor },
-        horzLines: { color: chartColors.gridColor },
-      },
-      rightPriceScale: {
-        borderColor: chartColors.gridColor,
-      },
-      timeScale: {
-        borderColor: chartColors.gridColor,
-        timeVisible: true,
-        secondsVisible: false,
-      },
-    });
+    if (!chartInstanceRef.current) {
+      const chart = createChart(chartContainerRef.current, {
+        width: chartContainerRef.current.clientWidth,
+        height: chartContainerRef.current.clientHeight,
+        layout: {
+          background: { type: ColorType.Solid, color: chartColors.backgroundColor },
+          textColor: chartColors.textColor,
+        },
+        grid: {
+          vertLines: { color: chartColors.gridColor },
+          horzLines: { color: chartColors.gridColor },
+        },
+        rightPriceScale: {
+          borderColor: chartColors.gridColor,
+        },
+        timeScale: {
+          borderColor: chartColors.gridColor,
+          timeVisible: true,
+          secondsVisible: false,
+        },
+      });
 
-    chartInstanceRef.current = chart;
+      chartInstanceRef.current = chart;
 
-    const candlestickSeries = chart.addCandlestickSeries({
-      upColor: chartColors.upColor,
-      downColor: chartColors.downColor,
-      borderVisible: false,
-      wickUpColor: chartColors.upColor,
-      wickDownColor: chartColors.downColor,
-    });
+      const candlestickSeries = chart.addCandlestickSeries({
+        upColor: chartColors.upColor,
+        downColor: chartColors.downColor,
+        borderVisible: false,
+        wickUpColor: chartColors.upColor,
+        wickDownColor: chartColors.downColor,
+      });
 
-    candlestickSeriesRef.current = candlestickSeries;
+      candlestickSeriesRef.current = candlestickSeries;
 
-    const volumeSeries = chart.addHistogramSeries({
-      color: chartColors.upColor,
-      priceFormat: {
-        type: 'volume',
-      },
-      priceScaleId: '',
-    });
+      const volumeSeries = chart.addHistogramSeries({
+        color: chartColors.upColor,
+        priceFormat: {
+          type: 'volume',
+        },
+        priceScaleId: '',
+      });
 
-    volumeSeriesRef.current = volumeSeries;
+      volumeSeriesRef.current = volumeSeries;
 
-    candlestickSeries.setData(chartData as CandlestickData[]);
-    volumeSeries.setData(chartData.map(d => ({
-      time: d.time,
-      value: d.volume,
-      color: d.close >= d.open ? chartColors.upColor : chartColors.downColor,
-    } as HistogramData)));
+      candlestickSeries.priceScale().applyOptions({
+        scaleMargins: {
+          top: 0.1,
+          bottom: 0.2,
+        },
+      });
 
-    candlestickSeries.priceScale().applyOptions({
-      scaleMargins: {
-        top: 0.1,
-        bottom: 0.2,
-      },
-    });
+      volumeSeries.priceScale().applyOptions({
+        scaleMargins: {
+          top: 0.8,
+          bottom: 0,
+        },
+      });
 
-    volumeSeries.priceScale().applyOptions({
-      scaleMargins: {
-        top: 0.8,
-        bottom: 0,
-      },
-    });
+      window.addEventListener('resize', handleResize);
+    }
 
-    chart.timeScale().fitContent();
+    if (candlestickSeriesRef.current && volumeSeriesRef.current) {
+      candlestickSeriesRef.current.setData(chartData as CandlestickData[]);
+      volumeSeriesRef.current.setData(chartData.map(d => ({
+        time: d.time,
+        value: d.volume,
+        color: d.close >= d.open ? chartColors.upColor : chartColors.downColor,
+      } as HistogramData)));
+    }
 
-    window.addEventListener('resize', handleResize);
+    chartInstanceRef.current.timeScale().fitContent();
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      chart.remove();
     };
   }, [chartData, theme]);
 
@@ -476,22 +479,22 @@ export default function ModernStockChart() {
                           <h2 className="text-xl font-bold">{currentStock.symbol}</h2>
                           <p className="text-sm text-muted-foreground">{currentStock.name}</p>
                         </div>
-                        <Badge 
-                          variant={currentStock.todayChange && currentStock.todayChange >= 0 ? "default" : "destructive"} 
-                          className="text-sm px-2 py-0.5"
-                        >
-                          {currentStock.todayChange && currentStock.todayChange >= 0 ? (
-                            <ArrowUpRight className="inline mr-1 h-3 w-3" />
-                          ) : (
-                            <ArrowDownRight className="inline mr-1 h-3 w-3" />
-                          )}
-                          {Math.abs(currentStock.todayChange || 0).toFixed(2)}%
-                        </Badge>
+                        <div className="text-right">
+                          <p className="text-lg font-bold">₹{currentStock.price?.toFixed(2)}</p>
+                          <Badge 
+                            variant={currentStock.todayChange && currentStock.todayChange >= 0 ? "default" : "destructive"} 
+                            className="text-sm px-2 py-0.5"
+                          >
+                            {currentStock.todayChange && currentStock.todayChange >= 0 ? (
+                              <ArrowUpRight className="inline mr-1 h-3 w-3" />
+                            ) : (
+                              <ArrowDownRight className="inline mr-1 h-3 w-3" />
+                            )}
+                            {Math.abs(currentStock.todayChange || 0).toFixed(2)}%
+                          </Badge>
+                        </div>
                       </div>
-                      <div className="text-2xl font-bold mb-2">
-                        ₹{currentStock.price?.toFixed(2)}
-                      </div>
-                      <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div className="grid grid-cols-4 gap-2 text-xs">
                         <div>
                           <p className="text-muted-foreground">Open</p>
                           <p className="font-medium">₹{chartData[chartData.length - 1]?.open.toFixed(2)}</p>
