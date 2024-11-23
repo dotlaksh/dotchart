@@ -315,7 +315,7 @@ export default function ModernStockChart() {
             value={selectedIndexId.toString()}
             onValueChange={handleIndexChange}
           >
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-[150px]">
               <SelectValue placeholder="Select Index" />
             </SelectTrigger>
             <SelectContent>
