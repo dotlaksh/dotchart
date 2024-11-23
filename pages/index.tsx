@@ -279,6 +279,14 @@ export default function ModernStockChart() {
     fetchStockData();
   };
 
+  const handleIndexChange = (value: string) => {
+    const newIndex = parseInt(value);
+    setSelectedIndexId(newIndex);
+    setCurrentStockIndex(0);
+    setSearchTerm('');
+    fetchStockData();
+  };
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
@@ -311,7 +319,22 @@ export default function ModernStockChart() {
       {/* Header */}
       <header className="sticky top-0 z-20 bg-background/80 backdrop-blur-sm border-b p-4 flex items-center justify-between">
         <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">StockVue</h1>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-4">
+          <Select
+            value={selectedIndexId.toString()}
+            onValueChange={handleIndexChange}
+          >
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select Index" />
+            </SelectTrigger>
+            <SelectContent>
+              {indexData.map((item, index) => (
+                <SelectItem key={index} value={index.toString()}>
+                  {item.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
           <Popover>
             <PopoverTrigger asChild>
               <Button variant="outline" size="icon">
@@ -320,21 +343,6 @@ export default function ModernStockChart() {
             </PopoverTrigger>
             <PopoverContent className="w-80">
               <div className="space-y-4">
-                <Select
-                  value={selectedIndexId.toString()}
-                  onValueChange={(value) => setSelectedIndexId(parseInt(value))}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select Index" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {indexData.map((item, index) => (
-                      <SelectItem key={index} value={index.toString()}>
-                        {item.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
                 <div className="relative" ref={searchRef}>
                   <Input
                     type="text"
@@ -386,7 +394,8 @@ export default function ModernStockChart() {
             <AnimatePresence mode="wait">
               {currentStock && (
                 <motion.div
-                  key={currentStock.symbol}
+                  key
+={currentStock.symbol}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
