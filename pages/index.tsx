@@ -599,4 +599,6 @@ export default function ModernStockChart() {
         </div>
       )}
     </div>
+  );
+}
 
