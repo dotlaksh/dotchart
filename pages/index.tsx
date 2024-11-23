@@ -14,8 +14,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 import nifty50Data from '../public/nifty50.json';
 import niftyNext50Data from '../public/niftynext50.json';
@@ -314,6 +314,70 @@ export default function ModernStockChart() {
       <header className="sticky top-0 z-20 bg-background/80 backdrop-blur-sm border-b p-4 flex items-center justify-between">
         <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">StockVue</h1>
         <div className="flex items-center space-x-2">
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="outline" size="icon">
+                <Search className="h-[1.2rem] w-[1.2rem]" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-80">
+              <div className="space-y-4">
+                <Select
+                  value={selectedIndexId.toString()}
+                  onValueChange={(value) => setSelectedIndexId(parseInt(value))}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select Index" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {indexData.map((item, index) => (
+                      <SelectItem key={index} value={index.toString()}>
+                        {item.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <div className="relative" ref={searchRef}>
+                  <Input
+                    type="text"
+                    placeholder="Search stocks..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onFocus={() => setShowDropdown(true)}
+                  />
+                  {searchTerm && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="absolute right-0 top-0 h-full"
+                      onClick={() => setSearchTerm('')}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  )}
+                </div>
+                {showDropdown && (
+                  <Card>
+                    <ScrollArea className="h-[300px]">
+                      {filteredStocks.map((stock, index) => (
+                        <Button
+                          key={stock.symbol}
+                          variant="ghost"
+                          className="w-full justify-start"
+                          onClick={() => handleStockSelection(stocks.findIndex((s) => s.symbol === stock.symbol))}
+                        >
+                          <div className="flex flex-col items-start">
+                            <span className="font-medium">{stock.symbol}</span>
+                            <span className="text-sm text-muted-foreground">{stock.name}</span>
+                          </div>
+                        </Button>
+                      ))}
+                    </ScrollArea>
+                  </Card>
+                )}
+              </div>
+            </PopoverContent>
+          </Popover>
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -336,11 +400,11 @@ export default function ModernStockChart() {
         </div>
       </header>
 
-      <main className="flex-grow overflow-hidden">
-        <div className="h-full flex flex-col lg:flex-row">
+     <main className="flex-grow overflow-hidden">
+        <div className="h-full flex flex-col">
           {/* Sidebar */}
           <aside className="w-full lg:w-80 border-r hidden lg:block overflow-y-auto">
-            <div className="p-4 space-y-4">
+          <div className="flex-grow p-4 overflow-y-auto">
               <Select
                 value={selectedIndexId.toString()}
                 onValueChange={(value) => setSelectedIndexId(parseInt(value))}
