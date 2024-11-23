@@ -54,7 +54,7 @@ interface ChartDataPoint {
 }
 
 const INTERVALS = [
-  { label: '1D', value: 'daily', interval: '1d', range: '2y' },
+  { label: '1D', value: 'daily', interval: '1d', range: '1y' },
   { label: '1W', value: 'weekly', interval: '1wk', range: '5y' },
   { label: '1M', value: 'monthly', interval: '1mo', range: 'max' },
 ];
@@ -288,15 +288,6 @@ export default function ModernStockChart() {
     fetchStockData();
   };
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      //This function is no longer needed because showDropdown state is removed.
-    }
-
-    // document.addEventListener('mousedown', handleClickOutside);
-    // return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
   const filteredStocks = stocks.filter(stock => 
     stock.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
     stock.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -306,9 +297,6 @@ export default function ModernStockChart() {
     setMounted(true)
   }, [])
 
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light')
-  }
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
