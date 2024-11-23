@@ -154,75 +154,76 @@ export default function ModernStockChart() {
     const isDark = theme === 'dark';
     const chartColors = getChartColors(isDark);
 
-    if (!chartInstanceRef.current) {
-      const chart = createChart(chartContainerRef.current, {
-        width: chartContainerRef.current.clientWidth,
-        height: chartContainerRef.current.clientHeight,
-        layout: {
-          background: { type: ColorType.Solid, color: chartColors.backgroundColor },
-          textColor: chartColors.textColor,
-        },
-        grid: {
-          vertLines: { color: chartColors.gridColor },
-          horzLines: { color: chartColors.gridColor },
-        },
-        rightPriceScale: {
-          borderColor: chartColors.gridColor,
-        },
-        timeScale: {
-          borderColor: chartColors.gridColor,
-          timeVisible: true,
-          secondsVisible: false,
-        },
-      });
-
-      chartInstanceRef.current = chart;
-
-      const candlestickSeries = chart.addCandlestickSeries({
-        upColor: chartColors.upColor,
-        downColor: chartColors.downColor,
-        borderVisible: false,
-        wickUpColor: chartColors.upColor,
-        wickDownColor: chartColors.downColor,
-      });
-
-      candlestickSeriesRef.current = candlestickSeries;
-
-      const volumeSeries = chart.addHistogramSeries({
-        color: chartColors.upColor,
-        priceFormat: {
-          type: 'volume',
-        },
-        priceScaleId: '',
-      });
-
-      volumeSeriesRef.current = volumeSeries;
-
-      candlestickSeries.priceScale().applyOptions({
-        scaleMargins: {
-          top: 0.1,
-          bottom: 0.2,
-        },
-      });
-
-      volumeSeries.priceScale().applyOptions({
-        scaleMargins: {
-          top: 0.8,
-          bottom: 0,
-        },
-      });
+    if (chartInstanceRef.current) {
+      chartInstanceRef.current.remove();
+      chartInstanceRef.current = null;
     }
 
-    if (candlestickSeriesRef.current && volumeSeriesRef.current) {
-      candlestickSeriesRef.current.setData(chartData as CandlestickData[]);
-      volumeSeriesRef.current.setData(chartData.map(d => ({
-        time: d.time,
-        value: d.volume,
-        color: d.close >= d.open ? chartColors.upColor : chartColors.downColor,
-      } as HistogramData)));
-    }
+    const chart = createChart(chartContainerRef.current, {
+      width: chartContainerRef.current.clientWidth,
+      height: chartContainerRef.current.clientHeight,
+      layout: {
+        background: { type: ColorType.Solid, color: chartColors.backgroundColor },
+        textColor: chartColors.textColor,
+      },
+      grid: {
+        vertLines: { color: chartColors.gridColor },
+        horzLines: { color: chartColors.gridColor },
+      },
+      rightPriceScale: {
+        borderColor: chartColors.gridColor,
+      },
+      timeScale: {
+        borderColor: chartColors.gridColor,
+        timeVisible: true,
+        secondsVisible: false,
+      },
+    });
 
-    chartInstanceRef.current.timeScale().fitContent();
+    chartInstanceRef.current = chart;
+
+    const candlestickSeries = chart.addCandlestickSeries({
+      upColor: chartColors.upColor,
+      downColor: chartColors.downColor,
+      borderVisible: false,
+      wickUpColor: chartColors.upColor,
+      wickDownColor: chartColors.downColor,
+    });
+
+    candlestickSeriesRef.current = candlestickSeries;
+
+    const volumeSeries = chart.addHistogramSeries({
+      color: chartColors.upColor,
+      priceFormat: {
+        type: 'volume',
+      },
+      priceScaleId: '',
+    });
+
+    volumeSeriesRef.current = volumeSeries;
+
+    candlestickSeries.setData(chartData as CandlestickData[]);
+    volumeSeries.setData(chartData.map(d => ({
+      time: d.time,
+      value: d.volume,
+      color: d.close >= d.open ? chartColors.upColor : chartColors.downColor,
+    } as HistogramData)));
+
+    candlestickSeries.priceScale().applyOptions({
+      scaleMargins: {
+        top: 0.1,
+        bottom: 0.2,
+      },
+    });
+
+    volumeSeries.priceScale().applyOptions({
+      scaleMargins: {
+        top: 0.8,
+        bottom: 0,
+      },
+    });
+
+    chart.timeScale().fitContent();
 
     // Force a resize of the chart
     setTimeout(() => {
@@ -236,7 +237,7 @@ export default function ModernStockChart() {
   }, [chartData, theme]);
 
   useEffect(() => {
-    if (activeTab === 'chart') {
+    if (activeTab === 'chart' && chartData.length > 0) {
       createOrUpdateChart();
     }
   }, [activeTab, createOrUpdateChart, chartData]);
@@ -269,6 +270,13 @@ export default function ModernStockChart() {
     if (currentStockIndex < stocks.length - 1) {
       setCurrentStockIndex(prev => prev + 1);
     }
+  };
+
+  const handleStockSelection = (stockIndex: number) => {
+    setCurrentStockIndex(stockIndex);
+    setSearchTerm('');
+    setShowDropdown(false);
+    setActiveTab('chart');
   };
 
   useEffect(() => {
@@ -381,17 +389,12 @@ export default function ModernStockChart() {
                   {showDropdown && searchTerm && (
                     <Card>
                       <ScrollArea className="h-[300px]">
-                        {filteredStocks.map((stock) => (
+                        {filteredStocks.map((stock, index) => (
                           <Button
                             key={stock.symbol}
                             variant="ghost"
                             className="w-full justify-start"
-                            onClick={() => {
-                              const stockIndex = stocks.findIndex((s) => s.symbol === stock.symbol);
-                              setCurrentStockIndex(stockIndex);
-                              setSearchTerm('');
-                              setShowDropdown(false);
-                            }}
+                            onClick={() => handleStockSelection(stocks.findIndex((s) => s.symbol === stock.symbol))}
                           >
                             <div className="flex flex-col items-start">
                               <span className="font-medium">{stock.symbol}</span>
@@ -453,17 +456,12 @@ export default function ModernStockChart() {
               {showDropdown && searchTerm && (
                 <Card>
                   <ScrollArea className="h-[300px]">
-                    {filteredStocks.map((stock) => (
+                    {filteredStocks.map((stock, index) => (
                       <Button
                         key={stock.symbol}
                         variant="ghost"
                         className="w-full justify-start"
-                        onClick={() => {
-                          const stockIndex = stocks.findIndex((s) => s.symbol === stock.symbol);
-                          setCurrentStockIndex(stockIndex);
-                          setSearchTerm('');
-                          setShowDropdown(false);
-                        }}
+                        onClick={() => handleStockSelection(stocks.findIndex((s) => s.symbol === stock.symbol))}
                       >
                         <div className="flex flex-col items-start">
                           <span className="font-medium">{stock.symbol}</span>
