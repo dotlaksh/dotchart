@@ -223,13 +223,23 @@ export default function ModernStockChart() {
     }
 
     chartInstanceRef.current.timeScale().fitContent();
+
+    // Force a resize of the chart
+    setTimeout(() => {
+      if (chartInstanceRef.current && chartContainerRef.current) {
+        chartInstanceRef.current.applyOptions({
+          width: chartContainerRef.current.clientWidth,
+          height: chartContainerRef.current.clientHeight,
+        });
+      }
+    }, 0);
   }, [chartData, theme]);
 
   useEffect(() => {
     if (activeTab === 'chart') {
       createOrUpdateChart();
     }
-  }, [activeTab, createOrUpdateChart]);
+  }, [activeTab, createOrUpdateChart, chartData]);
 
   useEffect(() => {
     const handleResize = () => {
