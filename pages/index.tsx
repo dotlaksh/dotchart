@@ -386,11 +386,11 @@ export default function ModernStockChart() {
                     <CardContent className="p-4">
                       <div className="flex justify-between items-start mb-2">
                         <div>
-                          <h2 className="text-xl font-bold">{currentStock.symbol}</h2>
+                          <h2 className="text-lg font-bold">{currentStock.symbol}</h2>
                           <p className="text-sm text-muted-foreground">{currentStock.name}</p>
                         </div>
                         <div className="text-right">
-                          <p className="text-lg font-bold">₹{currentStock.price?.toFixed(2)}</p>
+                          <p className="text-lg font-bold">{currentStock.price?.toFixed(2)}</p>
                           <Badge 
                             variant={currentStock.todayChange && currentStock.todayChange >= 0 ? "default" : "destructive"} 
                             className={`text-xs px-2 py-0.5 ${
@@ -408,20 +408,20 @@ export default function ModernStockChart() {
                       </div>
                       <div className="grid grid-cols-4 gap-2 text-xs">
                         <div>
-                          <p className="text-muted-foreground">Open</p>
-                          <p className="font-medium">₹{chartData[chartData.length - 1]?.open.toFixed(2)}</p>
+                          <p className="text-muted-foreground">OPEN</p>
+                          <p className="font-medium">{chartData[chartData.length - 1]?.open.toFixed(2)}</p>
                         </div>
                         <div>
-                          <p className="text-muted-foreground">Close</p>
-                          <p className="font-medium">₹{chartData[chartData.length - 1]?.close.toFixed(2)}</p>
+                          <p className="text-muted-foreground">CLOSE</p>
+                          <p className="font-medium">{chartData[chartData.length - 1]?.close.toFixed(2)}</p>
                         </div>
                         <div>
-                          <p className="text-muted-foreground">High</p>
-                          <p className="font-medium">₹{chartData[chartData.length - 1]?.high.toFixed(2)}</p>
+                          <p className="text-muted-foreground">HIGH</p>
+                          <p className="font-medium">{chartData[chartData.length - 1]?.high.toFixed(2)}</p>
                         </div>
                         <div>
-                          <p className="text-muted-foreground">Low</p>
-                          <p className="font-medium">₹{chartData[chartData.length - 1]?.low.toFixed(2)}</p>
+                          <p className="text-muted-foreground">LOW</p>
+                          <p className="font-medium">{chartData[chartData.length - 1]?.low.toFixed(2)}</p>
                         </div>
                       </div>
                     </CardContent>
