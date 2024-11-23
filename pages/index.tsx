@@ -15,7 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 import nifty50Data from '../public/nifty50.json';
 import niftyNext50Data from '../public/niftynext50.json';
@@ -87,6 +87,7 @@ export default function ModernStockChart() {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeTab, setActiveTab] = useState('chart');
   const [searchResults, setSearchResults] = useState<Stock[]>([]);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const chartInstanceRef = useRef<IChartApi | null>(null);
@@ -274,6 +275,7 @@ export default function ModernStockChart() {
   const handleStockSelection = (stockIndex: number) => {
     setCurrentStockIndex(stockIndex);
     setSearchTerm('');
+    setIsSearchOpen(false);
     setActiveTab('chart');
     fetchStockData();
   };
@@ -285,15 +287,6 @@ export default function ModernStockChart() {
     setSearchTerm('');
     fetchStockData();
   };
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      //This function is no longer needed because showDropdown state is removed.
-    }
-
-    // document.addEventListener('mousedown', handleClickOutside);
-    // return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
 
   const filteredStocks = stocks.filter(stock => 
     stock.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -307,6 +300,10 @@ export default function ModernStockChart() {
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
 
 
   if (!mounted) return null
@@ -332,36 +329,48 @@ export default function ModernStockChart() {
               ))}
             </SelectContent>
           </Select>
-          <div className="relative">
-            <Input
-              type="text"
-              placeholder="Search stocks..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-[200px]"
-            />
-            {searchTerm && filteredStocks.length > 0 && (
-              <Card className="absolute mt-1 w-full z-10">
-                <ScrollArea className="h-[200px]">
-                  {filteredStocks.map((stock) => (
-                    <Button
-                      key={stock.symbol}
-                      variant="ghost"
-                      className="w-full justify-start"
-                      onClick={() => handleStockSelection(stocks.findIndex((s) => s.symbol === stock.symbol))}
-                    >
-                      <div className="flex flex-col items-start">
-                        <span className="font-medium">{stock.symbol}</span>
-                        <span className="text-sm text-muted-foreground">{stock.name}</span>
-                      </div>
-                    </Button>
-                  ))}
-                </ScrollArea>
-              </Card>
-            )}
-          </div>
+          <Dialog open={isSearchOpen} onOpenChange={setIsSearchOpen}>
+            <DialogTrigger asChild>
+              <Button variant="outline" size="icon">
+                <Search className="h-[1.2rem] w-[1.2rem]" />
+                <span className="sr-only">Search stocks</span>
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Search Stocks</DialogTitle>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <Input
+                  type="text"
+                  placeholder="Search stocks..."
+                  value={searchTerm}
+                  onChange={handleSearch}
+                  className="col-span-3"
+                />
+                {filteredStocks.length > 0 && (
+                  <ScrollArea className="h-[200px]">
+                    {filteredStocks.map((stock) => (
+                      <Button
+                        key={stock.symbol}
+                        variant="ghost"
+                        className="w-full justify-start"
+                        onClick={() => handleStockSelection(stocks.findIndex((s) => s.symbol === stock.symbol))}
+                      >
+                        <div className="flex flex-col items-start">
+                          <span className="font-medium">{stock.symbol}</span>
+                          <span className="text-sm text-muted-foreground">{stock.name}</span>
+                        </div>
+                      </Button>
+                    ))}
+                  </ScrollArea>
+                )}
+              </div>
+            </DialogContent>
+          </Dialog>
           <Button variant="outline" size="icon" onClick={toggleTheme}>
             {theme === 'light' ? <Moon className="h-[1.2rem] w-[1.2rem]" /> : <Sun className="h-[1.2rem] w-[1.2rem]" />}
+            <span className="sr-only">Toggle theme</span>
           </Button>
         </div>
       </header>
