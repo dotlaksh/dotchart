@@ -50,8 +50,8 @@ interface ChartDataPoint {
 }
 
 const INTERVALS = [
-  { label: '1D', value: 'daily', interval: '1d', range: '2y' },
-  { label: '1W', value: 'weekly', interval: '1wk' },
+  { label: '1D', value: 'daily', interval: '1d', range: 'max' },
+  { label: '1W', value: 'weekly', interval: '1wk',range:'max' },
   { label: '1M', value: 'monthly', interval: '1mo', range: 'max' },
 ];
 
