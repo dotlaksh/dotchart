@@ -1,21 +1,17 @@
-'use client';
-
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createChart, ColorType, IChartApi, ISeriesApi, CandlestickData, HistogramData } from 'lightweight-charts';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Search, X, Loader2, Moon, Sun, Info, Menu, ArrowUpRight, ArrowDownRight } from 'lucide-react';
-import { useTheme } from 'next-themes';
+import { ChevronLeft, ChevronRight, Search, X, Loader2, Menu, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 import nifty50Data from '../public/nifty50.json';
 import niftyNext50Data from '../public/niftynext50.json';
@@ -54,18 +50,18 @@ interface ChartDataPoint {
 }
 
 const INTERVALS = [
-  { label: '1D', value: 'daily', interval: '1d', range: '1y' },
-  { label: '1W', value: 'weekly', interval: '1wk', range: '5y' },
+  { label: '1D', value: 'daily', interval: '1d', range: '2y' },
+  { label: '1W', value: 'weekly', interval: '1wk' },
   { label: '1M', value: 'monthly', interval: '1mo', range: 'max' },
 ];
 
-const getChartColors = (isDark: boolean) => ({
-  upColor: isDark ? '#22c55e' : '#16a34a',
-  downColor: isDark ? '#ef4444' : '#dc2626',
+const CHART_COLORS = {
+  upColor: '#16a34a',
+  downColor: '#dc2626',
   backgroundColor: 'transparent',
-  textColor: isDark ? '#e2e8f0' : '#1e293b',
-  gridColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
-});
+  textColor: '#1e293b',
+  gridColor: 'rgba(0, 0, 0, 0.1)',
+};
 
 export default function ModernStockChart() {
   const [indexData] = useState<IndexData[]>([
@@ -85,18 +81,15 @@ export default function ModernStockChart() {
   const [selectedInterval, setSelectedInterval] = useState('daily');
   const [currentStock, setCurrentStock] = useState<CurrentStock | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('chart');
-  const [searchResults, setSearchResults] = useState<Stock[]>([]);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const chartInstanceRef = useRef<IChartApi | null>(null);
   const candlestickSeriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null);
   const volumeSeriesRef = useRef<ISeriesApi<"Histogram"> | null>(null);
   const searchRef = useRef<HTMLDivElement>(null);
-
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const selectedIndex = indexData[selectedIndexId];
@@ -120,10 +113,18 @@ export default function ModernStockChart() {
 
       if (!interval) throw new Error('Invalid interval');
 
+      let range = interval.range || 'max';
+      
+      // For weekly interval, calculate the range to get approximately 5 years of data
+      if (interval.interval === '1wk') {
+        const weeksIn5Years = 5 * 52;
+        range = `${weeksIn5Years}wk`;
+      }
+
       const response = await axios.get<ChartDataPoint[]>('/api/stockData', {
         params: {
           symbol: currentStock.symbol,
-          range: interval.range,
+          range: range,
           interval: interval.interval
         }
       });
@@ -151,9 +152,6 @@ export default function ModernStockChart() {
   const createOrUpdateChart = useCallback(() => {
     if (!chartContainerRef.current || !chartData.length) return;
 
-    const isDark = theme === 'dark';
-    const chartColors = getChartColors(isDark);
-
     if (chartInstanceRef.current) {
       chartInstanceRef.current.remove();
       chartInstanceRef.current = null;
@@ -163,38 +161,37 @@ export default function ModernStockChart() {
       width: chartContainerRef.current.clientWidth,
       height: chartContainerRef.current.clientHeight,
       layout: {
-        background: { type: ColorType.Solid, color: chartColors.backgroundColor },
-        textColor: chartColors.textColor,
+        background: { type: ColorType.Solid, color: CHART_COLORS.backgroundColor },
+        textColor: CHART_COLORS.textColor,
       },
       grid: {
-        vertLines: { color: chartColors.gridColor },
-        horzLines: { color: chartColors.gridColor },
+        vertLines: { color: CHART_COLORS.gridColor },
+        horzLines: { color: CHART_COLORS.gridColor },
       },
       rightPriceScale: {
-        borderColor: chartColors.gridColor,
+        borderColor: CHART_COLORS.gridColor,
       },
       timeScale: {
-        borderColor: chartColors.gridColor,
-        timeVisible: false,
-        rightOffset: 5,
-        minBarSpacing: 2,
+        borderColor: CHART_COLORS.gridColor,
+        timeVisible: true,
+        secondsVisible: false,
       },
     });
 
     chartInstanceRef.current = chart;
 
     const candlestickSeries = chart.addCandlestickSeries({
-      upColor: chartColors.upColor,
-      downColor: chartColors.downColor,
+      upColor: CHART_COLORS.upColor,
+      downColor: CHART_COLORS.downColor,
       borderVisible: false,
-      wickUpColor: chartColors.upColor,
-      wickDownColor: chartColors.downColor,
+      wickUpColor: CHART_COLORS.upColor,
+      wickDownColor: CHART_COLORS.downColor,
     });
 
     candlestickSeriesRef.current = candlestickSeries;
 
     const volumeSeries = chart.addHistogramSeries({
-      color: chartColors.upColor,
+      color: CHART_COLORS.upColor,
       priceFormat: {
         type: 'volume',
       },
@@ -203,11 +200,16 @@ export default function ModernStockChart() {
 
     volumeSeriesRef.current = volumeSeries;
 
-    candlestickSeries.setData(chartData as CandlestickData[]);
-    volumeSeries.setData(chartData.map(d => ({
+    // Filter out any data points with null values
+    const validChartData = chartData.filter(d => 
+      d.open !== null && d.high !== null && d.low !== null && d.close !== null
+    );
+
+    candlestickSeries.setData(validChartData as CandlestickData[]);
+    volumeSeries.setData(validChartData.map(d => ({
       time: d.time,
       value: d.volume,
-      color: d.close >= d.open ? chartColors.upColor : chartColors.downColor,
+      color: d.close >= d.open ? CHART_COLORS.upColor : CHART_COLORS.downColor,
     } as HistogramData)));
 
     candlestickSeries.priceScale().applyOptions({
@@ -226,6 +228,7 @@ export default function ModernStockChart() {
 
     chart.timeScale().fitContent();
 
+    // Force a resize of the chart
     setTimeout(() => {
       if (chartInstanceRef.current && chartContainerRef.current) {
         chartInstanceRef.current.applyOptions({
@@ -234,7 +237,7 @@ export default function ModernStockChart() {
         });
       }
     }, 0);
-  }, [chartData, theme]);
+  }, [chartData]);
 
   useEffect(() => {
     if (activeTab === 'chart' && chartData.length > 0) {
@@ -275,79 +278,78 @@ export default function ModernStockChart() {
   const handleStockSelection = (stockIndex: number) => {
     setCurrentStockIndex(stockIndex);
     setSearchTerm('');
-    setIsSearchOpen(false);
+    setShowDropdown(false);
     setActiveTab('chart');
     fetchStockData();
   };
 
-  const handleIndexChange = (value: string) => {
-    const newIndex = parseInt(value);
-    setSelectedIndexId(newIndex);
-    setCurrentStockIndex(0);
-    setSearchTerm('');
-    fetchStockData();
-  };
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setShowDropdown(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const filteredStocks = stocks.filter(stock => 
+    searchTerm === '' || 
     stock.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
     stock.name.toLowerCase().includes(searchTerm.toLowerCase())
   ).slice(0, 10);
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-  };
-
-
-  if (!mounted) return null
 
   return (
     <div className="flex flex-col h-screen bg-background text-foreground overflow-hidden">
       {/* Header */}
       <header className="sticky top-0 z-20 bg-background/80 backdrop-blur-sm border-b p-4 flex items-center justify-between">
-        <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">dotChart</h1>
-        <div className="flex items-center space-x-4">
-          <Select
-            value={selectedIndexId.toString()}
-            onValueChange={handleIndexChange}
-          >
-            <SelectTrigger className="w-[150px]">
-              <SelectValue placeholder="Select Index" />
-            </SelectTrigger>
-            <SelectContent>
-              {indexData.map((item, index) => (
-                <SelectItem key={index} value={index.toString()}>
-                  {item.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Dialog open={isSearchOpen} onOpenChange={setIsSearchOpen}>
-            <DialogTrigger asChild>
-              <Button variant="outline" size="icon">
-                <Search className="h-[1.2rem] w-[1.2rem]" />
-                <span className="sr-only">Search stocks</span>
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
-              <DialogHeader>
-                <DialogTitle>Search Stocks</DialogTitle>
-              </DialogHeader>
-              <div className="grid gap-4 py-4">
+        <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">StockVue</h1>
+      </header>
+
+      <main className="flex-grow overflow-hidden">
+        <div className="h-full flex flex-col lg:flex-row">
+          {/* Sidebar */}
+          <aside className="w-full lg:w-80 border-r hidden lg:block overflow-y-auto">
+            <div className="p-4 space-y-4">
+              <Select
+                value={selectedIndexId.toString()}
+                onValueChange={(value) => setSelectedIndexId(parseInt(value))}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select Index" />
+                </SelectTrigger>
+                <SelectContent>
+                  {indexData.map((item, index) => (
+                    <SelectItem key={index} value={index.toString()}>
+                      {item.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <div className="relative" ref={searchRef}>
                 <Input
                   type="text"
                   placeholder="Search stocks..."
                   value={searchTerm}
-                  onChange={handleSearch}
-                  className="col-span-3"
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onFocus={() => setShowDropdown(true)}
                 />
-                {filteredStocks.length > 0 && (
-                  <ScrollArea className="h-[200px]">
-                    {filteredStocks.map((stock) => (
+                {searchTerm && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="absolute right-0 top-0 h-full"
+                    onClick={() => setSearchTerm('')}
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                )}
+              </div>
+              {showDropdown && (
+                <Card>
+                  <ScrollArea className="h-[300px]">
+                    {filteredStocks.map((stock, index) => (
                       <Button
                         key={stock.symbol}
                         variant="ghost"
@@ -361,16 +363,11 @@ export default function ModernStockChart() {
                       </Button>
                     ))}
                   </ScrollArea>
-                )}
-              </div>
-            </DialogContent>
-          </Dialog>
-          
-        </div>
-      </header>
+                </Card>
+              )}
+            </div>
+          </aside>
 
-      <main className="flex-grow overflow-hidden">
-        <div className="h-full flex flex-col">
           {/* Chart and Info */}
           <div className="flex-grow p-4 overflow-y-auto">
             <AnimatePresence mode="wait">
@@ -382,20 +379,19 @@ export default function ModernStockChart() {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Card className="mb-2">
+                  <Card className
+="mb-2">
                     <CardContent className="p-4">
                       <div className="flex justify-between items-start mb-2">
                         <div>
-                          <h2 className="text-lg font-bold">{currentStock.symbol}</h2>
+                          <h2 className="text-xl font-bold">{currentStock.symbol}</h2>
                           <p className="text-sm text-muted-foreground">{currentStock.name}</p>
                         </div>
                         <div className="text-right">
-                          <p className="text-lg font-bold">{currentStock.price?.toFixed(2)}</p>
+                          <p className="text-lg font-bold">₹{currentStock.price?.toFixed(2)}</p>
                           <Badge 
                             variant={currentStock.todayChange && currentStock.todayChange >= 0 ? "default" : "destructive"} 
-                            className={`text-xs px-2 py-0.5 ${
-                              currentStock.todayChange && currentStock.todayChange >= 0 ? "bg-green-500 text-white" : "bg-red-500 text-white"
-                            }`}
+                            className="text-sm px-2 py-0.5"
                           >
                             {currentStock.todayChange && currentStock.todayChange >= 0 ? (
                               <ArrowUpRight className="inline mr-1 h-3 w-3" />
@@ -408,20 +404,36 @@ export default function ModernStockChart() {
                       </div>
                       <div className="grid grid-cols-4 gap-2 text-xs">
                         <div>
-                          <p className="text-muted-foreground">OPEN</p>
-                          <p className="font-medium">{chartData[chartData.length - 1]?.open.toFixed(2)}</p>
+                          <p className="text-muted-foreground">Open</p>
+                          <p className="font-medium">
+                            {chartData[chartData.length - 1]?.open !== null 
+                              ? `₹${chartData[chartData.length - 1].open.toFixed(2)}` 
+                              : 'N/A'}
+                          </p>
                         </div>
                         <div>
-                          <p className="text-muted-foreground">CLOSE</p>
-                          <p className="font-medium">{chartData[chartData.length - 1]?.close.toFixed(2)}</p>
+                          <p className="text-muted-foreground">Close</p>
+                          <p className="font-medium">
+                            {chartData[chartData.length - 1]?.close !== null 
+                              ? `₹${chartData[chartData.length - 1].close.toFixed(2)}` 
+                              : 'N/A'}
+                          </p>
                         </div>
                         <div>
-                          <p className="text-muted-foreground">HIGH</p>
-                          <p className="font-medium">{chartData[chartData.length - 1]?.high.toFixed(2)}</p>
+                          <p className="text-muted-foreground">High</p>
+                          <p className="font-medium">
+                            {chartData[chartData.length - 1]?.high !== null 
+                              ? `₹${chartData[chartData.length - 1].high.toFixed(2)}` 
+                              : 'N/A'}
+                          </p>
                         </div>
                         <div>
-                          <p className="text-muted-foreground">LOW</p>
-                          <p className="font-medium">{chartData[chartData.length - 1]?.low.toFixed(2)}</p>
+                          <p className="text-muted-foreground">Low</p>
+                          <p className="font-medium">
+                            {chartData[chartData.length - 1]?.low !== null 
+                              ? `₹${chartData[chartData.length - 1].low.toFixed(2)}` 
+                              : 'N/A'}
+                          </p>
                         </div>
                       </div>
                     </CardContent>
@@ -436,6 +448,83 @@ export default function ModernStockChart() {
                   <TabsList className="w-full justify-start rounded-none border-b flex items-center">
                     <TabsTrigger value="chart">Chart</TabsTrigger>
                     <TabsTrigger value="overview">Overview</TabsTrigger>
+                    <div className="ml-auto">
+                      <Sheet>
+                        <SheetTrigger asChild>
+                          <Button variant="outline" size="icon" className="h-9 w-9 lg:hidden">
+                            <Menu className="h-4 w-4" />
+                            <span className="sr-only">Open menu</span>
+                          </Button>
+                        </SheetTrigger>
+                        <SheetContent side="right" className="w-[300px]">
+                          <nav className="flex flex-col h-full">
+                            <h2 className="font-semibold mb-4">Menu</h2>
+                            <div className="space-y-4 flex-grow">
+                              <div>
+                                <label htmlFor="mobileIndexSelect" className="block text-sm font-medium mb-1">Select Index</label>
+                                <Select
+                                  value={selectedIndexId.toString()}
+                                  onValueChange={(value) => setSelectedIndexId(parseInt(value))}
+                                >
+                                  <SelectTrigger id="mobileIndexSelect">
+                                    <SelectValue placeholder="Select Index" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {indexData.map((item, index) => (
+                                      <SelectItem key={index} value={index.toString()}>
+                                        {item.label}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                              <div>
+                                <label htmlFor="mobileSearch" className="block text-sm font-medium mb-1">Search Stocks</label>
+                                <div className="relative">
+                                  <Input
+                                    id="mobileSearch"
+                                    type="text"
+                                    placeholder="Search stocks..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    onFocus={() => setShowDropdown(true)}
+                                  />
+                                  {searchTerm && (
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      className="absolute right-0 top-0 h-full"
+                                      onClick={() => setSearchTerm('')}
+                                    >
+                                      <X className="h-4 w-4" />
+                                    </Button>
+                                  )}
+                                </div>
+                              </div>
+                              {showDropdown && (
+                                <Card>
+                                  <ScrollArea className="h-[300px]">
+                                    {filteredStocks.map((stock, index) => (
+                                      <Button
+                                        key={stock.symbol}
+                                        variant="ghost"
+                                        className="w-full justify-start"
+                                        onClick={() => handleStockSelection(stocks.findIndex((s) => s.symbol === stock.symbol))}
+                                      >
+                                        <div className="flex flex-col items-start">
+                                          <span className="font-medium">{stock.symbol}</span>
+                                          <span className="text-sm text-muted-foreground">{stock.name}</span>
+                                        </div>
+                                      </Button>
+                                    ))}
+                                  </ScrollArea>
+                                </Card>
+                              )}
+                            </div>
+                          </nav>
+                        </SheetContent>
+                      </Sheet>
+                    </div>
                   </TabsList>
                   <TabsContent value="chart" className="p-4">
                     <div className="h-[400px]" ref={chartContainerRef}></div>
