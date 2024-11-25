@@ -21,6 +21,7 @@ import niftyNext50Data from '../public/niftynext50.json';
 import midcap150Data from '../public/midcap150.json';
 import smallcap250Data from '../public/smallcap250.json';
 import microCap250Data from '../public/microcap250.json';
+import othersData from '../public/others.json';
 
 interface StockData {
   Symbol: string;
@@ -107,6 +108,7 @@ export default function StockChart() {
     { label: 'Midcap 150', data: midcap150Data },
     { label: 'Smallcap 250', data: smallcap250Data },
     { label: 'MicroCap 250', data: microCap250Data },
+    { label: 'Others', data: othersData },
   ]);
   
   const [selectedIndexId, setSelectedIndexId] = useState(0);
@@ -134,7 +136,7 @@ export default function StockChart() {
   const { theme, setTheme } = useTheme();
 
   const getChartHeight = useCallback(() => {
-    return window.innerWidth < 640 ? 600 : window.innerWidth < 1024 ? 300 : 600;
+    return window.innerWidth < 640 ? 400 : window.innerWidth < 1024 ? 500 : 600;
   }, []);
 
   useEffect(() => {
@@ -376,8 +378,7 @@ export default function StockChart() {
                 onValueChange={(value) => setSelectedIndexId(parseInt(value))}
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select
-Index" />
+                  <SelectValue placeholder="Select Index" />
                 </SelectTrigger>
                 <SelectContent>
                   {indexData.map((item, index) => (
@@ -485,8 +486,8 @@ Index" />
         </header>
 
         {/* Chart and Controls */}
-        <main className="flex-1 overflow-hidden p-4">
-          <div className="h-full flex flex-col">
+        <main className="flex-1 overflow-hidden p-4 flex flex-col">
+          <div className="flex-1 flex flex-col">
             {/* Stock Info */}
             {currentStock && (
               <div className="mb-4 flex items-center justify-between">
@@ -516,36 +517,89 @@ Index" />
 
             {/* Chart */}
             <div className="flex-1 relative" ref={chartContainerRef}></div>
+          </div>
 
-            {/* Controls */}
-            <div className="mt-4 flex justify-between items-center">
-              <div className="flex space-x-2">
-                {INTERVALS.map((interval) => (
-                  <Button
-                    key={interval.value}
-                    variant={selectedInterval === interval.value ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setSelectedInterval(interval.value)}
-                  >
-                    {interval.label}
-                  </Button>
-                ))}
-              </div>
-              <div className="flex space-x-2">
-                {RANGES.map((range) => (
-                  <Button
-                    key={range.value}
-                    variant={selectedRange === range.value ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setSelectedRange(range.value)}
-                  >
-                    {range.label}
-                  </Button>
-                ))}
-              </div>
+          {/* Sticky Range and Interval Selectors */}
+          <div className="sticky bottom-12 bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between items-center">
+            <div className="flex space-x-2">
+              {INTERVALS.map((interval) => (
+                <Button
+                  key={interval.value}
+                  variant={selectedInterval === interval.value ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedInterval(interval.value)}
+                >
+                  {interval.label}
+                </Button>
+              ))}
+            </div>
+            <div className="flex space-x-2">
+              {RANGES.map((range) => (
+                <Button
+                  key={range.value}
+                  variant={selectedRange === range.value ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedRange(range.value)}
+                >
+                  {range.label}
+                </Button>
+              ))}
             </div>
           </div>
         </main>
+
+        {/* Sticky Footer with Pagination */}
+        <footer className="sticky bottom-0 bg-background/80 backdrop-blur-sm border-t border-t border-border p-2 flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <Select
+              value={selectedIndexId.toString()}
+              onValueChange={(value) => setSelectedIndexId(parseInt(value))}
+            >
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Select Index" />
+              </SelectTrigger>
+              <SelectContent>
+                {indexData.map((item, index) => (
+                  <SelectItem key={index} value={index.toString()}>
+                    {item.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handlePrevious}
+              disabled={currentStockIndex === 0}
+            >
+              <ChevronLeft className="h-4 w-4 mr-1" />
+              Prev
+            </Button>
+            <span className="text-sm">
+              {currentStockIndex + 1} / {stocks.length}
+            </span>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleNext}
+              disabled={currentStockIndex === stocks.length - 1}
+            >
+              Next
+              <ChevronRight className="h-4 w-4 ml-1" />
+            </Button>
+          </div>
+
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setIsWatchlistOpen(true)}
+          >
+            Watchlist
+          </Button>
+        </footer>
       </div>
 
       {/* Watchlist Modal */}
