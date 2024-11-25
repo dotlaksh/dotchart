@@ -1,5194 +1,1402 @@
 [
-  {
-    "Company Name": "20 Microns Limited",
-    "Symbol": "20MICRONS"
-  },
-  {
-    "Company Name": "21st Century Management Services Limited",
-    "Symbol": "21STCENMGM"
-  },
-  {
-    "Company Name": "3i Infotech Limited",
-    "Symbol": "3IINFOLTD"
-  },
-  {
-    "Company Name": "3P Land Holdings Limited",
-    "Symbol": "3PLAND"
-  },
-  {
-    "Company Name": "5Paisa Capital Limited",
-    "Symbol": "5PAISA"
-  },
-  {
-    "Company Name": "63 moons technologies limited",
-    "Symbol": "63MOONS"
-  },
-  {
-    "Company Name": "A2Z Infra Engineering Limited",
-    "Symbol": "A2ZINFRA"
-  },
-  {
-    "Company Name": "AAA Technologies Limited",
-    "Symbol": "AAATECH"
-  },
-  {
-    "Company Name": "Aakash Exploration Services Limited",
-    "Symbol": "AAKASH"
-  },
-  {
-    "Company Name": "Aarey Drugs & Pharmaceuticals Limited",
-    "Symbol": "AAREYDRUGS"
-  },
-  {
-    "Company Name": "Aaron Industries Limited",
-    "Symbol": "AARON"
-  },
-  {
-    "Company Name": "Aartech Solonics Limited",
-    "Symbol": "AARTECH"
-  },
-  {
-    "Company Name": "Aarti Surfactants Limited",
-    "Symbol": "AARTISURF"
-  },
-  {
-    "Company Name": "Aarvee Denims & Exports Limited",
-    "Symbol": "AARVEEDEN"
-  },
-  {
-    "Company Name": "Aarvi Encon Limited",
-    "Symbol": "AARVI"
-  },
-  {
-    "Company Name": "Aban Offshore Limited",
-    "Symbol": "ABAN"
-  },
-  {
-    "Company Name": "Allied Blenders and Distillers Limited",
-    "Symbol": "ABDL"
-  },
-  {
-    "Company Name": "A B Infrabuild Limited",
-    "Symbol": "ABINFRA"
-  },
-  {
-    "Company Name": "ABM International Limited",
-    "Symbol": "ABMINTLLTD"
-  },
-  {
-    "Company Name": "Aditya Birla Real Estate Limited",
-    "Symbol": "ABREL"
-  },
-  {
-    "Company Name": "Accelya Solutions India Limited",
-    "Symbol": "ACCELYA"
-  },
-  {
-    "Company Name": "Accuracy Shipping Limited",
-    "Symbol": "ACCURACY"
-  },
-  {
-    "Company Name": "Ace Integrated Solutions Limited",
-    "Symbol": "ACEINTEG"
-  },
-  {
-    "Company Name": "Andhra Cements Limited",
-    "Symbol": "ACL"
-  },
-  {
-    "Company Name": "Allcargo Gati Limited",
-    "Symbol": "ACLGATI"
-  },
-  {
-    "Company Name": "Acme Solar Holdings Limited",
-    "Symbol": "ACMESOLAR"
-  },
-  {
-    "Company Name": "ADF Foods Limited",
-    "Symbol": "ADFFOODS"
-  },
-  {
-    "Company Name": "Archidply Decor Limited",
-    "Symbol": "ADL"
-  },
-  {
-    "Company Name": "Ador Welding Limited",
-    "Symbol": "ADORWELD"
-  },
-  {
-    "Company Name": "Adroit Infotech Limited",
-    "Symbol": "ADROITINFO"
-  },
-  {
-    "Company Name": "Allied Digital Services Limited",
-    "Symbol": "ADSL"
-  },
-  {
-    "Company Name": "Advani Hotels & Resorts (India) Limited",
-    "Symbol": "ADVANIHOTR"
-  },
-  {
-    "Company Name": "Aeroflex Industries Limited",
-    "Symbol": "AEROFLEX"
-  },
-  {
-    "Company Name": "Afcons Infrastructure Limited",
-    "Symbol": "AFCONS"
-  },
-  {
-    "Company Name": "Affordable Robotic & Automation Limited",
-    "Symbol": "AFFORDABLE"
-  },
-  {
-    "Company Name": "Akme Fintrade (India) Limited",
-    "Symbol": "AFIL"
-  },
-  {
-    "Company Name": "Agarwal Industrial Corporation Limited",
-    "Symbol": "AGARIND"
-  },
-  {
-    "Company Name": "Agi Infra Limited",
-    "Symbol": "AGIIL"
-  },
-  {
-    "Company Name": "Agri-Tech (India) Limited",
-    "Symbol": "AGRITECH"
-  },
-  {
-    "Company Name": "Agro Phos India Limited",
-    "Symbol": "AGROPHOS"
-  },
-  {
-    "Company Name": "AGS Transact Technologies Limited",
-    "Symbol": "AGSTRA"
-  },
-  {
-    "Company Name": "Abans Holdings Limited",
-    "Symbol": "AHL"
-  },
-  {
-    "Company Name": "Ahlada Engineers Limited",
-    "Symbol": "AHLADA"
-  },
-  {
-    "Company Name": "Asian Hotels (East) Limited",
-    "Symbol": "AHLEAST"
-  },
-  {
-    "Company Name": "Authum Investment & Infrastructure Limited",
-    "Symbol": "AIIL"
-  },
-  {
-    "Company Name": "Airan Limited",
-    "Symbol": "AIRAN"
-  },
-  {
-    "Company Name": "Airo Lam limited",
-    "Symbol": "AIROLAM"
-  },
-  {
-    "Company Name": "Ajmera Realty & Infra India Limited",
-    "Symbol": "AJMERA"
-  },
-  {
-    "Company Name": "Ajooni Biotech Limited",
-    "Symbol": "AJOONI"
-  },
-  {
-    "Company Name": "Akash Infra-Projects Limited",
-    "Symbol": "AKASH"
-  },
-  {
-    "Company Name": "Akg Exim Limited",
-    "Symbol": "AKG"
-  },
-  {
-    "Company Name": "AKI India Limited",
-    "Symbol": "AKI"
-  },
-  {
-    "Company Name": "Akshar Spintex Limited",
-    "Symbol": "AKSHAR"
-  },
-  {
-    "Company Name": "AksharChem India Limited",
-    "Symbol": "AKSHARCHEM"
-  },
-  {
-    "Company Name": "Aksh Optifibre Limited",
-    "Symbol": "AKSHOPTFBR"
-  },
-  {
-    "Company Name": "Akums Drugs and Pharmaceuticals Limited",
-    "Symbol": "AKUMS"
-  },
-  {
-    "Company Name": "Akzo Nobel India Limited",
-    "Symbol": "AKZOINDIA"
-  },
-  {
-    "Company Name": "Alankit Limited",
-    "Symbol": "ALANKIT"
-  },
-  {
-    "Company Name": "Albert David Limited",
-    "Symbol": "ALBERTDAVD"
-  },
-  {
-    "Company Name": "Alembic Limited",
-    "Symbol": "ALEMBICLTD"
-  },
-  {
-    "Company Name": "Alicon Castalloy Limited",
-    "Symbol": "ALICON"
-  },
-  {
-    "Company Name": "Alkali Metals Limited",
-    "Symbol": "ALKALI"
-  },
-  {
-    "Company Name": "Alldigi Tech Limited",
-    "Symbol": "ALLDIGI"
-  },
-  {
-    "Company Name": "Almondz Global Securities Limited",
-    "Symbol": "ALMONDZ"
-  },
-  {
-    "Company Name": "Alpa Laboratories Limited",
-    "Symbol": "ALPA"
-  },
-  {
-    "Company Name": "Alphageo (India) Limited",
-    "Symbol": "ALPHAGEO"
-  },
-  {
-    "Company Name": "Ambica Agarbathies & Aroma industries Limited",
-    "Symbol": "AMBICAAGAR"
-  },
-  {
-    "Company Name": "Ambika Cotton Mills Limited",
-    "Symbol": "AMBIKCO"
-  },
-  {
-    "Company Name": "AMD Industries Limited",
-    "Symbol": "AMDIND"
-  },
-  {
-    "Company Name": "Amj Land Holdings Limited",
-    "Symbol": "AMJLAND"
-  },
-  {
-    "Company Name": "Amines & Plasticizers Limited",
-    "Symbol": "AMNPLST"
-  },
-  {
-    "Company Name": "Amrutanjan Health Care Limited",
-    "Symbol": "AMRUTANJAN"
-  },
-  {
-    "Company Name": "ANDHRA PAPER LIMITED",
-    "Symbol": "ANDHRAPAP"
-  },
-  {
-    "Company Name": "The Andhra Sugars Limited",
-    "Symbol": "ANDHRSUGAR"
-  },
-  {
-    "Company Name": "Anik Industries Limited",
-    "Symbol": "ANIKINDS"
-  },
-  {
-    "Company Name": "Ankit Metal & Power Limited",
-    "Symbol": "ANKITMETAL"
-  },
-  {
-    "Company Name": "Anmol India Limited",
-    "Symbol": "ANMOL"
-  },
-  {
-    "Company Name": "Ansal Properties & Infrastructure Limited",
-    "Symbol": "ANSALAPI"
-  },
-  {
-    "Company Name": "Antarctica Limited",
-    "Symbol": "ANTGRAPHIC"
-  },
-  {
-    "Company Name": "The Anup Engineering Limited",
-    "Symbol": "ANUP"
-  },
-  {
-    "Company Name": "Anjani Portland Cement Limited",
-    "Symbol": "APCL"
-  },
-  {
-    "Company Name": "Apcotex Industries Limited",
-    "Symbol": "APCOTEXIND"
-  },
-  {
-    "Company Name": "Apex Frozen Foods Limited",
-    "Symbol": "APEX"
-  },
-  {
-    "Company Name": "Apollo Micro Systems Limited",
-    "Symbol": "APOLLO"
-  },
-  {
-    "Company Name": "Apollo Pipes Limited",
-    "Symbol": "APOLLOPIPE"
-  },
-  {
-    "Company Name": "Apollo Sindoori Hotels Limited",
-    "Symbol": "APOLSINHOT"
-  },
-  {
-    "Company Name": "Aptech Limited",
-    "Symbol": "APTECHT"
-  },
-  {
-    "Company Name": "Archidply Industries Limited",
-    "Symbol": "ARCHIDPLY"
-  },
-  {
-    "Company Name": "Archies Limited",
-    "Symbol": "ARCHIES"
-  },
-  {
-    "Company Name": "Rajdarshan Industries Limited",
-    "Symbol": "ARENTERP"
-  },
-  {
-    "Company Name": "Aries Agro Limited",
-    "Symbol": "ARIES"
-  },
-  {
-    "Company Name": "Arihant Capital Markets Limited",
-    "Symbol": "ARIHANTCAP"
-  },
-  {
-    "Company Name": "Arihant Superstructures Limited",
-    "Symbol": "ARIHANTSUP"
-  },
-  {
-    "Company Name": "Arkade Developers Limited",
-    "Symbol": "ARKADE"
-  },
-  {
-    "Company Name": "Arman Financial Services Limited",
-    "Symbol": "ARMANFIN"
-  },
-  {
-    "Company Name": "Aro Granite Industries Limited",
-    "Symbol": "AROGRANITE"
-  },
-  {
-    "Company Name": "Arrow Greentech Limited",
-    "Symbol": "ARROWGREEN"
-  },
-  {
-    "Company Name": "Arshiya Limited",
-    "Symbol": "ARSHIYA"
-  },
-  {
-    "Company Name": "ARSS Infrastructure Projects Limited",
-    "Symbol": "ARSSINFRA"
-  },
-  {
-    "Company Name": "Artemis Medicare Services Limited",
-    "Symbol": "ARTEMISMED"
-  },
-  {
-    "Company Name": "Art Nirman Limited",
-    "Symbol": "ARTNIRMAN"
-  },
-  {
-    "Company Name": "Arvee Laboratories (India) Limited",
-    "Symbol": "ARVEE"
-  },
-  {
-    "Company Name": "Arvind SmartSpaces Limited",
-    "Symbol": "ARVSMART"
-  },
-  {
-    "Company Name": "Asahi Songwon Colors Limited",
-    "Symbol": "ASAHISONG"
-  },
-  {
-    "Company Name": "Automotive Stampings and Assemblies Limited",
-    "Symbol": "ASAL"
-  },
-  {
-    "Company Name": "Associated Alcohols & Breweries Ltd.",
-    "Symbol": "ASALCBR"
-  },
-  {
-    "Company Name": "Ashapura Minechem Limited",
-    "Symbol": "ASHAPURMIN"
-  },
-  {
-    "Company Name": "Ashiana Housing Limited",
-    "Symbol": "ASHIANA"
-  },
-  {
-    "Company Name": "Ashima Limited",
-    "Symbol": "ASHIMASYN"
-  },
-  {
-    "Company Name": "Ashoka Metcast Limited",
-    "Symbol": "ASHOKAMET"
-  },
-  {
-    "Company Name": "Asian Energy Services Limited",
-    "Symbol": "ASIANENE"
-  },
-  {
-    "Company Name": "Asian Hotels (North) Limited",
-    "Symbol": "ASIANHOTNR"
-  },
-  {
-    "Company Name": "Asian Granito India Limited",
-    "Symbol": "ASIANTILES"
-  },
-  {
-    "Company Name": "Bartronics India Limited",
-    "Symbol": "ASMS"
-  },
-  {
-    "Company Name": "Aspinwall and Company Limited",
-    "Symbol": "ASPINWALL"
-  },
-  {
-    "Company Name": "Astec LifeSciences Limited",
-    "Symbol": "ASTEC"
-  },
-  {
-    "Company Name": "Astron Paper & Board Mill Limited",
-    "Symbol": "ASTRON"
-  },
-  {
-    "Company Name": "Atal Realtech Limited",
-    "Symbol": "ATALREAL"
-  },
-  {
-    "Company Name": "Atam Valves Limited",
-    "Symbol": "ATAM"
-  },
-  {
-    "Company Name": "Agro Tech Foods Limited",
-    "Symbol": "ATFL"
-  },
-  {
-    "Company Name": "Allcargo Terminals Limited",
-    "Symbol": "ATL"
-  },
-  {
-    "Company Name": "ATLANTAA LIMITED",
-    "Symbol": "ATLANTAA"
-  },
-  {
-    "Company Name": "Atul Auto Limited",
-    "Symbol": "ATULAUTO"
-  },
-  {
-    "Company Name": "Aurionpro Solutions Limited",
-    "Symbol": "AURIONPRO"
-  },
-  {
-    "Company Name": "Aurum PropTech Limited",
-    "Symbol": "AURUM"
-  },
-  {
-    "Company Name": "Ausom Enterprise Limited",
-    "Symbol": "AUSOMENT"
-  },
-  {
-    "Company Name": "Automotive Axles Limited",
-    "Symbol": "AUTOAXLES"
-  },
-  {
-    "Company Name": "Autoline Industries Limited",
-    "Symbol": "AUTOIND"
-  },
-  {
-    "Company Name": "Avadh Sugar & Energy Limited",
-    "Symbol": "AVADHSUGAR"
-  },
-  {
-    "Company Name": "Avantel Limited",
-    "Symbol": "AVANTEL"
-  },
-  {
-    "Company Name": "AVG Logistics Limited",
-    "Symbol": "AVG"
-  },
-  {
-    "Company Name": "Aditya Vision Limited",
-    "Symbol": "AVL"
-  },
-  {
-    "Company Name": "Avonmore Capital & Management Services Limited",
-    "Symbol": "AVONMORE"
-  },
-  {
-    "Company Name": "AVRO INDIA LIMITED",
-    "Symbol": "AVROIND"
-  },
-  {
-    "Company Name": "AVT Natural Products Limited",
-    "Symbol": "AVTNPL"
-  },
-  {
-    "Company Name": "Awfis Space Solutions Limited",
-    "Symbol": "AWFIS"
-  },
-  {
-    "Company Name": "Antony Waste Handling Cell Limited",
-    "Symbol": "AWHCL"
-  },
-  {
-    "Company Name": "AXISCADES Technologies Limited",
-    "Symbol": "AXISCADES"
-  },
-  {
-    "Company Name": "Axita Cotton Limited",
-    "Symbol": "AXITA"
-  },
-  {
-    "Company Name": "AYM Syntex Limited",
-    "Symbol": "AYMSYNTEX"
-  },
-  {
-    "Company Name": "Bafna Pharmaceuticals Limited",
-    "Symbol": "BAFNAPH"
-  },
-  {
-    "Company Name": "B.A.G Films and Media Limited",
-    "Symbol": "BAGFILMS"
-  },
-  {
-    "Company Name": "Baid Finserv Limited",
-    "Symbol": "BAIDFIN"
-  },
-  {
-    "Company Name": "Bajaj Healthcare Limited",
-    "Symbol": "BAJAJHCARE"
-  },
-  {
-    "Company Name": "Bajaj Housing Finance Limited",
-    "Symbol": "BAJAJHFL"
-  },
-  {
-    "Company Name": "Bajel Projects Limited",
-    "Symbol": "BAJEL"
-  },
-  {
-    "Company Name": "Shree Tirupati Balajee Agro Trading Company Limited",
-    "Symbol": "BALAJEE"
-  },
-  {
-    "Company Name": "Balaji Telefilms Limited",
-    "Symbol": "BALAJITELE"
-  },
-  {
-    "Company Name": "BALAXI PHARMACEUTICALS LIMITED",
-    "Symbol": "BALAXI"
-  },
-  {
-    "Company Name": "Balkrishna Paper Mills Limited",
-    "Symbol": "BALKRISHNA"
-  },
-  {
-    "Company Name": "Bal Pharma Limited",
-    "Symbol": "BALPHARMA"
-  },
-  {
-    "Company Name": "Balu Forge Industries Limited",
-    "Symbol": "BALUFORGE"
-  },
-  {
-    "Company Name": "Banaras Beads Limited",
-    "Symbol": "BANARBEADS"
-  },
-  {
-    "Company Name": "Bannari Amman Sugars Limited",
-    "Symbol": "BANARISUG"
-  },
-  {
-    "Company Name": "Bang Overseas Limited",
-    "Symbol": "BANG"
-  },
-  {
-    "Company Name": "Banka BioLoo Limited",
-    "Symbol": "BANKA"
-  },
-  {
-    "Company Name": "Bansal Wire Industries Limited",
-    "Symbol": "BANSALWIRE"
-  },
-  {
-    "Company Name": "Banswara Syntex Limited",
-    "Symbol": "BANSWRAS"
-  },
-  {
-    "Company Name": "Barbeque Nation Hospitality Limited",
-    "Symbol": "BARBEQUE"
-  },
-  {
-    "Company Name": "Bannari Amman Spinning Mills Limited",
-    "Symbol": "BASML"
-  },
-  {
-    "Company Name": "Black Box Limited",
-    "Symbol": "BBOX"
-  },
-  {
-    "Company Name": "B&B Triplewall Containers Limited",
-    "Symbol": "BBTCL"
-  },
-  {
-    "Company Name": "Bcl Industries Limited",
-    "Symbol": "BCLIND"
-  },
-  {
-    "Company Name": "Brand Concepts Limited",
-    "Symbol": "BCONCEPTS"
-  },
-  {
-    "Company Name": "Beardsell Limited",
-    "Symbol": "BEARDSELL"
-  },
-  {
-    "Company Name": "Bedmutha Industries Limited",
-    "Symbol": "BEDMUTHA"
-  },
-  {
-    "Company Name": "Best Agrolife Limited",
-    "Symbol": "BESTAGRO"
-  },
-  {
-    "Company Name": "BF Investment Limited",
-    "Symbol": "BFINVEST"
-  },
-  {
-    "Company Name": "BF Utilities Limited",
-    "Symbol": "BFUTILITIE"
-  },
-  {
-    "Company Name": "BGR Energy Systems Limited",
-    "Symbol": "BGRENERGY"
-  },
-  {
-    "Company Name": "Bhagiradha Chemicals & Industries Limited",
-    "Symbol": "BHAGCHEM"
-  },
-  {
-    "Company Name": "Bhageria Industries Limited",
-    "Symbol": "BHAGERIA"
-  },
-  {
-    "Company Name": "Bhagyanagar India Limited",
-    "Symbol": "BHAGYANGR"
-  },
-  {
-    "Company Name": "Bhandari Hosiery Exports Limited",
-    "Symbol": "BHANDARI"
-  },
-  {
-    "Company Name": "Bharat Gears Limited",
-    "Symbol": "BHARATGEAR"
-  },
-  {
-    "Company Name": "Bharat Rasayan Limited",
-    "Symbol": "BHARATRAS"
-  },
-  {
-    "Company Name": "Bharat Wire Ropes Limited",
-    "Symbol": "BHARATWIRE"
-  },
-  {
-    "Company Name": "Bigbloc Construction Limited",
-    "Symbol": "BIGBLOC"
-  },
-  {
-    "Company Name": "Bhartiya International Limited",
-    "Symbol": "BIL"
-  },
-  {
-    "Company Name": "Binani Industries Limited",
-    "Symbol": "BINANIIND"
-  },
-  {
-    "Company Name": "Biofil Chemicals & Pharmaceuticals Limited",
-    "Symbol": "BIOFILCHEM"
-  },
-  {
-    "Company Name": "Birla Cable Limited",
-    "Symbol": "BIRLACABLE"
-  },
-  {
-    "Company Name": "Aditya Birla Money Limited",
-    "Symbol": "BIRLAMONEY"
-  },
-  {
-    "Company Name": "BEML Land Assets Limited",
-    "Symbol": "BLAL"
-  },
-  {
-    "Company Name": "BLB Limited",
-    "Symbol": "BLBLIMITED"
-  },
-  {
-    "Company Name": "Bliss GVS Pharma Limited",
-    "Symbol": "BLISSGVS"
-  },
-  {
-    "Company Name": "B. L. Kashyap and Sons Limited",
-    "Symbol": "BLKASHYAP"
-  },
-  {
-    "Company Name": "BLS E-Services Limited",
-    "Symbol": "BLSE"
-  },
-  {
-    "Company Name": "Blue Chip India Limited",
-    "Symbol": "BLUECHIP"
-  },
-  {
-    "Company Name": "Bodal Chemicals Limited",
-    "Symbol": "BODALCHEM"
-  },
-  {
-    "Company Name": "Borosil Scientific Limited",
-    "Symbol": "BOROSCI"
-  },
-  {
-    "Company Name": "BPL Limited",
-    "Symbol": "BPL"
-  },
-  {
-    "Company Name": "Bharat Road Network Limited",
-    "Symbol": "BRNL"
-  },
-  {
-    "Company Name": "Brooks Laboratories Limited",
-    "Symbol": "BROOKS"
-  },
-  {
-    "Company Name": "Bombay Super Hybrid Seeds Limited",
-    "Symbol": "BSHSL"
-  },
-  {
-    "Company Name": "BSL Limited",
-    "Symbol": "BSL"
-  },
-  {
-    "Company Name": "Bodhi Tree Multimedia Limited",
-    "Symbol": "BTML"
-  },
-  {
-    "Company Name": "Burnpur Cement Limited",
-    "Symbol": "BURNPUR"
-  },
-  {
-    "Company Name": "Butterfly Gandhimathi Appliances Limited",
-    "Symbol": "BUTTERFLY"
-  },
-  {
-    "Company Name": "Barak Valley Cements Limited",
-    "Symbol": "BVCL"
-  },
-  {
-    "Company Name": "The Byke Hospitality Ltd",
-    "Symbol": "BYKE"
-  },
-  {
-    "Company Name": "California Software Company Limited",
-    "Symbol": "CALSOFT"
-  },
-  {
-    "Company Name": "Camlin Fine Sciences Limited",
-    "Symbol": "CAMLINFINE"
-  },
-  {
-    "Company Name": "Cantabil Retail India Limited",
-    "Symbol": "CANTABIL"
-  },
-  {
-    "Company Name": "Capacit'e Infraprojects Limited",
-    "Symbol": "CAPACITE"
-  },
-  {
-    "Company Name": "Capital Small Finance Bank Limited",
-    "Symbol": "CAPITALSFB"
-  },
-  {
-    "Company Name": "Capital Trust Limited",
-    "Symbol": "CAPTRUST"
-  },
-  {
-    "Company Name": "Career Point Limited",
-    "Symbol": "CAREERP"
-  },
-  {
-    "Company Name": "CARE Ratings Limited",
-    "Symbol": "CARERATING"
-  },
-  {
-    "Company Name": "CARYSIL LIMITED",
-    "Symbol": "CARYSIL"
-  },
-  {
-    "Company Name": "Consolidated Construction Consortium Limited",
-    "Symbol": "CCCL"
-  },
-  {
-    "Company Name": "Country Club Hospitality & Holidays Limited",
-    "Symbol": "CCHHL"
-  },
-  {
-    "Company Name": "Ceigall India Limited",
-    "Symbol": "CEIGALL"
-  },
-  {
-    "Company Name": "Celebrity Fashions Limited",
-    "Symbol": "CELEBRITY"
-  },
-  {
-    "Company Name": "Century Enka Limited",
-    "Symbol": "CENTENKA"
-  },
-  {
-    "Company Name": "Century Extrusions Limited",
-    "Symbol": "CENTEXT"
-  },
-  {
-    "Company Name": "Centrum Capital Limited",
-    "Symbol": "CENTRUM"
-  },
-  {
-    "Company Name": "Centum Electronics Limited",
-    "Symbol": "CENTUM"
-  },
-  {
-    "Company Name": "Cerebra Integrated Technologies Limited",
-    "Symbol": "CEREBRAINT"
-  },
-  {
-    "Company Name": "Chembond Chemicals Ltd",
-    "Symbol": "CHEMBOND"
-  },
-  {
-    "Company Name": "Chemcon Speciality Chemicals Limited",
-    "Symbol": "CHEMCON"
-  },
-  {
-    "Company Name": "Chemfab Alkalis Limited",
-    "Symbol": "CHEMFAB"
-  },
-  {
-    "Company Name": "Cheviot Company Limited",
-    "Symbol": "CHEVIOT"
-  },
-  {
-    "Company Name": "Cineline India Limited",
-    "Symbol": "CINELINE"
-  },
-  {
-    "Company Name": "Cinevista Limited",
-    "Symbol": "CINEVISTA"
-  },
-  {
-    "Company Name": "CL Educate Limited",
-    "Symbol": "CLEDUCATE"
-  },
-  {
-    "Company Name": "Chaman Lal Setia Exports Limited",
-    "Symbol": "CLSEL"
-  },
-  {
-    "Company Name": "Coastal Corporation Limited",
-    "Symbol": "COASTCORP"
-  },
-  {
-    "Company Name": "Compucom Software Limited",
-    "Symbol": "COMPUSOFT"
-  },
-  {
-    "Company Name": "Commercial Syn Bags Limited",
-    "Symbol": "COMSYN"
-  },
-  {
-    "Company Name": "Consolidated Finvest & Holdings Limited",
-    "Symbol": "CONSOFINVT"
-  },
-  {
-    "Company Name": "Control Print Limited",
-    "Symbol": "CONTROLPR"
-  },
-  {
-    "Company Name": "Coral India Finance & Housing Limited",
-    "Symbol": "CORALFINAC"
-  },
-  {
-    "Company Name": "Cords Cable Industries Limited",
-    "Symbol": "CORDSCABLE"
-  },
-  {
-    "Company Name": "COSMO FIRST LIMITED",
-    "Symbol": "COSMOFIRST"
-  },
-  {
-    "Company Name": "Country Condo's Limited",
-    "Symbol": "COUNCODOS"
-  },
-  {
-    "Company Name": "Creative Newtech Limited",
-    "Symbol": "CREATIVE"
-  },
-  {
-    "Company Name": "Creative Eye Limited",
-    "Symbol": "CREATIVEYE"
-  },
-  {
-    "Company Name": "Crest Ventures Limited",
-    "Symbol": "CREST"
-  },
-  {
-    "Company Name": "Crown Lifters Limited",
-    "Symbol": "CROWN"
-  },
-  {
-    "Company Name": "CSL Finance Limited",
-    "Symbol": "CSLFINANCE"
-  },
-  {
-    "Company Name": "Cambridge Technology Enterprises Limited",
-    "Symbol": "CTE"
-  },
-  {
-    "Company Name": "Cubex Tubings Limited",
-    "Symbol": "CUBEXTUB"
-  },
-  {
-    "Company Name": "Cupid Limited",
-    "Symbol": "CUPID"
-  },
-  {
-    "Company Name": "Cyber Media (India) Limited",
-    "Symbol": "CYBERMEDIA"
-  },
-  {
-    "Company Name": "Cybertech Systems And Software Limited",
-    "Symbol": "CYBERTECH"
-  },
-  {
-    "Company Name": "Dalmia Bharat Sugar and Industries Limited",
-    "Symbol": "DALMIASUG"
-  },
-  {
-    "Company Name": "Damodar Industries Limited",
-    "Symbol": "DAMODARIND"
-  },
-  {
-    "Company Name": "Dangee Dums Limited",
-    "Symbol": "DANGEE"
-  },
-  {
-    "Company Name": "Davangere Sugar Company Limited",
-    "Symbol": "DAVANGERE"
-  },
-  {
-    "Company Name": "D.B.Corp Limited",
-    "Symbol": "DBCORP"
-  },
-  {
-    "Company Name": "Deepak Builders & Engineers India Limited",
-    "Symbol": "DBEIL"
-  },
-  {
-    "Company Name": "Dhampur Bio Organics Limited",
-    "Symbol": "DBOL"
-  },
-  {
-    "Company Name": "DB (International) Stock Brokers Limited",
-    "Symbol": "DBSTOCKBRO"
-  },
-  {
-    "Company Name": "Dc Infotech And Communication Limited",
-    "Symbol": "DCI"
-  },
-  {
-    "Company Name": "DCM  Limited",
-    "Symbol": "DCM"
-  },
-  {
-    "Company Name": "DCM Financial Services Limited",
-    "Symbol": "DCMFINSERV"
-  },
-  {
-    "Company Name": "DCM Nouvelle Limited",
-    "Symbol": "DCMNVL"
-  },
-  {
-    "Company Name": "DCM Shriram Industries Limited",
-    "Symbol": "DCMSRIND"
-  },
-  {
-    "Company Name": "DCW Limited",
-    "Symbol": "DCW"
-  },
-  {
-    "Company Name": "Deccan Cements Limited",
-    "Symbol": "DECCANCE"
-  },
-  {
-    "Company Name": "DEE Development Engineers Limited",
-    "Symbol": "DEEDEV"
-  },
-  {
-    "Company Name": "Deep Industries Limited",
-    "Symbol": "DEEPINDS"
-  },
-  {
-    "Company Name": "DELPHI WORLD MONEY LIMITED",
-    "Symbol": "DELPHIFX"
-  },
-  {
-    "Company Name": "Delta Manufacturing Limited",
-    "Symbol": "DELTAMAGNT"
-  },
-  {
-    "Company Name": "De Nora India Limited",
-    "Symbol": "DENORA"
-  },
-  {
-    "Company Name": "Dev Information Technology Limited",
-    "Symbol": "DEVIT"
-  },
-  {
-    "Company Name": "Digicontent Limited",
-    "Symbol": "DGCONTENT"
-  },
-  {
-    "Company Name": "Dhampur Sugar Mills Limited",
-    "Symbol": "DHAMPURSUG"
-  },
-  {
-    "Company Name": "Dhanlaxmi Bank Limited",
-    "Symbol": "DHANBANK"
-  },
-  {
-    "Company Name": "Dharmaj Crop Guard Limited",
-    "Symbol": "DHARMAJ"
-  },
-  {
-    "Company Name": "Dhruv Consultancy Services Limited",
-    "Symbol": "DHRUV"
-  },
-  {
-    "Company Name": "Dhunseri Investments Limited",
-    "Symbol": "DHUNINV"
-  },
-  {
-    "Company Name": "Diamond Power Infrastructure Limited",
-    "Symbol": "DIACABS"
-  },
-  {
-    "Company Name": "Diamines & Chemicals Limited",
-    "Symbol": "DIAMINESQ"
-  },
-  {
-    "Company Name": "Prataap Snacks Limited",
-    "Symbol": "DIAMONDYD"
-  },
-  {
-    "Company Name": "DIC India Limited",
-    "Symbol": "DICIND"
-  },
-  {
-    "Company Name": "Diffusion Engineers Limited",
-    "Symbol": "DIFFNKG"
-  },
-  {
-    "Company Name": "Digidrive Distributors Limited",
-    "Symbol": "DIGIDRIVE"
-  },
-  {
-    "Company Name": "DiGiSPICE Technologies Limited",
-    "Symbol": "DIGISPICE"
-  },
-  {
-    "Company Name": "Digjam Limited",
-    "Symbol": "DIGJAMLMTD"
-  },
-  {
-    "Company Name": "Debock Industries Limited",
-    "Symbol": "DIL"
-  },
-  {
-    "Company Name": "Divgi Torqtransfer Systems Limited",
-    "Symbol": "DIVGIITTS"
-  },
-  {
-    "Company Name": "DJ Mediaprint & Logistics Limited",
-    "Symbol": "DJML"
-  },
-  {
-    "Company Name": "D-Link (India) Limited",
-    "Symbol": "DLINKINDIA"
-  },
-  {
-    "Company Name": "DMCC SPECIALITY CHEMICALS LIMITED",
-    "Symbol": "DMCC"
-  },
-  {
-    "Company Name": "Diligent Media Corporation Limited",
-    "Symbol": "DNAMEDIA"
-  },
-  {
-    "Company Name": "Dolat Algotech Limited",
-    "Symbol": "DOLATALGO"
-  },
-  {
-    "Company Name": "Dollar Industries Limited",
-    "Symbol": "DOLLAR"
-  },
-  {
-    "Company Name": "Dolphin Offshore Enterprises (India) Limited",
-    "Symbol": "DOLPHIN"
-  },
-  {
-    "Company Name": "Donear Industries Limited",
-    "Symbol": "DONEAR"
-  },
-  {
-    "Company Name": "D. P. Abhushan Limited",
-    "Symbol": "DPABHUSHAN"
-  },
-  {
-    "Company Name": "DPSC Limited",
-    "Symbol": "DPSCLTD"
-  },
-  {
-    "Company Name": "D P Wires Limited",
-    "Symbol": "DPWIRES"
-  },
-  {
-    "Company Name": "DRC Systems India Limited",
-    "Symbol": "DRCSYSTEMS"
-  },
-  {
-    "Company Name": "Dredging Corporation of India Limited",
-    "Symbol": "DREDGECORP"
-  },
-  {
-    "Company Name": "Dynacons Systems & Solutions Limited",
-    "Symbol": "DSSL"
-  },
-  {
-    "Company Name": "Dhunseri Tea & Industries Limited",
-    "Symbol": "DTIL"
-  },
-  {
-    "Company Name": "Ducon Infratechnologies Limited",
-    "Symbol": "DUCON"
-  },
-  {
-    "Company Name": "Dhunseri Ventures Limited",
-    "Symbol": "DVL"
-  },
-  {
-    "Company Name": "Dwarikesh Sugar Industries Limited",
-    "Symbol": "DWARKESH"
-  },
-  {
-    "Company Name": "Dynamic Cables Limited",
-    "Symbol": "DYCL"
-  },
-  {
-    "Company Name": "Dynemic Products Limited",
-    "Symbol": "DYNPRO"
-  },
-  {
-    "Company Name": "E2E Networks Limited",
-    "Symbol": "E2E"
-  },
-  {
-    "Company Name": "Ecos (India) Mobility & Hospitality Limited",
-    "Symbol": "ECOSMOBLTY"
-  },
-  {
-    "Company Name": "Euro India Fresh Foods Limited",
-    "Symbol": "EIFFL"
-  },
-  {
-    "Company Name": "EIH Associated Hotels Limited",
-    "Symbol": "EIHAHOTELS"
-  },
-  {
-    "Company Name": "Eimco Elecon (India) Limited",
-    "Symbol": "EIMCOELECO"
-  },
-  {
-    "Company Name": "Everest Kanto Cylinder Limited",
-    "Symbol": "EKC"
-  },
-  {
-    "Company Name": "Eldeco Housing And Industries Limited",
-    "Symbol": "ELDEHSG"
-  },
-  {
-    "Company Name": "Electrotherm (India) Limited",
-    "Symbol": "ELECTHERM"
-  },
-  {
-    "Company Name": "Elgi Rubber Company Limited",
-    "Symbol": "ELGIRUBCO"
-  },
-  {
-    "Company Name": "Elin Electronics Limited",
-    "Symbol": "ELIN"
-  },
-  {
-    "Company Name": "Emami Paper Mills Limited",
-    "Symbol": "EMAMIPAP"
-  },
-  {
-    "Company Name": "Emami Realty Limited",
-    "Symbol": "EMAMIREAL"
-  },
-  {
-    "Company Name": "Emcure Pharmaceuticals Limited",
-    "Symbol": "EMCURE"
-  },
-  {
-    "Company Name": "Emkay Global Financial Services Limited",
-    "Symbol": "EMKAY"
-  },
-  {
-    "Company Name": "Emmbi Industries Limited",
-    "Symbol": "EMMBI"
-  },
-  {
-    "Company Name": "EMS Limited",
-    "Symbol": "EMSLIMITED"
-  },
-  {
-    "Company Name": "Energy Development Company Limited",
-    "Symbol": "ENERGYDEV"
-  },
-  {
-    "Company Name": "Entertainment Network (India) Limited",
-    "Symbol": "ENIL"
-  },
-  {
-    "Company Name": "EPACK Durable Limited",
-    "Symbol": "EPACK"
-  },
-  {
-    "Company Name": "Equippp Social Impact Technologies Limited",
-    "Symbol": "EQUIPPP"
-  },
-  {
-    "Company Name": "Eros International Media Limited",
-    "Symbol": "EROSMEDIA"
-  },
-  {
-    "Company Name": "Esab India Limited",
-    "Symbol": "ESABINDIA"
-  },
-  {
-    "Company Name": "Essar Shipping Limited",
-    "Symbol": "ESSARSHPNG"
-  },
-  {
-    "Company Name": "Integra Essentia Limited",
-    "Symbol": "ESSENTIA"
-  },
-  {
-    "Company Name": "Ester Industries Limited",
-    "Symbol": "ESTER"
-  },
-  {
-    "Company Name": "Eureka Forbes Limited",
-    "Symbol": "EUREKAFORB"
-  },
-  {
-    "Company Name": "Eurotex Industries and Exports Limited",
-    "Symbol": "EUROTEXIND"
-  },
-  {
-    "Company Name": "Everest Industries Limited",
-    "Symbol": "EVERESTIND"
-  },
-  {
-    "Company Name": "Excel Realty N Infra Limited",
-    "Symbol": "EXCEL"
-  },
-  {
-    "Company Name": "Excel Industries Limited",
-    "Symbol": "EXCELINDUS"
-  },
-  {
-    "Company Name": "Exicom Tele-Systems Limited",
-    "Symbol": "EXICOM"
-  },
-  {
-    "Company Name": "Expleo Solutions Limited",
-    "Symbol": "EXPLEOSOL"
-  },
-  {
-    "Company Name": "Exxaro Tiles Limited",
-    "Symbol": "EXXARO"
-  },
-  {
-    "Company Name": "Fairchem Organics Limited",
-    "Symbol": "FAIRCHEMOR"
-  },
-  {
-    "Company Name": "Faze Three Limited",
-    "Symbol": "FAZE3Q"
-  },
-  {
-    "Company Name": "FCS Software Solutions Limited",
-    "Symbol": "FCSSOFT"
-  },
-  {
-    "Company Name": "Fedbank Financial Services Limited",
-    "Symbol": "FEDFINA"
-  },
-  {
-    "Company Name": "Future Enterprises Limited",
-    "Symbol": "FEL"
-  },
-  {
-    "Company Name": "Future Enterprises Limited",
-    "Symbol": "FELDVR"
-  },
-  {
-    "Company Name": "Fiberweb (India) Limited",
-    "Symbol": "FIBERWEB"
-  },
-  {
-    "Company Name": "Filatex India Limited",
-    "Symbol": "FILATEX"
-  },
-  {
-    "Company Name": "Filatex Fashions Limited",
-    "Symbol": "FILATFASH"
-  },
-  {
-    "Company Name": "Fino Payments Bank Limited",
-    "Symbol": "FINOPB"
-  },
-  {
-    "Company Name": "Brainbees Solutions Limited",
-    "Symbol": "FIRSTCRY"
-  },
-  {
-    "Company Name": "Flair Writing Industries Limited",
-    "Symbol": "FLAIR"
-  },
-  {
-    "Company Name": "Flexituff Ventures International Limited",
-    "Symbol": "FLEXITUFF"
-  },
-  {
-    "Company Name": "Future Lifestyle Fashions Limited",
-    "Symbol": "FLFL"
-  },
-  {
-    "Company Name": "Federal-Mogul Goetze (India) Limited.",
-    "Symbol": "FMGOETZE"
-  },
-  {
-    "Company Name": "Future Market Networks Limited",
-    "Symbol": "FMNL"
-  },
-  {
-    "Company Name": "Focus Lighting and Fixtures Limited",
-    "Symbol": "FOCUS"
-  },
-  {
-    "Company Name": "Foods & Inns Limited",
-    "Symbol": "FOODSIN"
-  },
-  {
-    "Company Name": "Foseco India Limited",
-    "Symbol": "FOSECOIND"
-  },
-  {
-    "Company Name": "Gala Precision Engineering Limited",
-    "Symbol": "GALAPREC"
-  },
-  {
-    "Company Name": "Galaxy Surfactants Limited",
-    "Symbol": "GALAXYSURF"
-  },
-  {
-    "Company Name": "Gallantt Ispat Limited",
-    "Symbol": "GALLANTT"
-  },
-  {
-    "Company Name": "Gandhar Oil Refinery (India) Limited",
-    "Symbol": "GANDHAR"
-  },
-  {
-    "Company Name": "Gandhi Special Tubes Limited",
-    "Symbol": "GANDHITUBE"
-  },
-  {
-    "Company Name": "Ganesha Ecosphere Limited",
-    "Symbol": "GANECOS"
-  },
-  {
-    "Company Name": "Ganesh Benzoplast Limited",
-    "Symbol": "GANESHBE"
-  },
-  {
-    "Company Name": "Ganga Forging Limited",
-    "Symbol": "GANGAFORGE"
-  },
-  {
-    "Company Name": "Ganges Securities Limited",
-    "Symbol": "GANGESSECU"
-  },
-  {
-    "Company Name": "Garware Technical Fibres Limited",
-    "Symbol": "GARFIBRES"
-  },
-  {
-    "Company Name": "Garuda Construction and Engineering Limited",
-    "Symbol": "GARUDA"
-  },
-  {
-    "Company Name": "GACM Technologies Limited",
-    "Symbol": "GATECH"
-  },
-  {
-    "Company Name": "GACM Technologies Limited",
-    "Symbol": "GATECHDVR"
-  },
-  {
-    "Company Name": "Gayatri Highways Limited",
-    "Symbol": "GAYAHWS"
-  },
-  {
-    "Company Name": "Gayatri Projects Limited",
-    "Symbol": "GAYAPROJ"
-  },
-  {
-    "Company Name": "GeeCee Ventures Limited",
-    "Symbol": "GEECEE"
-  },
-  {
-    "Company Name": "Geekay Wires Limited",
-    "Symbol": "GEEKAYWIRE"
-  },
-  {
-    "Company Name": "Generic Engineering Construction and Projects Limited",
-    "Symbol": "GENCON"
-  },
-  {
-    "Company Name": "Genesys International Corporation Limited",
-    "Symbol": "GENESYS"
-  },
-  {
-    "Company Name": "Gensol Engineering Limited",
-    "Symbol": "GENSOL"
-  },
-  {
-    "Company Name": "Genus Paper & Boards Limited",
-    "Symbol": "GENUSPAPER"
-  },
-  {
-    "Company Name": "Genus Power Infrastructures Limited",
-    "Symbol": "GENUSPOWER"
-  },
-  {
-    "Company Name": "Geojit Financial Services Limited",
-    "Symbol": "GEOJITFSL"
-  },
-  {
-    "Company Name": "GE Power India Limited",
-    "Symbol": "GEPIL"
-  },
-  {
-    "Company Name": "GFL Limited",
-    "Symbol": "GFLLIMITED"
-  },
-  {
-    "Company Name": "GHCL Textiles Limited",
-    "Symbol": "GHCLTEXTIL"
-  },
-  {
-    "Company Name": "GIC Housing Finance Limited",
-    "Symbol": "GICHSGFIN"
-  },
-  {
-    "Company Name": "Gillanders Arbuthnot & Company Limited",
-    "Symbol": "GILLANDERS"
-  },
-  {
-    "Company Name": "Ginni Filaments Limited",
-    "Symbol": "GINNIFILA"
-  },
-  {
-    "Company Name": "Gujarat Industries Power Company Limited",
-    "Symbol": "GIPCL"
-  },
-  {
-    "Company Name": "GKW Limited",
-    "Symbol": "GKWLIMITED"
-  },
-  {
-    "Company Name": "Gujarat Lease Financing Limited",
-    "Symbol": "GLFL"
-  },
-  {
-    "Company Name": "Global Education Limited",
-    "Symbol": "GLOBAL"
-  },
-  {
-    "Company Name": "Globale Tessile Limited",
-    "Symbol": "GLOBALE"
-  },
-  {
-    "Company Name": "Global Vectra Helicorp Limited",
-    "Symbol": "GLOBALVECT"
-  },
-  {
-    "Company Name": "Globe Textiles (India) Limited",
-    "Symbol": "GLOBE"
-  },
-  {
-    "Company Name": "Globus Spirits Limited",
-    "Symbol": "GLOBUSSPR"
-  },
-  {
-    "Company Name": "Gloster Limited",
-    "Symbol": "GLOSTERLTD"
-  },
-  {
-    "Company Name": "GM Breweries Limited",
-    "Symbol": "GMBREW"
-  },
-  {
-    "Company Name": "GMR Power and Urban Infra Limited",
-    "Symbol": "GMRP&UI"
-  },
-  {
-    "Company Name": "GNA Axles Limited",
-    "Symbol": "GNA"
-  },
-  {
-    "Company Name": "Goa Carbon Limited",
-    "Symbol": "GOACARBON"
-  },
-  {
-    "Company Name": "GOCL Corporation Limited",
-    "Symbol": "GOCLCORP"
-  },
-  {
-    "Company Name": "Godavari Biorefineries Limited",
-    "Symbol": "GODAVARIB"
-  },
-  {
-    "Company Name": "Godha Cabcon & Insulation Limited",
-    "Symbol": "GODHA"
-  },
-  {
-    "Company Name": "Goenka Diamond and Jewels Limited",
-    "Symbol": "GOENKA"
-  },
-  {
-    "Company Name": "Gokul Refoils and Solvent Limited",
-    "Symbol": "GOKUL"
-  },
-  {
-    "Company Name": "Gokul Agro Resources Limited",
-    "Symbol": "GOKULAGRO"
-  },
-  {
-    "Company Name": "Golden Tobacco Limited",
-    "Symbol": "GOLDENTOBC"
-  },
-  {
-    "Company Name": "Goldiam International Limited",
-    "Symbol": "GOLDIAM"
-  },
-  {
-    "Company Name": "AION-TECH SOLUTIONS LIMITED",
-    "Symbol": "GOLDTECH"
-  },
-  {
-    "Company Name": "Goodluck India Limited",
-    "Symbol": "GOODLUCK"
-  },
-  {
-    "Company Name": "Goyal Aluminiums Limited",
-    "Symbol": "GOYALALUM"
-  },
-  {
-    "Company Name": "GPT Healthcare Limited",
-    "Symbol": "GPTHEALTH"
-  },
-  {
-    "Company Name": "GPT Infraprojects Limited",
-    "Symbol": "GPTINFRA"
-  },
-  {
-    "Company Name": "Greenlam Industries Limited",
-    "Symbol": "GREENLAM"
-  },
-  {
-    "Company Name": "Orient Green Power Company Limited",
-    "Symbol": "GREENPOWER"
-  },
-  {
-    "Company Name": "GRM Overseas Limited",
-    "Symbol": "GRMOVER"
-  },
-  {
-    "Company Name": "The Grob Tea Company Limited",
-    "Symbol": "GROBTEA"
-  },
-  {
-    "Company Name": "GRP Limited",
-    "Symbol": "GRPLTD"
-  },
-  {
-    "Company Name": "Global Surfaces Limited",
-    "Symbol": "GSLSU"
-  },
-  {
-    "Company Name": "GSS Infotech Limited",
-    "Symbol": "GSS"
-  },
-  {
-    "Company Name": "G-TEC JAINX EDUCATION LIMITED",
-    "Symbol": "GTECJAINX"
-  },
-  {
-    "Company Name": "GTL Limited",
-    "Symbol": "GTL"
-  },
-  {
-    "Company Name": "GTL Infrastructure Limited",
-    "Symbol": "GTLINFRA"
-  },
-  {
-    "Company Name": "GTPL Hathway Limited",
-    "Symbol": "GTPL"
-  },
-  {
-    "Company Name": "Gufic Biosciences Limited",
-    "Symbol": "GUFICBIO"
-  },
-  {
-    "Company Name": "Gujarat Apollo Industries Limited",
-    "Symbol": "GUJAPOLLO"
-  },
-  {
-    "Company Name": "Gujarat Raffia Industries Limited",
-    "Symbol": "GUJRAFFIA"
-  },
-  {
-    "Company Name": "GP Petroleums Limited",
-    "Symbol": "GULFPETRO"
-  },
-  {
-    "Company Name": "Gulshan Polyols Limited",
-    "Symbol": "GULPOLY"
-  },
-  {
-    "Company Name": "GVK Power & Infrastructure Limited",
-    "Symbol": "GVKPIL"
-  },
-  {
-    "Company Name": "GVP Infotech Limited",
-    "Symbol": "GVPTECH"
-  },
-  {
-    "Company Name": "GE Vernova T&D India Limited",
-    "Symbol": "GVT&D"
-  },
-  {
-    "Company Name": "Hardwyn India Limited",
-    "Symbol": "HARDWYN"
-  },
-  {
-    "Company Name": "Hariom Pipe Industries Limited",
-    "Symbol": "HARIOMPIPE"
-  },
-  {
-    "Company Name": "Harrisons  Malayalam Limited",
-    "Symbol": "HARRMALAYA"
-  },
-  {
-    "Company Name": "Hatsun Agro Product Limited",
-    "Symbol": "HATSUN"
-  },
-  {
-    "Company Name": "Sri Havisha Hospitality and Infrastructure Limited",
-    "Symbol": "HAVISHA"
-  },
-  {
-    "Company Name": "HB Stockholdings Limited",
-    "Symbol": "HBSL"
-  },
-  {
-    "Company Name": "HCL Infosystems Limited",
-    "Symbol": "HCL-INSYS"
-  },
-  {
-    "Company Name": "Housing Development and Infrastructure Limited",
-    "Symbol": "HDIL"
-  },
-  {
-    "Company Name": "Heads UP Ventures Limited",
-    "Symbol": "HEADSUP"
-  },
-  {
-    "Company Name": "HEC Infra Projects Limited",
-    "Symbol": "HECPROJECT"
-  },
-  {
-    "Company Name": "Heranba Industries Limited",
-    "Symbol": "HERANBA"
-  },
-  {
-    "Company Name": "Hercules Hoists Limited",
-    "Symbol": "HERCULES"
-  },
-  {
-    "Company Name": "Hester Biosciences Limited",
-    "Symbol": "HESTERBIO"
-  },
-  {
-    "Company Name": "Heubach Colorants India Limited",
-    "Symbol": "HEUBACHIND"
-  },
-  {
-    "Company Name": "Hexa Tradex Limited",
-    "Symbol": "HEXATRADEX"
-  },
-  {
-    "Company Name": "Hinduja Global Solutions Limited",
-    "Symbol": "HGS"
-  },
-  {
-    "Company Name": "HIL Limited",
-    "Symbol": "HIL"
-  },
-  {
-    "Company Name": "Hilton Metal Forging Limited",
-    "Symbol": "HILTON"
-  },
-  {
-    "Company Name": "Himatsingka Seide Limited",
-    "Symbol": "HIMATSEIDE"
-  },
-  {
-    "Company Name": "Hindustan Composites Limited",
-    "Symbol": "HINDCOMPOS"
-  },
-  {
-    "Company Name": "Hindcon Chemicals Limited",
-    "Symbol": "HINDCON"
-  },
-  {
-    "Company Name": "Hindustan Motors Limited",
-    "Symbol": "HINDMOTORS"
-  },
-  {
-    "Company Name": "Hindusthan National Glass & Industries Limited",
-    "Symbol": "HINDNATGLS"
-  },
-  {
-    "Company Name": "Hindware Home Innovation Limited-RE",
-    "Symbol": "HINDWAR-RE"
-  },
-  {
-    "Company Name": "Hind Rectifiers Limited",
-    "Symbol": "HIRECT"
-  },
-  {
-    "Company Name": "Hisar Metal Industries Limited",
-    "Symbol": "HISARMETAL"
-  },
-  {
-    "Company Name": "Hi-Tech Pipes Limited",
-    "Symbol": "HITECH"
-  },
-  {
-    "Company Name": "Hitech Corporation Limited",
-    "Symbol": "HITECHCORP"
-  },
-  {
-    "Company Name": "The Hi-Tech Gears Limited",
-    "Symbol": "HITECHGEAR"
-  },
-  {
-    "Company Name": "HLE Glascoat Limited",
-    "Symbol": "HLEGLAS"
-  },
-  {
-    "Company Name": "HLV LIMITED",
-    "Symbol": "HLVLTD"
-  },
-  {
-    "Company Name": "HMA Agro Industries Limited",
-    "Symbol": "HMAAGRO"
-  },
-  {
-    "Company Name": "HMT Limited",
-    "Symbol": "HMT"
-  },
-  {
-    "Company Name": "Hindustan Media Ventures Limited",
-    "Symbol": "HMVL"
-  },
-  {
-    "Company Name": "Honda India Power Products Limited",
-    "Symbol": "HONDAPOWER"
-  },
-  {
-    "Company Name": "HOV Services Limited",
-    "Symbol": "HOVS"
-  },
-  {
-    "Company Name": "HP Adhesives Limited",
-    "Symbol": "HPAL"
-  },
-  {
-    "Company Name": "Hindprakash Industries Limited",
-    "Symbol": "HPIL"
-  },
-  {
-    "Company Name": "HPL Electric & Power Limited",
-    "Symbol": "HPL"
-  },
-  {
-    "Company Name": "HT Media Limited",
-    "Symbol": "HTMEDIA"
-  },
-  {
-    "Company Name": "Hubtown Limited",
-    "Symbol": "HUBTOWN"
-  },
-  {
-    "Company Name": "Huhtamaki India Limited",
-    "Symbol": "HUHTAMAKI"
-  },
-  {
-    "Company Name": "Hybrid Financial Services Limited",
-    "Symbol": "HYBRIDFIN"
-  },
-  {
-    "Company Name": "Hyundai Motor India Limited",
-    "Symbol": "HYUNDAI"
-  },
-  {
-    "Company Name": "ICDS Limited",
-    "Symbol": "ICDSLTD"
-  },
-  {
-    "Company Name": "Ice Make Refrigeration Limited",
-    "Symbol": "ICEMAKE"
-  },
-  {
-    "Company Name": "ICRA Limited",
-    "Symbol": "ICRA"
-  },
-  {
-    "Company Name": "Indiabulls Enterprises Limited",
-    "Symbol": "IEL"
-  },
-  {
-    "Company Name": "IFB Agro Industries Limited",
-    "Symbol": "IFBAGRO"
-  },
-  {
-    "Company Name": "IFGL Refractories Limited",
-    "Symbol": "IFGLEXPOR"
-  },
-  {
-    "Company Name": "Igarashi Motors India Limited",
-    "Symbol": "IGARASHI"
-  },
-  {
-    "Company Name": "IG Petrochemicals Limited",
-    "Symbol": "IGPL"
-  },
-  {
-    "Company Name": "Industrial Investment Trust Limited",
-    "Symbol": "IITL"
-  },
-  {
-    "Company Name": "IKIO Lighting Limited",
-    "Symbol": "IKIO"
-  },
-  {
-    "Company Name": "IL&FS Engineering and Construction Company Limited",
-    "Symbol": "IL&FSENGG"
-  },
-  {
-    "Company Name": "IL&FS Transportation Networks Limited",
-    "Symbol": "IL&FSTRANS"
-  },
-  {
-    "Company Name": "India Motor Parts and Accessories Limited",
-    "Symbol": "IMPAL"
-  },
-  {
-    "Company Name": "Impex Ferro Tech Limited",
-    "Symbol": "IMPEXFERRO"
-  },
-  {
-    "Company Name": "INCREDIBLE INDUSTRIES LIMITED",
-    "Symbol": "INCREDIBLE"
-  },
-  {
-    "Company Name": "Indbank Merchant Banking Services Limited",
-    "Symbol": "INDBANK"
-  },
-  {
-    "Company Name": "Indian Card Clothing Company Limited",
-    "Symbol": "INDIANCARD"
-  },
-  {
-    "Company Name": "Indian Hume Pipe Company Limited",
-    "Symbol": "INDIANHUME"
-  },
-  {
-    "Company Name": "India Nippon Electricals Limited",
-    "Symbol": "INDNIPPON"
-  },
-  {
-    "Company Name": "Indo Amines Limited",
-    "Symbol": "INDOAMIN"
-  },
-  {
-    "Company Name": "Indo Borax & Chemicals Limited",
-    "Symbol": "INDOBORAX"
-  },
-  {
-    "Company Name": "Indoco Remedies Limited",
-    "Symbol": "INDOCO"
-  },
-  {
-    "Company Name": "Indo Rama Synthetics (India) Limited",
-    "Symbol": "INDORAMA"
-  },
-  {
-    "Company Name": "IndoStar Capital Finance Limited",
-    "Symbol": "INDOSTAR"
-  },
-  {
-    "Company Name": "Indo Tech Transformers Limited",
-    "Symbol": "INDOTECH"
-  },
-  {
-    "Company Name": "Indo Thai Securities Limited",
-    "Symbol": "INDOTHAI"
-  },
-  {
-    "Company Name": "Indo Us Biotech Limited",
-    "Symbol": "INDOUS"
-  },
-  {
-    "Company Name": "Indowind Energy Limited",
-    "Symbol": "INDOWIND"
-  },
-  {
-    "Company Name": "Indraprastha Medical Corporation Limited",
-    "Symbol": "INDRAMEDCO"
-  },
-  {
-    "Company Name": "Ind-Swift Laboratories Limited",
-    "Symbol": "INDSWFTLAB"
-  },
-  {
-    "Company Name": "Ind-Swift Limited",
-    "Symbol": "INDSWFTLTD"
-  },
-  {
-    "Company Name": "Indian Terrain Fashions Limited",
-    "Symbol": "INDTERRAIN"
-  },
-  {
-    "Company Name": "InfoBeans Technologies Limited",
-    "Symbol": "INFOBEAN"
-  },
-  {
-    "Company Name": "Infomedia Press Limited",
-    "Symbol": "INFOMEDIA"
-  },
-  {
-    "Company Name": "Innova Captab Limited",
-    "Symbol": "INNOVACAP"
-  },
-  {
-    "Company Name": "Insecticides (India) Limited",
-    "Symbol": "INSECTICID"
-  },
-  {
-    "Company Name": "Inspirisys Solutions Limited",
-    "Symbol": "INSPIRISYS"
-  },
-  {
-    "Company Name": "Intense Technologies Limited",
-    "Symbol": "INTENTECH"
-  },
-  {
-    "Company Name": "Interarch Building Products Limited",
-    "Symbol": "INTERARCH"
-  },
-  {
-    "Company Name": "International Conveyors Limited",
-    "Symbol": "INTLCONV"
-  },
-  {
-    "Company Name": "Inventure Growth & Securities Limited",
-    "Symbol": "INVENTURE"
-  },
-  {
-    "Company Name": "IOL Chemicals and Pharmaceuticals Limited",
-    "Symbol": "IOLCP"
-  },
-  {
-    "Company Name": "Iris Business Services Limited",
-    "Symbol": "IRIS"
-  },
-  {
-    "Company Name": "Iris Clothings Limited",
-    "Symbol": "IRISDOREME"
-  },
-  {
-    "Company Name": "IRM Energy Limited",
-    "Symbol": "IRMENERGY"
-  },
-  {
-    "Company Name": "Intrasoft Technologies Limited",
-    "Symbol": "ISFT"
-  },
-  {
-    "Company Name": "India Tourism Development Corporation Limited",
-    "Symbol": "ITDC"
-  },
-  {
-    "Company Name": "IL&FS Investment Managers Limited",
-    "Symbol": "IVC"
-  },
-  {
-    "Company Name": "IVP Limited",
-    "Symbol": "IVP"
-  },
-  {
-    "Company Name": "Inox Wind Energy Limited",
-    "Symbol": "IWEL"
-  },
-  {
-    "Company Name": "IZMO Limited",
-    "Symbol": "IZMO"
-  },
-  {
-    "Company Name": "Jagran Prakashan Limited",
-    "Symbol": "JAGRAN"
-  },
-  {
-    "Company Name": "Jagsonpal Pharmaceuticals Limited",
-    "Symbol": "JAGSNPHARM"
-  },
-  {
-    "Company Name": "Nandani Creation Limited",
-    "Symbol": "JAIPURKURT"
-  },
-  {
-    "Company Name": "Jash Engineering Limited",
-    "Symbol": "JASH"
-  },
-  {
-    "Company Name": "Jayant Agro Organics Limited",
-    "Symbol": "JAYAGROGN"
-  },
-  {
-    "Company Name": "Jay Bharat Maruti Limited",
-    "Symbol": "JAYBARMARU"
-  },
-  {
-    "Company Name": "Jayaswal Neco Industries Limited",
-    "Symbol": "JAYNECOIND"
-  },
-  {
-    "Company Name": "Jayshree Tea & Industries Limited",
-    "Symbol": "JAYSREETEA"
-  },
-  {
-    "Company Name": "Jet Freight Logistics Limited",
-    "Symbol": "JETFREIGHT"
-  },
-  {
-    "Company Name": "J.G.Chemicals Limited",
-    "Symbol": "JGCHEM"
-  },
-  {
-    "Company Name": "JHS Svendgaard Laboratories Limited",
-    "Symbol": "JHS"
-  },
-  {
-    "Company Name": "Jindal Photo Limited",
-    "Symbol": "JINDALPHOT"
-  },
-  {
-    "Company Name": "Jindal Poly Films Limited",
-    "Symbol": "JINDALPOLY"
-  },
-  {
-    "Company Name": "Jindal Drilling And Industries Limited",
-    "Symbol": "JINDRILL"
-  },
-  {
-    "Company Name": "Jain Irrigation Systems Limited",
-    "Symbol": "JISLDVREQS"
-  },
-  {
-    "Company Name": "JITF Infralogistics Limited",
-    "Symbol": "JITFINFRA"
-  },
-  {
-    "Company Name": "Jullundur Motor Agency (Delhi) Limited",
-    "Symbol": "JMA"
-  },
-  {
-    "Company Name": "JNK India Limited",
-    "Symbol": "JNKINDIA"
-  },
-  {
-    "Company Name": "Jocil Limited",
-    "Symbol": "JOCIL"
-  },
-  {
-    "Company Name": "Jindal Poly Investment and Finance Company Limited",
-    "Symbol": "JPOLYINVST"
-  },
-  {
-    "Company Name": "JSW Holdings Limited",
-    "Symbol": "JSWHL"
-  },
-  {
-    "Company Name": "Jyoti Structures Limited",
-    "Symbol": "JYOTISTRUC"
-  },
-  {
-    "Company Name": "Kabra Extrusion Technik Limited",
-    "Symbol": "KABRAEXTRU"
-  },
-  {
-    "Company Name": "Kakatiya Cement Sugar & Industries Limited",
-    "Symbol": "KAKATCEM"
-  },
-  {
-    "Company Name": "Kalyani Commercials Limited",
-    "Symbol": "KALYANI"
-  },
-  {
-    "Company Name": "Kalyani Forge Limited",
-    "Symbol": "KALYANIFRG"
-  },
-  {
-    "Company Name": "Kamat Hotels (I) Limited",
-    "Symbol": "KAMATHOTEL"
-  },
-  {
-    "Company Name": "Kamdhenu Limited",
-    "Symbol": "KAMDHENU"
-  },
-  {
-    "Company Name": "Kamdhenu Ventures Limited",
-    "Symbol": "KAMOPAINTS"
-  },
-  {
-    "Company Name": "Kanani Industries Limited",
-    "Symbol": "KANANIIND"
-  },
-  {
-    "Company Name": "Kanoria Chemicals & Industries Limited",
-    "Symbol": "KANORICHEM"
-  },
-  {
-    "Company Name": "Kanpur Plastipack Limited",
-    "Symbol": "KANPRPLA"
-  },
-  {
-    "Company Name": "Kapston Services Limited",
-    "Symbol": "KAPSTON"
-  },
-  {
-    "Company Name": "Karma Energy Limited",
-    "Symbol": "KARMAENG"
-  },
-  {
-    "Company Name": "Kaushalya Infrastructure Development Corporation Limited",
-    "Symbol": "KAUSHALYA"
-  },
-  {
-    "Company Name": "Kavveri Telecom Products Limited",
-    "Symbol": "KAVVERITEL"
-  },
-  {
-    "Company Name": "Kaya Limited",
-    "Symbol": "KAYA"
-  },
-  {
-    "Company Name": "KBC Global Limited",
-    "Symbol": "KBCGLOBAL"
-  },
-  {
-    "Company Name": "KCP Limited",
-    "Symbol": "KCP"
-  },
-  {
-    "Company Name": "KCP Sugar and Industries Corporation Limited",
-    "Symbol": "KCPSUGIND"
-  },
-  {
-    "Company Name": "KDDL Limited",
-    "Symbol": "KDDL"
-  },
-  {
-    "Company Name": "Kirloskar Electric Company Limited",
-    "Symbol": "KECL"
-  },
-  {
-    "Company Name": "DSJ Keep Learning Limited",
-    "Symbol": "KEEPLEARN"
-  },
-  {
-    "Company Name": "Kellton Tech Solutions Limited",
-    "Symbol": "KELLTONTEC"
-  },
-  {
-    "Company Name": "Kernex Microsystems (India) Limited",
-    "Symbol": "KERNEX"
-  },
-  {
-    "Company Name": "Keynote Financial Services Limited",
-    "Symbol": "KEYFINSERV"
-  },
-  {
-    "Company Name": "Khadim India Limited",
-    "Symbol": "KHADIM"
-  },
-  {
-    "Company Name": "Khaitan Chemicals & Fertilizers Limited",
-    "Symbol": "KHAICHEM"
-  },
-  {
-    "Company Name": "Khaitan (India) Limited",
-    "Symbol": "KHAITANLTD"
-  },
-  {
-    "Company Name": "Khandwala Securities Limited",
-    "Symbol": "KHANDSE"
-  },
-  {
-    "Company Name": "Kalyani Investment Company Limited",
-    "Symbol": "KICL"
-  },
-  {
-    "Company Name": "Kilitch Drugs (India) Limited",
-    "Symbol": "KILITCH"
-  },
-  {
-    "Company Name": "Kingfa Science & Technology (India) Limited",
-    "Symbol": "KINGFA"
-  },
-  {
-    "Company Name": "KIOCL Limited",
-    "Symbol": "KIOCL"
-  },
-  {
-    "Company Name": "Kiri Industries Limited",
-    "Symbol": "KIRIINDUS"
-  },
-  {
-    "Company Name": "Kirloskar Industries Limited",
-    "Symbol": "KIRLOSIND"
-  },
-  {
-    "Company Name": "Kitex Garments Limited",
-    "Symbol": "KITEX"
-  },
-  {
-    "Company Name": "Kewal Kiran Clothing Limited",
-    "Symbol": "KKCL"
-  },
-  {
-    "Company Name": "Knowledge Marine & Engineering Works Limited",
-    "Symbol": "KMEW"
-  },
-  {
-    "Company Name": "K.M.Sugar Mills Limited",
-    "Symbol": "KMSUGAR"
-  },
-  {
-    "Company Name": "Kohinoor Foods Limited",
-    "Symbol": "KOHINOOR"
-  },
-  {
-    "Company Name": "Kokuyo Camlin Limited",
-    "Symbol": "KOKUYOCMLN"
-  },
-  {
-    "Company Name": "Kopran Limited",
-    "Symbol": "KOPRAN"
-  },
-  {
-    "Company Name": "Kothari Sugars And Chemicals Limited",
-    "Symbol": "KOTARISUG"
-  },
-  {
-    "Company Name": "Kothari Petrochemicals Limited",
-    "Symbol": "KOTHARIPET"
-  },
-  {
-    "Company Name": "Kothari Products Limited",
-    "Symbol": "KOTHARIPRO"
-  },
-  {
-    "Company Name": "K.P. Energy Limited",
-    "Symbol": "KPEL"
-  },
-  {
-    "Company Name": "KPI Green Energy Limited",
-    "Symbol": "KPIGREEN"
-  },
-  {
-    "Company Name": "Krebs Biochemicals and Industries Limited",
-    "Symbol": "KREBSBIO"
-  },
-  {
-    "Company Name": "Kridhan Infra Limited",
-    "Symbol": "KRIDHANINF"
-  },
-  {
-    "Company Name": "Krishana Phoschem Limited",
-    "Symbol": "KRISHANA"
-  },
-  {
-    "Company Name": "Kriti Industries (India) Limited",
-    "Symbol": "KRITI"
-  },
-  {
-    "Company Name": "Kritika Wires Limited",
-    "Symbol": "KRITIKA"
-  },
-  {
-    "Company Name": "Kriti Nutrients Limited",
-    "Symbol": "KRITINUT"
-  },
-  {
-    "Company Name": "KRN Heat Exchanger and Refrigeration Limited",
-    "Symbol": "KRN"
-  },
-  {
-    "Company Name": "Kronox Lab Sciences Limited",
-    "Symbol": "KRONOX"
-  },
-  {
-    "Company Name": "Kross Limited",
-    "Symbol": "KROSS"
-  },
-  {
-    "Company Name": "Krsnaa Diagnostics Limited",
-    "Symbol": "KRSNAA"
-  },
-  {
-    "Company Name": "Krystal Integrated Services Limited",
-    "Symbol": "KRYSTAL"
-  },
-  {
-    "Company Name": "Kshitij Polyline Limited",
-    "Symbol": "KSHITIJPOL"
-  },
-  {
-    "Company Name": "Ksolves India Limited",
-    "Symbol": "KSOLVES"
-  },
-  {
-    "Company Name": "Kuantum Papers Limited",
-    "Symbol": "KUANTUM"
-  },
-  {
-    "Company Name": "Lagnam Spintex Limited",
-    "Symbol": "LAGNAM"
-  },
-  {
-    "Company Name": "Lakshmi Precision Screws Limited",
-    "Symbol": "LAKPRE"
-  },
-  {
-    "Company Name": "Lorenzini Apparels Limited",
-    "Symbol": "LAL"
-  },
-  {
-    "Company Name": "Lambodhara Textiles Limited",
-    "Symbol": "LAMBODHARA"
-  },
-  {
-    "Company Name": "Lancor Holdings Limited",
-    "Symbol": "LANCORHOL"
-  },
-  {
-    "Company Name": "La Opala RG Limited",
-    "Symbol": "LAOPALA"
-  },
-  {
-    "Company Name": "Lasa Supergenerics Limited",
-    "Symbol": "LASA"
-  },
-  {
-    "Company Name": "Latteys Industries Limited",
-    "Symbol": "LATTEYS"
-  },
-  {
-    "Company Name": "Laxmi Cotspin Limited",
-    "Symbol": "LAXMICOT"
-  },
-  {
-    "Company Name": "LCC Infotech Limited",
-    "Symbol": "LCCINFOTEC"
-  },
-  {
-    "Company Name": "Lexus Granito (India) Limited",
-    "Symbol": "LEXUS"
-  },
-  {
-    "Company Name": "Lakshmi Finance & Industrial Corporation Limited",
-    "Symbol": "LFIC"
-  },
-  {
-    "Company Name": "LG Balakrishnan & Bros Limited",
-    "Symbol": "LGBBROSLTD"
-  },
-  {
-    "Company Name": "Laxmi Goldorna House Limited",
-    "Symbol": "LGHL"
-  },
-  {
-    "Company Name": "Libas Consumer Products Limited",
-    "Symbol": "LIBAS"
-  },
-  {
-    "Company Name": "Liberty Shoes Limited",
-    "Symbol": "LIBERTSHOE"
-  },
-  {
-    "Company Name": "Likhitha Infrastructure Limited",
-    "Symbol": "LIKHITHA"
-  },
-  {
-    "Company Name": "Linc Limited",
-    "Symbol": "LINC"
-  },
-  {
-    "Company Name": "Lincoln Pharmaceuticals Limited",
-    "Symbol": "LINCOLN"
-  },
-  {
-    "Company Name": "Lloyds Enterprises Limited",
-    "Symbol": "LLOYDSENT"
-  },
-  {
-    "Company Name": "LMW Limited",
-    "Symbol": "LMW"
-  },
-  {
-    "Company Name": "Lokesh Machines Limited",
-    "Symbol": "LOKESHMACH"
-  },
-  {
-    "Company Name": "Lords Chloro Alkali Limited",
-    "Symbol": "LORDSCHLO"
-  },
-  {
-    "Company Name": "Lotus Eye Hospital and Institute Limited",
-    "Symbol": "LOTUSEYE"
-  },
-  {
-    "Company Name": "Lovable Lingerie Limited",
-    "Symbol": "LOVABLE"
-  },
-  {
-    "Company Name": "Loyal Textile Mills Limited",
-    "Symbol": "LOYALTEX"
-  },
-  {
-    "Company Name": "Landmark Property Development Company Limited",
-    "Symbol": "LPDC"
-  },
-  {
-    "Company Name": "Lumax Industries Limited",
-    "Symbol": "LUMAXIND"
-  },
-  {
-    "Company Name": "Lumax Auto Technologies Limited",
-    "Symbol": "LUMAXTECH"
-  },
-  {
-    "Company Name": "Lyka Labs Limited",
-    "Symbol": "LYKALABS"
-  },
-  {
-    "Company Name": "Lypsa Gems & Jewellery Limited",
-    "Symbol": "LYPSAGEMS"
-  },
-  {
-    "Company Name": "Maan Aluminium Limited",
-    "Symbol": "MAANALU"
-  },
-  {
-    "Company Name": "Macpower CNC Machines Limited",
-    "Symbol": "MACPOWER"
-  },
-  {
-    "Company Name": "Madhav Marbles and Granites Limited",
-    "Symbol": "MADHAV"
-  },
-  {
-    "Company Name": "Madhucon Projects Limited",
-    "Symbol": "MADHUCON"
-  },
-  {
-    "Company Name": "Madras Fertilizers Limited",
-    "Symbol": "MADRASFERT"
-  },
-  {
-    "Company Name": "Magadh Sugar & Energy Limited",
-    "Symbol": "MAGADSUGAR"
-  },
-  {
-    "Company Name": "Magnum Ventures Limited",
-    "Symbol": "MAGNUM"
-  },
-  {
-    "Company Name": "Maha Rashtra Apex Corporation Limited",
-    "Symbol": "MAHAPEXLTD"
-  },
-  {
-    "Company Name": "Mahamaya Steel Industries Limited",
-    "Symbol": "MAHASTEEL"
-  },
-  {
-    "Company Name": "Mahindra EPC Irrigation Limited",
-    "Symbol": "MAHEPC"
-  },
-  {
-    "Company Name": "Maheshwari Logistics Limited",
-    "Symbol": "MAHESHWARI"
-  },
-  {
-    "Company Name": "Maharashtra Scooters Limited",
-    "Symbol": "MAHSCOOTER"
-  },
-  {
-    "Company Name": "Mallcom (India) Limited",
-    "Symbol": "MALLCOM"
-  },
-  {
-    "Company Name": "Malu Paper Mills Limited",
-    "Symbol": "MALUPAPER"
-  },
-  {
-    "Company Name": "Manaksia Aluminium Company Limited",
-    "Symbol": "MANAKALUCO"
-  },
-  {
-    "Company Name": "Manaksia Coated Metals & Industries Limited",
-    "Symbol": "MANAKCOAT"
-  },
-  {
-    "Company Name": "Manaksia Limited",
-    "Symbol": "MANAKSIA"
-  },
-  {
-    "Company Name": "Manaksia Steels Limited",
-    "Symbol": "MANAKSTEEL"
-  },
-  {
-    "Company Name": "Manali Petrochemicals Limited",
-    "Symbol": "MANALIPETC"
-  },
-  {
-    "Company Name": "Manba Finance Limited",
-    "Symbol": "MANBA"
-  },
-  {
-    "Company Name": "Mangal Credit and Fincorp Limited",
-    "Symbol": "MANCREDIT"
-  },
-  {
-    "Company Name": "Mangalam Drugs And Organics Limited",
-    "Symbol": "MANGALAM"
-  },
-  {
-    "Company Name": "Mangalore Chemicals & Fertilizers Limited",
-    "Symbol": "MANGCHEFER"
-  },
-  {
-    "Company Name": "Mangalam Cement Limited",
-    "Symbol": "MANGLMCEM"
-  },
-  {
-    "Company Name": "Man Industries (India) Limited",
-    "Symbol": "MANINDS"
-  },
-  {
-    "Company Name": "Manomay Tex India Limited",
-    "Symbol": "MANOMAY"
-  },
-  {
-    "Company Name": "Manorama Industries Limited",
-    "Symbol": "MANORAMA"
-  },
-  {
-    "Company Name": "Mangalam Organics Limited",
-    "Symbol": "MANORG"
-  },
-  {
-    "Company Name": "Manugraph India Limited",
-    "Symbol": "MANUGRAPH"
-  },
-  {
-    "Company Name": "Maral Overseas Limited",
-    "Symbol": "MARALOVER"
-  },
-  {
-    "Company Name": "Marathon Nextgen Realty Limited",
-    "Symbol": "MARATHON"
-  },
-  {
-    "Company Name": "Marine Electricals (India) Limited",
-    "Symbol": "MARINE"
-  },
-  {
-    "Company Name": "Marshall Machines Limited",
-    "Symbol": "MARSHALL"
-  },
-  {
-    "Company Name": "MAS Financial Services Limited",
-    "Symbol": "MASFIN"
-  },
-  {
-    "Company Name": "Mask Investments Limited",
-    "Symbol": "MASKINVEST"
-  },
-  {
-    "Company Name": "Master Trust Limited",
-    "Symbol": "MASTERTR"
-  },
-  {
-    "Company Name": "Matrimony.Com Limited",
-    "Symbol": "MATRIMONY"
-  },
-  {
-    "Company Name": "Mawana Sugars Limited",
-    "Symbol": "MAWANASUG"
-  },
-  {
-    "Company Name": "Max Estates Limited",
-    "Symbol": "MAXESTATES"
-  },
-  {
-    "Company Name": "Max India Limited",
-    "Symbol": "MAXIND"
-  },
-  {
-    "Company Name": "Mayur Uniquoters Ltd",
-    "Symbol": "MAYURUNIQ"
-  },
-  {
-    "Company Name": "Mazda Limited",
-    "Symbol": "MAZDA"
-  },
-  {
-    "Company Name": "Madhya Bharat Agro Products Limited",
-    "Symbol": "MBAPL"
-  },
-  {
-    "Company Name": "Mcnally Bharat Engineering Company Limited",
-    "Symbol": "MBECL"
-  },
-  {
-    "Company Name": "MBL Infrastructure Limited",
-    "Symbol": "MBLINFRA"
-  },
-  {
-    "Company Name": "Madhav Copper Limited",
-    "Symbol": "MCL"
-  },
-  {
-    "Company Name": "Mcleod Russel India Limited",
-    "Symbol": "MCLEODRUSS"
-  },
-  {
-    "Company Name": "Medi Assist Healthcare Services Limited",
-    "Symbol": "MEDIASSIST"
-  },
-  {
-    "Company Name": "Medicamen Biotech Limited",
-    "Symbol": "MEDICAMEQ"
-  },
-  {
-    "Company Name": "Medico Remedies Limited",
-    "Symbol": "MEDICO"
-  },
-  {
-    "Company Name": "Megasoft Limited",
-    "Symbol": "MEGASOFT"
-  },
-  {
-    "Company Name": "Megastar Foods Limited",
-    "Symbol": "MEGASTAR"
-  },
-  {
-    "Company Name": "Menon Bearings Limited",
-    "Symbol": "MENONBE"
-  },
-  {
-    "Company Name": "Mahalaxmi Fabric Mills Limited",
-    "Symbol": "MFML"
-  },
-  {
-    "Company Name": "Mangalam Global Enterprise Limited",
-    "Symbol": "MGEL"
-  },
-  {
-    "Company Name": "Mahalaxmi Rubtech Limited",
-    "Symbol": "MHLXMIRU"
-  },
-  {
-    "Company Name": "MIC Electronics Limited",
-    "Symbol": "MICEL"
-  },
-  {
-    "Company Name": "Mindteck (India) Limited",
-    "Symbol": "MINDTECK"
-  },
-  {
-    "Company Name": "MIRC Electronics Limited",
-    "Symbol": "MIRCELECTR"
-  },
-  {
-    "Company Name": "Mirza International Limited",
-    "Symbol": "MIRZAINT"
-  },
-  {
-    "Company Name": "MITCON Consultancy & Engineering Services Limited",
-    "Symbol": "MITCON"
-  },
-  {
-    "Company Name": "Mittal Life Style Limited",
-    "Symbol": "MITTAL"
-  },
-  {
-    "Company Name": "M K Proteins Limited",
-    "Symbol": "MKPL"
-  },
-  {
-    "Company Name": "MM Forgings Limited",
-    "Symbol": "MMFL"
-  },
-  {
-    "Company Name": "MMP Industries Limited",
-    "Symbol": "MMP"
-  },
-  {
-    "Company Name": "Modi Rubber Limited",
-    "Symbol": "MODIRUBBER"
-  },
-  {
-    "Company Name": "MODISON LIMITED",
-    "Symbol": "MODISONLTD"
-  },
-  {
-    "Company Name": "Modern Threads (India) Limited",
-    "Symbol": "MODTHREAD"
-  },
-  {
-    "Company Name": "Mohit Industries Limited",
-    "Symbol": "MOHITIND"
-  },
-  {
-    "Company Name": "Moksh Ornaments Limited",
-    "Symbol": "MOKSH"
-  },
-  {
-    "Company Name": "Meghmani Organics Limited",
-    "Symbol": "MOL"
-  },
-  {
-    "Company Name": "Mold-Tek Technologies Limited",
-    "Symbol": "MOLDTECH"
-  },
-  {
-    "Company Name": "Mold-Tek Packaging Limited",
-    "Symbol": "MOLDTKPAC"
-  },
-  {
-    "Company Name": "Monarch Networth Capital Limited",
-    "Symbol": "MONARCH"
-  },
-  {
-    "Company Name": "Monte Carlo Fashions Limited",
-    "Symbol": "MONTECARLO"
-  },
-  {
-    "Company Name": "Morarjee Textiles Limited",
-    "Symbol": "MORARJEE"
-  },
-  {
-    "Company Name": "Morepen Laboratories Limited",
-    "Symbol": "MOREPENLAB"
-  },
-  {
-    "Company Name": "Motisons Jewellers Limited",
-    "Symbol": "MOTISONS"
-  },
-  {
-    "Company Name": "The Motor & General Finance Limited",
-    "Symbol": "MOTOGENFIN"
-  },
-  {
-    "Company Name": "MPS Limited",
-    "Symbol": "MPSLTD"
-  },
-  {
-    "Company Name": "MRO-TEK Realty Limited",
-    "Symbol": "MRO-TEK"
-  },
-  {
-    "Company Name": "MSP Steel & Power Limited",
-    "Symbol": "MSPL"
-  },
-  {
-    "Company Name": "MT Educare Limited",
-    "Symbol": "MTEDUCARE"
-  },
-  {
-    "Company Name": "Mahanagar Telephone Nigam Limited",
-    "Symbol": "MTNL"
-  },
-  {
-    "Company Name": "Mufin Green Finance Limited",
-    "Symbol": "MUFIN"
-  },
-  {
-    "Company Name": "Credo Brands Marketing Limited",
-    "Symbol": "MUFTI"
-  },
-  {
-    "Company Name": "Mukand Limited",
-    "Symbol": "MUKANDLTD"
-  },
-  {
-    "Company Name": "Mukka Proteins Limited",
-    "Symbol": "MUKKA"
-  },
-  {
-    "Company Name": "Mukta Arts Limited",
-    "Symbol": "MUKTAARTS"
-  },
-  {
-    "Company Name": "Munjal Auto Industries Limited",
-    "Symbol": "MUNJALAU"
-  },
-  {
-    "Company Name": "Munjal Showa Limited",
-    "Symbol": "MUNJALSHOW"
-  },
-  {
-    "Company Name": "Murudeshwar Ceramics Limited",
-    "Symbol": "MURUDCERA"
-  },
-  {
-    "Company Name": "Muthoot Capital Services Limited",
-    "Symbol": "MUTHOOTCAP"
-  },
-  {
-    "Company Name": "Manoj Vaibhav Gems N Jewellers Limited",
-    "Symbol": "MVGJL"
-  },
-  {
-    "Company Name": "NACL Industries Limited",
-    "Symbol": "NACLIND"
-  },
-  {
-    "Company Name": "Nagarjuna Fertilizers and Chemicals Limited",
-    "Symbol": "NAGAFERT"
-  },
-  {
-    "Company Name": "Nagreeka Capital & Infrastructure Limited",
-    "Symbol": "NAGREEKCAP"
-  },
-  {
-    "Company Name": "Nagreeka Exports Limited",
-    "Symbol": "NAGREEKEXP"
-  },
-  {
-    "Company Name": "Nahar Capital and Financial Services Limited",
-    "Symbol": "NAHARCAP"
-  },
-  {
-    "Company Name": "Nahar Industrial Enterprises Limited",
-    "Symbol": "NAHARINDUS"
-  },
-  {
-    "Company Name": "Nahar Poly Films Limited",
-    "Symbol": "NAHARPOLY"
-  },
-  {
-    "Company Name": "Nahar Spinning Mills Limited",
-    "Symbol": "NAHARSPING"
-  },
-  {
-    "Company Name": "Narmada Agrobase Limited",
-    "Symbol": "NARMADA"
-  },
-  {
-    "Company Name": "Nath Bio-Genes (India) Limited",
-    "Symbol": "NATHBIOGEN"
-  },
-  {
-    "Company Name": "Navkar Corporation Limited",
-    "Symbol": "NAVKARCORP"
-  },
-  {
-    "Company Name": "Navneet Education Limited",
-    "Symbol": "NAVNETEDUL"
-  },
-  {
-    "Company Name": "N. B. I. Industrial Finance Company Limited",
-    "Symbol": "NBIFIN"
-  },
-  {
-    "Company Name": "NCL Industries Limited",
-    "Symbol": "NCLIND"
-  },
-  {
-    "Company Name": "Naga Dhunseri Group Limited",
-    "Symbol": "NDGL"
-  },
-  {
-    "Company Name": "Nandan Denim Limited",
-    "Symbol": "NDL"
-  },
-  {
-    "Company Name": "NDL Ventures Limited",
-    "Symbol": "NDLVENTURE"
-  },
-  {
-    "Company Name": "Ndr Auto Components Limited",
-    "Symbol": "NDRAUTO"
-  },
-  {
-    "Company Name": "New Delhi Television Limited",
-    "Symbol": "NDTV"
-  },
-  {
-    "Company Name": "North Eastern Carrying Corporation Limited",
-    "Symbol": "NECCLTD"
-  },
-  {
-    "Company Name": "Nectar Lifesciences Limited",
-    "Symbol": "NECLIFE"
-  },
-  {
-    "Company Name": "Nelcast Limited",
-    "Symbol": "NELCAST"
-  },
-  {
-    "Company Name": "NELCO Limited",
-    "Symbol": "NELCO"
-  },
-  {
-    "Company Name": "Next Mediaworks Limited",
-    "Symbol": "NEXTMEDIA"
-  },
-  {
-    "Company Name": "Nakoda Group of Industries Limited",
-    "Symbol": "NGIL"
-  },
-  {
-    "Company Name": "NGL Fine-Chem Limited",
-    "Symbol": "NGLFINE"
-  },
-  {
-    "Company Name": "NRB Industrial Bearings Limited",
-    "Symbol": "NIBL"
-  },
-  {
-    "Company Name": "NIIT Limited",
-    "Symbol": "NIITLTD"
-  },
-  {
-    "Company Name": "Nila Infrastructures Limited",
-    "Symbol": "NILAINFRA"
-  },
-  {
-    "Company Name": "Nila Spaces Limited",
-    "Symbol": "NILASPACES"
-  },
-  {
-    "Company Name": "Nilkamal Limited",
-    "Symbol": "NILKAMAL"
-  },
-  {
-    "Company Name": "NINtec Systems Limited",
-    "Symbol": "NINSYS"
-  },
-  {
-    "Company Name": "Indo-National Limited",
-    "Symbol": "NIPPOBATRY"
-  },
-  {
-    "Company Name": "Niraj Cement Structurals Limited",
-    "Symbol": "NIRAJ"
-  },
-  {
-    "Company Name": "Niraj Ispat Industries Limited",
-    "Symbol": "NIRAJISPAT"
-  },
-  {
-    "Company Name": "Nitco Limited",
-    "Symbol": "NITCO"
-  },
-  {
-    "Company Name": "Nitin Spinners Limited",
-    "Symbol": "NITINSPIN"
-  },
-  {
-    "Company Name": "Nitiraj Engineers Limited",
-    "Symbol": "NITIRAJ"
-  },
-  {
-    "Company Name": "Niva Bupa Health Insurance Company Limited",
-    "Symbol": "NIVABUPA"
-  },
-  {
-    "Company Name": "NK Industries Limited",
-    "Symbol": "NKIND"
-  },
-  {
-    "Company Name": "Noida Toll Bridge Company Limited",
-    "Symbol": "NOIDATOLL"
-  },
-  {
-    "Company Name": "Norben Tea & Exports Limited",
-    "Symbol": "NORBTEAEXP"
-  },
-  {
-    "Company Name": "Northern Arc Capital Limited",
-    "Symbol": "NORTHARC"
-  },
-  {
-    "Company Name": "Nova Agritech Limited",
-    "Symbol": "NOVAAGRI"
-  },
-  {
-    "Company Name": "N R Agarwal Industries Limited",
-    "Symbol": "NRAIL"
-  },
-  {
-    "Company Name": "Nupur Recyclers Limited",
-    "Symbol": "NRL"
-  },
-  {
-    "Company Name": "Nalwa Sons Investments Limited",
-    "Symbol": "NSIL"
-  },
-  {
-    "Company Name": "Neueon Towers Limited",
-    "Symbol": "NTL"
-  },
-  {
-    "Company Name": "Nucleus Software Exports Limited",
-    "Symbol": "NUCLEUS"
-  },
-  {
-    "Company Name": "Nureca Limited",
-    "Symbol": "NURECA"
-  },
-  {
-    "Company Name": "Oriental Aromatics Limited",
-    "Symbol": "OAL"
-  },
-  {
-    "Company Name": "Orissa Bengal Carrier Limited",
-    "Symbol": "OBCL"
-  },
-  {
-    "Company Name": "Oriental Carbon & Chemicals Limited",
-    "Symbol": "OCCL"
-  },
-  {
-    "Company Name": "OCCL Limited",
-    "Symbol": "OCCLLTD"
-  },
-  {
-    "Company Name": "Oil Country Tubular Limited",
-    "Symbol": "OILCOUNTUB"
-  },
-  {
-    "Company Name": "Ola Electric Mobility Limited",
-    "Symbol": "OLAELEC"
-  },
-  {
-    "Company Name": "Omax Autos Limited",
-    "Symbol": "OMAXAUTO"
-  },
-  {
-    "Company Name": "Omaxe Limited",
-    "Symbol": "OMAXE"
-  },
-  {
-    "Company Name": "OM INFRA LIMITED",
-    "Symbol": "OMINFRAL"
-  },
-  {
-    "Company Name": "Onelife Capital Advisors Limited",
-    "Symbol": "ONELIFECAP"
-  },
-  {
-    "Company Name": "One Point One Solutions Limited",
-    "Symbol": "ONEPOINT"
-  },
-  {
-    "Company Name": "OnMobile Global Limited",
-    "Symbol": "ONMOBILE"
-  },
-  {
-    "Company Name": "Onward Technologies Limited",
-    "Symbol": "ONWARDTEC"
-  },
-  {
-    "Company Name": "Orbit Exports Limited",
-    "Symbol": "ORBTEXP"
-  },
-  {
-    "Company Name": "Oricon Enterprises Limited",
-    "Symbol": "ORICONENT"
-  },
-  {
-    "Company Name": "Oriental Trimex Limited",
-    "Symbol": "ORIENTALTL"
-  },
-  {
-    "Company Name": "Orient Bell Limited",
-    "Symbol": "ORIENTBELL"
-  },
-  {
-    "Company Name": "ORIENT CERATECH LIMITED",
-    "Symbol": "ORIENTCER"
-  },
-  {
-    "Company Name": "Oriental Hotels Limited",
-    "Symbol": "ORIENTHOT"
-  },
-  {
-    "Company Name": "Orient Press Limited",
-    "Symbol": "ORIENTLTD"
-  },
-  {
-    "Company Name": "Orient Paper & Industries Limited",
-    "Symbol": "ORIENTPPR"
-  },
-  {
-    "Company Name": "Orient Technologies Limited",
-    "Symbol": "ORIENTTECH"
-  },
-  {
-    "Company Name": "ORTIN GLOBAL LIMITED",
-    "Symbol": "ORTINGLOBE"
-  },
-  {
-    "Company Name": "Osia Hyper Retail Limited",
-    "Symbol": "OSIAHYPER"
-  },
-  {
-    "Company Name": "Oswal Agro Mills Limited",
-    "Symbol": "OSWALAGRO"
-  },
-  {
-    "Company Name": "Oswal Greentech Limited",
-    "Symbol": "OSWALGREEN"
-  },
-  {
-    "Company Name": "ShreeOswal Seeds And Chemicals Limited",
-    "Symbol": "OSWALSEEDS"
-  },
-  {
-    "Company Name": "PAKKA LIMITED",
-    "Symbol": "PAKKA"
-  },
-  {
-    "Company Name": "Palash Securities Limited",
-    "Symbol": "PALASHSECU"
-  },
-  {
-    "Company Name": "Palred Technologies Limited",
-    "Symbol": "PALREDTEC"
-  },
-  {
-    "Company Name": "Panacea Biotec Limited",
-    "Symbol": "PANACEABIO"
-  },
-  {
-    "Company Name": "Panache Digilife Limited",
-    "Symbol": "PANACHE"
-  },
-  {
-    "Company Name": "Panama Petrochem Limited",
-    "Symbol": "PANAMAPET"
-  },
-  {
-    "Company Name": "Pansari Developers Limited",
-    "Symbol": "PANSARI"
-  },
-  {
-    "Company Name": "Par Drugs And Chemicals Limited",
-    "Symbol": "PAR"
-  },
-  {
-    "Company Name": "Paramount Communications Limited",
-    "Symbol": "PARACABLES"
-  },
-  {
-    "Company Name": "Parag Milk Foods Limited",
-    "Symbol": "PARAGMILK"
-  },
-  {
-    "Company Name": "Paras Petrofils Limited",
-    "Symbol": "PARASPETRO"
-  },
-  {
-    "Company Name": "Parsvnath Developers Limited",
-    "Symbol": "PARSVNATH"
-  },
-  {
-    "Company Name": "Pasupati Acrylon Limited",
-    "Symbol": "PASUPTAC"
-  },
-  {
-    "Company Name": "Patel Integrated Logistics Limited",
-    "Symbol": "PATINTLOG"
-  },
-  {
-    "Company Name": "Pavna Industries Limited",
-    "Symbol": "PAVNAIND"
-  },
-  {
-    "Company Name": "PC Jeweller Limited",
-    "Symbol": "PCJEWELLER"
-  },
-  {
-    "Company Name": "Pudumjee Paper Products Limited",
-    "Symbol": "PDMJEPAPER"
-  },
-  {
-    "Company Name": "PDS Limited",
-    "Symbol": "PDSL"
-  },
-  {
-    "Company Name": "Pearl Polymers Limited",
-    "Symbol": "PEARLPOLY"
-  },
-  {
-    "Company Name": "Pennar Industries Limited",
-    "Symbol": "PENIND"
-  },
-  {
-    "Company Name": "Peninsula Land Limited",
-    "Symbol": "PENINLAND"
-  },
-  {
-    "Company Name": "Prime Focus Limited",
-    "Symbol": "PFOCUS"
-  },
-  {
-    "Company Name": "PTC India Financial Services Limited",
-    "Symbol": "PFS"
-  },
-  {
-    "Company Name": "Pearl Global Industries Limited",
-    "Symbol": "PGIL"
-  },
-  {
-    "Company Name": "Power & Instrumentation (Gujarat) Limited",
-    "Symbol": "PIGL"
-  },
-  {
-    "Company Name": "Pilani Investment and Industries Corporation Limited",
-    "Symbol": "PILANIINVS"
-  },
-  {
-    "Company Name": "PIL ITALICA LIFESTYLE LIMITED",
-    "Symbol": "PILITA"
-  },
-  {
-    "Company Name": "Pioneer Embroideries Limited",
-    "Symbol": "PIONEEREMB"
-  },
-  {
-    "Company Name": "Pitti Engineering Limited",
-    "Symbol": "PITTIENG"
-  },
-  {
-    "Company Name": "Pix Transmissions Limited",
-    "Symbol": "PIXTRANS"
-  },
-  {
-    "Company Name": "The Peria Karamalai Tea & Produce Company Limited",
-    "Symbol": "PKTEA"
-  },
-  {
-    "Company Name": "Plastiblends India Limited",
-    "Symbol": "PLASTIBLEN"
-  },
-  {
-    "Company Name": "Platinum Industries Limited",
-    "Symbol": "PLATIND"
-  },
-  {
-    "Company Name": "Plaza Wires Limited",
-    "Symbol": "PLAZACABLE"
-  },
-  {
-    "Company Name": "PNB Gilts Limited",
-    "Symbol": "PNBGILTS"
-  },
-  {
-    "Company Name": "Pritish Nandy Communications Limited",
-    "Symbol": "PNC"
-  },
-  {
-    "Company Name": "P N Gadgil Jewellers Limited",
-    "Symbol": "PNGJL"
-  },
-  {
-    "Company Name": "Pondy Oxides & Chemicals Limited",
-    "Symbol": "POCL"
-  },
-  {
-    "Company Name": "Poddar Housing and Development Limited",
-    "Symbol": "PODDARHOUS"
-  },
-  {
-    "Company Name": "Poddar Pigments Limited",
-    "Symbol": "PODDARMENT"
-  },
-  {
-    "Company Name": "Pokarna Limited",
-    "Symbol": "POKARNA"
-  },
-  {
-    "Company Name": "Ponni Sugars (Erode) Limited",
-    "Symbol": "PONNIERODE"
-  },
-  {
-    "Company Name": "PPAP Automotive Limited",
-    "Symbol": "PPAP"
-  },
-  {
-    "Company Name": "Prakash Pipes Limited",
-    "Symbol": "PPL"
-  },
-  {
-    "Company Name": "Prajay Engineers Syndicate Limited",
-    "Symbol": "PRAENG"
-  },
-  {
-    "Company Name": "Prakash Industries Limited",
-    "Symbol": "PRAKASH"
-  },
-  {
-    "Company Name": "Prakash Steelage Limited",
-    "Symbol": "PRAKASHSTL"
-  },
-  {
-    "Company Name": "Praxis Home Retail Limited",
-    "Symbol": "PRAXIS"
-  },
-  {
-    "Company Name": "Precision Camshafts Limited",
-    "Symbol": "PRECAM"
-  },
-  {
-    "Company Name": "Precot Limited",
-    "Symbol": "PRECOT"
-  },
-  {
-    "Company Name": "Precision Wires India Limited",
-    "Symbol": "PRECWIRE"
-  },
-  {
-    "Company Name": "Premier Explosives Limited",
-    "Symbol": "PREMEXPLN"
-  },
-  {
-    "Company Name": "Premier Energies Limited",
-    "Symbol": "PREMIERENE"
-  },
-  {
-    "Company Name": "Premier Polyfilm Limited",
-    "Symbol": "PREMIERPOL"
-  },
-  {
-    "Company Name": "Prime Securities Limited",
-    "Symbol": "PRIMESECU"
-  },
-  {
-    "Company Name": "Priti International Limited",
-    "Symbol": "PRITI"
-  },
-  {
-    "Company Name": "Pritika Auto Industries Limited",
-    "Symbol": "PRITIKAUTO"
-  },
-  {
-    "Company Name": "Privi Speciality Chemicals Limited",
-    "Symbol": "PRIVISCL"
-  },
-  {
-    "Company Name": "Prozone Realty Limited",
-    "Symbol": "PROZONER"
-  },
-  {
-    "Company Name": "Prism Johnson Limited",
-    "Symbol": "PRSMJOHNSN"
-  },
-  {
-    "Company Name": "Prudential Sugar Corporation Limited",
-    "Symbol": "PRUDMOULI"
-  },
-  {
-    "Company Name": "Punjab & Sind Bank",
-    "Symbol": "PSB"
-  },
-  {
-    "Company Name": "PSP Projects Limited",
-    "Symbol": "PSPPROJECT"
-  },
-  {
-    "Company Name": "PTL Enterprises Limited",
-    "Symbol": "PTL"
-  },
-  {
-    "Company Name": "Punjab Chemicals & Crop Protection Limited",
-    "Symbol": "PUNJABCHEM"
-  },
-  {
-    "Company Name": "PVP Ventures Limited",
-    "Symbol": "PVP"
-  },
-  {
-    "Company Name": "Popular Vehicles and Services Limited",
-    "Symbol": "PVSL"
-  },
-  {
-    "Company Name": "Pyramid Technoplast Limited",
-    "Symbol": "PYRAMID"
-  },
-  {
-    "Company Name": "Quick Heal Technologies Limited",
-    "Symbol": "QUICKHEAL"
-  },
-  {
-    "Company Name": "Race Eco Chain Limited",
-    "Symbol": "RACE"
-  },
-  {
-    "Company Name": "Radaan Mediaworks India Limited",
-    "Symbol": "RADAAN"
-  },
-  {
-    "Company Name": "Radhika Jeweltech Limited",
-    "Symbol": "RADHIKAJWE"
-  },
-  {
-    "Company Name": "Radiant Cash Management Services Limited",
-    "Symbol": "RADIANTCMS"
-  },
-  {
-    "Company Name": "Music Broadcast Limited",
-    "Symbol": "RADIOCITY"
-  },
-  {
-    "Company Name": "Rajnandini Metal Limited",
-    "Symbol": "RAJMET"
-  },
-  {
-    "Company Name": "Rajratan Global Wire Limited",
-    "Symbol": "RAJRATAN"
-  },
-  {
-    "Company Name": "Raj Rayon Industries Limited",
-    "Symbol": "RAJRILTD"
-  },
-  {
-    "Company Name": "Rajshree Sugars & Chemicals Limited",
-    "Symbol": "RAJSREESUG"
-  },
-  {
-    "Company Name": "Raj Television Network Limited",
-    "Symbol": "RAJTV"
-  },
-  {
-    "Company Name": "Shree Rama Newsprint Limited",
-    "Symbol": "RAMANEWS"
-  },
-  {
-    "Company Name": "Rama Phosphates Limited",
-    "Symbol": "RAMAPHO"
-  },
-  {
-    "Company Name": "Rama Steel Tubes Limited",
-    "Symbol": "RAMASTEEL"
-  },
-  {
-    "Company Name": "Ramco Industries Limited",
-    "Symbol": "RAMCOIND"
-  },
-  {
-    "Company Name": "Ramco Systems Limited",
-    "Symbol": "RAMCOSYS"
-  },
-  {
-    "Company Name": "Ram Ratna Wires Limited",
-    "Symbol": "RAMRAT"
-  },
-  {
-    "Company Name": "Rana Sugars Limited",
-    "Symbol": "RANASUG"
-  },
-  {
-    "Company Name": "Rane Engine Valve Limited",
-    "Symbol": "RANEENGINE"
-  },
-  {
-    "Company Name": "Rane Holdings Limited",
-    "Symbol": "RANEHOLDIN"
-  },
-  {
-    "Company Name": "Ratnaveer Precision Engineering Limited",
-    "Symbol": "RATNAVEER"
-  },
-  {
-    "Company Name": "Raymond Lifestyle Limited",
-    "Symbol": "RAYMONDLSL"
-  },
-  {
-    "Company Name": "Rane Brake Lining Limited",
-    "Symbol": "RBL"
-  },
-  {
-    "Company Name": "RBZ Jewellers Limited",
-    "Symbol": "RBZJEWEL"
-  },
-  {
-    "Company Name": "Refex Industries Limited",
-    "Symbol": "REFEX"
-  },
-  {
-    "Company Name": "Regency Ceramics Limited",
-    "Symbol": "REGENCERAM"
-  },
-  {
-    "Company Name": "Relaxo Footwears Limited",
-    "Symbol": "RELAXO"
-  },
-  {
-    "Company Name": "Reliance Chemotex Industries Limited",
-    "Symbol": "RELCHEMQ"
-  },
-  {
-    "Company Name": "Reliable Data Services Limited",
-    "Symbol": "RELIABLE"
-  },
-  {
-    "Company Name": "Ravindra Energy Limited",
-    "Symbol": "RELTD"
-  },
-  {
-    "Company Name": "Remsons Industries Limited",
-    "Symbol": "REMSONSIND"
-  },
-  {
-    "Company Name": "Repco Home Finance Limited",
-    "Symbol": "REPCOHOME"
-  },
-  {
-    "Company Name": "Rudrabhishek Enterprises Limited",
-    "Symbol": "REPL"
-  },
-  {
-    "Company Name": "Repro India Limited",
-    "Symbol": "REPRO"
-  },
-  {
-    "Company Name": "JHS Svendgaard Retail Ventures Limited",
-    "Symbol": "RETAIL"
-  },
-  {
-    "Company Name": "Revathi Equipment India Limited",
-    "Symbol": "REVATHIEQU"
-  },
-  {
-    "Company Name": "Renaissance Global Limited",
-    "Symbol": "RGL"
-  },
-  {
-    "Company Name": "Reliance Home Finance Limited",
-    "Symbol": "RHFL"
-  },
-  {
-    "Company Name": "Robust Hotels Limited",
-    "Symbol": "RHL"
-  },
-  {
-    "Company Name": "Rico Auto Industries Limited",
-    "Symbol": "RICOAUTO"
-  },
-  {
-    "Company Name": "Reliance Industrial Infrastructure Limited",
-    "Symbol": "RIIL"
-  },
-  {
-    "Company Name": "Rishabh Instruments Limited",
-    "Symbol": "RISHABH"
-  },
-  {
-    "Company Name": "Ritco Logistics Limited",
-    "Symbol": "RITCO"
-  },
-  {
-    "Company Name": "Ravi Kumar Distilleries Limited",
-    "Symbol": "RKDL"
-  },
-  {
-    "Company Name": "RKEC Projects Limited",
-    "Symbol": "RKEC"
-  },
-  {
-    "Company Name": "R K Swamy Limited",
-    "Symbol": "RKSWAMY"
-  },
-  {
-    "Company Name": "Rane (Madras) Limited",
-    "Symbol": "RML"
-  },
-  {
-    "Company Name": "Royal Orchid Hotels Limited",
-    "Symbol": "ROHLTD"
-  },
-  {
-    "Company Name": "Rollatainers Limited",
-    "Symbol": "ROLLT"
-  },
-  {
-    "Company Name": "Raj Oil Mills Limited",
-    "Symbol": "ROML"
-  },
-  {
-    "Company Name": "Rossell India Limited",
-    "Symbol": "ROSSELLIND"
-  },
-  {
-    "Company Name": "Roto Pumps Limited",
-    "Symbol": "ROTO"
-  },
-  {
-    "Company Name": "Raghav Productivity Enhancers Limited",
-    "Symbol": "RPEL"
-  },
-  {
-    "Company Name": "RPG Life Sciences Limited",
-    "Symbol": "RPGLIFE"
-  },
-  {
-    "Company Name": "Reliance Power Limited",
-    "Symbol": "RPOWER"
-  },
-  {
-    "Company Name": "R.P.P. Infra Projects Limited",
-    "Symbol": "RPPINFRA"
-  },
-  {
-    "Company Name": "Rajshree Polypack Limited",
-    "Symbol": "RPPL"
-  },
-  {
-    "Company Name": "RPSG VENTURES LIMITED",
-    "Symbol": "RPSGVENT"
-  },
-  {
-    "Company Name": "Rashi Peripherals Limited",
-    "Symbol": "RPTECH"
-  },
-  {
-    "Company Name": "R. S. Software (India) Limited",
-    "Symbol": "RSSOFTWARE"
-  },
-  {
-    "Company Name": "RSWM Limited",
-    "Symbol": "RSWM"
-  },
-  {
-    "Company Name": "R Systems International Limited",
-    "Symbol": "RSYSTEMS"
-  },
-  {
-    "Company Name": "RattanIndia Power Limited",
-    "Symbol": "RTNPOWER"
-  },
-  {
-    "Company Name": "Rubfila International Limited",
-    "Symbol": "RUBFILA"
-  },
-  {
-    "Company Name": "The Ruby Mills Limited",
-    "Symbol": "RUBYMILLS"
-  },
-  {
-    "Company Name": "Ruchi Infrastructure Limited",
-    "Symbol": "RUCHINFRA"
-  },
-  {
-    "Company Name": "Ruchira Papers Limited",
-    "Symbol": "RUCHIRA"
-  },
-  {
-    "Company Name": "Rupa & Company Limited",
-    "Symbol": "RUPA"
-  },
-  {
-    "Company Name": "Rushil Decor Limited",
-    "Symbol": "RUSHIL"
-  },
-  {
-    "Company Name": "Keystone Realtors Limited",
-    "Symbol": "RUSTOMJEE"
-  },
-  {
-    "Company Name": "Ravinder Heights Limited",
-    "Symbol": "RVHL"
-  },
-  {
-    "Company Name": "S&S Power Switchgears Limited",
-    "Symbol": "S&SPOWER"
-  },
-  {
-    "Company Name": "Sab Events & Governance Now Media Limited",
-    "Symbol": "SABEVENTS"
-  },
-  {
-    "Company Name": "Sri Adhikari Brothers Television Network Limited",
-    "Symbol": "SABTNL"
-  },
-  {
-    "Company Name": "Sadbhav Engineering Limited",
-    "Symbol": "SADBHAV"
-  },
-  {
-    "Company Name": "Sadbhav Infrastructure Project Limited",
-    "Symbol": "SADBHIN"
-  },
-  {
-    "Company Name": "Sadhana Nitrochem Limited",
-    "Symbol": "SADHNANIQ"
-  },
-  {
-    "Company Name": "Sagardeep Alloys Limited",
-    "Symbol": "SAGARDEEP"
-  },
-  {
-    "Company Name": "Sagar Cements Limited",
-    "Symbol": "SAGCEM"
-  },
-  {
-    "Company Name": "Sagility India Limited",
-    "Symbol": "SAGILITY"
-  },
-  {
-    "Company Name": "Sah Polymers Limited",
-    "Symbol": "SAH"
-  },
-  {
-    "Company Name": "Sahyadri Industries Limited",
-    "Symbol": "SAHYADRI"
-  },
-  {
-    "Company Name": "Sakar Healthcare Limited",
-    "Symbol": "SAKAR"
-  },
-  {
-    "Company Name": "Sakthi Sugars Limited",
-    "Symbol": "SAKHTISUG"
-  },
-  {
-    "Company Name": "Saksoft Limited",
-    "Symbol": "SAKSOFT"
-  },
-  {
-    "Company Name": "Sakuma Exports Limited",
-    "Symbol": "SAKUMA"
-  },
-  {
-    "Company Name": "Salasar Techno Engineering Limited",
-    "Symbol": "SALASAR"
-  },
-  {
-    "Company Name": "Salona Cotspin Limited",
-    "Symbol": "SALONA"
-  },
-  {
-    "Company Name": "S.A.L. Steel Limited",
-    "Symbol": "SALSTEEL"
-  },
-  {
-    "Company Name": "Salzer Electronics Limited",
-    "Symbol": "SALZERELEC"
-  },
-  {
-    "Company Name": "Sambhaav Media Limited",
-    "Symbol": "SAMBHAAV"
-  },
-  {
-    "Company Name": "Sampann Utpadan India Limited",
-    "Symbol": "SAMPANN"
-  },
-  {
-    "Company Name": "Sanco Industries Limited",
-    "Symbol": "SANCO"
-  },
-  {
-    "Company Name": "The Sandesh Limited",
-    "Symbol": "SANDESH"
-  },
-  {
-    "Company Name": "Sandhar Technologies Limited",
-    "Symbol": "SANDHAR"
-  },
-  {
-    "Company Name": "Sangam (India) Limited",
-    "Symbol": "SANGAMIND"
-  },
-  {
-    "Company Name": "Sanginita Chemicals Limited",
-    "Symbol": "SANGINITA"
-  },
-  {
-    "Company Name": "Sanofi Consumer Healthcare India Limited",
-    "Symbol": "SANOFICONR"
-  },
-  {
-    "Company Name": "Sanstar Limited",
-    "Symbol": "SANSTAR"
-  },
-  {
-    "Company Name": "Sanwaria Consumer Limited",
-    "Symbol": "SANWARIA"
-  },
-  {
-    "Company Name": "Sarla Performance Fibers Limited",
-    "Symbol": "SARLAPOLY"
-  },
-  {
-    "Company Name": "Sarveshwar Foods Limited",
-    "Symbol": "SARVESHWAR"
-  },
-  {
-    "Company Name": "Sasken Technologies Limited",
-    "Symbol": "SASKEN"
-  },
-  {
-    "Company Name": "Sastasundar Ventures Limited",
-    "Symbol": "SASTASUNDR"
-  },
-  {
-    "Company Name": "Satia Industries Limited",
-    "Symbol": "SATIA"
-  },
-  {
-    "Company Name": "Satin Creditcare Network Limited",
-    "Symbol": "SATIN"
-  },
-  {
-    "Company Name": "Sat Industries Limited",
-    "Symbol": "SATINDLTD"
-  },
-  {
-    "Company Name": "Saurashtra Cement Limited",
-    "Symbol": "SAURASHCEM"
-  },
-  {
-    "Company Name": "SBC Exports Limited",
-    "Symbol": "SBC"
-  },
-  {
-    "Company Name": "Suratwwala Business Group Limited",
-    "Symbol": "SBGLP"
-  },
-  {
-    "Company Name": "S Chand And Company Limited",
-    "Symbol": "SCHAND"
-  },
-  {
-    "Company Name": "Shipping Corporation of India Land and Assets Limited",
-    "Symbol": "SCILAL"
-  },
-  {
-    "Company Name": "Sheetal Cool Products Limited",
-    "Symbol": "SCPL"
-  },
-  {
-    "Company Name": "Som Distilleries & Breweries Limited",
-    "Symbol": "SDBL"
-  },
-  {
-    "Company Name": "Seamec Limited",
-    "Symbol": "SEAMECLTD"
-  },
-  {
-    "Company Name": "SecMark Consultancy Limited",
-    "Symbol": "SECMARK"
-  },
-  {
-    "Company Name": "SecUR Credentials Limited",
-    "Symbol": "SECURCRED"
-  },
-  {
-    "Company Name": "SECUREKLOUD TECHNOLOGIES LIMITED",
-    "Symbol": "SECURKLOUD"
-  },
-  {
-    "Company Name": "Sejal Glass Limited",
-    "Symbol": "SEJALLTD"
-  },
-  {
-    "Company Name": "Selan Exploration Technology Limited",
-    "Symbol": "SELAN"
-  },
-  {
-    "Company Name": "SEL Manufacturing Company Limited",
-    "Symbol": "SELMC"
-  },
-  {
-    "Company Name": "SEMAC CONSULTANTS LIMITED",
-    "Symbol": "SEMAC"
-  },
-  {
-    "Company Name": "SEPC Limited",
-    "Symbol": "SEPC"
-  },
-  {
-    "Company Name": "Servotech Power Systems Limited",
-    "Symbol": "SERVOTECH"
-  },
-  {
-    "Company Name": "Seshasayee Paper and Boards Limited",
-    "Symbol": "SESHAPAPER"
-  },
-  {
-    "Company Name": "Setco Automotive Limited",
-    "Symbol": "SETCO"
-  },
-  {
-    "Company Name": "Setubandhan Infrastructure Limited",
-    "Symbol": "SETUINFRA"
-  },
-  {
-    "Company Name": "Synergy Green Industries Limited",
-    "Symbol": "SGIL"
-  },
-  {
-    "Company Name": "STL Global Limited",
-    "Symbol": "SGL"
-  },
-  {
-    "Company Name": "Shah Metacorp Limited",
-    "Symbol": "SHAH"
-  },
-  {
-    "Company Name": "Shah Alloys Limited",
-    "Symbol": "SHAHALLOYS"
-  },
-  {
-    "Company Name": "Shaily Engineering Plastics Limited",
-    "Symbol": "SHAILY"
-  },
-  {
-    "Company Name": "Shakti Pumps (India) Limited",
-    "Symbol": "SHAKTIPUMP"
-  },
-  {
-    "Company Name": "Shalby Limited",
-    "Symbol": "SHALBY"
-  },
-  {
-    "Company Name": "Shalimar Paints Limited",
-    "Symbol": "SHALPAINTS"
-  },
-  {
-    "Company Name": "Shankara Building Products Limited",
-    "Symbol": "SHANKARA"
-  },
-  {
-    "Company Name": "Shanti Overseas (India) Limited",
-    "Symbol": "SHANTI"
-  },
-  {
-    "Company Name": "Shanthi Gears Limited",
-    "Symbol": "SHANTIGEAR"
-  },
-  {
-    "Company Name": "Sharda Cropchem Limited",
-    "Symbol": "SHARDACROP"
-  },
-  {
-    "Company Name": "Shekhawati Industries Limited",
-    "Symbol": "SHEKHAWATI"
-  },
-  {
-    "Company Name": "Shemaroo Entertainment Limited",
-    "Symbol": "SHEMAROO"
-  },
-  {
-    "Company Name": "Shivalik Rasayan Limited",
-    "Symbol": "SHIVALIK"
-  },
-  {
-    "Company Name": "Shivam Autotech Limited",
-    "Symbol": "SHIVAMAUTO"
-  },
-  {
-    "Company Name": "Shiva Mills Limited",
-    "Symbol": "SHIVAMILLS"
-  },
-  {
-    "Company Name": "Shiva Texyarn Limited",
-    "Symbol": "SHIVATEX"
-  },
-  {
-    "Company Name": "S H Kelkar and Company Limited",
-    "Symbol": "SHK"
-  },
-  {
-    "Company Name": "Shoppers Stop Limited",
-    "Symbol": "SHOPERSTOP"
-  },
-  {
-    "Company Name": "Shradha Infraprojects Limited",
-    "Symbol": "SHRADHA"
-  },
-  {
-    "Company Name": "Shree Digvijay Cement Co.Ltd",
-    "Symbol": "SHREDIGCEM"
-  },
-  {
-    "Company Name": "Shree Pushkar Chemicals & Fertilisers Limited",
-    "Symbol": "SHREEPUSHK"
-  },
-  {
-    "Company Name": "Shree Rama Multi-Tech Limited",
-    "Symbol": "SHREERAMA"
-  },
-  {
-    "Company Name": "Shrenik Limited",
-    "Symbol": "SHRENIK"
-  },
-  {
-    "Company Name": "Shreyans Industries Limited",
-    "Symbol": "SHREYANIND"
-  },
-  {
-    "Company Name": "Shriram Properties Limited",
-    "Symbol": "SHRIRAMPPS"
-  },
-  {
-    "Company Name": "Shyam Century Ferrous Limited",
-    "Symbol": "SHYAMCENT"
-  },
-  {
-    "Company Name": "Shyam Telecom Limited",
-    "Symbol": "SHYAMTEL"
-  },
-  {
-    "Company Name": "Sical Logistics Limited",
-    "Symbol": "SICALLOG"
-  },
-  {
-    "Company Name": "Sigachi Industries Limited",
-    "Symbol": "SIGACHI"
-  },
-  {
-    "Company Name": "Signet Industries Limited",
-    "Symbol": "SIGIND"
-  },
-  {
-    "Company Name": "Sigma Solve Limited",
-    "Symbol": "SIGMA"
-  },
-  {
-    "Company Name": "Signpost India Limited",
-    "Symbol": "SIGNPOST"
-  },
-  {
-    "Company Name": "Sikko Industries Limited",
-    "Symbol": "SIKKO"
-  },
-  {
-    "Company Name": "Standard Industries Limited",
-    "Symbol": "SIL"
-  },
-  {
-    "Company Name": "Silgo Retail Limited",
-    "Symbol": "SILGO"
-  },
-  {
-    "Company Name": "SIL Investments Limited",
-    "Symbol": "SILINV"
-  },
-  {
-    "Company Name": "Silly Monks Entertainment Limited",
-    "Symbol": "SILLYMONKS"
-  },
-  {
-    "Company Name": "Silver Touch Technologies Limited",
-    "Symbol": "SILVERTUC"
-  },
-  {
-    "Company Name": "Simbhaoli Sugars Limited",
-    "Symbol": "SIMBHALS"
-  },
-  {
-    "Company Name": "Simplex Infrastructures Limited",
-    "Symbol": "SIMPLEXINF"
-  },
-  {
-    "Company Name": "Sinclairs Hotels Limited",
-    "Symbol": "SINCLAIR"
-  },
-  {
-    "Company Name": "Sintercom India Limited",
-    "Symbol": "SINTERCOM"
-  },
-  {
-    "Company Name": "Sirca Paints India Limited",
-    "Symbol": "SIRCA"
-  },
-  {
-    "Company Name": "SIS LIMITED",
-    "Symbol": "SIS"
-  },
-  {
-    "Company Name": "Siti Networks Limited",
-    "Symbol": "SITINET"
-  },
-  {
-    "Company Name": "Siyaram Silk Mills Limited",
-    "Symbol": "SIYSIL"
-  },
-  {
-    "Company Name": "S.J.S. Enterprises Limited",
-    "Symbol": "SJS"
-  },
-  {
-    "Company Name": "Skipper Limited",
-    "Symbol": "SKIPPER"
-  },
-  {
-    "Company Name": "SKM Egg Products Export (India) Limited",
-    "Symbol": "SKMEGGPROD"
-  },
-  {
-    "Company Name": "Sky Gold Limited",
-    "Symbol": "SKYGOLD"
-  },
-  {
-    "Company Name": "Smartlink Holdings Limited",
-    "Symbol": "SMARTLINK"
-  },
-  {
-    "Company Name": "SMC Global Securities Limited",
-    "Symbol": "SMCGLOBAL"
-  },
-  {
-    "Company Name": "SML Isuzu Limited",
-    "Symbol": "SMLISUZU"
-  },
-  {
-    "Company Name": "Sarthak Metals Limited",
-    "Symbol": "SMLT"
-  },
-  {
-    "Company Name": "SMS Lifesciences India Limited",
-    "Symbol": "SMSLIFE"
-  },
-  {
-    "Company Name": "SMS Pharmaceuticals Limited",
-    "Symbol": "SMSPHARMA"
-  },
-  {
-    "Company Name": "Snowman Logistics Limited",
-    "Symbol": "SNOWMAN"
-  },
-  {
-    "Company Name": "Softtech Engineers Limited",
-    "Symbol": "SOFTTECH"
-  },
-  {
-    "Company Name": "Solara Active Pharma Sciences Limited",
-    "Symbol": "SOLARA"
-  },
-  {
-    "Company Name": "Somany Ceramics Limited",
-    "Symbol": "SOMANYCERA"
-  },
-  {
-    "Company Name": "Soma Textiles & Industries Limited",
-    "Symbol": "SOMATEX"
-  },
-  {
-    "Company Name": "Somi Conveyor Beltings Limited",
-    "Symbol": "SOMICONVEY"
-  },
-  {
-    "Company Name": "SONAM LIMITED",
-    "Symbol": "SONAMLTD"
-  },
-  {
-    "Company Name": "Savita Oil Technologies Limited",
-    "Symbol": "SOTL"
-  },
-  {
-    "Company Name": "South West Pinnacle Exploration Limited",
-    "Symbol": "SOUTHWEST"
-  },
-  {
-    "Company Name": "S. P. Apparels Limited",
-    "Symbol": "SPAL"
-  },
-  {
-    "Company Name": "Spacenet Enterprises India Limited",
-    "Symbol": "SPCENET"
-  },
-  {
-    "Company Name": "Speciality Restaurants Limited",
-    "Symbol": "SPECIALITY"
-  },
-  {
-    "Company Name": "Spencer's Retail Limited",
-    "Symbol": "SPENCERS"
-  },
-  {
-    "Company Name": "Southern Petrochemicals Industries Corporation  Limited",
-    "Symbol": "SPIC"
-  },
-  {
-    "Company Name": "SPL Industries Limited",
-    "Symbol": "SPLIL"
-  },
-  {
-    "Company Name": "SPML Infra Limited",
-    "Symbol": "SPMLINFRA"
-  },
-  {
-    "Company Name": "Sportking India Limited",
-    "Symbol": "SPORTKING"
-  },
-  {
-    "Company Name": "Shankar Lal Rampal Dye-Chem Limited",
-    "Symbol": "SRD"
-  },
-  {
-    "Company Name": "Sreeleathers Limited",
-    "Symbol": "SREEL"
-  },
-  {
-    "Company Name": "SRG Housing Finance Limited",
-    "Symbol": "SRGHFL"
-  },
-  {
-    "Company Name": "Sree Rayalaseema Hi-Strength Hypo Limited",
-    "Symbol": "SRHHYPOLTD"
-  },
-  {
-    "Company Name": "SRM Contractors Limited",
-    "Symbol": "SRM"
-  },
-  {
-    "Company Name": "Shree Ram Proteins Limited",
-    "Symbol": "SRPL"
-  },
-  {
-    "Company Name": "Saraswati Saree Depot Limited",
-    "Symbol": "SSDL"
-  },
-  {
-    "Company Name": "Stanley Lifestyles Limited",
-    "Symbol": "STANLEY"
-  },
-  {
-    "Company Name": "Star Paper Mills Limited",
-    "Symbol": "STARPAPER"
-  },
-  {
-    "Company Name": "Starteck Finance Limited",
-    "Symbol": "STARTECK"
-  },
-  {
-    "Company Name": "The State Trading Corporation of India Limited",
-    "Symbol": "STCINDIA"
-  },
-  {
-    "Company Name": "Steelcast Limited",
-    "Symbol": "STEELCAS"
-  },
-  {
-    "Company Name": "Steel City Securities Limited",
-    "Symbol": "STEELCITY"
-  },
-  {
-    "Company Name": "STEEL EXCHANGE INDIA LIMITED",
-    "Symbol": "STEELXIND"
-  },
-  {
-    "Company Name": "Stel Holdings Limited",
-    "Symbol": "STEL"
-  },
-  {
-    "Company Name": "Sterling Tools Limited",
-    "Symbol": "STERTOOLS"
-  },
-  {
-    "Company Name": "Stove Kraft Limited",
-    "Symbol": "STOVEKRAFT"
-  },
-  {
-    "Company Name": "Baazar Style Retail Limited",
-    "Symbol": "STYLEBAAZA"
-  },
-  {
-    "Company Name": "Styrenix Performance Materials Limited",
-    "Symbol": "STYRENIX"
-  },
-  {
-    "Company Name": "Subex Limited",
-    "Symbol": "SUBEXLTD"
-  },
-  {
-    "Company Name": "Sukhjit Starch & Chemicals Limited",
-    "Symbol": "SUKHJITS"
-  },
-  {
-    "Company Name": "Sumit Woods Limited",
-    "Symbol": "SUMIT"
-  },
-  {
-    "Company Name": "Summit Securities Limited",
-    "Symbol": "SUMMITSEC"
-  },
-  {
-    "Company Name": "Sundaram Clayton Limited",
-    "Symbol": "SUNCLAY"
-  },
-  {
-    "Company Name": "Sundaram Multi Pap Limited",
-    "Symbol": "SUNDARAM"
-  },
-  {
-    "Company Name": "Sundaram Finance Holdings Limited",
-    "Symbol": "SUNDARMHLD"
-  },
-  {
-    "Company Name": "Sundaram Brake Linings Limited",
-    "Symbol": "SUNDRMBRAK"
-  },
-  {
-    "Company Name": "Superhouse Limited",
-    "Symbol": "SUPERHOUSE"
-  },
-  {
-    "Company Name": "Super Spinning Mills Limited",
-    "Symbol": "SUPERSPIN"
-  },
-  {
-    "Company Name": "Supreme Engineering Limited",
-    "Symbol": "SUPREMEENG"
-  },
-  {
-    "Company Name": "Supreme Infrastructure India Limited",
-    "Symbol": "SUPREMEINF"
-  },
-  {
-    "Company Name": "Suraj Estate Developers Limited",
-    "Symbol": "SURAJEST"
-  },
-  {
-    "Company Name": "Suraj Limited",
-    "Symbol": "SURAJLTD"
-  },
-  {
-    "Company Name": "Surana Solar Limited",
-    "Symbol": "SURANASOL"
-  },
-  {
-    "Company Name": "Surana Telecom and Power Limited",
-    "Symbol": "SURANAT&P"
-  },
-  {
-    "Company Name": "Suryalakshmi Cotton Mills Limited",
-    "Symbol": "SURYALAXMI"
-  },
-  {
-    "Company Name": "Suryoday Small Finance Bank Limited",
-    "Symbol": "SURYODAY"
-  },
-  {
-    "Company Name": "Sutlej Textiles and Industries Limited",
-    "Symbol": "SUTLEJTEX"
-  },
-  {
-    "Company Name": "Suumaya Industries Limited",
-    "Symbol": "SUULD"
-  },
-  {
-    "Company Name": "Suven Life Sciences Limited",
-    "Symbol": "SUVEN"
-  },
-  {
-    "Company Name": "Suvidhaa Infoserve Limited",
-    "Symbol": "SUVIDHAA"
-  },
-  {
-    "Company Name": "Suyog Telematics Limited",
-    "Symbol": "SUYOG"
-  },
-  {
-    "Company Name": "Shree Vasu Logistics Limited",
-    "Symbol": "SVLL"
-  },
-  {
-    "Company Name": "SVP GLOBAL TEXTILES LIMITED",
-    "Symbol": "SVPGLOB"
-  },
-  {
-    "Company Name": "Swaraj Engines Limited",
-    "Symbol": "SWARAJENG"
-  },
-  {
-    "Company Name": "Swelect Energy Systems Limited",
-    "Symbol": "SWELECTES"
-  },
-  {
-    "Company Name": "Swiggy Limited",
-    "Symbol": "SWIGGY"
-  },
-  {
-    "Company Name": "Syncom Formulations (India) Limited",
-    "Symbol": "SYNCOMF"
-  },
-  {
-    "Company Name": "Tainwala Chemical and Plastic (I) Limited",
-    "Symbol": "TAINWALCHM"
-  },
-  {
-    "Company Name": "Taj GVK Hotels & Resorts Limited",
-    "Symbol": "TAJGVK"
-  },
-  {
-    "Company Name": "Take Solutions Limited",
-    "Symbol": "TAKE"
-  },
-  {
-    "Company Name": "Talbros Automotive Components Limited",
-    "Symbol": "TALBROAUTO"
-  },
-  {
-    "Company Name": "Tara Chand InfraLogistic Solutions Limited",
-    "Symbol": "TARACHAND"
-  },
-  {
-    "Company Name": "Tarapur Transformers Limited",
-    "Symbol": "TARAPUR"
-  },
-  {
-    "Company Name": "Transformers And Rectifiers (India) Limited",
-    "Symbol": "TARIL"
-  },
-  {
-    "Company Name": "Tarmat Limited",
-    "Symbol": "TARMAT"
-  },
-  {
-    "Company Name": "Tarsons Products Limited",
-    "Symbol": "TARSONS"
-  },
-  {
-    "Company Name": "Tasty Bite Eatables Limited",
-    "Symbol": "TASTYBITE"
-  },
-  {
-    "Company Name": "Tatva Chintan Pharma Chem Limited",
-    "Symbol": "TATVA"
-  },
-  {
-    "Company Name": "Tribhovandas Bhimji Zaveri Limited",
-    "Symbol": "TBZ"
-  },
-  {
-    "Company Name": "Transport Corporation of India Limited",
-    "Symbol": "TCI"
-  },
-  {
-    "Company Name": "TCI Finance Limited",
-    "Symbol": "TCIFINANCE"
-  },
-  {
-    "Company Name": "Tantia Constructions Limited",
-    "Symbol": "TCLCONS"
-  },
-  {
-    "Company Name": "TCPL Packaging Limited",
-    "Symbol": "TCPLPACK"
-  },
-  {
-    "Company Name": "Techindia Nirman Limited",
-    "Symbol": "TECHIN"
-  },
-  {
-    "Company Name": "TECIL Chemicals and Hydro Power Limited",
-    "Symbol": "TECILCHEM"
-  },
-  {
-    "Company Name": "Tembo Global Industries Limited",
-    "Symbol": "TEMBO"
-  },
-  {
-    "Company Name": "Tera Software Limited",
-    "Symbol": "TERASOFT"
-  },
-  {
-    "Company Name": "Texmaco Infrastructure & Holdings Limited",
-    "Symbol": "TEXINFRA"
-  },
-  {
-    "Company Name": "Texmo Pipes and Products Limited",
-    "Symbol": "TEXMOPIPES"
-  },
-  {
-    "Company Name": "Tourism Finance Corporation of India Limited",
-    "Symbol": "TFCILTD"
-  },
-  {
-    "Company Name": "Transwarranty Finance Limited",
-    "Symbol": "TFL"
-  },
-  {
-    "Company Name": "TGB Banquets And Hotels Limited",
-    "Symbol": "TGBHOTELS"
-  },
-  {
-    "Company Name": "Thangamayil Jewellery Limited",
-    "Symbol": "THANGAMAYL"
-  },
-  {
-    "Company Name": "The Investment Trust Of India Limited",
-    "Symbol": "THEINVEST"
-  },
-  {
-    "Company Name": "Thejo Engineering Limited",
-    "Symbol": "THEJO"
-  },
-  {
-    "Company Name": "Themis Medicare Limited",
-    "Symbol": "THEMISMED"
-  },
-  {
-    "Company Name": "Thomas Scott (India) Limited",
-    "Symbol": "THOMASCOTT"
-  },
-  {
-    "Company Name": "Thyrocare Technologies Limited",
-    "Symbol": "THYROCARE"
-  },
-  {
-    "Company Name": "Tijaria Polypipes Limited",
-    "Symbol": "TIJARIA"
-  },
-  {
-    "Company Name": "TIL Limited",
-    "Symbol": "TIL"
-  },
-  {
-    "Company Name": "Times Guaranty Limited",
-    "Symbol": "TIMESGTY"
-  },
-  {
-    "Company Name": "Tips Films Limited",
-    "Symbol": "TIPSFILMS"
-  },
-  {
-    "Company Name": "Tips Music Limited",
-    "Symbol": "TIPSMUSIC"
-  },
-  {
-    "Company Name": "Tirupati Forge Limited",
-    "Symbol": "TIRUPATIFL"
-  },
-  {
-    "Company Name": "Tamilnad Mercantile Bank Limited",
-    "Symbol": "TMB"
-  },
-  {
-    "Company Name": "Tamilnadu PetroProducts Limited",
-    "Symbol": "TNPETRO"
-  },
-  {
-    "Company Name": "Tamil Nadu Newsprint & Papers Limited",
-    "Symbol": "TNPL"
-  },
-  {
-    "Company Name": "Tamilnadu Telecommunication Limited",
-    "Symbol": "TNTELE"
-  },
-  {
-    "Company Name": "Tokyo Plast International Limited",
-    "Symbol": "TOKYOPLAST"
-  },
-  {
-    "Company Name": "Tolins Tyres Limited",
-    "Symbol": "TOLINS"
-  },
-  {
-    "Company Name": "Total Transport Systems Limited",
-    "Symbol": "TOTAL"
-  },
-  {
-    "Company Name": "Touchwood Entertainment Limited",
-    "Symbol": "TOUCHWOOD"
-  },
-  {
-    "Company Name": "Teamo Productions HQ Limited",
-    "Symbol": "TPHQ"
-  },
-  {
-    "Company Name": "TPL Plastech Limited",
-    "Symbol": "TPLPLASTEH"
-  },
-  {
-    "Company Name": "Tracxn Technologies Limited",
-    "Symbol": "TRACXN"
-  },
-  {
-    "Company Name": "TRANSWORLD SHIPPING LINES LIMITED",
-    "Symbol": "TRANSWORLD"
-  },
-  {
-    "Company Name": "Tree House Education & Accessories Limited",
-    "Symbol": "TREEHOUSE"
-  },
-  {
-    "Company Name": "TREJHARA SOLUTIONS LIMITED",
-    "Symbol": "TREJHARA"
-  },
-  {
-    "Company Name": "Transindia Real Estate Limited",
-    "Symbol": "TREL"
-  },
-  {
-    "Company Name": "TRF Limited",
-    "Symbol": "TRF"
-  },
-  {
-    "Company Name": "Trigyn Technologies Limited",
-    "Symbol": "TRIGYN"
-  },
-  {
-    "Company Name": "TruCap Finance Limited",
-    "Symbol": "TRU"
-  },
-  {
-    "Company Name": "TTK Healthcare Limited",
-    "Symbol": "TTKHLTCARE"
-  },
-  {
-    "Company Name": "TTK Prestige Limited",
-    "Symbol": "TTKPRESTIG"
-  },
-  {
-    "Company Name": "T T Limited",
-    "Symbol": "TTL"
-  },
-  {
-    "Company Name": "TVS Electronics Limited",
-    "Symbol": "TVSELECT"
-  },
-  {
-    "Company Name": "TVS Holdings Limited",
-    "Symbol": "TVSHLTD"
-  },
-  {
-    "Company Name": "TVS Srichakra Limited",
-    "Symbol": "TVSSRICHAK"
-  },
-  {
-    "Company Name": "TV Today Network Limited",
-    "Symbol": "TVTODAY"
-  },
-  {
-    "Company Name": "TV Vision Limited",
-    "Symbol": "TVVISION"
-  },
-  {
-    "Company Name": "UCAL LIMITED",
-    "Symbol": "UCAL"
-  },
-  {
-    "Company Name": "Udaipur Cement Works Limited",
-    "Symbol": "UDAICEMENT"
-  },
-  {
-    "Company Name": "Updater Services Limited",
-    "Symbol": "UDS"
-  },
-  {
-    "Company Name": "UFLEX Limited",
-    "Symbol": "UFLEX"
-  },
-  {
-    "Company Name": "UFO Moviez India Limited",
-    "Symbol": "UFO"
-  },
-  {
-    "Company Name": "The Ugar Sugar Works Limited",
-    "Symbol": "UGARSUGAR"
-  },
-  {
-    "Company Name": "Ugro Capital Limited",
-    "Symbol": "UGROCAP"
-  },
-  {
-    "Company Name": "Uma Exports Limited",
-    "Symbol": "UMAEXPORTS"
-  },
-  {
-    "Company Name": "Umang Dairies Limited",
-    "Symbol": "UMANGDAIRY"
-  },
-  {
-    "Company Name": "Usha Martin Education & Solutions Limited",
-    "Symbol": "UMESLTD"
-  },
-  {
-    "Company Name": "Unichem Laboratories Limited",
-    "Symbol": "UNICHEMLAB"
-  },
-  {
-    "Company Name": "United Drilling Tools Limited",
-    "Symbol": "UNIDT"
-  },
-  {
-    "Company Name": "Unicommerce Esolutions Limited",
-    "Symbol": "UNIECOM"
-  },
-  {
-    "Company Name": "Uniphos Enterprises Limited",
-    "Symbol": "UNIENTER"
-  },
-  {
-    "Company Name": "Uniinfo Telecom Services Limited",
-    "Symbol": "UNIINFO"
-  },
-  {
-    "Company Name": "Uniparts India Limited",
-    "Symbol": "UNIPARTS"
-  },
-  {
-    "Company Name": "Unitech Limited",
-    "Symbol": "UNITECH"
-  },
-  {
-    "Company Name": "United Polyfab Gujarat Limited",
-    "Symbol": "UNITEDPOLY"
-  },
-  {
-    "Company Name": "The United Nilgiri Tea Estates Company Limited",
-    "Symbol": "UNITEDTEA"
-  },
-  {
-    "Company Name": "Univastu India Limited",
-    "Symbol": "UNIVASTU"
-  },
-  {
-    "Company Name": "Universal Cables Limited",
-    "Symbol": "UNIVCABLES"
-  },
-  {
-    "Company Name": "Universus Photo Imagings Limited",
-    "Symbol": "UNIVPHOTO"
-  },
-  {
-    "Company Name": "Uravi T and Wedge Lamps Limited",
-    "Symbol": "URAVI"
-  },
-  {
-    "Company Name": "Urja Global Limited",
-    "Symbol": "URJA"
-  },
-  {
-    "Company Name": "Udayshivakumar Infra Limited",
-    "Symbol": "USK"
-  },
-  {
-    "Company Name": "Uttam Sugar Mills Limited",
-    "Symbol": "UTTAMSUGAR"
-  },
-  {
-    "Company Name": "U. Y. Fincorp Limited",
-    "Symbol": "UYFINCORP"
-  },
-  {
-    "Company Name": "V2 Retail Limited",
-    "Symbol": "V2RETAIL"
-  },
-  {
-    "Company Name": "Vadilal Industries Limited",
-    "Symbol": "VADILALIND"
-  },
-  {
-    "Company Name": "Vaishali Pharma Limited",
-    "Symbol": "VAISHALI"
-  },
-  {
-    "Company Name": "Vakrangee Limited",
-    "Symbol": "VAKRANGEE"
-  },
-  {
-    "Company Name": "Valiant Laboratories Limited",
-    "Symbol": "VALIANTLAB"
-  },
-  {
-    "Company Name": "Valiant Organics Limited",
-    "Symbol": "VALIANTORG"
-  },
-  {
-    "Company Name": "Vardhman Acrylics Limited",
-    "Symbol": "VARDHACRLC"
-  },
-  {
-    "Company Name": "Vardhman Polytex Limited",
-    "Symbol": "VARDMNPOLY"
-  },
-  {
-    "Company Name": "Vascon Engineers Limited",
-    "Symbol": "VASCONEQ"
-  },
-  {
-    "Company Name": "Vaswani Industries Limited",
-    "Symbol": "VASWANI"
-  },
-  {
-    "Company Name": "Vaxtex Cotfab Limited",
-    "Symbol": "VCL"
-  },
-  {
-    "Company Name": "Veedol Corporation Limited",
-    "Symbol": "VEEDOL"
-  },
-  {
-    "Company Name": "Venus Remedies Limited",
-    "Symbol": "VENUSREM"
-  },
-  {
-    "Company Name": "Veranda Learning Solutions Limited",
-    "Symbol": "VERANDA"
-  },
-  {
-    "Company Name": "Vertoz Limited",
-    "Symbol": "VERTOZ"
-  },
-  {
-    "Company Name": "Veto Switchgears And Cables Limited",
-    "Symbol": "VETO"
-  },
-  {
-    "Company Name": "Vardhman Holdings Limited",
-    "Symbol": "VHL"
-  },
-  {
-    "Company Name": "Viceroy Hotels Limited",
-    "Symbol": "VHLTD"
-  },
-  {
-    "Company Name": "Vidhi Specialty Food Ingredients Limited",
-    "Symbol": "VIDHIING"
-  },
-  {
-    "Company Name": "Viji Finance Limited",
-    "Symbol": "VIJIFIN"
-  },
-  {
-    "Company Name": "Vikas EcoTech Limited",
-    "Symbol": "VIKASECO"
-  },
-  {
-    "Company Name": "Vikas Lifecare Limited",
-    "Symbol": "VIKASLIFE"
-  },
-  {
-    "Company Name": "Vimta Labs Limited",
-    "Symbol": "VIMTALABS"
-  },
-  {
-    "Company Name": "Vintage Coffee And Beverages Limited",
-    "Symbol": "VINCOFE"
-  },
-  {
-    "Company Name": "Vindhya Telelinks Limited",
-    "Symbol": "VINDHYATEL"
-  },
-  {
-    "Company Name": "Vineet Laboratories Limited",
-    "Symbol": "VINEETLAB"
-  },
-  {
-    "Company Name": "Vinny Overseas Limited",
-    "Symbol": "VINNY"
-  },
-  {
-    "Company Name": "Vinyl Chemicals (India) Limited",
-    "Symbol": "VINYLINDIA"
-  },
-  {
-    "Company Name": "VIP Clothing Limited",
-    "Symbol": "VIPCLOTHNG"
-  },
-  {
-    "Company Name": "Vipul Limited",
-    "Symbol": "VIPULLTD"
-  },
-  {
-    "Company Name": "Virinchi Limited",
-    "Symbol": "VIRINCHI"
-  },
-  {
-    "Company Name": "Visaka Industries Limited",
-    "Symbol": "VISAKAIND"
-  },
-  {
-    "Company Name": "Visa Steel Limited",
-    "Symbol": "VISASTEEL"
-  },
-  {
-    "Company Name": "Vishnu Chemicals Limited",
-    "Symbol": "VISHNU"
-  },
-  {
-    "Company Name": "Vishwaraj Sugar Industries Limited",
-    "Symbol": "VISHWARAJ"
-  },
-  {
-    "Company Name": "Visagar Polytex Limited",
-    "Symbol": "VIVIDHA"
-  },
-  {
-    "Company Name": "VL E-Governance & IT Solutions Limited",
-    "Symbol": "VLEGOV"
-  },
-  {
-    "Company Name": "VLS Finance Limited",
-    "Symbol": "VLSFINANCE"
-  },
-  {
-    "Company Name": "Vishnu Prakash R Punglia Limited",
-    "Symbol": "VPRPL"
-  },
-  {
-    "Company Name": "Vraj Iron and Steel Limited",
-    "Symbol": "VRAJ"
-  },
-  {
-    "Company Name": "VRL Logistics Limited",
-    "Symbol": "VRLLOG"
-  },
-  {
-    "Company Name": "Vardhman Special Steels Limited",
-    "Symbol": "VSSL"
-  },
-  {
-    "Company Name": "Vibhor Steel Tubes Limited",
-    "Symbol": "VSTL"
-  },
-  {
-    "Company Name": "V.S.T Tillers Tractors Limited",
-    "Symbol": "VSTTILLERS"
-  },
-  {
-    "Company Name": "Waaree Energies Limited",
-    "Symbol": "WAAREEENER"
-  },
-  {
-    "Company Name": "Walchandnagar Industries Limited",
-    "Symbol": "WALCHANNAG"
-  },
-  {
-    "Company Name": "Wanbury Limited",
-    "Symbol": "WANBURY"
-  },
-  {
-    "Company Name": "Western Carriers (India) Limited",
-    "Symbol": "WCIL"
-  },
-  {
-    "Company Name": "Wealth First Portfolio Managers Limited",
-    "Symbol": "WEALTH"
-  },
-  {
-    "Company Name": "Websol Energy System Limited",
-    "Symbol": "WEBELSOLAR"
-  },
-  {
-    "Company Name": "Weizmann Limited",
-    "Symbol": "WEIZMANIND"
-  },
-  {
-    "Company Name": "Wonder Electricals Limited",
-    "Symbol": "WEL"
-  },
-  {
-    "Company Name": "Welspun Investments and Commercials Limited",
-    "Symbol": "WELINV"
-  },
-  {
-    "Company Name": "Wendt (India) Limited",
-    "Symbol": "WENDT"
-  },
-  {
-    "Company Name": "WE WIN LIMITED",
-    "Symbol": "WEWIN"
-  },
-  {
-    "Company Name": "Wheels India Limited",
-    "Symbol": "WHEELS"
-  },
-  {
-    "Company Name": "Williamson Magor & Company Limited",
-    "Symbol": "WILLAMAGOR"
-  },
-  {
-    "Company Name": "Windlas Biotech Limited",
-    "Symbol": "WINDLAS"
-  },
-  {
-    "Company Name": "Windsor Machines Limited",
-    "Symbol": "WINDMACHIN"
-  },
-  {
-    "Company Name": "Winsome Yarns Limited",
-    "Symbol": "WINSOME"
-  },
-  {
-    "Company Name": "The Western India Plywoods Limited",
-    "Symbol": "WIPL"
-  },
-  {
-    "Company Name": "Worth Peripherals Limited",
-    "Symbol": "WORTH"
-  },
-  {
-    "Company Name": "W S Industries (I) Limited",
-    "Symbol": "WSI"
-  },
-  {
-    "Company Name": "Xchanging Solutions Limited",
-    "Symbol": "XCHANGING"
-  },
-  {
-    "Company Name": "Xelpmoc Design And Tech Limited",
-    "Symbol": "XELPMOC"
-  },
-  {
-    "Company Name": "Xpro India Limited",
-    "Symbol": "XPROINDIA"
-  },
-  {
-    "Company Name": "Xtglobal Infotech Limited",
-    "Symbol": "XTGLOBAL"
-  },
-  {
-    "Company Name": "Yaari Digital Integrated Services Limited",
-    "Symbol": "YAARI"
-  },
-  {
-    "Company Name": "Yasho Industries Limited",
-    "Symbol": "YASHO"
-  },
-  {
-    "Company Name": "Yatra Online Limited",
-    "Symbol": "YATRA"
-  },
-  {
-    "Company Name": "Yuken India Limited",
-    "Symbol": "YUKEN"
-  },
-  {
-    "Company Name": "Zaggle Prepaid Ocean Services Limited",
-    "Symbol": "ZAGGLE"
-  },
-  {
-    "Company Name": "Zee Learn Limited",
-    "Symbol": "ZEELEARN"
-  },
-  {
-    "Company Name": "Zee Media Corporation Limited",
-    "Symbol": "ZEEMEDIA"
-  },
-  {
-    "Company Name": "Zenith Exports Limited",
-    "Symbol": "ZENITHEXPO"
-  },
-  {
-    "Company Name": "Zenith Steel Pipes & Industries Limited",
-    "Symbol": "ZENITHSTL"
-  },
-  {
-    "Company Name": "Zim Laboratories Limited",
-    "Symbol": "ZIMLAB"
-  },
-  {
-    "Company Name": "Zodiac Energy Limited",
-    "Symbol": "ZODIAC"
-  },
-  {
-    "Company Name": "Zodiac Clothing Company Limited",
-    "Symbol": "ZODIACLOTH"
-  },
-  {
-    "Company Name": "Zota Health Care LImited",
-    "Symbol": "ZOTA"
-  },
-  {
-    "Company Name": "Zuari Agro Chemicals Limited",
-    "Symbol": "ZUARI"
-  },
-  {
-    "Company Name": "ZUARI INDUSTRIES LIMITED",
-    "Symbol": "ZUARIIND"
-  }
+    {
+        "Company Name": "Adf Foods Ltd.",
+        "Symbol": "ADFFOODS"
+    },
+    {
+        "Company Name": "Aeroflex Industries Ltd",
+        "Symbol": "AEROFLEX"
+    },
+    {
+        "Company Name": "Agro Tech Foods Ltd.",
+        "Symbol": "ATFL"
+    },
+    {
+        "Company Name": "Ajmera Realty & Infra India Ltd.",
+        "Symbol": "AJMERA"
+    },
+    {
+        "Company Name": "Alembic Ltd.",
+        "Symbol": "ALEMBICLTD"
+    },
+    {
+        "Company Name": "Allcargo Gati Ltd",
+        "Symbol": "ACLGATI"
+    },
+    {
+        "Company Name": "Allcargo Terminals Ltd",
+        "Symbol": "ATL"
+    },
+    {
+        "Company Name": "Allied Digital Services Ltd.",
+        "Symbol": "ADSL"
+    },
+    {
+        "Company Name": "Amrutanjan Health Care Ltd.",
+        "Symbol": "AMRUTANJAN"
+    },
+    {
+        "Company Name": "Andhra Paper Ltd",
+        "Symbol": "ANDHRAPAP"
+    },
+    {
+        "Company Name": "Antony Waste Handling Cell Ltd",
+        "Symbol": "AWHCL"
+    },
+    {
+        "Company Name": "Apex Frozen Foods",
+        "Symbol": "APEX"
+    },
+    {
+        "Company Name": "Apollo Micro Systems Ltd",
+        "Symbol": "APOLLO"
+    },
+    {
+        "Company Name": "Aptech Ltd.",
+        "Symbol": "APTECHT"
+    },
+    {
+        "Company Name": "Aries Agro Ltd.",
+        "Symbol": "ARIES"
+    },
+    {
+        "Company Name": "Arrow Greentech Ltd.",
+        "Symbol": "ARROWGREEN"
+    },
+    {
+        "Company Name": "Artemis Medicare Services Ltd",
+        "Symbol": "ARTEMISMED"
+    },
+    {
+        "Company Name": "Arvind Smartspaces Ltd.",
+        "Symbol": "ARVSMART"
+    },
+    {
+        "Company Name": "Ashapura Minechem Ltd.",
+        "Symbol": "ASHAPURMIN"
+    },
+    {
+        "Company Name": "Ashiana Housing Ltd.",
+        "Symbol": "ASHIANA"
+    },
+    {
+        "Company Name": "Asian Energy Services Ltd",
+        "Symbol": "ASIANENE"
+    },
+    {
+        "Company Name": "Associated Alcohols & Breweries Ltd",
+        "Symbol": "ASALCBR"
+    },
+    {
+        "Company Name": "Atam Valves Ltd",
+        "Symbol": "ATAM"
+    },
+    {
+        "Company Name": "Atul Auto Ltd.",
+        "Symbol": "ATULAUTO"
+    },
+    {
+        "Company Name": "Autoline Industries Ltd.",
+        "Symbol": "AUTOIND"
+    },
+    {
+        "Company Name": "Avantel Ltd",
+        "Symbol": "AVANTEL"
+    },
+    {
+        "Company Name": "Avt Natural Products Ltd.",
+        "Symbol": "AVTNPL"
+    },
+    {
+        "Company Name": "AWFIS Space Solutions Ltd",
+        "Symbol": "AWFIS"
+    },
+    {
+        "Company Name": "Axiscades Engineering Technologies Ltd.",
+        "Symbol": "AXISCADES"
+    },
+    {
+        "Company Name": "Bajaj Healthcare Ltd",
+        "Symbol": "BAJAJHCARE"
+    },
+    {
+        "Company Name": "Bajaj Housing Finance Ltd",
+        "Symbol": "BAJAJHFL"
+    },
+    {
+        "Company Name": "Bajel Projects Ltd",
+        "Symbol": "BAJEL"
+    },
+    {
+        "Company Name": "Bal Pharma Ltd.",
+        "Symbol": "BALPHARMA"
+    },
+    {
+        "Company Name": "Balu Forge Industries Ltd",
+        "Symbol": "BALUFORGE"
+    },
+    {
+        "Company Name": "Barbeque-Nation Hospitality Ltd",
+        "Symbol": "BARBEQUE"
+    },
+    {
+        "Company Name": "Bhagiradha Chemicals & Industries Ltd",
+        "Symbol": "BHAGCHEM"
+    },
+    {
+        "Company Name": "Bharat Wire Ropes Ltd.",
+        "Symbol": "BHARATWIRE"
+    },
+    {
+        "Company Name": "Bigbloc Construction Ltd.",
+        "Symbol": "BIGBLOC"
+    },
+    {
+        "Company Name": "Black Box Ltd",
+        "Symbol": "BBOX"
+    },
+    {
+        "Company Name": "Bliss Gvs Pharma Ltd.",
+        "Symbol": "BLISSGVS"
+    },
+    {
+        "Company Name": "BLS E-Services Ltd",
+        "Symbol": "BLSE"
+    },
+    {
+        "Company Name": "Bodal Chemicals Ltd.",
+        "Symbol": "BODALCHEM"
+    },
+    {
+        "Company Name": "Borosil Scientific Ltd",
+        "Symbol": "BOROSCI"
+    },
+    {
+        "Company Name": "Bpl Ltd.",
+        "Symbol": "BPL"
+    },
+    {
+        "Company Name": "Brainbees Solutions Ltd",
+        "Symbol": "FIRSTCRY"
+    },
+    {
+        "Company Name": "Camlin Fine Sciences Ltd.",
+        "Symbol": "CAMLINFINE"
+    },
+    {
+        "Company Name": "Cantabil Retail India Ltd.",
+        "Symbol": "CANTABIL"
+    },
+    {
+        "Company Name": "Capacite Infraprojects Ltd",
+        "Symbol": "CAPACITE"
+    },
+    {
+        "Company Name": "Career Point Ltd.",
+        "Symbol": "CAREERP"
+    },
+    {
+        "Company Name": "Carysil Ltd",
+        "Symbol": "CARYSIL"
+    },
+    {
+        "Company Name": "Ceigall India Ltd",
+        "Symbol": "CEIGALL"
+    },
+    {
+        "Company Name": "Chamanlal Setia Exports Ltd",
+        "Symbol": "CLSEL"
+    },
+    {
+        "Company Name": "Coastal Corporation Ltd",
+        "Symbol": "COASTCORP"
+    },
+    {
+        "Company Name": "Cords Cable Industries Ltd.",
+        "Symbol": "CORDSCABLE"
+    },
+    {
+        "Company Name": "Cosmo Films Ltd",
+        "Symbol": "COSMOFIRST"
+    },
+    {
+        "Company Name": "Credit Analysis And Research Ltd.",
+        "Symbol": "CARERATING"
+    },
+    {
+        "Company Name": "Crest Ventures Ltd.",
+        "Symbol": "CREST"
+    },
+    {
+        "Company Name": "Cupid Ltd.",
+        "Symbol": "CUPID"
+    },
+    {
+        "Company Name": "Dalmia Bharat Sugar And Industries Ltd.",
+        "Symbol": "DALMIASUG"
+    },
+    {
+        "Company Name": "D.b.corp Ltd.",
+        "Symbol": "DBCORP"
+    },
+    {
+        "Company Name": "DCM Shriram Industries Ltd",
+        "Symbol": "DCMSRIND"
+    },
+    {
+        "Company Name": "Dcw Ltd.",
+        "Symbol": "DCW"
+    },
+    {
+        "Company Name": "Deep Industries Ltd",
+        "Symbol": "DEEPINDS"
+    },
+    {
+        "Company Name": "Dev Information Technology Ltd",
+        "Symbol": "DEVIT"
+    },
+    {
+        "Company Name": "Dhampur Bio Organics Ltd",
+        "Symbol": "DBOL"
+    },
+    {
+        "Company Name": "Dhampur Sugar Mills Ltd.",
+        "Symbol": "DHAMPURSUG"
+    },
+    {
+        "Company Name": "Dhanlaxmi Bank Ltd.",
+        "Symbol": "DHANBANK"
+    },
+    {
+        "Company Name": "Dharmaj Crop Guard Ltd",
+        "Symbol": "DHARMAJ"
+    },
+    {
+        "Company Name": "D-link (india) Ltd.",
+        "Symbol": "DLINKINDIA"
+    },
+    {
+        "Company Name": "Dolat Algotech Ltd",
+        "Symbol": "DOLATALGO"
+    },
+    {
+        "Company Name": "Dwarikesh Sugar Industries Ltd.",
+        "Symbol": "DWARKESH"
+    },
+    {
+        "Company Name": "Dynamic Cables Ltd",
+        "Symbol": "DYCL"
+    },
+    {
+        "Company Name": "E2E Networks Ltd",
+        "Symbol": "E2E"
+    },
+    {
+        "Company Name": "ECOS Mobility & Hospitality Ltd",
+        "Symbol": "ECOSMOBLTY"
+    },
+    {
+        "Company Name": "Elin Electronics Ltd",
+        "Symbol": "ELIN"
+    },
+    {
+        "Company Name": "Emami Realty Ltd",
+        "Symbol": "EMAMIREAL"
+    },
+    {
+        "Company Name": "Emcure Pharmaceuticals Ltd",
+        "Symbol": "EMCURE"
+    },
+    {
+        "Company Name": "Epack Durable Ltd",
+        "Symbol": "EPACK"
+    },
+    {
+        "Company Name": "Ester Industries Ltd.",
+        "Symbol": "ESTER"
+    },
+    {
+        "Company Name": "Eureka Forbes Ltd",
+        "Symbol": "EUREKAFORB"
+    },
+    {
+        "Company Name": "Everest Kanto Cylinder Ltd.",
+        "Symbol": "EKC"
+    },
+    {
+        "Company Name": "Exicom Tele-Systems Ltd",
+        "Symbol": "EXICOM"
+    },
+    {
+        "Company Name": "Exxaro Tiles Ltd",
+        "Symbol": "EXXARO"
+    },
+    {
+        "Company Name": "Fedbank Financial Services Ltd",
+        "Symbol": "FEDFINA"
+    },
+    {
+        "Company Name": "Federal-mogul Goetze (india) Ltd..",
+        "Symbol": "FMGOETZE"
+    },
+    {
+        "Company Name": "Filatex India Ltd.",
+        "Symbol": "FILATEX"
+    },
+    {
+        "Company Name": "Fino Payments Bank Ltd",
+        "Symbol": "FINOPB"
+    },
+    {
+        "Company Name": "Flair Writing Industries Ltd",
+        "Symbol": "FLAIR"
+    },
+    {
+        "Company Name": "Focus Lighting & Fixtures Ltd",
+        "Symbol": "FOCUS"
+    },
+    {
+        "Company Name": "Foods & Inns Ltd",
+        "Symbol": "FOODSIN"
+    },
+    {
+        "Company Name": "Gala Precision Engineering Ltd",
+        "Symbol": "GALAPREC"
+    },
+    {
+        "Company Name": "Gallantt Metal Ltd.",
+        "Symbol": "GALLANTT"
+    },
+    {
+        "Company Name": "Gandhar Oil Refinery (India) Ltd",
+        "Symbol": "GANDHAR"
+    },
+    {
+        "Company Name": "Ganesha Ecosphere Ltd.",
+        "Symbol": "GANECOS"
+    },
+    {
+        "Company Name": "Ganesh Benzoplast Ltd",
+        "Symbol": "GANESHBE"
+    },
+    {
+        "Company Name": "Garware Technical Fibres Ltd",
+        "Symbol": "GARFIBRES"
+    },
+    {
+        "Company Name": "Genesys International Corporation Ltd.",
+        "Symbol": "GENESYS"
+    },
+    {
+        "Company Name": "Gensol Engineering Ltd",
+        "Symbol": "GENSOL"
+    },
+    {
+        "Company Name": "Genus Power Infrastructures Ltd.",
+        "Symbol": "GENUSPOWER"
+    },
+    {
+        "Company Name": "Geojit Financial Services",
+        "Symbol": "GEOJITFSL"
+    },
+    {
+        "Company Name": "Ge Power India Ltd.",
+        "Symbol": "GEPIL"
+    },
+    {
+        "Company Name": "GHCL Textiles Ltd",
+        "Symbol": "GHCLTEXTIL"
+    },
+    {
+        "Company Name": "Gic Housing Finance Ltd.",
+        "Symbol": "GICHSGFIN"
+    },
+    {
+        "Company Name": "Global Surfaces Ltd",
+        "Symbol": "GSLSU"
+    },
+    {
+        "Company Name": "Globus Spirits Ltd.",
+        "Symbol": "GLOBUSSPR"
+    },
+    {
+        "Company Name": "GMR Power & Urban Infra Ltd",
+        "Symbol": "GMRP&UI"
+    },
+    {
+        "Company Name": "Goodluck India Ltd.",
+        "Symbol": "GOODLUCK"
+    },
+    {
+        "Company Name": "Gp Petroleums Ltd.",
+        "Symbol": "GULFPETRO"
+    },
+    {
+        "Company Name": "Gpt Infraprojects Ltd.",
+        "Symbol": "GPTINFRA"
+    },
+    {
+        "Company Name": "Gufic Biosciences Ltd.",
+        "Symbol": "GUFICBIO"
+    },
+    {
+        "Company Name": "Gujarat Industries Power Company Ltd.",
+        "Symbol": "GIPCL"
+    },
+    {
+        "Company Name": "Heranba Industries Ltd",
+        "Symbol": "HERANBA"
+    },
+    {
+        "Company Name": "Hercules Hoists Ltd.",
+        "Symbol": "HERCULES"
+    },
+    {
+        "Company Name": "Hilton Metal Forging Ltd.",
+        "Symbol": "HILTON"
+    },
+    {
+        "Company Name": "Himatsingka Seide Ltd.",
+        "Symbol": "HIMATSEIDE"
+    },
+    {
+        "Company Name": "Hinduja Global Solutions Ltd.",
+        "Symbol": "HGS"
+    },
+    {
+        "Company Name": "Hi-Tech Pipes Ltd",
+        "Symbol": "HITECH"
+    },
+    {
+        "Company Name": "HLE Glascoat Ltd",
+        "Symbol": "HLEGLAS"
+    },
+    {
+        "Company Name": "HP Adhesives Ltd",
+        "Symbol": "HPAL"
+    },
+    {
+        "Company Name": "Hpl Electric & Power Ltd.",
+        "Symbol": "HPL"
+    },
+    {
+        "Company Name": "Hubtown Ltd.",
+        "Symbol": "HUBTOWN"
+    },
+    {
+        "Company Name": "Huhtamaki India Ltd",
+        "Symbol": "HUHTAMAKI"
+    },
+    {
+        "Company Name": "Hyundai Motor India Ltd",
+        "Symbol": "HYUNDAI"
+    },
+    {
+        "Company Name": "Igarashi Motors India Ltd.",
+        "Symbol": "IGARASHI"
+    },
+    {
+        "Company Name": "IKIO Lighting Ltd",
+        "Symbol": "IKIO"
+    },
+    {
+        "Company Name": "Indian Hume Pipe Company Ltd.",
+        "Symbol": "INDIANHUME"
+    },
+    {
+        "Company Name": "Indian Terrain Fashions Ltd.",
+        "Symbol": "INDTERRAIN"
+    },
+    {
+        "Company Name": "Indo Amines Ltd",
+        "Symbol": "INDOAMIN"
+    },
+    {
+        "Company Name": "Indo Borax & Chemicals Ltd",
+        "Symbol": "INDOBORAX"
+    },
+    {
+        "Company Name": "Indoco Remedies Ltd.",
+        "Symbol": "INDOCO"
+    },
+    {
+        "Company Name": "Indo Rama Synthetics (india) Ltd.",
+        "Symbol": "INDORAMA"
+    },
+    {
+        "Company Name": "Indraprastha Medical Corporation Ltd.",
+        "Symbol": "INDRAMEDCO"
+    },
+    {
+        "Company Name": "International Conveyors Ltd",
+        "Symbol": "INTLCONV"
+    },
+    {
+        "Company Name": "Iol Chemicals And Pharmaceuticals Ltd.",
+        "Symbol": "IOLCP"
+    },
+    {
+        "Company Name": "Irm Energy Ltd",
+        "Symbol": "IRMENERGY"
+    },
+    {
+        "Company Name": "Izmo Ltd.",
+        "Symbol": "IZMO"
+    },
+    {
+        "Company Name": "Jagran Prakashan Ltd.",
+        "Symbol": "JAGRAN"
+    },
+    {
+        "Company Name": "Jagsonpal Pharmaceuticals Ltd.",
+        "Symbol": "JAGSNPHARM"
+    },
+    {
+        "Company Name": "Jain Irrigation Systems Ltd.",
+        "Symbol": "JISLDVREQS"
+    },
+    {
+        "Company Name": "Jash Engineering Ltd",
+        "Symbol": "JASH"
+    },
+    {
+        "Company Name": "Jay Bharat Maruti Ltd.",
+        "Symbol": "JAYBARMARU"
+    },
+    {
+        "Company Name": "JG Chemicals Ltd",
+        "Symbol": "JGCHEM"
+    },
+    {
+        "Company Name": "Jindal Drilling And Industries Ltd.",
+        "Symbol": "JINDRILL"
+    },
+    {
+        "Company Name": "Jindal Photo Ltd.",
+        "Symbol": "JINDALPHOT"
+    },
+    {
+        "Company Name": "Jindal Poly Films Ltd.",
+        "Symbol": "JINDALPOLY"
+    },
+    {
+        "Company Name": "JITF Infra Logistics Ltd",
+        "Symbol": "JITFINFRA"
+    },
+    {
+        "Company Name": "Jyoti Structures Ltd.",
+        "Symbol": "JYOTISTRUC"
+    },
+    {
+        "Company Name": "Kabra Extrusion Technik Ltd.",
+        "Symbol": "KABRAEXTRU"
+    },
+    {
+        "Company Name": "Kamdhenu Ltd.",
+        "Symbol": "KAMDHENU"
+    },
+    {
+        "Company Name": "Kanoria Chemicals & Industries Ltd.",
+        "Symbol": "KANORICHEM"
+    },
+    {
+        "Company Name": "Kcp Ltd.",
+        "Symbol": "KCP"
+    },
+    {
+        "Company Name": "Kcp Sugar And Industries Corporation Ltd.",
+        "Symbol": "KCPSUGIND"
+    },
+    {
+        "Company Name": "Kellton Tech Solutions Ltd.",
+        "Symbol": "KELLTONTEC"
+    },
+    {
+        "Company Name": "Kernex Microsystems (india) Ltd.",
+        "Symbol": "KERNEX"
+    },
+    {
+        "Company Name": "Khaitan Chemicals & Fertilizers Ltd",
+        "Symbol": "KHAICHEM"
+    },
+    {
+        "Company Name": "Kiocl Ltd.",
+        "Symbol": "KIOCL"
+    },
+    {
+        "Company Name": "Kiri Industries Ltd.",
+        "Symbol": "KIRIINDUS"
+    },
+    {
+        "Company Name": "Kirloskar Electric Company Ltd.",
+        "Symbol": "KECL"
+    },
+    {
+        "Company Name": "Kitex Garments Ltd.",
+        "Symbol": "KITEX"
+    },
+    {
+        "Company Name": "K.m.sugar Mills Ltd.",
+        "Symbol": "KMSUGAR"
+    },
+    {
+        "Company Name": "Kohinoor Foods Ltd.",
+        "Symbol": "KOHINOOR"
+    },
+    {
+        "Company Name": "Kokuyo Camlin Ltd.",
+        "Symbol": "KOKUYOCMLN"
+    },
+    {
+        "Company Name": "Kopran Ltd.",
+        "Symbol": "KOPRAN"
+    },
+    {
+        "Company Name": "Kothari Petrochemicals Ltd.",
+        "Symbol": "KOTHARIPET"
+    },
+    {
+        "Company Name": "KPI Green Energy Ltd",
+        "Symbol": "KPIGREEN"
+    },
+    {
+        "Company Name": "KRN Heat Exchanger and Refrigeration Ltd",
+        "Symbol": "KRN"
+    },
+    {
+        "Company Name": "Kronox Lab Sciences Ltd",
+        "Symbol": "KRONOX"
+    },
+    {
+        "Company Name": "Kross Ltd",
+        "Symbol": "KROSS"
+    },
+    {
+        "Company Name": "Krsnaa Diagnostics Ltd",
+        "Symbol": "KRSNAA"
+    },
+    {
+        "Company Name": "Kuantum Papers Ltd",
+        "Symbol": "KUANTUM"
+    },
+    {
+        "Company Name": "Lambodhara Textiles Ltd.",
+        "Symbol": "LAMBODHARA"
+    },
+    {
+        "Company Name": "La Opala Rg Ltd.",
+        "Symbol": "LAOPALA"
+    },
+    {
+        "Company Name": "Likhitha Infrastructure Ltd",
+        "Symbol": "LIKHITHA"
+    },
+    {
+        "Company Name": "Lokesh Machines Ltd.",
+        "Symbol": "LOKESHMACH"
+    },
+    {
+        "Company Name": "Maan Aluminium Ltd.",
+        "Symbol": "MAANALU"
+    },
+    {
+        "Company Name": "Madras Fertilizers Ltd.",
+        "Symbol": "MADRASFERT"
+    },
+    {
+        "Company Name": "Mahanagar Telephone Nigam Ltd.",
+        "Symbol": "MTNL"
+    },
+    {
+        "Company Name": "Manali Petrochemicals Ltd.",
+        "Symbol": "MANALIPETC"
+    },
+    {
+        "Company Name": "Mangalam Cement Ltd.",
+        "Symbol": "MANGLMCEM"
+    },
+    {
+        "Company Name": "Mangalore Chemicals & Fertilizers Ltd.",
+        "Symbol": "MANGCHEFER"
+    },
+    {
+        "Company Name": "Man Industries (india) Ltd.",
+        "Symbol": "MANINDS"
+    },
+    {
+        "Company Name": "Marine Electricals (India) Ltd",
+        "Symbol": "MARINE"
+    },
+    {
+        "Company Name": "MAS Financial Services Ltd",
+        "Symbol": "MASFIN"
+    },
+    {
+        "Company Name": "Mawana Sugars Ltd.",
+        "Symbol": "MAWANASUG"
+    },
+    {
+        "Company Name": "Max Estates Ltd",
+        "Symbol": "MAXESTATES"
+    },
+    {
+        "Company Name": "Max India Ltd",
+        "Symbol": "MAXIND"
+    },
+    {
+        "Company Name": "Meghmani Organics Ltd",
+        "Symbol": "MOL"
+    },
+    {
+        "Company Name": "Mirza International Ltd.",
+        "Symbol": "MIRZAINT"
+    },
+    {
+        "Company Name": "Morepen Laboratories Ltd.",
+        "Symbol": "MOREPENLAB"
+    },
+    {
+        "Company Name": "Motisons Jewellers Ltd",
+        "Symbol": "MOTISONS"
+    },
+    {
+        "Company Name": "Msp Steel & Power Ltd.",
+        "Symbol": "MSPL"
+    },
+    {
+        "Company Name": "Mukand Ltd.",
+        "Symbol": "MUKANDLTD"
+    },
+    {
+        "Company Name": "Mukka Proteins Ltd",
+        "Symbol": "MUKKA"
+    },
+    {
+        "Company Name": "Munjal Auto Industries Ltd.",
+        "Symbol": "MUNJALAU"
+    },
+    {
+        "Company Name": "Navkar Corporation Ltd.",
+        "Symbol": "NAVKARCORP"
+    },
+    {
+        "Company Name": "Navneet Education Ltd.",
+        "Symbol": "NAVNETEDUL"
+    },
+    {
+        "Company Name": "Ncl Industries Ltd.",
+        "Symbol": "NCLIND"
+    },
+    {
+        "Company Name": "Nelcast Ltd.",
+        "Symbol": "NELCAST"
+    },
+    {
+        "Company Name": "Nelco Ltd.",
+        "Symbol": "NELCO"
+    },
+    {
+        "Company Name": "New Delhi Television Ltd.",
+        "Symbol": "NDTV"
+    },
+    {
+        "Company Name": "Niit Ltd.",
+        "Symbol": "NIITLTD"
+    },
+    {
+        "Company Name": "Nitin Spinners Ltd.",
+        "Symbol": "NITINSPIN"
+    },
+    {
+        "Company Name": "North Eastern Carrying Corporation Ltd.",
+        "Symbol": "NECCLTD"
+    },
+    {
+        "Company Name": "Nupur Recyclers Ltd",
+        "Symbol": "NRL"
+    },
+    {
+        "Company Name": "OCCL Ltd",
+        "Symbol": "OCCLLTD"
+    },
+    {
+        "Company Name": "Ola Electric Mobility Ltd",
+        "Symbol": "OLAELEC"
+    },
+    {
+        "Company Name": "Om Infra Ltd",
+        "Symbol": "OMINFRAL"
+    },
+    {
+        "Company Name": "One Point One Solutions Ltd",
+        "Symbol": "ONEPOINT"
+    },
+    {
+        "Company Name": "Onmobile Global Ltd.",
+        "Symbol": "ONMOBILE"
+    },
+    {
+        "Company Name": "Oriental Aromatics Ltd",
+        "Symbol": "OAL"
+    },
+    {
+        "Company Name": "Orient Green Power Company Ltd.",
+        "Symbol": "GREENPOWER"
+    },
+    {
+        "Company Name": "Orient Paper & Industries Ltd.",
+        "Symbol": "ORIENTPPR"
+    },
+    {
+        "Company Name": "Orient Technologies Ltd",
+        "Symbol": "ORIENTTECH"
+    },
+    {
+        "Company Name": "Oswal Green Tech Ltd",
+        "Symbol": "OSWALGREEN"
+    },
+    {
+        "Company Name": "Pakka Ltd",
+        "Symbol": "PAKKA"
+    },
+    {
+        "Company Name": "Panama Petrochem Ltd.",
+        "Symbol": "PANAMAPET"
+    },
+    {
+        "Company Name": "Parag Milk Foods Ltd.",
+        "Symbol": "PARAGMILK"
+    },
+    {
+        "Company Name": "Paramount Communications Ltd.",
+        "Symbol": "PARACABLES"
+    },
+    {
+        "Company Name": "Par Drugs & Chemicals Ltd",
+        "Symbol": "PAR"
+    },
+    {
+        "Company Name": "Patel Integrated Logistics Ltd.",
+        "Symbol": "PATINTLOG"
+    },
+    {
+        "Company Name": "Pc Jeweller Ltd.",
+        "Symbol": "PCJEWELLER"
+    },
+    {
+        "Company Name": "Pearl Polymers Ltd.",
+        "Symbol": "PEARLPOLY"
+    },
+    {
+        "Company Name": "Pennar Industries Ltd.",
+        "Symbol": "PENIND"
+    },
+    {
+        "Company Name": "Pix Transmission Ltd",
+        "Symbol": "PIXTRANS"
+    },
+    {
+        "Company Name": "Platinum Industries Ltd",
+        "Symbol": "PLATIND"
+    },
+    {
+        "Company Name": "Pnb Gilts Ltd.",
+        "Symbol": "PNBGILTS"
+    },
+    {
+        "Company Name": "Pokarna Ltd.",
+        "Symbol": "POKARNA"
+    },
+    {
+        "Company Name": "Pondy Oxides & Chemicals Ltd",
+        "Symbol": "POCL"
+    },
+    {
+        "Company Name": "Prakash Industries Ltd.",
+        "Symbol": "PRAKASH"
+    },
+    {
+        "Company Name": "Prakash Pipes Ltd",
+        "Symbol": "PPL"
+    },
+    {
+        "Company Name": "Prataap Snacks Ltd",
+        "Symbol": "DIAMONDYD"
+    },
+    {
+        "Company Name": "Precision Camshafts Ltd.",
+        "Symbol": "PRECAM"
+    },
+    {
+        "Company Name": "Precision Wires India Ltd.",
+        "Symbol": "PRECWIRE"
+    },
+    {
+        "Company Name": "Premier Energies Ltd",
+        "Symbol": "PREMIERENE"
+    },
+    {
+        "Company Name": "Premier Explosives Ltd.",
+        "Symbol": "PREMEXPLN"
+    },
+    {
+        "Company Name": "Premier Polyfilm Ltd.",
+        "Symbol": "PREMIERPOL"
+    },
+    {
+        "Company Name": "Prism Johnson Ltd",
+        "Symbol": "PRSMJOHNSN"
+    },
+    {
+        "Company Name": "PSP Projects",
+        "Symbol": "PSPPROJECT"
+    },
+    {
+        "Company Name": "Pudumjee Paper Products Ltd.",
+        "Symbol": "PDMJEPAPER"
+    },
+    {
+        "Company Name": "Punjab & Sind Bank",
+        "Symbol": "PSB"
+    },
+    {
+        "Company Name": "Quick Heal Technologies Ltd.",
+        "Symbol": "QUICKHEAL"
+    },
+    {
+        "Company Name": "Radhika Jeweltech Ltd",
+        "Symbol": "RADHIKAJWE"
+    },
+    {
+        "Company Name": "Raghav Productivity Enhancers Ltd",
+        "Symbol": "RPEL"
+    },
+    {
+        "Company Name": "Rajshree Polypack Ltd",
+        "Symbol": "RPPL"
+    },
+    {
+        "Company Name": "Ramco Industries Ltd.",
+        "Symbol": "RAMCOIND"
+    },
+    {
+        "Company Name": "Ratnaveer Precision Engineering Ltd",
+        "Symbol": "RATNAVEER"
+    },
+    {
+        "Company Name": "Rattanindia Power Ltd.",
+        "Symbol": "RTNPOWER"
+    },
+    {
+        "Company Name": "Raymond Lifestyle Ltd",
+        "Symbol": "RAYMONDLSL"
+    },
+    {
+        "Company Name": "Refex Industries Ltd.",
+        "Symbol": "REFEX"
+    },
+    {
+        "Company Name": "Relaxo Footwears Ltd.",
+        "Symbol": "RELAXO"
+    },
+    {
+        "Company Name": "Reliance Industrial Infrastructure Ltd.",
+        "Symbol": "RIIL"
+    },
+    {
+        "Company Name": "Reliance Power Ltd.",
+        "Symbol": "RPOWER"
+    },
+    {
+        "Company Name": "Repco Home Finance Ltd.",
+        "Symbol": "REPCOHOME"
+    },
+    {
+        "Company Name": "Rico Auto Industries Ltd.",
+        "Symbol": "RICOAUTO"
+    },
+    {
+        "Company Name": "Ritco Logistics Ltd",
+        "Symbol": "RITCO"
+    },
+    {
+        "Company Name": "RKEC Projects Ltd",
+        "Symbol": "RKEC"
+    },
+    {
+        "Company Name": "Roto Pumps Ltd",
+        "Symbol": "ROTO"
+    },
+    {
+        "Company Name": "R.p.p. Infra Projects Ltd.",
+        "Symbol": "RPPINFRA"
+    },
+    {
+        "Company Name": "RPSG Ventures Ltd",
+        "Symbol": "RPSGVENT"
+    },
+    {
+        "Company Name": "R. S. Software (india) Ltd.",
+        "Symbol": "RSSOFTWARE"
+    },
+    {
+        "Company Name": "R Systems International Ltd.",
+        "Symbol": "RSYSTEMS"
+    },
+    {
+        "Company Name": "Rupa & Company Ltd.",
+        "Symbol": "RUPA"
+    },
+    {
+        "Company Name": "Sadhana Nitro Chem Ltd",
+        "Symbol": "SADHNANIQ"
+    },
+    {
+        "Company Name": "Saksoft Ltd.",
+        "Symbol": "SAKSOFT"
+    },
+    {
+        "Company Name": "Sakthi Sugars Ltd.",
+        "Symbol": "SAKHTISUG"
+    },
+    {
+        "Company Name": "Salzer Electronics Ltd.",
+        "Symbol": "SALZERELEC"
+    },
+    {
+        "Company Name": "Sandhar Technologies Ltd.",
+        "Symbol": "SANDHAR"
+    },
+    {
+        "Company Name": "Sarla Performance Fibers Ltd.",
+        "Symbol": "SARLAPOLY"
+    },
+    {
+        "Company Name": "Sasken Communication Technologies Ltd.",
+        "Symbol": "SASKEN"
+    },
+    {
+        "Company Name": "Satia Industries Ltd",
+        "Symbol": "SATIA"
+    },
+    {
+        "Company Name": "Sat Industries Ltd",
+        "Symbol": "SATINDLTD"
+    },
+    {
+        "Company Name": "Saurashtra Cement Ltd",
+        "Symbol": "SAURASHCEM"
+    },
+    {
+        "Company Name": "S Chand and Company Ltd.",
+        "Symbol": "SCHAND"
+    },
+    {
+        "Company Name": "Security & Intelligence Services India",
+        "Symbol": "SIS"
+    },
+    {
+        "Company Name": "SEPC Ltd",
+        "Symbol": "SEPC"
+    },
+    {
+        "Company Name": "Servotech Power Systems Ltd",
+        "Symbol": "SERVOTECH"
+    },
+    {
+        "Company Name": "Shaily Engineering Plastics Ltd",
+        "Symbol": "SHAILY"
+    },
+    {
+        "Company Name": "Shakti Pumps (india) Ltd.",
+        "Symbol": "SHAKTIPUMP"
+    },
+    {
+        "Company Name": "Shalimar Paints Ltd.",
+        "Symbol": "SHALPAINTS"
+    },
+    {
+        "Company Name": "Sharda Cropchem Ltd.",
+        "Symbol": "SHARDACROP"
+    },
+    {
+        "Company Name": "Shipping Corporation of India Land & Assets Ltd",
+        "Symbol": "SCILAL"
+    },
+    {
+        "Company Name": "S H Kelkar And Company Ltd.",
+        "Symbol": "SHK"
+    },
+    {
+        "Company Name": "Shree Digvijay Cement Co. Ltd",
+        "Symbol": "SHREDIGCEM"
+    },
+    {
+        "Company Name": "Shriram Properties Ltd",
+        "Symbol": "SHRIRAMPPS"
+    },
+    {
+        "Company Name": "Sigachi Industries Ltd",
+        "Symbol": "SIGACHI"
+    },
+    {
+        "Company Name": "Signpost India Ltd",
+        "Symbol": "SIGNPOST"
+    },
+    {
+        "Company Name": "Sikko Industries Ltd",
+        "Symbol": "SIKKO"
+    },
+    {
+        "Company Name": "Silgo Retail Ltd",
+        "Symbol": "SILGO"
+    },
+    {
+        "Company Name": "Sirca Paints India Ltd",
+        "Symbol": "SIRCA"
+    },
+    {
+        "Company Name": "Siyaram Silk Mills Ltd.",
+        "Symbol": "SIYSIL"
+    },
+    {
+        "Company Name": "S J S Enterprises Ltd",
+        "Symbol": "SJS"
+    },
+    {
+        "Company Name": "Skipper Ltd.",
+        "Symbol": "SKIPPER"
+    },
+    {
+        "Company Name": "Sms Pharmaceuticals Ltd.",
+        "Symbol": "SMSPHARMA"
+    },
+    {
+        "Company Name": "Snowman Logistics Ltd.",
+        "Symbol": "SNOWMAN"
+    },
+    {
+        "Company Name": "Solara Active Pharma Sciences Ltd",
+        "Symbol": "SOLARA"
+    },
+    {
+        "Company Name": "Som Distilleries & Breweries Ltd.",
+        "Symbol": "SDBL"
+    },
+    {
+        "Company Name": "Southern Petrochemicals Industries Corporation  Ltd.",
+        "Symbol": "SPIC"
+    },
+    {
+        "Company Name": "Spacenet Enterprises India Ltd",
+        "Symbol": "SPCENET"
+    },
+    {
+        "Company Name": "Spencers Retail Ltd",
+        "Symbol": "SPENCERS"
+    },
+    {
+        "Company Name": "Sportking India Ltd",
+        "Symbol": "SPORTKING"
+    },
+    {
+        "Company Name": "Stanley Lifestyles Ltd",
+        "Symbol": "STANLEY"
+    },
+    {
+        "Company Name": "Sterling Tools Ltd.",
+        "Symbol": "STERTOOLS"
+    },
+    {
+        "Company Name": "Stove Kraft Ltd",
+        "Symbol": "STOVEKRAFT"
+    },
+    {
+        "Company Name": "Suryoday Small Finance Bank Ltd",
+        "Symbol": "SURYODAY"
+    },
+    {
+        "Company Name": "Suven Life Sciences Ltd.",
+        "Symbol": "SUVEN"
+    },
+    {
+        "Company Name": "Syncom Formulations (India) Ltd",
+        "Symbol": "SYNCOMF"
+    },
+    {
+        "Company Name": "Talbros Automotive Components Ltd.",
+        "Symbol": "TALBROAUTO"
+    },
+    {
+        "Company Name": "Tamilnad Mercantile Bank Ltd",
+        "Symbol": "TMB"
+    },
+    {
+        "Company Name": "Tamilnadu Petroproducts Ltd.",
+        "Symbol": "TNPETRO"
+    },
+    {
+        "Company Name": "Tarsons Products Ltd",
+        "Symbol": "TARSONS"
+    },
+    {
+        "Company Name": "Thangamayil Jewellery Ltd.",
+        "Symbol": "THANGAMAYL"
+    },
+    {
+        "Company Name": "The Andhra Sugars Ltd.",
+        "Symbol": "ANDHRSUGAR"
+    },
+    {
+        "Company Name": "The Anup Engineering Ltd",
+        "Symbol": "ANUP"
+    },
+    {
+        "Company Name": "Themis Medicare Ltd.",
+        "Symbol": "THEMISMED"
+    },
+    {
+        "Company Name": "The Ugar Sugar Works Ltd.",
+        "Symbol": "UGARSUGAR"
+    },
+    {
+        "Company Name": "Thyrocare Technologies Ltd.",
+        "Symbol": "THYROCARE"
+    },
+    {
+        "Company Name": "Tips Music Ltd",
+        "Symbol": "TIPSMUSIC"
+    },
+    {
+        "Company Name": "Tpl Plastech Ltd.",
+        "Symbol": "TPLPLASTEH"
+    },
+    {
+        "Company Name": "Tracxn Technologies",
+        "Symbol": "TRACXN"
+    },
+    {
+        "Company Name": "Transformers & Rectifiers India Ltd",
+        "Symbol": "TARIL"
+    },
+    {
+        "Company Name": "Transport Corporation Of India Ltd.",
+        "Symbol": "TCI"
+    },
+    {
+        "Company Name": "Tribhovandas Bhimji Zaveri Ltd.",
+        "Symbol": "TBZ"
+    },
+    {
+        "Company Name": "Tv Today Network Ltd.",
+        "Symbol": "TVTODAY"
+    },
+    {
+        "Company Name": "Uflex Ltd.",
+        "Symbol": "UFLEX"
+    },
+    {
+        "Company Name": "Ufo Moviez India Ltd.",
+        "Symbol": "UFO"
+    },
+    {
+        "Company Name": "Unicommerce eSolutions Ltd",
+        "Symbol": "UNIECOM"
+    },
+    {
+        "Company Name": "United Polyfab Gujarat Ltd",
+        "Symbol": "UNITEDPOLY"
+    },
+    {
+        "Company Name": "Updater Services Ltd",
+        "Symbol": "UDS"
+    },
+    {
+        "Company Name": "Valiant Laboratories Ltd",
+        "Symbol": "VALIANTLAB"
+    },
+    {
+        "Company Name": "Valiant Organics Ltd",
+        "Symbol": "VALIANTORG"
+    },
+    {
+        "Company Name": "Vascon Engineers Ltd.",
+        "Symbol": "VASCONEQ"
+    },
+    {
+        "Company Name": "Vimta Labs Ltd.",
+        "Symbol": "VIMTALABS"
+    },
+    {
+        "Company Name": "Vip Clothing Ltd.",
+        "Symbol": "VIPCLOTHNG"
+    },
+    {
+        "Company Name": "Visaka Industries Ltd.",
+        "Symbol": "VISAKAIND"
+    },
+    {
+        "Company Name": "Vishnu Chemicals Ltd.",
+        "Symbol": "VISHNU"
+    },
+    {
+        "Company Name": "Vishnu Prakash R Punglia Ltd",
+        "Symbol": "VPRPL"
+    },
+    {
+        "Company Name": "VL E-Governance & IT Solutions Ltd",
+        "Symbol": "VLEGOV"
+    },
+    {
+        "Company Name": "Vrl Logistics Ltd.",
+        "Symbol": "VRLLOG"
+    },
+    {
+        "Company Name": "Waaree Energies Ltd",
+        "Symbol": "WAAREEENER"
+    },
+    {
+        "Company Name": "Walchandnagar Industries Ltd.",
+        "Symbol": "WALCHANNAG"
+    },
+    {
+        "Company Name": "Wanbury Ltd.",
+        "Symbol": "WANBURY"
+    },
+    {
+        "Company Name": "Western Carriers (India) Ltd",
+        "Symbol": "WCIL"
+    },
+    {
+        "Company Name": "Websol Energy System Ltd.",
+        "Symbol": "WEBELSOLAR"
+    },
+    {
+        "Company Name": "W S Industries (i) Ltd.",
+        "Symbol": "WSI"
+    },
+    {
+        "Company Name": "Xchanging Solutions Ltd.",
+        "Symbol": "XCHANGING"
+    },
+    {
+        "Company Name": "Yatra Online Ltd",
+        "Symbol": "YATRA"
+    },
+    {
+        "Company Name": "Zaggle Prepaid Ocean Services Ltd",
+        "Symbol": "ZAGGLE"
+    },
+    {
+        "Company Name": "Zim Laboratories Ltd",
+        "Symbol": "ZIMLAB"
+    },
+    {
+        "Company Name": "Zuari Agro Chemicals Ltd.",
+        "Symbol": "ZUARI"
+    },
+    {
+        "Company Name": "Zuari Industries Ltd",
+        "Symbol": "ZUARIIND"
+    }
 ]
