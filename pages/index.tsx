@@ -315,13 +315,13 @@ export default function StockChart() {
   );
 
   return (
-    <div className="flex h-screen bg-background text-foreground min-w-[320px]">
+    <div className="flex h-screen bg-background text-foreground">
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Chart and Controls */}
         <main className="flex-1 overflow-hidden p-4 flex flex-col">
-        <div className="flex-1 overflow-y-auto p-4">
+        <div className="flex-1 overflow-y-auto">
             {/* Stock Info */}
             {currentStock && (
               <div className="mb-4 flex items-center justify-between">
