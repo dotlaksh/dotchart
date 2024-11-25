@@ -319,56 +319,6 @@ export default function StockChart() {
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Top Bar */}
-        <header className="bg-background/80 backdrop-blur-sm border-b border-border p-2 flex items-center justify-between">
-          
-          <div className="flex items-center space-x-2">
-            <div className="relative" ref={searchRef}>
-              <Input
-                type="text"
-                placeholder="Search stocks..."
-                value={searchTerm}
-                onChange={(e) => {
-                  setSearchTerm(e.target.value);
-                  setShowDropdown(true);
-                }}
-                className="w-64 pr-6 text-sm h-8"
-              />
-              {searchTerm ? (
-                <X
-                  className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground hover:text-foreground cursor-pointer"
-                  onClick={() => {
-                    setSearchTerm('');
-                    setShowDropdown(false);
-                  }}
-                />
-              ) : (
-                <Search className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground" />
-              )}
-              {showDropdown && searchTerm && (
-                <div className="absolute w-full mt-1 py-1 bg-background border border-border rounded-lg shadow-lg max-h-60 overflow-y-auto z-50">
-                  {filteredStocks.map((stock) => (
-                    <button
-                      key={stock.symbol}
-                      onClick={() => {
-                        const stockIndex = stocks.findIndex((s) => s.symbol === stock.symbol);
-                        setCurrentStockIndex(stockIndex);
-                        setCurrentPage(Math.floor(stockIndex / STOCKS_PER_PAGE) + 1);
-                        setSearchTerm('');
-                        setShowDropdown(false);
-                      }}
-                      className="w-full px-3 py-1.5 text-left hover:bg-muted/50 transition-colors"
-                    >
-                      <div className="font-medium">{stock.symbol}</div>
-                      <div className="text-sm text-muted-foreground truncate">{stock.name}</div>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </header>
-
         {/* Chart and Controls */}
         <main className="flex-1 overflow-hidden p-4 flex flex-col">
         <div className="flex-1 overflow-y-auto p-4">
@@ -376,11 +326,11 @@ export default function StockChart() {
             {currentStock && (
               <div className="mb-4 flex items-center justify-between">
                 <div>
-                  <h2 className="text-2xl font-bold">{currentStock.symbol}</h2>
+                  <h2 className="text-lg font-bold">{currentStock.symbol}</h2>
                   <p className="text-sm text-muted-foreground">{currentStock.name}</p>
                 </div>
                 <div className="text-right">
-                  <p className={`text-2xl font-semibold ${
+                  <p className={`text-lg font-semibold ${
                     currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-green-500' : 'text-red-500'
                   }`}>
                     {currentStock.price?.toFixed(2)}
