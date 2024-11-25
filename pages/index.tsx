@@ -54,7 +54,6 @@ const INTERVALS = [
 ];
 
 const RANGES = [
-  { label: '6M', value: '6mo' },
   { label: '1Y', value: '1y' },
   { label: '2Y', value: '2y' },
   { label: '5Y', value: '5y' },
@@ -405,7 +404,7 @@ export default function StockChart() {
           </div>
 
           {/* Sticky Range and Interval Selectors */}
-        <div className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between items-center">
+        <div className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between">
             <div className="flex space-x-2">
               {INTERVALS.map((interval) => (
                 <Button
