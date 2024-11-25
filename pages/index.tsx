@@ -317,89 +317,12 @@ export default function StockChart() {
 
   return (
     <div className="flex h-screen bg-background text-foreground min-w-[320px]">
-      {/* Sidebar */}
-      <aside className={`w-64 bg-background border-r border-border transition-all duration-300 ease-in-out ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed inset-y-0 left-0 z-30 lg:relative lg:translate-x-0`}>
-        <div className="flex flex-col h-full">
-          <div className="p-4 border-b border-border flex justify-between items-center">
-            <h1 className="text-2xl font-bold">dotChart</h1>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="lg:hidden"
-              onClick={() => setSidebarOpen(false)}
-            >
-              <X className="h-5 w-5" />
-            </Button>
-          </div>
-          <ScrollArea className="flex-grow">
-            <div className="p-4 space-y-4">
-              <Select
-                value={selectedIndexId.toString()}
-                onValueChange={(value) => setSelectedIndexId(parseInt(value))}
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select Index" />
-                </SelectTrigger>
-                <SelectContent>
-                  {indexData.map((item, index) => (
-                    <SelectItem key={index} value={index.toString()}>
-                      {item.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <div className="space-y-2">
-                <h2 className="text-sm font-semibold">Stocks</h2>
-                {displayedStocks.map((stock, index) => (
-                  <Button
-                    key={stock.symbol}
-                    variant={index + (currentPage - 1) * STOCKS_PER_PAGE === currentStockIndex ? "default" : "ghost"}
-                    className="w-full justify-start"
-                    onClick={() => setCurrentStockIndex(index + (currentPage - 1) * STOCKS_PER_PAGE)}
-                  >
-                    {stock.symbol}
-                  </Button>
-                ))}
-              </div>
-              <div className="flex justify-between items-center mt-4">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  disabled={currentPage === 1}
-                >
-                  <ChevronLeft className="h-4 w-4" />
-                </Button>
-                <span className="text-sm">
-                  Page {currentPage} of {totalPages}
-                </span>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                >
-                  <ChevronRight className="h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-          </ScrollArea>
-        </div>
-      </aside>
 
       {/* Main Content */}
-      <div
-className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Bar */}
         <header className="bg-background/80 backdrop-blur-sm border-b border-border p-2 flex items-center justify-between">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden"
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-          >
-            <Menu className="h-5 w-5" />
-          </Button>
+          
           <div className="flex items-center space-x-2">
             <div className="relative" ref={searchRef}>
               <Input
