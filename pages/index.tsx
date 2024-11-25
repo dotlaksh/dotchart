@@ -3,18 +3,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createChart, ColorType, IChartApi, ISeriesApi, CandlestickData, HistogramData } from 'lightweight-charts';
 import axios from 'axios';
-import { ChevronLeft, ChevronRight, Search, X, Loader2, Maximize2, Moon, Sun, Star, Menu, ArrowUpRight, ArrowDownRight } from 'lucide-react';
-import { useTheme } from 'next-themes';
+import { ChevronLeft, ChevronRight, Search, X, Menu, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
-import { WatchlistModal } from '../components/WatchlistModal';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 import nifty50Data from '../public/nifty50.json';
 import niftyNext50Data from '../public/niftynext50.json';
@@ -122,8 +116,6 @@ export default function StockChart() {
   const [currentStock, setCurrentStock] = useState<CurrentStock | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
-  const [watchlist, setWatchlist] = useState<{ stock_name: string }[]>([]);
-  const [isWatchlistOpen, setIsWatchlistOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   
   const chartContainerRef = useRef<HTMLDivElement>(null);
@@ -131,9 +123,6 @@ export default function StockChart() {
   const candlestickSeriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null);
   const volumeSeriesRef = useRef<ISeriesApi<"Histogram"> | null>(null);
   const searchRef = useRef<HTMLDivElement>(null);
-
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
 
   const getChartHeight = useCallback(() => {
     return window.innerWidth < 640 ? 400 : window.innerWidth < 1024 ? 500 : 600;
@@ -273,7 +262,7 @@ export default function StockChart() {
       window.removeEventListener('resize', handleResize);
       chart.remove();
     };
-  }, [chartData, getChartHeight, theme]);
+  }, [chartData, getChartHeight]);
 
   const handleIntervalChange = (newInterval: string) => {
     setSelectedInterval(newInterval);
@@ -309,67 +298,21 @@ export default function StockChart() {
     )
   ).slice(0, 10);
 
-  const handleFullScreen = () => {
-    if (document.documentElement.requestFullscreen) {
-      document.documentElement.requestFullscreen();
-    } else if ((document.documentElement as any).webkitRequestFullscreen) { // Safari
-      (document.documentElement as any).webkitRequestFullscreen();
-    }
-  };
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light')
-  }
-
-  const toggleWatchlist = async (stock: Stock) => {
-    try {
-      if (watchlist.some(item => item.stock_name === stock.symbol)) {
-        await axios.delete('/api/watchlist', { data: { stock_name: stock.symbol } });
-        setWatchlist(prev => prev.filter(item => item.stock_name !== stock.symbol));
-      } else {
-        await axios.post('/api/watchlist', { stock_name: stock.symbol });
-        setWatchlist(prev => [...prev, { stock_name: stock.symbol }]);
-      }
-    } catch (error) {
-      console.error('Failed to update watchlist:', error);
-    }
-  };
-
-  const removeFromWatchlist = async (symbol: string) => {
-    try {
-      await axios.delete('/api/watchlist', { data: { stock_name: symbol } });
-      setWatchlist(prev => prev.filter(item => item.stock_name !== symbol));
-    } catch (error) {
-      console.error('Failed to remove from watchlist:', error);
-    }
-  };
-
-  useEffect(() => {
-    const fetchWatchlist = async () => {
-      try {
-        const response = await axios.get('/api/watchlist');
-        setWatchlist(response.data.watchlist);
-      } catch (error) {
-        console.error('Failed to fetch watchlist:', error);
-      }
-    };
-
-    fetchWatchlist();
-  }, []);
-
-  if (!mounted) return null
-
   return (
-    <div className="flex h-screen bg-background text-foreground transition-colors duration-300">
+    <div className="flex h-screen bg-background text-foreground">
       {/* Sidebar */}
       <aside className={`w-64 bg-background border-r border-border transition-all duration-300 ease-in-out ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed inset-y-0 left-0 z-30 lg:relative lg:translate-x-0`}>
         <div className="flex flex-col h-full">
-          <div className="p-4 border-b border-border">
+          <div className="p-4 border-b border-border flex justify-between items-center">
             <h1 className="text-2xl font-bold">dotChart</h1>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="lg:hidden"
+              onClick={() => setSidebarOpen(false)}
+            >
+              <X className="h-5 w-5" />
+            </Button>
           </div>
           <ScrollArea className="flex-grow">
             <div className="p-4 space-y-4">
@@ -403,15 +346,6 @@ export default function StockChart() {
               </div>
             </div>
           </ScrollArea>
-          <div className="p-4 border-t border-border">
-            <Button
-              variant="outline"
-              className="w-full"
-              onClick={() => setIsWatchlistOpen(true)}
-            >
-              Watchlist
-            </Button>
-          </div>
         </div>
       </aside>
 
@@ -451,7 +385,8 @@ export default function StockChart() {
                 <Search className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground" />
               )}
               {showDropdown && searchTerm && (
-                <div className="absolute w-full mt-1 py-1 bg-background border border-border rounded-lg shadow-lg max-h-60 overflow-y-auto z-50">
+                <div className="absolute w-full mt-1 py-1 bg-background border border-border rounde
+d-lg shadow-lg max-h-60 overflow-y-auto z-50">
                   {filteredStocks.map((stock) => (
                     <button
                       key={stock.symbol}
@@ -470,18 +405,6 @@ export default function StockChart() {
                 </div>
               )}
             </div>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="ghost" size="icon" onClick={toggleTheme}>
-                    {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Toggle theme</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
           </div>
         </header>
 
@@ -549,7 +472,7 @@ export default function StockChart() {
         </main>
 
         {/* Sticky Footer with Pagination */}
-        <footer className="sticky bottom-0 bg-background/80 backdrop-blur-sm border-t border-t border-border p-2 flex items-center justify-between">
+        <footer className="sticky bottom-0 bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Select
               value={selectedIndexId.toString()}
@@ -591,24 +514,8 @@ export default function StockChart() {
               <ChevronRight className="h-4 w-4 ml-1" />
             </Button>
           </div>
-
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setIsWatchlistOpen(true)}
-          >
-            Watchlist
-          </Button>
         </footer>
       </div>
-
-      {/* Watchlist Modal */}
-      <WatchlistModal
-        isOpen={isWatchlistOpen}
-        onClose={() => setIsWatchlistOpen(false)}
-        watchlist={watchlist}
-        onRemoveFromWatchlist={removeFromWatchlist}
-      />
     </div>
   );
 }
