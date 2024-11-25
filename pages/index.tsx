@@ -434,13 +434,13 @@ export default function StockChart() {
         </main>
 
         {/* Sticky Footer with Pagination */}
-      <footer className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
+      <footer className="sticky bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Select
               value={selectedIndexId.toString()}
               onValueChange={(value) => setSelectedIndexId(parseInt(value))}
             >
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-[150px]">
                 <SelectValue placeholder="Select Index" />
               </SelectTrigger>
               <SelectContent>
