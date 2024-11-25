@@ -25,7 +25,6 @@ interface StockData {
 interface Stock {
   symbol: string;
   name: string;
-  todayChange?: number;
 }
 
 interface IndexData {
@@ -62,7 +61,7 @@ const RANGES = [
   { label: 'Max', value: 'max' },
 ];
 
-const STOCKS_PER_PAGE = 10;
+const STOCKS_PER_PAGE = 15;
 
 const getCssVariableColor = (variableName: string): string => {
   if (typeof window === 'undefined') return '#000000';
@@ -129,15 +128,14 @@ export default function StockChart() {
   const searchRef = useRef<HTMLDivElement>(null);
 
   const getChartHeight = useCallback(() => {
-    return window.innerWidth < 640 ? 500 : window.innerWidth < 1024 ? 600 : 700;
+    return window.innerWidth < 640 ? 550 : window.innerWidth < 1024 ? 300 : 700;
   }, []);
 
   useEffect(() => {
     const selectedIndex = indexData[selectedIndexId];
     const stocksList = selectedIndex.data.map(item => ({
       symbol: item.Symbol,
-      name: item["Company Name"],
-      todayChange: 0 // Initialize with 0, we'll update this when we fetch data
+      name: item["Company Name"]
     }));
     setStocks(stocksList);
     setCurrentStockIndex(0);
@@ -166,16 +164,12 @@ export default function StockChart() {
 
       if (response.data && Array.isArray(response.data)) {
         setChartData(response.data);
-        const todayChange = ((response.data[response.data.length - 1]?.close - response.data[response.data.length - 2]?.close) / response.data[response.data.length - 2]?.close) * 100;
         setCurrentStock({
           ...currentStock,
           price: response.data[response.data.length - 1]?.close,
           change: ((response.data[response.data.length - 1]?.close - response.data[0]?.open) / response.data[0]?.open) * 100,
-          todayChange: todayChange
+          todayChange: ((response.data[response.data.length - 1]?.close - response.data[response.data.length - 2]?.close) / response.data[response.data.length - 2]?.close) * 100
         });
-        setStocks(prevStocks => prevStocks.map(stock => 
-          stock.symbol === currentStock.symbol ? {...stock, todayChange: todayChange} : stock
-        ));
       }
     } catch (err) {
       setError((err as Error).message || 'Failed to fetch stock data');
@@ -360,14 +354,24 @@ export default function StockChart() {
                   <Button
                     key={stock.symbol}
                     variant={index + (currentPage - 1) * STOCKS_PER_PAGE === currentStockIndex ? "default" : "ghost"}
-                    className="w-full justify-between items-center"
+                    className="w-full justify-start"
                     onClick={() => setCurrentStockIndex(index + (currentPage - 1) * STOCKS_PER_PAGE)}
                   >
-                    <span>{stock.symbol}</span>
-                    <span className={`text-xs ${stock.todayChange >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-                      {stock.todayChange !== undefined ? `${stock.todayChange >= 0 ? '+' : ''}${stock.todayChange.toFixed(2)}%` : '-'}
-                    </span>
+                    {stock.symbol}
                   </Button>
+                  <div className="text-sm">
+                          <span className={`text-[14px] font-medium ${
+                            currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-green-500' : 'text-red-500'
+                          }`}>
+                            {currentStock.price?.toFixed(2)}
+                          </span>
+                          <span className={`text-[14px] ml-1 ${
+                            currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-green-500' : 'text-red-500'
+                          }`}>
+                            {currentStock.todayChange && currentStock.todayChange >= 0 ? '↑' : '↓'} {Math.abs(currentStock.todayChange || 0).toFixed(1)}%
+                          </span>
+                    </div>
+      
                 ))}
               </div>
               <div className="flex justify-between items-center mt-4">
@@ -567,4 +571,3 @@ className="flex-1 flex flex-col overflow-hidden">
     </div>
   );
 }
-
