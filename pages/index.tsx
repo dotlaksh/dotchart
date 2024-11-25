@@ -25,6 +25,7 @@ interface StockData {
 interface Stock {
   symbol: string;
   name: string;
+  todayChange?: number;
 }
 
 interface IndexData {
@@ -61,7 +62,7 @@ const RANGES = [
   { label: 'Max', value: 'max' },
 ];
 
-const STOCKS_PER_PAGE = 15;
+const STOCKS_PER_PAGE = 10;
 
 const getCssVariableColor = (variableName: string): string => {
   if (typeof window === 'undefined') return '#000000';
@@ -135,7 +136,8 @@ export default function StockChart() {
     const selectedIndex = indexData[selectedIndexId];
     const stocksList = selectedIndex.data.map(item => ({
       symbol: item.Symbol,
-      name: item["Company Name"]
+      name: item["Company Name"],
+      todayChange: 0 // Initialize with 0, we'll update this when we fetch data
     }));
     setStocks(stocksList);
     setCurrentStockIndex(0);
@@ -164,12 +166,16 @@ export default function StockChart() {
 
       if (response.data && Array.isArray(response.data)) {
         setChartData(response.data);
+        const todayChange = ((response.data[response.data.length - 1]?.close - response.data[response.data.length - 2]?.close) / response.data[response.data.length - 2]?.close) * 100;
         setCurrentStock({
           ...currentStock,
           price: response.data[response.data.length - 1]?.close,
           change: ((response.data[response.data.length - 1]?.close - response.data[0]?.open) / response.data[0]?.open) * 100,
-          todayChange: ((response.data[response.data.length - 1]?.close - response.data[response.data.length - 2]?.close) / response.data[response.data.length - 2]?.close) * 100
+          todayChange: todayChange
         });
+        setStocks(prevStocks => prevStocks.map(stock => 
+          stock.symbol === currentStock.symbol ? {...stock, todayChange: todayChange} : stock
+        ));
       }
     } catch (err) {
       setError((err as Error).message || 'Failed to fetch stock data');
@@ -354,10 +360,13 @@ export default function StockChart() {
                   <Button
                     key={stock.symbol}
                     variant={index + (currentPage - 1) * STOCKS_PER_PAGE === currentStockIndex ? "default" : "ghost"}
-                    className="w-full justify-start"
+                    className="w-full justify-between items-center"
                     onClick={() => setCurrentStockIndex(index + (currentPage - 1) * STOCKS_PER_PAGE)}
                   >
-                    {stock.symbol}
+                    <span>{stock.symbol}</span>
+                    <span className={`text-xs ${stock.todayChange >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+                      {stock.todayChange !== undefined ? `${stock.todayChange >= 0 ? '+' : ''}${stock.todayChange.toFixed(2)}%` : '-'}
+                    </span>
                   </Button>
                 ))}
               </div>
@@ -558,3 +567,4 @@ className="flex-1 flex flex-col overflow-hidden">
     </div>
   );
 }
+
