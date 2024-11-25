@@ -61,6 +61,8 @@ const RANGES = [
   { label: 'Max', value: 'max' },
 ];
 
+const STOCKS_PER_PAGE = 10;
+
 const getCssVariableColor = (variableName: string): string => {
   if (typeof window === 'undefined') return '#000000';
   const root = document.documentElement;
@@ -117,6 +119,7 @@ export default function StockChart() {
   const [searchTerm, setSearchTerm] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const chartInstanceRef = useRef<IChartApi | null>(null);
@@ -125,7 +128,7 @@ export default function StockChart() {
   const searchRef = useRef<HTMLDivElement>(null);
 
   const getChartHeight = useCallback(() => {
-    return window.innerWidth < 640 ? 400 : window.innerWidth < 1024 ? 500 : 600;
+    return window.innerWidth < 640 ? 500 : window.innerWidth < 1024 ? 600 : 700;
   }, []);
 
   useEffect(() => {
@@ -136,6 +139,7 @@ export default function StockChart() {
     }));
     setStocks(stocksList);
     setCurrentStockIndex(0);
+    setCurrentPage(1);
   }, [selectedIndexId, indexData]);
 
   const fetchStockData = useCallback(async () => {
@@ -208,8 +212,9 @@ export default function StockChart() {
       },
       timeScale: {
         borderColor: chartColors.borderColor,
-        timeVisible: true,
-        secondsVisible: false,
+        timeVisible: false,
+        rightOffset: 10,
+        minBarSpacing: 2,
       },
     });
 
@@ -298,8 +303,20 @@ export default function StockChart() {
     )
   ).slice(0, 10);
 
+  const totalPages = Math.ceil(stocks.length / STOCKS_PER_PAGE);
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+    setCurrentStockIndex((newPage - 1) * STOCKS_PER_PAGE);
+  };
+
+  const displayedStocks = stocks.slice(
+    (currentPage - 1) * STOCKS_PER_PAGE,
+    currentPage * STOCKS_PER_PAGE
+  );
+
   return (
-    <div className="flex h-screen bg-background text-foreground">
+    <div className="flex h-screen bg-background text-foreground min-w-[320px]">
       {/* Sidebar */}
       <aside className={`w-64 bg-background border-r border-border transition-all duration-300 ease-in-out ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed inset-y-0 left-0 z-30 lg:relative lg:translate-x-0`}>
         <div className="flex flex-col h-full">
@@ -333,16 +350,37 @@ export default function StockChart() {
               </Select>
               <div className="space-y-2">
                 <h2 className="text-sm font-semibold">Stocks</h2>
-                {stocks.map((stock, index) => (
+                {displayedStocks.map((stock, index) => (
                   <Button
                     key={stock.symbol}
-                    variant={index === currentStockIndex ? "default" : "ghost"}
+                    variant={index + (currentPage - 1) * STOCKS_PER_PAGE === currentStockIndex ? "default" : "ghost"}
                     className="w-full justify-start"
-                    onClick={() => setCurrentStockIndex(index)}
+                    onClick={() => setCurrentStockIndex(index + (currentPage - 1) * STOCKS_PER_PAGE)}
                   >
                     {stock.symbol}
                   </Button>
                 ))}
+              </div>
+              <div className="flex justify-between items-center mt-4">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </Button>
+                <span className="text-sm">
+                  Page {currentPage} of {totalPages}
+                </span>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
               </div>
             </div>
           </ScrollArea>
@@ -350,7 +388,8 @@ export default function StockChart() {
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div
+className="flex-1 flex flex-col overflow-hidden">
         {/* Top Bar */}
         <header className="bg-background/80 backdrop-blur-sm border-b border-border p-2 flex items-center justify-between">
           <Button
@@ -385,14 +424,14 @@ export default function StockChart() {
                 <Search className="absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground" />
               )}
               {showDropdown && searchTerm && (
-                <div className="absolute w-full mt-1 py-1 bg-background border border-border rounde
-d-lg shadow-lg max-h-60 overflow-y-auto z-50">
+                <div className="absolute w-full mt-1 py-1 bg-background border border-border rounded-lg shadow-lg max-h-60 overflow-y-auto z-50">
                   {filteredStocks.map((stock) => (
                     <button
                       key={stock.symbol}
                       onClick={() => {
                         const stockIndex = stocks.findIndex((s) => s.symbol === stock.symbol);
                         setCurrentStockIndex(stockIndex);
+                        setCurrentPage(Math.floor(stockIndex / STOCKS_PER_PAGE) + 1);
                         setSearchTerm('');
                         setShowDropdown(false);
                       }}
@@ -409,7 +448,7 @@ d-lg shadow-lg max-h-60 overflow-y-auto z-50">
         </header>
 
         {/* Chart and Controls */}
-        <main className="flex-1 overflow-hidden p-4 flex flex-col">
+        <main className="flex-1 overflow-hidden p-4 flex flex-col justify-between">
           <div className="flex-1 flex flex-col">
             {/* Stock Info */}
             {currentStock && (
@@ -443,7 +482,7 @@ d-lg shadow-lg max-h-60 overflow-y-auto z-50">
           </div>
 
           {/* Sticky Range and Interval Selectors */}
-          <div className="sticky bottom-12 bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between items-center">
+          <div className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between items-center">
             <div className="flex space-x-2">
               {INTERVALS.map((interval) => (
                 <Button
@@ -472,7 +511,7 @@ d-lg shadow-lg max-h-60 overflow-y-auto z-50">
         </main>
 
         {/* Sticky Footer with Pagination */}
-        <footer className="sticky bottom-0 bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
+        <footer className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Select
               value={selectedIndexId.toString()}
