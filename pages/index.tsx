@@ -128,7 +128,7 @@ export default function StockChart() {
   const searchRef = useRef<HTMLDivElement>(null);
 
   const getChartHeight = useCallback(() => {
-    return window.innerWidth < 640 ? 500 : window.innerWidth < 1024 ? 600 : 700;
+    return window.innerWidth < 640 ? 300 : window.innerWidth < 1024 ? 400 : 500;
   }, []);
 
   useEffect(() => {
@@ -212,9 +212,8 @@ export default function StockChart() {
       },
       timeScale: {
         borderColor: chartColors.borderColor,
-        timeVisible: false,
-        rightOffset: 10,
-        minBarSpacing: 2,
+        timeVisible: true,
+        secondsVisible: false,
       },
     });
 
@@ -448,11 +447,11 @@ className="flex-1 flex flex-col overflow-hidden">
         </header>
 
         {/* Chart and Controls */}
-        <main className="flex-1 overflow-hidden p-4 flex flex-col justify-between">
+        <main className="flex-1 overflow-hidden p-4 flex flex-col justify-between min-h-[calc(100vh-4rem)]">
           <div className="flex-1 flex flex-col">
             {/* Stock Info */}
             {currentStock && (
-              <div className="mb-4 flex items-center justify-between">
+              <div className="flex items-center justify-between">
                 <div>
                   <h2 className="text-2xl font-bold">{currentStock.symbol}</h2>
                   <p className="text-sm text-muted-foreground">{currentStock.name}</p>
@@ -478,11 +477,11 @@ className="flex-1 flex flex-col overflow-hidden">
             )}
 
             {/* Chart */}
-            <div className="flex-1 relative" ref={chartContainerRef}></div>
+            <div className="flex-grow relative" ref={chartContainerRef}></div>
           </div>
 
           {/* Sticky Range and Interval Selectors */}
-          <div className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between items-center">
+          <div className="bg-background/80 backdrop-blur-sm p-2 flex justify-between items-center">
             <div className="flex space-x-2">
               {INTERVALS.map((interval) => (
                 <Button
@@ -511,7 +510,7 @@ className="flex-1 flex flex-col overflow-hidden">
         </main>
 
         {/* Sticky Footer with Pagination */}
-        <footer className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
+        <footer className="bg-background/80 backdrop-blur-sm p-2 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Select
               value={selectedIndexId.toString()}
