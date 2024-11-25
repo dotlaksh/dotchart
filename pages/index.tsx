@@ -371,8 +371,8 @@ export default function StockChart() {
         </header>
 
         {/* Chart and Controls */}
-        <main className="flex-1 overflow-hidden p-4 flex flex-col justify-between">
-          <div className="flex-1 flex flex-col">
+        <main className="flex-1 overflow-hidden p-4 flex flex-col">
+        <div className="flex-1 overflow-y-auto p-4">
             {/* Stock Info */}
             {currentStock && (
               <div className="mb-4 flex items-center justify-between">
@@ -405,7 +405,7 @@ export default function StockChart() {
           </div>
 
           {/* Sticky Range and Interval Selectors */}
-          <div className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between items-center">
+        <div className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between items-center">
             <div className="flex space-x-2">
               {INTERVALS.map((interval) => (
                 <Button
@@ -434,7 +434,7 @@ export default function StockChart() {
         </main>
 
         {/* Sticky Footer with Pagination */}
-        <footer className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
+      <footer className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Select
               value={selectedIndexId.toString()}
