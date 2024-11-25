@@ -359,19 +359,6 @@ export default function StockChart() {
                   >
                     {stock.symbol}
                   </Button>
-                  <div className="text-sm">
-                          <span className={`text-[14px] font-medium ${
-                            currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-green-500' : 'text-red-500'
-                          }`}>
-                            {currentStock.price?.toFixed(2)}
-                          </span>
-                          <span className={`text-[14px] ml-1 ${
-                            currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-green-500' : 'text-red-500'
-                          }`}>
-                            {currentStock.todayChange && currentStock.todayChange >= 0 ? '↑' : '↓'} {Math.abs(currentStock.todayChange || 0).toFixed(1)}%
-                          </span>
-                    </div>
-      
                 ))}
               </div>
               <div className="flex justify-between items-center mt-4">
