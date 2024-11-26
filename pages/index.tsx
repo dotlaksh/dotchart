@@ -311,47 +311,109 @@ export default function StockChart() {
     currentPage * STOCKS_PER_PAGE
   );
 
-  return (
-    <div className="flex h-dvh bg-background text-foreground">
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col">
-        {/* Chart and Controls */}
-        <main className="flex-1 p-2 flex flex-col">
-          <div className="flex-1">
-            {/* Stock Info */}
+ return (
+    <div className="flex flex-col h-dvh bg-background text-foreground">
+      <header className="p-4 border-b border-border flex items-center justify-between">
+        <div className="flex items-center space-x-4">
+          <TrendingUp className="h-6 w-6 text-primary" />
+          <h1 className="text-2xl font-bold">StockViz</h1>
+        </div>
+        <div className="relative" ref={searchRef}>
+          <Input
+            type="text"
+            placeholder="Search stocks..."
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setShowDropdown(true);
+            }}
+            className="w-64"
+          />
+          <AnimatePresence>
+            {showDropdown && filteredStocks.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="absolute z-10 w-full mt-1 bg-background border border-border rounded-md shadow-lg"
+              >
+                {filteredStocks.map((stock) => (
+                  <div
+                    key={stock.symbol}
+                    className="p-2 hover:bg-muted cursor-pointer"
+                    onClick={() => {
+                      setCurrentStockIndex(stocks.findIndex(s => s.symbol === stock.symbol));
+                      setSearchTerm('');
+                      setShowDropdown(false);
+                    }}
+                  >
+                    <div className="font-medium">{stock.symbol}</div>
+                    <div className="text-sm text-muted-foreground">{stock.name}</div>
+                  </div>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </header>
+
+      <main className="flex-1 p-4 flex flex-col">
+        <Tabs defaultValue="chart" className="flex-1 flex flex-col">
+          <TabsList className="mb-4">
+            <TabsTrigger value="chart">Chart</TabsTrigger>
+            <TabsTrigger value="overview">Overview</TabsTrigger>
+          </TabsList>
+          <TabsContent value="chart" className="flex-1">
             {currentStock && (
-              <div className="mb-4 flex items-center justify-between">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-4 flex items-center justify-between"
+              >
                 <div>
-                  <h2 className="text-lg font-bold">{currentStock.symbol}</h2>
+                  <h2 className="text-2xl font-bold">{currentStock.symbol}</h2>
                   <p className="text-sm text-muted-foreground">{currentStock.name}</p>
                 </div>
                 <div className="text-right">
-                  <p className={`text-lg font-semibold ${
+                  <p className={`text-3xl font-semibold ${
                     currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-green-500' : 'text-red-500'
                   }`}>
                     {currentStock.price?.toFixed(2)}
                   </p>
-                  <div className={`flex items-center justify-end ${
+                  <div className={`flex items-center justify-end text-lg ${
                     currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-green-500' : 'text-red-500'
                   }`}>
                     {currentStock.todayChange && currentStock.todayChange >= 0 ? (
-                      <ArrowUpRight className="h-4 w-4 mr-1" />
+                      <ArrowUpRight className="h-5 w-5 mr-1" />
                     ) : (
-                      <ArrowDownRight className="h-4 w-4 mr-1" />
+                      <ArrowDownRight className="h-5 w-5 mr-1" />
                     )}
                     <span>{Math.abs(currentStock.todayChange || 0).toFixed(2)}%</span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             )}
-            
-            {/* Chart */}
             <div className="flex-1" ref={chartContainerRef}></div>
-          </div>
-        </main>
+          </TabsContent>
+          <TabsContent value="overview">
+            {/* Add an overview tab with additional stock information */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-card p-4 rounded-lg shadow">
+                <h3 className="text-lg font-semibold mb-2">Company Info</h3>
+                <p>{currentStock?.name}</p>
+                {/* Add more company information here */}
+              </div>
+              <div className="bg-card p-4 rounded-lg shadow">
+                <h3 className="text-lg font-semibold mb-2">Key Statistics</h3>
+                {/* Add key statistics here */}
+              </div>
+            </div>
+          </TabsContent>
+        </Tabs>
+      </main>
 
-        {/* Interval and Range Section - Moved above the footer */}
-        <div className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between">
+      <footer className="bg-background/80 backdrop-blur-sm border-t border-border p-4">
+        <div className="flex justify-between items-center mb-4">
           <div className="flex space-x-2">
             {INTERVALS.map((interval) => (
               <Button
@@ -377,51 +439,47 @@ export default function StockChart() {
             ))}
           </div>
         </div>
-
-        {/* Sticky Footer with Pagination */}
-        <footer className="sticky bottom-0 bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Select
-              value={selectedIndexId.toString()}
-              onValueChange={(value) => setSelectedIndexId(parseInt(value))}
-            >
-              <SelectTrigger className="w-[150px]">
-                <SelectValue placeholder="Select Index" />
-              </SelectTrigger>
-              <SelectContent>
-                {indexData.map((item, index) => (
-                  <SelectItem key={index} value={index.toString()}>
-                    {item.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
+        <div className="flex items-center justify-between">
+          <Select
+            value={selectedIndexId.toString()}
+            onValueChange={(value) => setSelectedIndexId(parseInt(value))}
+          >
+            <SelectTrigger className="w-[200px]">
+              <SelectValue placeholder="Select Index" />
+            </SelectTrigger>
+            <SelectContent>
+              {indexData.map((item, index) => (
+                <SelectItem key={index} value={index.toString()}>
+                  {item.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
           <div className="flex items-center space-x-2">
             <Button
               variant="outline"
               size="sm"
-              onClick={handlePrevious}
-              disabled={currentStockIndex === 0}
+              onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
+              disabled={currentPage === 1}
             >
               <ChevronLeft className="h-4 w-4 mr-1" />
               Prev
             </Button>
             <span className="text-sm">
-              {currentStockIndex + 1} / {stocks.length}
+              Page {currentPage} of {totalPages}
             </span>
             <Button
               variant="outline"
               size="sm"
-              onClick={handleNext}
-              disabled={currentStockIndex === stocks.length - 1}
+              onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
+              disabled={currentPage === totalPages}
             >
               Next
               <ChevronRight className="h-4 w-4 ml-1" />
             </Button>
           </div>
-        </footer>
-      </div>
+        </div>
+      </footer>
     </div>
   );
 }
