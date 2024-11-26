@@ -2,7 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./src/*"
+      ]
     },
     "lib": [
       "dom",
@@ -11,11 +13,11 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "noEmit": true,
     "incremental": true,
-    "esModuleInterop": true,
     "module": "esnext",
+    "esModuleInterop": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -25,16 +27,13 @@
         "name": "next"
       }
     ],
-    "strictNullChecks": true,
-    "target": "es6"
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx",
-    "app/**/*.ts",
-    "app/**/*.tsx"
+    "**/*.tsx"
   ],
   "exclude": [
     "node_modules"
