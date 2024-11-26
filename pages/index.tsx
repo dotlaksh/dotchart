@@ -54,7 +54,6 @@ const INTERVALS = [
 
 const RANGES = [
   { label: '1Y', value: '1y' },
-  { label: '2Y', value: '2y' },
   { label: '5Y', value: '5y' },
   { label: 'Max', value: 'max' },
 ];
@@ -358,7 +357,7 @@ export default function StockChart() {
               <Button
                 key={interval.value}
                 variant={selectedInterval === interval.value ? "default" : "outline"}
-                size="sm"
+                size="xs"
                 onClick={() => setSelectedInterval(interval.value)}
               >
                 {interval.label}
@@ -370,7 +369,7 @@ export default function StockChart() {
               <Button
                 key={range.value}
                 variant={selectedRange === range.value ? "default" : "outline"}
-                size="sm"
+                size="xs"
                 onClick={() => setSelectedRange(range.value)}
               >
                 {range.label}
