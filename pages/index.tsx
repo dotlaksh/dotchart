@@ -362,79 +362,77 @@ export default function StockChart() {
           />
 
           {/* Range and Interval Selectors - Removed margin/padding */}
-          <div className="bg-background/80 backdrop-blur-sm border-t border-border">
-            <div className="flex justify-between px-4 py-2">
-              <div className="flex space-x-2">
-                {INTERVALS.map((interval) => (
-                  <Button
-                    key={interval.value}
-                    variant={selectedInterval === interval.value ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => setSelectedInterval(interval.value)}
-                  >
-                    {interval.label}
-                  </Button>
-                ))}
-              </div>
-              <div className="flex space-x-2">
-                {RANGES.map((range) => (
-                  <Button
-                    key={range.value}
-                    variant={selectedRange === range.value ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => setSelectedRange(range.value)}
-                  >
-                    {range.label}
-                  </Button>
-                ))}
-              </div>
+          <div className="bg-background/80 backdrop-blur-sm border-t border-border flex justify-between px-4 py-2 mt-auto">
+            <div className="flex space-x-2 p-1 bg-muted rounded-md">
+              {INTERVALS.map((interval) => (
+                <Button
+                  key={interval.value}
+                  variant={selectedInterval === interval.value ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setSelectedInterval(interval.value)}
+                  className={selectedInterval === interval.value ? 'bg-primary text-primary-foreground' : ''}
+                >
+                  {interval.label}
+                </Button>
+              ))}
+            </div>
+            <div className="flex space-x-2 p-1 bg-muted rounded-md">
+              {RANGES.map((range) => (
+                <Button
+                  key={range.value}
+                  variant={selectedRange === range.value ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setSelectedRange(range.value)}
+                  className={selectedRange === range.value ? 'bg-secondary text-secondary-foreground' : ''}
+                >
+                  {range.label}
+                </Button>
+              ))}
             </div>
           </div>
 
           {/* Pagination Footer - Removed margin/padding */}
-          <div className="bg-background/80 backdrop-blur-sm border-t border-border">
-            <div className="flex items-center justify-between px-4 py-2">
-              <div className="flex items-center space-x-2">
-                <Select
-                  value={selectedIndexId.toString()}
-                  onValueChange={(value) => setSelectedIndexId(parseInt(value))}
-                >
-                  <SelectTrigger className="w-[150px]">
-                    <SelectValue placeholder="Select Index" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {indexData.map((item, index) => (
-                      <SelectItem key={index} value={index.toString()}>
-                        {item.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+          <div className="bg-background/80 backdrop-blur-sm border-t border-border flex items-center justify-between px-4 py-2">
+            <div className="flex items-center space-x-2">
+              <Select
+                value={selectedIndexId.toString()}
+                onValueChange={(value) => setSelectedIndexId(parseInt(value))}
+              >
+                <SelectTrigger className="w-[150px]">
+                  <SelectValue placeholder="Select Index" />
+                </SelectTrigger>
+                <SelectContent>
+                  {indexData.map((item, index) => (
+                    <SelectItem key={index} value={index.toString()}>
+                      {item.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
 
-              <div className="flex items-center space-x-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handlePrevious}
-                  disabled={currentStockIndex === 0}
-                >
-                  <ChevronLeft className="h-4 w-4 mr-1" />
-                  Prev
-                </Button>
-                <span className="text-sm">
-                  {currentStockIndex + 1} / {stocks.length}
-                </span>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleNext}
-                  disabled={currentStockIndex === stocks.length - 1}
-                >
-                  Next
-                  <ChevronRight className="h-4 w-4 ml-1" />
-                </Button>
-              </div>
+            <div className="flex items-center space-x-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handlePrevious}
+                disabled={currentStockIndex === 0}
+              >
+                <ChevronLeft className="h-4 w-4 mr-1" />
+                Prev
+              </Button>
+              <span className="text-sm">
+                {currentStockIndex + 1} / {stocks.length}
+              </span>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleNext}
+                disabled={currentStockIndex === stocks.length - 1}
+              >
+                Next
+                <ChevronRight className="h-4 w-4 ml-1" />
+              </Button>
             </div>
           </div>
         </main>
