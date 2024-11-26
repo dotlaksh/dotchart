@@ -373,7 +373,15 @@ export default function StockChart() {
               ))}
             </div>
           </div>
-          <div className="flex items-center space-x-2">
+         
+            {/* Chart */}
+            <div className="flex-1" ref={chartContainerRef}></div>
+          </div>
+        </main>
+
+        {/* Sticky Footer with Pagination */}
+      <footer className="sticky bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
+         <div className="flex items-center space-x-2">
             <Select
               value={selectedIndexId.toString()}
               onValueChange={(value) => setSelectedIndexId(parseInt(value))}
@@ -390,14 +398,6 @@ export default function StockChart() {
               </SelectContent>
             </Select>
           </div>
-            {/* Chart */}
-            <div className="flex-1" ref={chartContainerRef}></div>
-          </div>
-        </main>
-
-        {/* Sticky Footer with Pagination */}
-      <footer className="sticky bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
-        
           <div className="flex items-center space-x-2">
             <Button
               variant="outline"
