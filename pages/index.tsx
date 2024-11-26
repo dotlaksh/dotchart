@@ -312,7 +312,7 @@ export default function StockChart() {
   );
 
   return (
-    <div className="flex h-screen bg-background text-foreground">
+    <div className="flex h-dvh bg-background text-foreground">
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Chart and Controls */}
