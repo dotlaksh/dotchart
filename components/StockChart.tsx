@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import { createChart, ColorType } from 'lightweight-charts'
+import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
@@ -24,6 +25,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol }) => {
   const [data, setData] = useState<ChartData[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
+  const { theme } = useTheme()
 
   useEffect(() => {
     fetchData()
@@ -35,17 +37,21 @@ const StockChart: React.FC<StockChartProps> = ({ symbol }) => {
         width: chartContainerRef.current.clientWidth,
         height: 400,
         layout: {
-          background: { type: ColorType.Solid, color: 'white' },
-          textColor: 'black',
+          background: { type: ColorType.Solid, color: theme === 'dark' ? '#1F2937' : 'white' },
+          textColor: theme === 'dark' ? '#E5E7EB' : 'black',
+        },
+        grid: {
+          vertLines: { color: theme === 'dark' ? '#374151' : '#E5E7EB' },
+          horzLines: { color: theme === 'dark' ? '#374151' : '#E5E7EB' },
         },
       })
 
       const candlestickSeries = chart.addCandlestickSeries({
-        upColor: '#26a69a',
-        downColor: '#ef5350',
+        upColor: '#10B981',
+        downColor: '#EF4444',
         borderVisible: false,
-        wickUpColor: '#26a69a',
-        wickDownColor: '#ef5350',
+        wickUpColor: '#10B981',
+        wickDownColor: '#EF4444',
       })
 
       candlestickSeries.setData(data)
@@ -56,7 +62,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol }) => {
         chart.remove()
       }
     }
-  }, [data])
+  }, [data, theme])
 
   const fetchData = async () => {
     setLoading(true)
@@ -110,5 +116,4 @@ const StockChart: React.FC<StockChartProps> = ({ symbol }) => {
 }
 
 export default StockChart
-
 

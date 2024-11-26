@@ -106,16 +106,7 @@ const StockCarousel: React.FC = () => {
           </Card>
         </motion.div>
       </AnimatePresence>
-      <div className="absolute top-1/2 -translate-y-1/2 left-4">
-        <Button variant="outline" size="icon" onClick={prevStock}>
-          <ChevronLeft className="h-4 w-4" />
-        </Button>
-      </div>
-      <div className="absolute top-1/2 -translate-y-1/2 right-4">
-        <Button variant="outline" size="icon" onClick={nextStock}>
-          <ChevronRight className="h-4 w-4" />
-        </Button>
-      </div>
+           
     </div>
   )
 }
