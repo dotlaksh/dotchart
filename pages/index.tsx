@@ -352,7 +352,7 @@ export default function StockChart() {
 
         {/* Interval and Range Section - Moved above the footer */}
         <div className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between">
-          <div className="flex">
+          <div className="flex space-x-2">
             {INTERVALS.map((interval) => (
               <Button
                 key={interval.value}
