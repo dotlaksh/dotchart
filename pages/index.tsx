@@ -345,37 +345,39 @@ export default function StockChart() {
                 </div>
               </div>
             )}
-            {/* Interval and Range Section - Moved above the chart */}
-            <div className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between mb-4">
-              <div className="flex">
-                {INTERVALS.map((interval) => (
-                  <Button
-                    key={interval.value}
-                    variant={selectedInterval === interval.value ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setSelectedInterval(interval.value)}
-                  >
-                    {interval.label}
-                  </Button>
-                ))}
-              </div>
-              <div className="flex space-x-2">
-                {RANGES.map((range) => (
-                  <Button
-                    key={range.value}
-                    variant={selectedRange === range.value ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setSelectedRange(range.value)}
-                  >
-                    {range.label}
-                  </Button>
-                ))}
-              </div>
-            </div>
+            
             {/* Chart */}
             <div className="flex-1" ref={chartContainerRef}></div>
           </div>
         </main>
+
+        {/* Interval and Range Section - Moved above the footer */}
+        <div className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between">
+          <div className="flex">
+            {INTERVALS.map((interval) => (
+              <Button
+                key={interval.value}
+                variant={selectedInterval === interval.value ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSelectedInterval(interval.value)}
+              >
+                {interval.label}
+              </Button>
+            ))}
+          </div>
+          <div className="flex space-x-2">
+            {RANGES.map((range) => (
+              <Button
+                key={range.value}
+                variant={selectedRange === range.value ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSelectedRange(range.value)}
+              >
+                {range.label}
+              </Button>
+            ))}
+          </div>
+        </div>
 
         {/* Sticky Footer with Pagination */}
         <footer className="sticky bottom-0 bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
