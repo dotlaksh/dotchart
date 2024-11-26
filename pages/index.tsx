@@ -345,7 +345,8 @@ export default function StockChart() {
                 </div>
               </div>
             )}
-            <div className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between">
+            {/* Interval and Range Section - Moved above the chart */}
+            <div className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between mb-4">
               <div className="flex">
                 {INTERVALS.map((interval) => (
                   <Button
@@ -377,7 +378,7 @@ export default function StockChart() {
         </main>
 
         {/* Sticky Footer with Pagination */}
-        <footer className="sticky bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
+        <footer className="sticky bottom-0 bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Select
               value={selectedIndexId.toString()}
