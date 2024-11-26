@@ -7,7 +7,7 @@ const cache = new Map();
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const symbol = searchParams.get('symbol');
-  const range = searchParams.get('range') || '2y';
+  const range = searchParams.get('range') || '1y';
   const interval = searchParams.get('interval') || '1d';
 
   if (!symbol) {
