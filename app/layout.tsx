@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'SwipeStock',
+  title: 'SwipeChart',
   description: 'Swipe through stock charts with ease',
 }
 
