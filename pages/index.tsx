@@ -355,6 +355,32 @@ export default function StockChart() {
 
         {/* Sticky Footer with Pagination */}
       <footer className="sticky bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
+         <div className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between">
+            <div className="flex">
+              {INTERVALS.map((interval) => (
+                <Button
+                  key={interval.value}
+                  variant={selectedInterval === interval.value ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedInterval(interval.value)}
+                >
+                  {interval.label}
+                </Button>
+              ))}
+            </div>
+            <div className="flex space-x-2">
+              {RANGES.map((range) => (
+                <Button
+                  key={range.value}
+                  variant={selectedRange === range.value ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedRange(range.value)}
+                >
+                  {range.label}
+                </Button>
+              ))}
+            </div>
+          </div>
           <div className="flex items-center space-x-2">
             <Select
               value={selectedIndexId.toString()}
