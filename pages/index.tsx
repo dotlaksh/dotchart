@@ -1,98 +1,21 @@
-'use client';
+use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createChart, ColorType, IChartApi, ISeriesApi, CandlestickData, HistogramData } from 'lightweight-charts';
 import axios from 'axios';
-import { ChevronLeft, ChevronRight, Search, X, Menu, ArrowUpRight, ArrowDownRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Search, X, Menu, ArrowUpRight, ArrowDownRight, TrendingUp } from 'lucide-react';
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import nifty50Data from '../public/nifty50.json';
-import niftyNext50Data from '../public/niftynext50.json';
-import midcap150Data from '../public/midcap150.json';
-import smallcap250Data from '../public/smallcap250.json';
-import microCap250Data from '../public/microcap250.json';
+import { indexData, INTERVALS, RANGES, STOCKS_PER_PAGE } from '@/lib/constants';
+import { Stock, CurrentStock, ChartDataPoint } from '@/lib/types';
+import { getCssVariableColor, getChartColors } from '@/lib/utils';
 
-interface StockData {
-  Symbol: string;
-  "Company Name": string;
-}
-
-interface Stock {
-  symbol: string;
-  name: string;
-}
-
-interface IndexData {
-  label: string;
-  data: StockData[];
-}
-
-interface CurrentStock extends Stock {
-  price?: number;
-  change?: number;
-  todayChange?: number;
-}
-
-interface ChartDataPoint {
-  time: string;
-  open: number;
-  high: number;
-  low: number;
-  close: number;
-  volume: number;
-}
-
-const INTERVALS = [
-  { label: '1D', value: 'daily', interval: '1d', range: '1y' },
-  { label: '1W', value: 'weekly', interval: '1wk', range: '5y' },
-  { label: '1M', value: 'monthly', interval: '1mo', range: 'max' },
-];
-
-const RANGES = [
-  { label: '1Y', value: '1y' },
-  { label: '5Y', value: '5y' },
-  { label: 'Max', value: 'max' },
-];
-
-const STOCKS_PER_PAGE = 15;
-
-const getCssVariableColor = (variableName: string): string => {
-  if (typeof window === 'undefined') return '#000000';
-  const root = document.documentElement;
-  const computedStyle = getComputedStyle(root);
-  const cssVariable = computedStyle.getPropertyValue(variableName).trim();
-  
-  if (cssVariable.startsWith('#') || cssVariable.startsWith('rgb')) {
-    return cssVariable;
-  }
-  
-  const cssValues = cssVariable.split(',').map(v => v.trim());
-  if (cssValues.length === 3 && cssValues.every(v => !isNaN(Number(v)))) {
-    return `hsl(${cssValues.join(',')})`;
-  }
-  
-  const fallbacks: Record<string, string> = {
-    '--background': '#ffffff',
-    '--foreground': '#000000',
-    '--border': '#e5e7eb',
-    '--success': '#089981',
-    '--destructive': '#ef4444',
-  };
-  
-  return fallbacks[variableName] || '#000000';
-};
-
-const getChartColors = () => ({
-  upColor: getCssVariableColor('--success'),
-  downColor: getCssVariableColor('--destructive'),
-  backgroundColor: getCssVariableColor('--background'),
-  textColor: getCssVariableColor('--foreground'),
-  borderColor: getCssVariableColor('--border'),
-});
 
 export default function StockChart() {
   const [indexData] = useState<IndexData[]>([
