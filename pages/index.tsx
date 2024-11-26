@@ -313,7 +313,7 @@ export default function StockChart() {
   );
 
   return (
-    <div className="flex h-screen bg-background text-foreground">
+    <div className="flex bg-background text-foreground">
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Chart and Controls */}
@@ -350,34 +350,6 @@ export default function StockChart() {
 
             {/* Chart */}
             <div className="flex-1" ref={chartContainerRef}></div>
-          </div>
-
-          {/* Sticky Range and Interval Selectors */}
-        <div className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between">
-            <div className="flex">
-              {INTERVALS.map((interval) => (
-                <Button
-                  key={interval.value}
-                  variant={selectedInterval === interval.value ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedInterval(interval.value)}
-                >
-                  {interval.label}
-                </Button>
-              ))}
-            </div>
-            <div className="flex space-x-2">
-              {RANGES.map((range) => (
-                <Button
-                  key={range.value}
-                  variant={selectedRange === range.value ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedRange(range.value)}
-                >
-                  {range.label}
-                </Button>
-              ))}
-            </div>
           </div>
         </main>
 
