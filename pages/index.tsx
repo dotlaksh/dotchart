@@ -15,7 +15,6 @@ import niftyNext50Data from '../public/niftynext50.json';
 import midcap150Data from '../public/midcap150.json';
 import smallcap250Data from '../public/smallcap250.json';
 import microCap250Data from '../public/microcap250.json';
-import othersData from '../public/others.json';
 
 interface StockData {
   Symbol: string;
@@ -103,7 +102,6 @@ export default function StockChart() {
     { label: 'Midcap 150', data: midcap150Data },
     { label: 'Smallcap 250', data: smallcap250Data },
     { label: 'MicroCap 250', data: microCap250Data },
-    { label: 'Others', data: othersData },
   ]);
   
   const [selectedIndexId, setSelectedIndexId] = useState(0);
@@ -316,34 +314,35 @@ export default function StockChart() {
 
   return (
     <div className="flex h-screen bg-background text-foreground">
-
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Chart and Controls */}
         <main className="flex-1 overflow-hidden p-4 flex flex-col">
-        <div className="flex-1 overflow-y-auto">
+          <div className="flex-1 overflow-y-auto">
             {/* Stock Info */}
             {currentStock && (
               <div className="mb-4 flex items-center justify-between">
-                <div>
-                  <h2 className="text-lg font-bold">{currentStock.symbol}</h2>
-                  <p className="text-sm text-muted-foreground">{currentStock.name}</p>
-                </div>
-                <div className="text-right">
-                  <p className={`text-lg font-semibold ${
-                    currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-green-500' : 'text-red-500'
-                  }`}>
-                    {currentStock.price?.toFixed(2)}
-                  </p>
-                  <div className={`flex items-center justify-end ${
-                    currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-green-500' : 'text-red-500'
-                  }`}>
-                    {currentStock.todayChange && currentStock.todayChange >= 0 ? (
-                      <ArrowUpRight className="h-4 w-4 mr-1" />
-                    ) : (
-                      <ArrowDownRight className="h-4 w-4 mr-1" />
-                    )}
-                    <span>{Math.abs(currentStock.todayChange || 0).toFixed(2)}%</span>
+                <div className="flex items-center space-x-4">
+                  <div>
+                    <h2 className="text-lg font-bold">{currentStock.symbol}</h2>
+                    <p className="text-sm text-muted-foreground">{currentStock.name}</p>
+                  </div>
+                  <div>
+                    <p className={`text-lg font-semibold ${
+                      currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-green-500' : 'text-red-500'
+                    }`}>
+                      {currentStock.price?.toFixed(2)}
+                    </p>
+                    <div className={`flex items-center ${
+                      currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-green-500' : 'text-red-500'
+                    }`}>
+                      {currentStock.todayChange && currentStock.todayChange >= 0 ? (
+                        <ArrowUpRight className="h-4 w-4 mr-1" />
+                      ) : (
+                        <ArrowDownRight className="h-4 w-4 mr-1" />
+                      )}
+                      <span>{Math.abs(currentStock.todayChange || 0).toFixed(2)}%</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -355,7 +354,7 @@ export default function StockChart() {
 
           {/* Sticky Range and Interval Selectors */}
         <div className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between">
-            <div className="flex space-x-2">
+            <div className="flex">
               {INTERVALS.map((interval) => (
                 <Button
                   key={interval.value}
