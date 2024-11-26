@@ -316,128 +316,128 @@ export default function StockChart() {
 
   return (
     <div className="flex h-screen bg-background text-foreground">
-
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col h-full">
         {/* Chart and Controls */}
-        <main className="flex-1 overflow-hidden px-4 flex flex-col">
-  <div className="flex-1 overflow-y-auto">
-    {currentStock && (
-      <div className="mb-4 flex items-center justify-between">
-        <div>
-          <h2 className="text-lg font-bold">{currentStock.symbol}</h2>
-          <p className="text-sm text-muted-foreground">{currentStock.name}</p>
-        </div>
-        <div className="text-right">
-          <p
-            className={`text-lg font-semibold ${
-              currentStock.todayChange && currentStock.todayChange >= 0
-                ? 'text-green-500'
-                : 'text-red-500'
-            }`}
-          >
-            {currentStock.price?.toFixed(2)}
-          </p>
+        <main className="flex-1 flex flex-col px-4">
+          {currentStock && (
+            <div className="mb-4 flex items-center justify-between">
+              <div>
+                <h2 className="text-lg font-bold">{currentStock.symbol}</h2>
+                <p className="text-sm text-muted-foreground">{currentStock.name}</p>
+              </div>
+              <div className="text-right">
+                <p
+                  className={`text-lg font-semibold ${
+                    currentStock.todayChange && currentStock.todayChange >= 0
+                      ? 'text-green-500'
+                      : 'text-red-500'
+                  }`}
+                >
+                  {currentStock.price?.toFixed(2)}
+                </p>
+                <div
+                  className={`flex items-center justify-end ${
+                    currentStock.todayChange && currentStock.todayChange >= 0
+                      ? 'text-green-500'
+                      : 'text-red-500'
+                  }`}
+                >
+                  {currentStock.todayChange && currentStock.todayChange >= 0 ? (
+                    <ArrowUpRight className="h-4 w-4 mr-1" />
+                  ) : (
+                    <ArrowDownRight className="h-4 w-4 mr-1" />
+                  )}
+                  <span>{Math.abs(currentStock.todayChange || 0).toFixed(2)}%</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Chart Container */}
           <div
-            className={`flex items-center justify-end ${
-              currentStock.todayChange && currentStock.todayChange >= 0
-                ? 'text-green-500'
-                : 'text-red-500'
-            }`}
-          >
-            {currentStock.todayChange && currentStock.todayChange >= 0 ? (
-              <ArrowUpRight className="h-4 w-4 mr-1" />
-            ) : (
-              <ArrowDownRight className="h-4 w-4 mr-1" />
-            )}
-            <span>{Math.abs(currentStock.todayChange || 0).toFixed(2)}%</span>
-          </div>
-        </div>
-      </div>
-    )}
+            ref={chartContainerRef}
+            className="flex-1"
+            style={{ margin: 'auto', width: '100%', maxWidth: '900px' }}
+          />
 
-    {/* Chart */}
-    <div
-      className="flex-1 relative"
-      ref={chartContainerRef}
-      style={{ margin: 'auto', width: '100%', maxWidth: '900px' }}
-    ></div>
-  </div>
-
-  {/* Sticky Range and Interval Selectors */}
-  <div className="bg-background/80 backdrop-blur-sm border-t border-border py-2 px-4 flex justify-between">
-    <div className="flex space-x-2">
-      {INTERVALS.map((interval) => (
-        <Button
-          key={interval.value}
-          variant={selectedInterval === interval.value ? 'default' : 'outline'}
-          size="sm"
-          onClick={() => setSelectedInterval(interval.value)}
-        >
-          {interval.label}
-        </Button>
-      ))}
-    </div>
-    <div className="flex space-x-2">
-      {RANGES.map((range) => (
-        <Button
-          key={range.value}
-          variant={selectedRange === range.value ? 'default' : 'outline'}
-          size="sm"
-          onClick={() => setSelectedRange(range.value)}
-        >
-          {range.label}
-        </Button>
-      ))}
-    </div>
-  </div>
-</main>
-
-
-        {/* Sticky Footer with Pagination */}
-      <footer className="sticky bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Select
-              value={selectedIndexId.toString()}
-              onValueChange={(value) => setSelectedIndexId(parseInt(value))}
-            >
-              <SelectTrigger className="w-[150px]">
-                <SelectValue placeholder="Select Index" />
-              </SelectTrigger>
-              <SelectContent>
-                {indexData.map((item, index) => (
-                  <SelectItem key={index} value={index.toString()}>
-                    {item.label}
-                  </SelectItem>
+          {/* Range and Interval Selectors - Removed margin/padding */}
+          <div className="bg-background/80 backdrop-blur-sm border-t border-border">
+            <div className="flex justify-between px-4 py-2">
+              <div className="flex space-x-2">
+                {INTERVALS.map((interval) => (
+                  <Button
+                    key={interval.value}
+                    variant={selectedInterval === interval.value ? 'default' : 'outline'}
+                    size="sm"
+                    onClick={() => setSelectedInterval(interval.value)}
+                  >
+                    {interval.label}
+                  </Button>
                 ))}
-              </SelectContent>
-            </Select>
+              </div>
+              <div className="flex space-x-2">
+                {RANGES.map((range) => (
+                  <Button
+                    key={range.value}
+                    variant={selectedRange === range.value ? 'default' : 'outline'}
+                    size="sm"
+                    onClick={() => setSelectedRange(range.value)}
+                  >
+                    {range.label}
+                  </Button>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div className="flex items-center space-x-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handlePrevious}
-              disabled={currentStockIndex === 0}
-            >
-              <ChevronLeft className="h-4 w-4 mr-1" />
-              Prev
-            </Button>
-            <span className="text-sm">
-              {currentStockIndex + 1} / {stocks.length}
-            </span>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleNext}
-              disabled={currentStockIndex === stocks.length - 1}
-            >
-              Next
-              <ChevronRight className="h-4 w-4 ml-1" />
-            </Button>
+          {/* Pagination Footer - Removed margin/padding */}
+          <div className="bg-background/80 backdrop-blur-sm border-t border-border">
+            <div className="flex items-center justify-between px-4 py-2">
+              <div className="flex items-center space-x-2">
+                <Select
+                  value={selectedIndexId.toString()}
+                  onValueChange={(value) => setSelectedIndexId(parseInt(value))}
+                >
+                  <SelectTrigger className="w-[150px]">
+                    <SelectValue placeholder="Select Index" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {indexData.map((item, index) => (
+                      <SelectItem key={index} value={index.toString()}>
+                        {item.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handlePrevious}
+                  disabled={currentStockIndex === 0}
+                >
+                  <ChevronLeft className="h-4 w-4 mr-1" />
+                  Prev
+                </Button>
+                <span className="text-sm">
+                  {currentStockIndex + 1} / {stocks.length}
+                </span>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleNext}
+                  disabled={currentStockIndex === stocks.length - 1}
+                >
+                  Next
+                  <ChevronRight className="h-4 w-4 ml-1" />
+                </Button>
+              </div>
+            </div>
           </div>
-        </footer>
+        </main>
       </div>
     </div>
   );
