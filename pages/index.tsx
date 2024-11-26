@@ -320,7 +320,6 @@ export default function StockChart() {
         <main className="flex-1 p-2 flex flex-col">
           <div className="flex-1">
             {/* Stock Info */}
-           {/* Stock Info */}
             {currentStock && (
               <div className="mb-4 flex items-center justify-between">
                 <div>
@@ -342,46 +341,44 @@ export default function StockChart() {
                       <ArrowDownRight className="h-4 w-4 mr-1" />
                     )}
                     <span>{Math.abs(currentStock.todayChange || 0).toFixed(2)}%</span>
-                    </div>
                   </div>
                 </div>
               </div>
             )}
-          <div className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between">
-            <div className="flex">
-              {INTERVALS.map((interval) => (
-                <Button
-                  key={interval.value}
-                  variant={selectedInterval === interval.value ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedInterval(interval.value)}
-                >
-                  {interval.label}
-                </Button>
-              ))}
+            <div className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between">
+              <div className="flex">
+                {INTERVALS.map((interval) => (
+                  <Button
+                    key={interval.value}
+                    variant={selectedInterval === interval.value ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setSelectedInterval(interval.value)}
+                  >
+                    {interval.label}
+                  </Button>
+                ))}
+              </div>
+              <div className="flex space-x-2">
+                {RANGES.map((range) => (
+                  <Button
+                    key={range.value}
+                    variant={selectedRange === range.value ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setSelectedRange(range.value)}
+                  >
+                    {range.label}
+                  </Button>
+                ))}
+              </div>
             </div>
-            <div className="flex space-x-2">
-              {RANGES.map((range) => (
-                <Button
-                  key={range.value}
-                  variant={selectedRange === range.value ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedRange(range.value)}
-                >
-                  {range.label}
-                </Button>
-              ))}
-            </div>
-          </div>
-         
             {/* Chart */}
             <div className="flex-1" ref={chartContainerRef}></div>
           </div>
         </main>
 
         {/* Sticky Footer with Pagination */}
-      <footer className="sticky bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
-         <div className="flex items-center space-x-2">
+        <footer className="sticky bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
+          <div className="flex items-center space-x-2">
             <Select
               value={selectedIndexId.toString()}
               onValueChange={(value) => setSelectedIndexId(parseInt(value))}
