@@ -320,28 +320,28 @@ export default function StockChart() {
         <main className="flex-1 p-2 flex flex-col">
           <div className="flex-1">
             {/* Stock Info */}
+           {/* Stock Info */}
             {currentStock && (
-              <div className="m-2 flex items-center justify-between">
-                <div className="flex items-center space-x-4">
-                  <div>
-                    <h2 className="text-lg font-bold">{currentStock.symbol}</h2>
-                    <p className="text-sm text-muted-foreground">{currentStock.name}</p>
-                  </div>
-                  <div>
-                    <p className={`text-lg font-semibold ${
-                      currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-green-500' : 'text-red-500'
-                    }`}>
-                      {currentStock.price?.toFixed(2)}
-                    </p>
-                    <div className={`flex items-center ${
-                      currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-green-500' : 'text-red-500'
-                    }`}>
-                      {currentStock.todayChange && currentStock.todayChange >= 0 ? (
-                        <ArrowUpRight className="h-4 w-4 mr-1" />
-                      ) : (
-                        <ArrowDownRight className="h-4 w-4 mr-1" />
-                      )}
-                      <span>{Math.abs(currentStock.todayChange || 0).toFixed(2)}%</span>
+              <div className="mb-4 flex items-center justify-between">
+                <div>
+                  <h2 className="text-lg font-bold">{currentStock.symbol}</h2>
+                  <p className="text-sm text-muted-foreground">{currentStock.name}</p>
+                </div>
+                <div className="text-right">
+                  <p className={`text-lg font-semibold ${
+                    currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-green-500' : 'text-red-500'
+                  }`}>
+                    {currentStock.price?.toFixed(2)}
+                  </p>
+                  <div className={`flex items-center justify-end ${
+                    currentStock.todayChange && currentStock.todayChange >= 0 ? 'text-green-500' : 'text-red-500'
+                  }`}>
+                    {currentStock.todayChange && currentStock.todayChange >= 0 ? (
+                      <ArrowUpRight className="h-4 w-4 mr-1" />
+                    ) : (
+                      <ArrowDownRight className="h-4 w-4 mr-1" />
+                    )}
+                    <span>{Math.abs(currentStock.todayChange || 0).toFixed(2)}%</span>
                     </div>
                   </div>
                 </div>
