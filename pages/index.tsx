@@ -352,10 +352,7 @@ export default function StockChart() {
             <div className="flex-1" ref={chartContainerRef}></div>
           </div>
         </main>
-
-        {/* Sticky Footer with Pagination */}
-      <footer className="sticky bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
-         <div className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between">
+<div className="bg-background/80 backdrop-blur-sm border-t border-border p-2 flex justify-between">
             <div className="flex">
               {INTERVALS.map((interval) => (
                 <Button
@@ -398,7 +395,9 @@ export default function StockChart() {
               </SelectContent>
             </Select>
           </div>
-
+        {/* Sticky Footer with Pagination */}
+      <footer className="sticky bg-background/80 backdrop-blur-sm border-t border-border p-2 flex items-center justify-between">
+        
           <div className="flex items-center space-x-2">
             <Button
               variant="outline"
