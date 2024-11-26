@@ -90,8 +90,8 @@ export async function GET(req: NextRequest) {
     if (interval === '1wk' || interval === '1mo') {
       const now = new Date();
       now.setUTCHours(0, 0, 0, 0);
-
-      let currentPeriodStart;
+    
+      let currentPeriodStart: Date | undefined; // Explicitly type the variable
       if (interval === '1wk') {
         const dayOfWeek = now.getUTCDay();
         const daysToSubtract = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
@@ -100,30 +100,29 @@ export async function GET(req: NextRequest) {
       } else if (interval === '1mo') {
         currentPeriodStart = new Date(now.getUTCFullYear(), now.getUTCMonth(), 1);
       }
-
+    
       const lastCompleteCandle = processedData[processedData.length - 1];
       const lastCandleDate = new Date(lastCompleteCandle.time);
-
-      if (lastCandleDate < currentPeriodStart) {
-        // Add a new candle for the current period
+    
+      if (lastCandleDate < (currentPeriodStart ?? now)) {
         const currentCandle = {
-          time: currentPeriodStart.toISOString().split('T')[0],
+          time: (currentPeriodStart ?? now).toISOString().split('T')[0],
           open: lastCompleteCandle.close,
-          high: Math.max(...processedData.filter((d: any) => new Date(d.time) >= currentPeriodStart).map((d: any) => d.high)),
-          low: Math.min(...processedData.filter((d: any) => new Date(d.time) >= currentPeriodStart).map((d: any) => d.low)),
+          high: Math.max(...processedData.filter((d: any) => new Date(d.time) >= (currentPeriodStart ?? now)).map((d: any) => d.high)),
+          low: Math.min(...processedData.filter((d: any) => new Date(d.time) >= (currentPeriodStart ?? now)).map((d: any) => d.low)),
           close: processedData[processedData.length - 1].close,
-          volume: processedData.filter((d: any) => new Date(d.time) >= currentPeriodStart).reduce((sum: number, d: any) => sum + d.volume, 0),
+          volume: processedData.filter((d: any) => new Date(d.time) >= (currentPeriodStart ?? now)).reduce((sum: number, d: any) => sum + d.volume, 0),
         };
         processedData.push(currentCandle);
       } else {
-        // Update the last candle with the current period's data
-        const currentPeriodData = processedData.filter((d: any) => new Date(d.time) >= currentPeriodStart);
+        const currentPeriodData = processedData.filter((d: any) => new Date(d.time) >= (currentPeriodStart ?? now));
         lastCompleteCandle.high = Math.max(lastCompleteCandle.high, ...currentPeriodData.map((d: any) => d.high));
         lastCompleteCandle.low = Math.min(lastCompleteCandle.low, ...currentPeriodData.map((d: any) => d.low));
         lastCompleteCandle.close = processedData[processedData.length - 1].close;
         lastCompleteCandle.volume += currentPeriodData.reduce((sum: number, d: any) => sum + d.volume, 0);
       }
     }
+    
 
     // Store response in cache
     cache.set(cacheKey, processedData);
@@ -152,4 +151,5 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ details: 'Error fetching stock data', error: error.message }, { status: 500 });
   }
 }
+
 
