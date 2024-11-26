@@ -6,7 +6,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-4 md:p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold">ChartSwipe</h1>
+          <h1 className="text-4xl font-bold">SwipeChart</h1>
           <ThemeToggle />
         </div>
         <StockCarousel />
