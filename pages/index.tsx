@@ -357,7 +357,7 @@ export default function StockChart() {
               <Button
                 key={interval.value}
                 variant={selectedInterval === interval.value ? "default" : "outline"}
-                size="default"
+                size="null"
                 onClick={() => setSelectedInterval(interval.value)}
               >
                 {interval.label}
@@ -369,7 +369,7 @@ export default function StockChart() {
               <Button
                 key={range.value}
                 variant={selectedRange === range.value ? "default" : "outline"}
-                size="default"
+                size="undefined"
                 onClick={() => setSelectedRange(range.value)}
               >
                 {range.label}
