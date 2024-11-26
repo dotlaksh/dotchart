@@ -64,7 +64,6 @@ const StockCarousel: React.FC = () => {
   return (
     <div className="relative w-full">
       <div className="mb-4 flex justify-between items-center">
-        <h2 className="text-xl font-semibold">{currentCategory.name}</h2>
         <Select
           value={currentCategoryIndex.toString()}
           onValueChange={(value) => handleCategoryChange(parseInt(value))}
@@ -100,7 +99,7 @@ const StockCarousel: React.FC = () => {
         >
           <Card className="w-full">
             <CardContent className="p-6">
-              <h2 className="text-2xl font-bold mb-4">{currentStock["Company Name"]} ({currentStock.Symbol})</h2>
+              <h2 className="text-2xl font-bold mb-4"> {currentStock.Symbol}</h2>
               <StockChart symbol={currentStock.Symbol} />
             </CardContent>
           </Card>
