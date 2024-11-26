@@ -41,8 +41,13 @@ const StockChart: React.FC<StockChartProps> = ({ symbol }) => {
           textColor: theme === 'dark' ? '#E5E7EB' : 'black',
         },
         grid: {
-          vertLines: { color: theme === 'dark' ? '#374151' : '#E5E7EB' },
-          horzLines: { color: theme === 'dark' ? '#374151' : '#E5E7EB' },
+          vertLines: { visible: false },
+          horzLines: { visible: false},
+        },
+        timeScale: {
+          timeVisible: false,
+          rightOffset: 10,
+          minBarSpacing: 2,
         },
       })
 
