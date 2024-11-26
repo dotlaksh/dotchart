@@ -315,13 +315,13 @@ export default function StockChart() {
   return (
     <div className="flex h-screen bg-background text-foreground">
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col">
         {/* Chart and Controls */}
-        <main className="flex-1 overflow-hidden p-4 flex flex-col">
-          <div className="flex-1 overflow-y-auto">
+        <main className="flex-1 p-2 flex flex-col">
+          <div className="flex-1">
             {/* Stock Info */}
             {currentStock && (
-              <div className="mb-4 flex items-center justify-between">
+              <div className="m-2 flex items-center justify-between">
                 <div className="flex items-center space-x-4">
                   <div>
                     <h2 className="text-lg font-bold">{currentStock.symbol}</h2>
@@ -349,7 +349,7 @@ export default function StockChart() {
             )}
 
             {/* Chart */}
-            <div className="flex-1 relative" ref={chartContainerRef}></div>
+            <div className="flex-1" ref={chartContainerRef}></div>
           </div>
 
           {/* Sticky Range and Interval Selectors */}
