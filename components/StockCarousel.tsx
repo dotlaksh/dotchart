@@ -96,6 +96,7 @@ const StockCarousel: React.FC = () => {
             <SelectValue placeholder="Select range" />
           </SelectTrigger>
           <SelectContent>
+            <SelectItem value="6mo">6 Months</SelectItem>
             <SelectItem value="1y">1 Year</SelectItem>
             <SelectItem value="5y">5 Years</SelectItem>
             <SelectItem value="max">Max</SelectItem>
@@ -120,7 +121,7 @@ const StockCarousel: React.FC = () => {
           onDragEnd={handleSwipe}
         >
           <Card className="w-full">
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <StockChart symbol={currentStock.Symbol} interval={interval} range={range} />
             </CardContent>
           </Card>
