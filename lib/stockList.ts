@@ -3,6 +3,8 @@ import niftyNext50Data from '../public/niftynext50.json';
 import midcap150Data from '../public/midcap150.json';
 import smallcap250Data from '../public/smallcap250.json';
 import microCap250Data from '../public/microcap250.json';
+import othersData from '../public/others.json';
+
 
 export const stockCategories = [
   { name: 'Nifty 50', data: nifty50Data },
@@ -10,6 +12,8 @@ export const stockCategories = [
   { name: 'Midcap 150', data: midcap150Data },
   { name: 'Smallcap 250', data: smallcap250Data },
   { name: 'MicroCap 250', data: microCap250Data },
+  { name: 'Others', data: othersData },
+
 ];
 
 export type Stock = {
