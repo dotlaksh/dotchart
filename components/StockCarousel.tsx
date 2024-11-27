@@ -65,7 +65,7 @@ const StockCarousel: React.FC = () => {
 
   return (
     <div className="relative w-full">
-      <div className="mb-2 flex flex-nowrap justify-between items-center gap-2 overflow-x-auto">
+      <div className="mb-4 flex flex-nowrap justify-between items-center gap-2 overflow-x-auto">
         <Select
           value={currentCategoryIndex.toString()}
           onValueChange={(value) => handleCategoryChange(parseInt(value))}
@@ -120,7 +120,7 @@ const StockCarousel: React.FC = () => {
           onDragEnd={handleSwipe}
         >
           <Card className="w-full">
-            <CardContent className="p-2">
+            <CardContent className="p-6">
               <StockChart symbol={currentStock.Symbol} interval={interval} range={range} />
             </CardContent>
           </Card>
@@ -137,4 +137,3 @@ const StockCarousel: React.FC = () => {
 }
 
 export default StockCarousel
-
