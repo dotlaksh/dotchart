@@ -11,7 +11,7 @@ const StockCarousel: React.FC = () => {
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0)
   const [currentStockIndex, setCurrentStockIndex] = useState(0)
   const [interval, setInterval] = useState<string>('1d')
-  const [range, setRange] = useState<string>('1y')
+  const [range, setRange] = useState<string>('6mo')
 
   const currentCategory = stockCategories[currentCategoryIndex]
   const currentStock = currentCategory.data[currentStockIndex]
@@ -33,7 +33,7 @@ const StockCarousel: React.FC = () => {
   return (
     <div className="relative w-full h-full flex flex-col">
       <div className="flex-grow overflow-y-auto">
-        <div className="mb-2 flex flex-nowrap justify-between items-center gap-1 overflow-x-auto">
+        <div className="m-2 flex flex-nowrap justify-between items-center gap-2 overflow-x-auto">
           <Select
             value={currentCategoryIndex.toString()}
             onValueChange={(value) => handleCategoryChange(parseInt(value))}
