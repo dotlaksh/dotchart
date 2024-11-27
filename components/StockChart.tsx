@@ -1,10 +1,10 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { createChart, ColorType } from 'lightweight-charts'
+import { createChart, ColorType, IChartApi, ISeriesApi } from 'lightweight-charts'
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { ArrowUpRight, ArrowDownRight } from 'lucide-react'
 
 interface ChartData {
   time: string
@@ -12,19 +12,25 @@ interface ChartData {
   high: number
   low: number
   close: number
+  volume: number
 }
 
 interface StockChartProps {
   symbol: string
+  interval: string
+  range: string
 }
 
-const StockChart: React.FC<StockChartProps> = ({ symbol }) => {
+const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   const chartContainerRef = useRef<HTMLDivElement>(null)
-  const [interval, setInterval] = useState<string>('1d')
-  const [range, setRange] = useState<string>('1y')
+  const chartRef = useRef<IChartApi | null>(null)
+  const candlestickSeriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null)
+  const volumeSeriesRef = useRef<ISeriesApi<"Histogram"> | null>(null)
   const [data, setData] = useState<ChartData[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
+  const [todayPrice, setTodayPrice] = useState<number | null>(null)
+  const [priceChange, setPriceChange] = useState<number | null>(null)
   const { theme } = useTheme()
 
   useEffect(() => {
@@ -33,38 +39,80 @@ const StockChart: React.FC<StockChartProps> = ({ symbol }) => {
 
   useEffect(() => {
     if (chartContainerRef.current && data.length > 0) {
-      const chart = createChart(chartContainerRef.current, {
-        width: chartContainerRef.current.clientWidth,
-        height: 400,
+      const chartOptions = {
         layout: {
-          background: { type: ColorType.Solid, color: theme === 'dark' ? '#1e293b' : 'white' },
-          textColor: theme === 'dark' ? '#E5E7EB' : 'black',
+          background: { type: ColorType.Solid, color: theme === 'dark' ? '#020617' : 'white' },
+          textColor: theme === 'dark' ? '#E5E7EB' : '#020617',
         },
         grid: {
-          vertLines: { visible: false },
-          horzLines: { visible: false},
+          vertLines: { visible:false },
+          horzLines: { visible:false },
         },
         timeScale: {
           timeVisible: false,
           rightOffset: 10,
           minBarSpacing: 2,
         },
-      })
+        height: 500,
+      }
 
-      const candlestickSeries = chart.addCandlestickSeries({
-        upColor: '#10B981',
-        downColor: '#EF4444',
-        borderVisible: false,
-        wickUpColor: '#10B981',
-        wickDownColor: '#EF4444',
-      })
+      if (!chartRef.current) {
+        chartRef.current = createChart(chartContainerRef.current, chartOptions)
+        candlestickSeriesRef.current = chartRef.current.addCandlestickSeries({
+          upColor: '#10B981',
+          downColor: '#EF4444',
+          borderVisible: false,
+          wickUpColor: '#10B981',
+          wickDownColor: '#EF4444',
+        })
+        volumeSeriesRef.current = chartRef.current.addHistogramSeries({
+          color: '#60A5FA',
+          priceFormat: {
+            type: 'volume',
+          },
+          priceScaleId: '',
+        })
+      } else {
+        chartRef.current.applyOptions(chartOptions)
+      }
 
-      candlestickSeries.setData(data)
+      candlestickSeriesRef.current?.setData(data)
+      volumeSeriesRef.current?.setData(data.map(d => ({
+        time: d.time,
+        value: d.volume,
+        color: d.close > d.open ? '#10B981' : '#EF4444'
+      })))
 
-      chart.timeScale().fitContent()
+      candlestickSeriesRef.current?.priceScale().applyOptions({
+        scaleMargins: {
+          top: 0.1,
+          bottom: 0.2,
+        }
+      });
+      volumeSeriesRef.current?.priceScale().applyOptions({
+        scaleMargins: {
+          top: 0.7,
+          bottom: 0,
+        },
+      });
+      chartRef.current.timeScale().fitContent();
 
-      return () => {
-        chart.remove()
+      // Set today's price and price change
+      if (data.length > 0) {
+        const latestData = data[data.length - 1]
+        setTodayPrice(latestData.close)
+        const yesterdayClose = data[data.length - 2]?.close
+        if (yesterdayClose) {
+          const change = ((latestData.close - yesterdayClose) / yesterdayClose) * 100
+          setPriceChange(change)
+        }
+      }
+    }
+
+    return () => {
+      if (chartRef.current) {
+        chartRef.current.remove()
+        chartRef.current = null
       }
     }
   }, [data, theme])
@@ -89,33 +137,29 @@ const StockChart: React.FC<StockChartProps> = ({ symbol }) => {
 
   return (
     <div className="w-full">
-      <div className="mb-4 flex space-x-2">
-        <Select value={interval} onValueChange={setInterval}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Select interval" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="1d">Daily</SelectItem>
-            <SelectItem value="1wk">Weekly</SelectItem>
-            <SelectItem value="1mo">Monthly</SelectItem>
-          </SelectContent>
-        </Select>
-        <Select value={range} onValueChange={setRange}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Select range" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="1y">1 Year</SelectItem>
-            <SelectItem value="5y">5 Years</SelectItem>
-            <SelectItem value="max">Max</SelectItem>
-          </SelectContent>
-        </Select>
-        <Button onClick={fetchData} disabled={loading}>
-          {loading ? 'Loading...' : 'Refresh'}
-        </Button>
-      </div>
       {error && <div className="text-red-500 mb-4">{error}</div>}
-      <div ref={chartContainerRef} className="w-full h-[400px]" />
+      {loading ? (
+        <div className="flex justify-center items-center h-[500px]">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+        </div>
+      ) : (
+        <>
+          <div className="mb-4">
+            <h3 className="text-xl font-semibold">{symbol}</h3>
+            {todayPrice !== null && priceChange !== null && (
+              <div className="flex items-center text-sm mt-1">
+                <span className="font-medium mr-2">{todayPrice.toFixed(2)}</span>
+                <span className={`flex items-center ${priceChange >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+                  {priceChange >= 0 ? <ArrowUpRight className="w-3 h-3 mr-1" /> : <ArrowDownRight className="w-3 h-3 mr-1" />}
+                  {Math.abs(priceChange).toFixed(2)}%
+                </span>
+              </div>
+            )}
+          </div>
+          <div ref={chartContainerRef} className="w-full h-[500px]" />
+        </>
+      )}
+      
     </div>
   )
 }

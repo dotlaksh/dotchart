@@ -13,6 +13,8 @@ const StockCarousel: React.FC = () => {
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0)
   const [currentStockIndex, setCurrentStockIndex] = useState(0)
   const [direction, setDirection] = useState(0)
+  const [interval, setInterval] = useState<string>('1d')
+  const [range, setRange] = useState<string>('1y')
 
   const currentCategory = stockCategories[currentCategoryIndex]
   const currentStock = currentCategory.data[currentStockIndex]
@@ -63,12 +65,12 @@ const StockCarousel: React.FC = () => {
 
   return (
     <div className="relative w-full">
-      <div className="mb-4 flex justify-between items-center">
+      <div className="mb-4 flex flex-nowrap justify-between items-center gap-2 overflow-x-auto">
         <Select
           value={currentCategoryIndex.toString()}
           onValueChange={(value) => handleCategoryChange(parseInt(value))}
         >
-          <SelectTrigger className="w-[200px]">
+          <SelectTrigger className="w-[200px] min-w-[200px]">
             <SelectValue placeholder="Select category" />
           </SelectTrigger>
           <SelectContent>
@@ -77,6 +79,26 @@ const StockCarousel: React.FC = () => {
                 {category.name}
               </SelectItem>
             ))}
+          </SelectContent>
+        </Select>
+        <Select value={interval} onValueChange={setInterval}>
+          <SelectTrigger className="w-[140px] min-w-[140px]">
+            <SelectValue placeholder="Select interval" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="1d">Daily</SelectItem>
+            <SelectItem value="1wk">Weekly</SelectItem>
+            <SelectItem value="1mo">Monthly</SelectItem>
+          </SelectContent>
+        </Select>
+        <Select value={range} onValueChange={setRange}>
+          <SelectTrigger className="w-[140px] min-w-[140px]">
+            <SelectValue placeholder="Select range" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="1y">1 Year</SelectItem>
+            <SelectItem value="5y">5 Years</SelectItem>
+            <SelectItem value="max">Max</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -99,17 +121,20 @@ const StockCarousel: React.FC = () => {
         >
           <Card className="w-full">
             <CardContent className="p-6">
-              <h2 className="text-2xl font-bold mb-4"> {currentStock.Symbol}</h2>
-              <StockChart symbol={currentStock.Symbol} />
+              <StockChart symbol={currentStock.Symbol} interval={interval} range={range} />
             </CardContent>
           </Card>
         </motion.div>
       </AnimatePresence>
-           
+      
+      <div className="mt-4 flex justify-between items-center">
+        <div className="text-sm text-muted-foreground">
+          Stock {currentStockIndex + 1} of {currentCategory.data.length}
+        </div>
+      </div>
     </div>
   )
 }
 
 export default StockCarousel
-
 
