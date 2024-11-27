@@ -14,7 +14,7 @@ const StockCarousel: React.FC = () => {
   const [currentStockIndex, setCurrentStockIndex] = useState(0)
   const [direction, setDirection] = useState(0)
   const [interval, setInterval] = useState<string>('1d')
-  const [range, setRange] = useState<string>('1y')
+  const [range, setRange] = useState<string>('3mo')
 
   const currentCategory = stockCategories[currentCategoryIndex]
   const currentStock = currentCategory.data[currentStockIndex]
