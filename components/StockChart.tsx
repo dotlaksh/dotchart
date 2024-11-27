@@ -136,7 +136,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   }
 
   return (
-    <div className="w-full mt-2">
+    <div className="w-full">
       {error && <div className="text-red-500 mb-4">{error}</div>}
       {loading ? (
         <div className="flex justify-center items-center h-[550px]">
