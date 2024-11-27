@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { createChart, CrosshairMode,ColorType, IChartApi, ISeriesApi } from 'lightweight-charts'
+import { createChart, CrosshairMode,ColorType, IChartApi, ISeriesApi,PriceScaleMode } from 'lightweight-charts'
 import { useTheme } from "next-themes"
 import { ArrowUpRight, ArrowDownRight } from 'lucide-react'
 
@@ -49,10 +49,10 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         },
         timeScale: {
           timeVisible: false,
-          rightOffset: 10,
+          rightOffset: 15,
           minBarSpacing: 7,
         },
-        height: 650,
+        height: 600,
       }
 
       if (!chartRef.current) {
@@ -68,6 +68,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
       candlestickSeriesRef.current?.setData(data)
 
       candlestickSeriesRef.current?.priceScale().applyOptions({
+        mode: PriceScaleMode.Logarithmic,
         scaleMargins: {
           top: 0.1,
           bottom: 0.2,
@@ -119,7 +120,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
     <div className="w-full">
       {error && <div className="text-red-500 mb-4">{error}</div>}
       {loading ? (
-        <div className="flex justify-center items-center h-[700px]">
+        <div className="flex justify-center items-center h-[600px]">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
         </div>
       ) : (
@@ -136,7 +137,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
               </div>
             )}
           </div>
-          <div ref={chartContainerRef} className="w-full h-[650px]" />
+          <div ref={chartContainerRef} className="w-full h-[600px]" />
         </>
       )}
       
