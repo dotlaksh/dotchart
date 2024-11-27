@@ -60,13 +60,14 @@ const StockCarousel: React.FC = () => {
             </SelectContent>
           </Select>
           <Select value={range} onValueChange={setRange}>
-            <SelectTrigger className="w-[100px] min-w-[100px]">
+            <SelectTrigger className="w-[80px] min-w-[80px]">
               <SelectValue placeholder="Select range" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="6mo">6 Months</SelectItem>
-              <SelectItem value="1y">1 Year</SelectItem>
-              <SelectItem value="5y">5 Years</SelectItem>
+              <SelectItem value="3mo">3M</SelectItem>
+              <SelectItem value="6mo">6M</SelectItem>
+              <SelectItem value="1y">1Y</SelectItem>
+              <SelectItem value="5y">5Y</SelectItem>
               <SelectItem value="max">Max</SelectItem>
             </SelectContent>
           </Select>
