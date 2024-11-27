@@ -96,6 +96,7 @@ const StockCarousel: React.FC = () => {
             <SelectValue placeholder="Select range" />
           </SelectTrigger>
           <SelectContent>
+            <SelectItem value="6mo">6 Months</SelectItem>
             <SelectItem value="1y">1 Year</SelectItem>
             <SelectItem value="5y">5 Years</SelectItem>
             <SelectItem value="max">Max</SelectItem>
@@ -126,7 +127,16 @@ const StockCarousel: React.FC = () => {
           </Card>
         </motion.div>
       </AnimatePresence>
-      
+      <div className="absolute top-1/2 -translate-y-1/2 left-1">
+        <Button variant="outline" size="icon" onClick={prevStock}>
+          <ChevronLeft className="h-4 w-4" />
+        </Button>
+      </div>
+      <div className="absolute top-1/2 -translate-y-1/2 right-1">
+        <Button variant="outline" size="icon" onClick={nextStock}>
+          <ChevronRight className="h-4 w-4" />
+        </Button>
+      </div>
       <div className="mt-4 flex justify-between items-center">
         <div className="text-sm text-muted-foreground">
           Stock {currentStockIndex + 1} of {currentCategory.data.length}
