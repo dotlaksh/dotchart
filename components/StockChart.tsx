@@ -52,7 +52,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           rightOffset: 15,
           minBarSpacing: 7,
         },
-        height: 600,
+        height: 550,
       }
 
       if (!chartRef.current) {
@@ -120,7 +120,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
     <div className="w-full">
       {error && <div className="text-red-500 mb-4">{error}</div>}
       {loading ? (
-        <div className="flex justify-center items-center h-[600px]">
+        <div className="flex justify-center items-center h-[550px]">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
         </div>
       ) : (
@@ -137,7 +137,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
               </div>
             )}
           </div>
-          <div ref={chartContainerRef} className="w-full h-[600px]" />
+          <div ref={chartContainerRef} className="w-full h-[550px]" />
         </>
       )}
       
