@@ -49,7 +49,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         },
         timeScale: {
           timeVisible: false,
-          rightOffset: 20,
+          rightOffset: 15,
           minBarSpacing: 3,
         },
         height: 600,
@@ -58,8 +58,8 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
       if (!chartRef.current) {
         chartRef.current = createChart(chartContainerRef.current, chartOptions)
         candlestickSeriesRef.current = chartRef.current.addBarSeries({
-          upColor: '#00ff55',
-          downColor: '#ed4807',
+          upColor: '#089981',
+          downColor: '#f23645',
         })
       } else {
         chartRef.current.applyOptions(chartOptions)
