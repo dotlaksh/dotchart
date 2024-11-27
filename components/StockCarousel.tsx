@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Card, CardContent } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from 'lucide-react'
@@ -72,13 +71,11 @@ const StockCarousel: React.FC = () => {
             </SelectContent>
           </Select>
         </div>
-        <Card className="w-full">
-          <CardContent className="p-2">
-            <StockChart symbol={currentStock.Symbol} interval={interval} range={range} />
-          </CardContent>
-        </Card>
+        <div className="w-full">
+          <StockChart symbol={currentStock.Symbol} interval={interval} range={range} />
+        </div>
       </div>
-      <div className="sticky bottom-0 mt-4 p-4 bg-background border-t flex justify-between items-center">
+      <div className="sticky bottom-0 mt-4 p-4 bg-background border-t border-muted-foreground/20 flex justify-between items-center">
         <div className="text-sm text-muted-foreground">
           Stock {currentStockIndex + 1} of {totalStocks}
         </div>
@@ -89,6 +86,7 @@ const StockCarousel: React.FC = () => {
             onClick={handlePrevious}
             disabled={currentStockIndex === 0}
             aria-label="Previous stock"
+            className="border-muted-foreground/20"
           >
             <ChevronLeft className="h-4 w-4" />
           </Button>
@@ -98,6 +96,7 @@ const StockCarousel: React.FC = () => {
             onClick={handleNext}
             disabled={currentStockIndex === totalStocks - 1}
             aria-label="Next stock"
+            className="border-muted-foreground/20"
           >
             <ChevronRight className="h-4 w-4" />
           </Button>
