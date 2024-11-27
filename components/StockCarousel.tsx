@@ -33,7 +33,7 @@ const StockCarousel: React.FC = () => {
   return (
     <div className="relative w-full h-full flex flex-col">
       <div className="flex-grow overflow-y-auto">
-        <div className="m-2 flex flex-nowrap justify-between items-center gap-2 overflow-x-auto">
+        <div className="flex flex-nowrap justify-between items-center overflow-x-auto">
           <Select
             value={currentCategoryIndex.toString()}
             onValueChange={(value) => handleCategoryChange(parseInt(value))}
