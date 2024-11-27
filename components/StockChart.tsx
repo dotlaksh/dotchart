@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { createChart, ColorType, IChartApi, ISeriesApi } from 'lightweight-charts'
 import { useTheme } from "next-themes"
-import { Button } from "@/components/ui/button"
 import { ArrowUpRight, ArrowDownRight } from 'lucide-react'
 
 interface ChartData {
@@ -24,7 +23,7 @@ interface StockChartProps {
 const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   const chartContainerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<IChartApi | null>(null)
-  const candlestickSeriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null)
+  const candlestickSeriesRef = useRef<ISeriesApi<"Bar"> | null>(null)
   const volumeSeriesRef = useRef<ISeriesApi<"Histogram"> | null>(null)
   const [data, setData] = useState<ChartData[]>([])
   const [loading, setLoading] = useState<boolean>(false)
@@ -41,8 +40,8 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
     if (chartContainerRef.current && data.length > 0) {
       const chartOptions = {
         layout: {
-          background: { type: ColorType.Solid, color: theme === 'dark' ? '#020617' : 'white' },
-          textColor: theme === 'dark' ? '#E5E7EB' : '#020617',
+          background: { type: ColorType.Solid, color: theme === 'dark' ? '#09090b' : 'white' },
+          textColor: theme === 'dark' ? '#E5E7EB' : '#09090b',
         },
         grid: {
           vertLines: { visible:false },
@@ -58,15 +57,12 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
 
       if (!chartRef.current) {
         chartRef.current = createChart(chartContainerRef.current, chartOptions)
-        candlestickSeriesRef.current = chartRef.current.addCandlestickSeries({
-          upColor: '#10B981',
-          downColor: '#EF4444',
-          borderVisible: false,
-          wickUpColor: '#10B981',
-          wickDownColor: '#EF4444',
+        candlestickSeriesRef.current = chartRef.current.addBarSeries({
+          upColor: '#16a34a',
+          downColor: '#e11d48',
         })
         volumeSeriesRef.current = chartRef.current.addHistogramSeries({
-          color: '#60A5FA',
+          color: '#16a34a',
           priceFormat: {
             type: 'volume',
           },
@@ -80,7 +76,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
       volumeSeriesRef.current?.setData(data.map(d => ({
         time: d.time,
         value: d.volume,
-        color: d.close > d.open ? '#10B981' : '#EF4444'
+        color: d.close > d.open ? '#16a34a' : '#e11d48'
       })))
 
       candlestickSeriesRef.current?.priceScale().applyOptions({
@@ -144,7 +140,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         </div>
       ) : (
         <>
-          <div className="mt-4 border-t">
+          <div className="mt-4 ">
             <h3 className="text-lg font-semibold">{symbol}</h3>
             {todayPrice !== null && priceChange !== null && (
               <div className="flex items-center text-sm mt-1">
@@ -165,4 +161,3 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
 }
 
 export default StockChart
-
