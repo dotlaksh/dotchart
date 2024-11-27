@@ -31,7 +31,7 @@ const StockCarousel: React.FC = () => {
   }
 
   return (
-    <div className="relative w-full h-full flex flex-col m-2">
+    <div className="relative w-full h-full flex flex-col">
       <div className="flex-grow overflow-y-auto">
         <div className="flex flex-nowrap justify-between items-center overflow-x-auto">
           <Select
