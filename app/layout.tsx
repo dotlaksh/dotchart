@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'SwipeChart',
+  title: 'dotChart',
   description: 'Swipe through stock charts with ease',
 }
 
