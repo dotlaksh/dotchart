@@ -61,35 +61,17 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           upColor: '#00ff55',
           downColor: '#ed4807',
         })
-        volumeSeriesRef.current = chartRef.current.addHistogramSeries({
-          color: '#00ff55',
-          priceFormat: {
-            type: 'volume',
-          },
-          priceScaleId: '',
-        })
       } else {
         chartRef.current.applyOptions(chartOptions)
       }
 
       candlestickSeriesRef.current?.setData(data)
-      volumeSeriesRef.current?.setData(data.map(d => ({
-        time: d.time,
-        value: d.volume,
-        color: d.close > d.open ? '#00ff55' : '#ed4807'
-      })))
 
       candlestickSeriesRef.current?.priceScale().applyOptions({
         scaleMargins: {
           top: 0.1,
           bottom: 0.2,
         }
-      });
-      volumeSeriesRef.current?.priceScale().applyOptions({
-        scaleMargins: {
-          top: 0.7,
-          bottom: 0,
-        },
       });
       chartRef.current.timeScale().fitContent();
 
