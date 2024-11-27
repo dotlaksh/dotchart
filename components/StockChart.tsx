@@ -49,8 +49,8 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         },
         timeScale: {
           timeVisible: false,
-          rightOffset: 10,
-          minBarSpacing: 2,
+          rightOffset: 20,
+          minBarSpacing: 3,
         },
         height: 600,
       }
