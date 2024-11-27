@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { createChart, ColorType, IChartApi, ISeriesApi } from 'lightweight-charts'
+import { createChart, CrosshairMode,ColorType, IChartApi, ISeriesApi } from 'lightweight-charts'
 import { useTheme } from "next-themes"
 import { ArrowUpRight, ArrowDownRight } from 'lucide-react'
 
@@ -50,9 +50,9 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         timeScale: {
           timeVisible: false,
           rightOffset: 15,
-          minBarSpacing: 3,
+          minBarSpacing: 7,
         },
-        height: 600,
+        height: 650,
       }
 
       if (!chartRef.current) {
@@ -99,8 +99,10 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
     setLoading(true)
     setError(null)
     try {
-      const response = await fetch(`/api/stock?symbol=${symbol}&interval=${interval}&range=${range}`)
-      if (!response.ok) {
+      const response = await fetch(
+        `/api/stock?symbol=${encodeURIComponent(symbol)}&interval=${interval}&range=${range}`
+      );
+            if (!response.ok) {
         throw new Error('Failed to fetch data')
       }
       const jsonData = await response.json()
@@ -117,7 +119,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
     <div className="w-full">
       {error && <div className="text-red-500 mb-4">{error}</div>}
       {loading ? (
-        <div className="flex justify-center items-center h-[600px]">
+        <div className="flex justify-center items-center h-[700px]">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
         </div>
       ) : (
@@ -134,7 +136,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
               </div>
             )}
           </div>
-          <div ref={chartContainerRef} className="w-full h-[600px]" />
+          <div ref={chartContainerRef} className="w-full h-[650px]" />
         </>
       )}
       
