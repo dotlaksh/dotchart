@@ -3,28 +3,37 @@
 import React, { useState } from 'react'
 import { Card, CardContent } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
+import { Button } from "@/components/ui/button"
+import { Pagination, PaginationContent, PaginationItem, PaginationLink } from "@/components/ui/pagination"
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import StockChart from '@/components/StockChart'
 import { stockCategories } from '@/lib/stockList'
 
 const StockCarousel: React.FC = () => {
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0)
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentStockIndex, setCurrentStockIndex] = useState(0)
   const [interval, setInterval] = useState<string>('1d')
   const [range, setRange] = useState<string>('1y')
 
   const currentCategory = stockCategories[currentCategoryIndex]
-  const stocksPerPage = 1
-  const totalPages = Math.ceil(currentCategory.data.length / stocksPerPage)
-  const currentStock = currentCategory.data[currentPage - 1]
+  const currentStock = currentCategory.data[currentStockIndex]
+  const totalStocks = currentCategory.data.length
 
   const handleCategoryChange = (index: number) => {
     setCurrentCategoryIndex(index)
-    setCurrentPage(1)
+    setCurrentStockIndex(0)
   }
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page)
+  const handleStockChange = (index: number) => {
+    setCurrentStockIndex(index)
+  }
+
+  const handlePrevious = () => {
+    setCurrentStockIndex((prev) => (prev - 1 + totalStocks) % totalStocks)
+  }
+
+  const handleNext = () => {
+    setCurrentStockIndex((prev) => (prev + 1) % totalStocks)
   }
 
   return (
@@ -74,31 +83,39 @@ const StockCarousel: React.FC = () => {
       </Card>
       <div className="mt-4 flex justify-between items-center">
         <div className="text-sm text-muted-foreground">
-          Stock {currentPage} of {totalPages}
+          Stock {currentStockIndex + 1} of {totalStocks}
         </div>
         <Pagination>
           <PaginationContent>
             <PaginationItem>
-              <PaginationPrevious 
-                onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
-                disabled={currentPage === 1}
-              />
+              <Button 
+                variant="outline" 
+                size="icon"
+                onClick={handlePrevious}
+                disabled={currentStockIndex === 0}
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
             </PaginationItem>
-            {[...Array(totalPages)].map((_, index) => (
+            {[...Array(totalStocks)].map((_, index) => (
               <PaginationItem key={index}>
                 <PaginationLink 
-                  onClick={() => handlePageChange(index + 1)}
-                  isActive={currentPage === index + 1}
+                  onClick={() => handleStockChange(index)}
+                  isActive={index === currentStockIndex}
                 >
                   {index + 1}
                 </PaginationLink>
               </PaginationItem>
             ))}
             <PaginationItem>
-              <PaginationNext 
-                onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
-                disabled={currentPage === totalPages}
-              />
+              <Button 
+                variant="outline" 
+                size="icon"
+                onClick={handleNext}
+                disabled={currentStockIndex === totalStocks - 1}
+              >
+                <ChevronRight className="h-4 w-4" />
+              </Button>
             </PaginationItem>
           </PaginationContent>
         </Pagination>
