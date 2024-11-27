@@ -37,7 +37,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol }) => {
         width: chartContainerRef.current.clientWidth,
         height: 400,
         layout: {
-          background: { type: ColorType.Solid, color: theme === 'dark' ? '#1F2937' : 'white' },
+          background: { type: ColorType.Solid, color: theme === 'dark' ? '#1e293b' : 'white' },
           textColor: theme === 'dark' ? '#E5E7EB' : 'black',
         },
         grid: {
