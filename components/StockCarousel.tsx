@@ -1,76 +1,40 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { Button } from "@/components/ui/button"
+import React, { useState } from 'react'
 import { Card, CardContent } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
 import StockChart from '@/components/StockChart'
-import { stockCategories, StockCategory, Stock } from '@/lib/stockList'
+import { stockCategories } from '@/lib/stockList'
 
 const StockCarousel: React.FC = () => {
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0)
-  const [currentStockIndex, setCurrentStockIndex] = useState(0)
-  const [direction, setDirection] = useState(0)
+  const [currentPage, setCurrentPage] = useState(1)
   const [interval, setInterval] = useState<string>('1d')
-  const [range, setRange] = useState<string>('3mo')
+  const [range, setRange] = useState<string>('1y')
 
   const currentCategory = stockCategories[currentCategoryIndex]
-  const currentStock = currentCategory.data[currentStockIndex]
-
-  const nextStock = () => {
-    setDirection(1)
-    setCurrentStockIndex((prevIndex) => (prevIndex + 1) % currentCategory.data.length)
-  }
-
-  const prevStock = () => {
-    setDirection(-1)
-    setCurrentStockIndex((prevIndex) => (prevIndex - 1 + currentCategory.data.length) % currentCategory.data.length)
-  }
-
-  const handleSwipe = (event: any, info: any) => {
-    if (info.offset.x < -50) {
-      nextStock()
-    } else if (info.offset.x > 50) {
-      prevStock()
-    }
-  }
+  const stocksPerPage = 1
+  const totalPages = Math.ceil(currentCategory.data.length / stocksPerPage)
+  const currentStock = currentCategory.data[currentPage - 1]
 
   const handleCategoryChange = (index: number) => {
     setCurrentCategoryIndex(index)
-    setCurrentStockIndex(0)
+    setCurrentPage(1)
   }
 
-  const variants = {
-    enter: (direction: number) => {
-      return {
-        x: direction > 0 ? 1000 : -1000,
-        opacity: 0
-      }
-    },
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1
-    },
-    exit: (direction: number) => {
-      return {
-        zIndex: 0,
-        x: direction < 0 ? 1000 : -1000,
-        opacity: 0
-      }
-    }
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
   }
 
   return (
     <div className="relative w-full">
-      <div className="mb-4 flex flex-nowrap justify-between items-center gap-2 overflow-x-auto">
+      <div className="mb-2 flex flex-nowrap justify-between items-center gap-1 overflow-x-auto">
         <Select
           value={currentCategoryIndex.toString()}
           onValueChange={(value) => handleCategoryChange(parseInt(value))}
         >
-          <SelectTrigger className="w-[160px] min-w-[160px]">
+          <SelectTrigger className="w-[150px] min-w-[150px]">
             <SelectValue placeholder="Select category" />
           </SelectTrigger>
           <SelectContent>
@@ -103,47 +67,45 @@ const StockCarousel: React.FC = () => {
           </SelectContent>
         </Select>
       </div>
-      <AnimatePresence initial={false} custom={direction}>
-        <motion.div
-          key={`${currentCategoryIndex}-${currentStockIndex}`}
-          custom={direction}
-          variants={variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{
-            x: { type: "spring", stiffness: 300, damping: 30 },
-            opacity: { duration: 0.2 }
-          }}
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={1}
-          onDragEnd={handleSwipe}
-        >
-          <Card className="w-full">
-            <CardContent className="p-4">
-              <StockChart symbol={currentStock.Symbol} interval={interval} range={range} />
-            </CardContent>
-          </Card>
-        </motion.div>
-      </AnimatePresence>
-      <div className="absolute top-1/2 -translate-y-1/2 left-1">
-        <Button variant="outline" size="icon" onClick={prevStock}>
-          <ChevronLeft className="h-4 w-4" />
-        </Button>
-      </div>
-      <div className="absolute top-1/2 -translate-y-1/2 right-1">
-        <Button variant="outline" size="icon" onClick={nextStock}>
-          <ChevronRight className="h-4 w-4" />
-        </Button>
-      </div>
+      <Card className="w-full">
+        <CardContent className="p-2">
+          <StockChart symbol={currentStock.Symbol} interval={interval} range={range} />
+        </CardContent>
+      </Card>
       <div className="mt-4 flex justify-between items-center">
         <div className="text-sm text-muted-foreground">
-          Stock {currentStockIndex + 1} of {currentCategory.data.length}
+          Stock {currentPage} of {totalPages}
         </div>
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious 
+                onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
+              />
+            </PaginationItem>
+            {[...Array(totalPages)].map((_, index) => (
+              <PaginationItem key={index}>
+                <PaginationLink 
+                  onClick={() => handlePageChange(index + 1)}
+                  isActive={currentPage === index + 1}
+                >
+                  {index + 1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+            <PaginationItem>
+              <PaginationNext 
+                onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
+                disabled={currentPage === totalPages}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       </div>
     </div>
   )
 }
 
 export default StockCarousel
+
