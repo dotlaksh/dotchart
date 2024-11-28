@@ -1,8 +1,9 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { createChart, ColorType, IChartApi, ISeriesApi, PriceScaleMode } from 'lightweight-charts'
+import { createChart, CrosshairMode,ColorType, IChartApi, ISeriesApi,PriceScaleMode } from 'lightweight-charts'
 import { useTheme } from "next-themes"
+import { ArrowUpRight, ArrowDownRight } from 'lucide-react'
 
 interface ChartData {
   time: string
@@ -25,7 +26,10 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   const candlestickSeriesRef = useRef<ISeriesApi<"Bar"> | null>(null)
   const volumeSeriesRef = useRef<ISeriesApi<"Histogram"> | null>(null)
   const [data, setData] = useState<ChartData[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
+  const [todayPrice, setTodayPrice] = useState<number | null>(null)
+  const [priceChange, setPriceChange] = useState<number | null>(null)
   const { theme } = useTheme()
 
   useEffect(() => {
@@ -40,14 +44,13 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           textColor: theme === 'dark' ? '#E5E7EB' : '#09090b',
         },
         grid: {
-          vertLines: { visible: false },
-          horzLines: { visible: false },
+          vertLines: { visible:false },
+          horzLines: { visible:false },
         },
         timeScale: {
-          timeVisible: true,
-          secondsVisible: false,
-          rightOffset: 10,
-          minBarSpacing: 4,
+          timeVisible: false,
+          rightOffset: 15,
+          minBarSpacing: 7,
         },
         height: 600,
       }
@@ -72,6 +75,17 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         }
       });
       chartRef.current.timeScale().fitContent();
+
+      // Set today's price and price change
+      if (data.length > 0) {
+        const latestData = data[data.length - 1]
+        setTodayPrice(latestData.close)
+        const yesterdayClose = data[data.length - 2]?.close
+        if (yesterdayClose) {
+          const change = ((latestData.close - yesterdayClose) / yesterdayClose) * 100
+          setPriceChange(change)
+        }
+      }
     }
 
     return () => {
@@ -83,12 +97,13 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   }, [data, theme])
 
   const fetchData = async () => {
+    setLoading(true)
     setError(null)
     try {
       const response = await fetch(
         `/api/stock?symbol=${encodeURIComponent(symbol)}&interval=${interval}&range=${range}`
       );
-      if (!response.ok) {
+            if (!response.ok) {
         throw new Error('Failed to fetch data')
       }
       const jsonData = await response.json()
@@ -96,16 +111,38 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
     } catch (error) {
       console.error('Error fetching data:', error)
       setError('Failed to load stock data. Please try again later.')
+    } finally {
+      setLoading(false)
     }
   }
 
   return (
     <div className="w-full">
       {error && <div className="text-red-500 mb-4">{error}</div>}
-      <div ref={chartContainerRef} className="w-full h-[600px]" />
+      {loading ? (
+        <div className="flex justify-center items-center h-[600px]">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+        </div>
+      ) : (
+        <>
+          <div className="mt-4 ">
+            <h3 className="text-lg font-semibold">{symbol}</h3>
+            {todayPrice !== null && priceChange !== null && (
+              <div className="flex items-center text-sm mt-1">
+                <span className="font-medium mr-2">{todayPrice.toFixed(2)}</span>
+                <span className={`flex items-center ${priceChange >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+                  {priceChange >= 0 ? <ArrowUpRight className="w-3 h-3 mr-1" /> : <ArrowDownRight className="w-3 h-3 mr-1" />}
+                  {Math.abs(priceChange).toFixed(2)}%
+                </span>
+              </div>
+            )}
+          </div>
+          <div ref={chartContainerRef} className="w-full h-[600px]" />
+        </>
+      )}
+      
     </div>
   )
 }
 
 export default StockChart
-
