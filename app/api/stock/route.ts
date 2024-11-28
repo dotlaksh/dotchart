@@ -5,6 +5,8 @@ import axios from 'axios';
 const cache = new Map();
 
 const aggregateCandles = (timestamps: number[], ohlcv: any, interval: string) => {
+  if (!timestamps || !ohlcv || !timestamps.length) return [];
+
   const candles = [];
   let currentCandle: any = null;
 
@@ -17,6 +19,17 @@ const aggregateCandles = (timestamps: number[], ohlcv: any, interval: string) =>
       close: ohlcv.close[i],
       volume: ohlcv.volume[i],
     };
+
+    // Ensure price data exists
+    if (
+      priceData.open == null ||
+      priceData.high == null ||
+      priceData.low == null ||
+      priceData.close == null ||
+      priceData.volume == null
+    ) {
+      continue; // Skip incomplete candles
+    }
 
     if (interval === '1wk') {
       // Determine Monday of the week
@@ -101,15 +114,32 @@ export async function GET(req: NextRequest) {
     const { timestamp, indicators } = chart.result[0];
     const ohlcv = indicators.quote[0];
 
+    // Handle cases with missing or incomplete data
+    if (!timestamp || !ohlcv || !ohlcv.open || !ohlcv.high || !ohlcv.low || !ohlcv.close || !ohlcv.volume) {
+      return NextResponse.json({ details: 'Incomplete data for this stock symbol' }, { status: 400 });
+    }
+
     // Process data for daily candles
-    const dailyData = timestamp.map((ts: number, i: number) => ({
-      time: new Date(ts * 1000).toISOString().split('T')[0],
-      open: ohlcv.open[i],
-      high: ohlcv.high[i],
-      low: ohlcv.low[i],
-      close: ohlcv.close[i],
-      volume: ohlcv.volume[i],
-    })).filter(Boolean);
+    const dailyData = timestamp.map((ts: number, i: number) => {
+      if (
+        ohlcv.open[i] == null ||
+        ohlcv.high[i] == null ||
+        ohlcv.low[i] == null ||
+        ohlcv.close[i] == null ||
+        ohlcv.volume[i] == null
+      ) {
+        return null; // Skip null data
+      }
+
+      return {
+        time: new Date(ts * 1000).toISOString().split('T')[0],
+        open: ohlcv.open[i],
+        high: ohlcv.high[i],
+        low: ohlcv.low[i],
+        close: ohlcv.close[i],
+        volume: ohlcv.volume[i],
+      };
+    }).filter(Boolean);
 
     // Aggregate data for weekly or monthly candles
     const finalData = interval === '1d'
