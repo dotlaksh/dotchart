@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, ArrowUpRight, ArrowDownRight, Maximize, Minimize } from 'lucide-react'
+import { ChevronLeft, ChevronRight, ArrowUpRight, ArrowDownRight } from 'lucide-react'
 import { createChart, ColorType, IChartApi, ISeriesApi, PriceScaleMode } from 'lightweight-charts'
 import { useTheme } from "next-themes"
 import { stockCategories } from '@/lib/stockList'
@@ -32,7 +32,6 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   const [error, setError] = useState<string | null>(null)
   const [todayPrice, setTodayPrice] = useState<number | null>(null)
   const [priceChange, setPriceChange] = useState<number | null>(null)
-  const [isFullscreen, setIsFullscreen] = useState<boolean>(false)
   const { theme } = useTheme()
 
   useEffect(() => {
@@ -62,8 +61,8 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           },
           timeScale: {
             timeVisible: true,
-            rightOffset: 10,
-            minBarSpacing: 3,
+            rightOffset: 15,
+            minBarSpacing: 7,
           },
           width: chartContainerRef.current.clientWidth,
           height: chartContainerRef.current.clientHeight,
@@ -134,28 +133,6 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
     }
   }
 
-  const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      chartContainerRef.current?.requestFullscreen().catch(err => {
-        console.error(`Error attempting to enable fullscreen: ${err.message}`);
-      });
-    } else {
-      document.exitFullscreen();
-    }
-  }
-
-  useEffect(() => {
-    const fullscreenChangeHandler = () => {
-      setIsFullscreen(!!document.fullscreenElement);
-    };
-
-    document.addEventListener('fullscreenchange', fullscreenChangeHandler);
-
-    return () => {
-      document.removeEventListener('fullscreenchange', fullscreenChangeHandler);
-    };
-  }, []);
-
   return (
     <div className="w-full h-full relative" ref={chartContainerRef}>
       {error && <div className="text-red-500 mb-4">{error}</div>}
@@ -176,16 +153,6 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
                 </span>
               </div>
             )}
-          </div>
-          <div className="absolute top-2 right-2 z-10">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={toggleFullscreen}
-              aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
-            >
-              {isFullscreen ? <Minimize className="h-4 w-4" /> : <Maximize className="h-4 w-4" />}
-            </Button>
           </div>
           <div ref={chartContainerRef} className="w-full h-full" />
         </>
