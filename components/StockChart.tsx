@@ -39,6 +39,12 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   }, [symbol, interval, range])
 
   useEffect(() => {
+    const handleResize = () => {
+      if (chartRef.current && chartContainerRef.current) {
+        chartRef.current.applyOptions({ width: chartContainerRef.current.clientWidth })
+      }
+    }
+
     if (chartContainerRef.current && data.length > 0) {
       const chartOptions = {
         layout: {
@@ -54,7 +60,8 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           rightOffset: 10,
           minBarSpacing: 3,
         },
-        height: 600,
+        width: chartContainerRef.current.clientWidth,
+        height: chartContainerRef.current.clientHeight,
       }
 
       if (!chartRef.current) {
@@ -87,9 +94,12 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           setPriceChange(change)
         }
       }
+
+      window.addEventListener('resize', handleResize)
     }
 
     return () => {
+      window.removeEventListener('resize', handleResize)
       if (chartRef.current) {
         chartRef.current.remove()
         chartRef.current = null
@@ -118,10 +128,10 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   }
 
   return (
-    <div className="w-full relative">
+    <div className="w-full h-full relative">
       {error && <div className="text-red-500 mb-4">{error}</div>}
       {loading ? (
-        <div className="flex justify-center items-center h-[600px]">
+        <div className="flex justify-center items-center h-full">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
         </div>
       ) : (
@@ -138,7 +148,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
               </div>
             )}
           </div>
-          <div ref={chartContainerRef} className="w-full h-[600px]" />
+          <div ref={chartContainerRef} className="w-full h-full" />
         </>
       )}
     </div>
@@ -197,13 +207,11 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   }
 
   return (
-    <div className="relative w-full h-screen flex flex-col">
-      <div className="flex-grow overflow-y-auto">
-        <div className="w-full">
-          <StockChart symbol={currentStock.Symbol} interval={interval} range={range} />
-        </div>
+    <div className="flex flex-col h-full">
+      <div className="flex-grow overflow-hidden">
+        <StockChart symbol={currentStock.Symbol} interval={interval} range={range} />
       </div>
-      <div className="bottom-0 mt-4 p-4 bg-background border-t border-muted-foreground/20 flex justify-between items-center">
+      <div className="mt-4 p-4 bg-background border-t border-muted-foreground/20 flex justify-between items-center">
         <div className="text-sm">
           Stock {currentStockIndex + 1} of {totalStocks}
         </div>
