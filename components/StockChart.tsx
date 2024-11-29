@@ -49,58 +49,61 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
       }
     }
 
-    if (chartContainerRef.current && data.length > 0) {
-      const chartOptions = {
-        layout: {
-          background: { type: ColorType.Solid, color: theme === 'dark' ? '#09090b' : 'white' },
-          textColor: theme === 'dark' ? '#E5E7EB' : '#09090b',
-        },
-        grid: {
-          vertLines: { visible: false },
-          horzLines: { visible: false },
-        },
-        timeScale: {
-          timeVisible: false,
-          rightOffset: 15,
-          minBarSpacing: 7,
-        },
-        width: chartContainerRef.current.clientWidth,
-        height: chartContainerRef.current.clientHeight,
-      }
-
-      if (!chartRef.current) {
-        chartRef.current = createChart(chartContainerRef.current, chartOptions)
-        candlestickSeriesRef.current = chartRef.current.addBarSeries({
-          upColor: '#089981',
-          downColor: '#f23645',
-        })
-      } else {
-        chartRef.current.applyOptions(chartOptions)
-      }
-
-      candlestickSeriesRef.current?.setData(data)
-
-      candlestickSeriesRef.current?.priceScale().applyOptions({
-        mode: PriceScaleMode.Logarithmic,
-        scaleMargins: {
-          top: 0.1,
-          bottom: 0.2,
+    const initChart = () => {
+      if (chartContainerRef.current && data.length > 0) {
+        const chartOptions = {
+          layout: {
+            background: { type: ColorType.Solid, color: theme === 'dark' ? '#09090b' : 'white' },
+            textColor: theme === 'dark' ? '#E5E7EB' : '#09090b',
+          },
+          grid: {
+            vertLines: { visible: false },
+            horzLines: { visible: false },
+          },
+          timeScale: {
+            timeVisible: true,
+            rightOffset: 10,
+            minBarSpacing: 3,
+          },
+          width: chartContainerRef.current.clientWidth,
+          height: chartContainerRef.current.clientHeight,
         }
-      });
-      chartRef.current.timeScale().fitContent();
 
-      if (data.length > 0) {
-        const latestData = data[data.length - 1]
-        setTodayPrice(latestData.close)
-        const yesterdayClose = data[data.length - 2]?.close
-        if (yesterdayClose) {
-          const change = ((latestData.close - yesterdayClose) / yesterdayClose) * 100
-          setPriceChange(change)
+        if (!chartRef.current) {
+          chartRef.current = createChart(chartContainerRef.current, chartOptions)
+          candlestickSeriesRef.current = chartRef.current.addBarSeries({
+            upColor: '#089981',
+            downColor: '#f23645',
+          })
+        } else {
+          chartRef.current.applyOptions(chartOptions)
+        }
+
+        candlestickSeriesRef.current?.setData(data)
+
+        candlestickSeriesRef.current?.priceScale().applyOptions({
+          mode: PriceScaleMode.Logarithmic,
+          scaleMargins: {
+            top: 0.1,
+            bottom: 0.2,
+          }
+        });
+        chartRef.current.timeScale().fitContent();
+
+        if (data.length > 0) {
+          const latestData = data[data.length - 1]
+          setTodayPrice(latestData.close)
+          const yesterdayClose = data[data.length - 2]?.close
+          if (yesterdayClose) {
+            const change = ((latestData.close - yesterdayClose) / yesterdayClose) * 100
+            setPriceChange(change)
+          }
         }
       }
-
-      window.addEventListener('resize', handleResize)
     }
+
+    initChart()
+    window.addEventListener('resize', handleResize)
 
     return () => {
       window.removeEventListener('resize', handleResize)
@@ -184,7 +187,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
               {isFullscreen ? <Minimize className="h-4 w-4" /> : <Maximize className="h-4 w-4" />}
             </Button>
           </div>
-          <div className="w-full h-full" />
+          <div ref={chartContainerRef} className="w-full h-full" />
         </>
       )}
     </div>
