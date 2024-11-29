@@ -57,7 +57,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col h-screen" ref={pageRef}>
-      <div className="flex justify-between items-center bg-background relative z-50">
+      <div className="flex justify-between items-center p-2 bg-background relative z-50">
         <h1 className="text-lg font-bold">dotChart</h1>
         <div className="flex items-center gap-2">
           <Select
