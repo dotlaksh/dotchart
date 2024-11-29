@@ -83,7 +83,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         candlestickSeriesRef.current?.priceScale().applyOptions({
         // mode: PriceScaleMode.Logarithmic,
           scaleMargins: {
-            top: 0.5,
+            top: 0.2,
             bottom: 0.2,
           }
         });
