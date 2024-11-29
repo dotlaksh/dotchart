@@ -58,7 +58,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         timeScale: {
           timeVisible: false,
           rightOffset: 10,
-          minBarSpacing: 3,
+          minBarSpacing: 5,
         },
         width: chartContainerRef.current.clientWidth,
         height: chartContainerRef.current.clientHeight,
@@ -136,7 +136,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         </div>
       ) : (
         <>
-          <div className="absolute top-2 left-0 z-10 bg-background/80 backdrop-blur-sm rounded-lg p-2">
+          <div className="absolute top-0 left-0 z-10 bg-background/80 backdrop-blur-sm rounded-lg p-1">
             <h3 className="text-lg font-semibold">{symbol}</h3>
             {todayPrice !== null && priceChange !== null && (
               <div className="flex items-center text-sm mt-1">
