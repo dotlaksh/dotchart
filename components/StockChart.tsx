@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, ArrowUpRight, ArrowDownRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, ArrowUpRight, ArrowDownRight, Maximize, Minimize } from 'lucide-react'
 import { createChart, ColorType, IChartApi, ISeriesApi, PriceScaleMode } from 'lightweight-charts'
 import { useTheme } from "next-themes"
 import { stockCategories } from '@/lib/stockList'
@@ -32,6 +32,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   const [error, setError] = useState<string | null>(null)
   const [todayPrice, setTodayPrice] = useState<number | null>(null)
   const [priceChange, setPriceChange] = useState<number | null>(null)
+  const [isFullscreen, setIsFullscreen] = useState<boolean>(false)
   const { theme } = useTheme()
 
   useEffect(() => {
@@ -41,7 +42,10 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   useEffect(() => {
     const handleResize = () => {
       if (chartRef.current && chartContainerRef.current) {
-        chartRef.current.applyOptions({ width: chartContainerRef.current.clientWidth })
+        chartRef.current.applyOptions({ 
+          width: chartContainerRef.current.clientWidth,
+          height: chartContainerRef.current.clientHeight
+        })
       }
     }
 
@@ -57,8 +61,8 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         },
         timeScale: {
           timeVisible: false,
-          rightOffset: 10,
-          minBarSpacing: 4,
+          rightOffset: 15,
+          minBarSpacing: 7,
         },
         width: chartContainerRef.current.clientWidth,
         height: chartContainerRef.current.clientHeight,
@@ -127,8 +131,30 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
     }
   }
 
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      chartContainerRef.current?.requestFullscreen().catch(err => {
+        console.error(`Error attempting to enable fullscreen: ${err.message}`);
+      });
+    } else {
+      document.exitFullscreen();
+    }
+  }
+
+  useEffect(() => {
+    const fullscreenChangeHandler = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', fullscreenChangeHandler);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', fullscreenChangeHandler);
+    };
+  }, []);
+
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full h-full relative" ref={chartContainerRef}>
       {error && <div className="text-red-500 mb-4">{error}</div>}
       {loading ? (
         <div className="flex justify-center items-center h-full">
@@ -137,7 +163,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
       ) : (
         <>
           <div className="absolute top-0 left-0 z-10 bg-background/80 backdrop-blur-sm rounded-lg p-1">
-            <h3 className="text-md font-semibold">{symbol}</h3>
+            <h3 className="text-lg font-semibold">{symbol}</h3>
             {todayPrice !== null && priceChange !== null && (
               <div className="flex items-center text-sm mt-1">
                 <span className="font-medium mr-2">{todayPrice.toFixed(2)}</span>
@@ -148,7 +174,17 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
               </div>
             )}
           </div>
-          <div ref={chartContainerRef} className="w-full h-full" />
+          <div className="absolute top-2 right-2 z-10">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={toggleFullscreen}
+              aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+            >
+              {isFullscreen ? <Minimize className="h-4 w-4" /> : <Maximize className="h-4 w-4" />}
+            </Button>
+          </div>
+          <div className="w-full h-full" />
         </>
       )}
     </div>
