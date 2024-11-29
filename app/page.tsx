@@ -76,13 +76,13 @@ export default function Home() {
             </SelectContent>
           </Select>
           <Select value={range} onValueChange={handleRangeChange}>
-            <SelectTrigger className="w-[80px]">
+            <SelectTrigger className="w-[100px]">
               <SelectValue placeholder="Range" />
             </SelectTrigger>
             <SelectContent className="z-[100]">
-              <SelectItem value="1y">1Y</SelectItem>
-              <SelectItem value="5y">5Y</SelectItem>
-              <SelectItem value="max">Max</SelectItem>
+              <SelectItem value="1y">Daily</SelectItem>
+              <SelectItem value="5y">Weekly</SelectItem>
+              <SelectItem value="max">Monthly</SelectItem>
             </SelectContent>
           </Select>
           <ThemeToggle />
