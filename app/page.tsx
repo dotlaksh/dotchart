@@ -22,13 +22,13 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-4 md:p-6">
       <div className="z-10 w-full max-w-6xl items-center justify-between font-mono text-sm">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">dotChart</h1>
+          <h1 className="text-lg font-bold">dotChart</h1>
           <div className="flex items-center gap-4">
             <Select
               value={currentCategoryIndex.toString()}
               onValueChange={(value) => handleCategoryChange(parseInt(value))}
             >
-              <SelectTrigger className="w-[150px]">
+              <SelectTrigger className="w-[120px]">
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
               <SelectContent>
