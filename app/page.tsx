@@ -64,7 +64,7 @@ export default function Home() {
             value={currentCategoryIndex.toString()}
             onValueChange={(value) => handleCategoryChange(parseInt(value))}
           >
-            <SelectTrigger className="w-[120px]">
+            <SelectTrigger className="w-[130px]">
               <SelectValue placeholder="Category" />
             </SelectTrigger>
             <SelectContent className="z-[100]">
