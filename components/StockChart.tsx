@@ -51,8 +51,8 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         },
         timeScale: {
           timeVisible: false,
-          rightOffset: 15,
-          minBarSpacing: 7,
+          rightOffset: 10,
+          minBarSpacing: 3,
         },
         height: 600,
       }
@@ -197,13 +197,13 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   }
 
   return (
-    <div className="relative w-full h-full flex flex-col">
+    <div className="relative w-full h-screen flex flex-col">
       <div className="flex-grow overflow-y-auto">
         <div className="w-full">
           <StockChart symbol={currentStock.Symbol} interval={interval} range={range} />
         </div>
       </div>
-      <div className="sticky bottom-0 mt-4 p-4 bg-background border-t border-muted-foreground/20 flex justify-between items-center">
+      <div className="bottom-0 mt-4 p-4 bg-background border-t border-muted-foreground/20 flex justify-between items-center">
         <div className="text-sm">
           Stock {currentStockIndex + 1} of {totalStocks}
         </div>
