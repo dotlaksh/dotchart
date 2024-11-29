@@ -61,7 +61,7 @@ const StockCarousel: React.FC = () => {
               value={currentCategoryIndex.toString()}
               onValueChange={(value) => handleCategoryChange(parseInt(value))}
             >
-              <SelectTrigger className="w-[125px]">
+              <SelectTrigger className="w-[120px]">
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
               <SelectContent>
@@ -73,7 +73,7 @@ const StockCarousel: React.FC = () => {
               </SelectContent>
             </Select>
             <Select value={range} onValueChange={handleRangeChange}>
-              <SelectTrigger className="w-[120px]">
+              <SelectTrigger className="w-[100px]">
                 <SelectValue placeholder="Select range" />
               </SelectTrigger>
               <SelectContent>
