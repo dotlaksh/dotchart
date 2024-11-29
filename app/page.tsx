@@ -57,7 +57,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col h-screen" ref={pageRef}>
-      <div className="flex justify-between items-center p-4 bg-background">
+      <div className="flex justify-between items-center p-4 bg-background relative z-50">
         <h1 className="text-2xl font-bold">dotChart</h1>
         <div className="flex items-center gap-2">
           <Select
@@ -67,7 +67,7 @@ export default function Home() {
             <SelectTrigger className="w-[120px]">
               <SelectValue placeholder="Category" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="z-[100]">
               {stockCategories.map((category, index) => (
                 <SelectItem key={index} value={index.toString()}>
                   {category.name}
@@ -79,7 +79,7 @@ export default function Home() {
             <SelectTrigger className="w-[80px]">
               <SelectValue placeholder="Range" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="z-[100]">
               <SelectItem value="1y">1Y</SelectItem>
               <SelectItem value="5y">5Y</SelectItem>
               <SelectItem value="max">Max</SelectItem>
