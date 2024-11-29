@@ -1,9 +1,12 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { createChart, CrosshairMode,ColorType, IChartApi, ISeriesApi,PriceScaleMode } from 'lightweight-charts'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Button } from "@/components/ui/button"
+import { ChevronLeft, ChevronRight, ArrowUpRight, ArrowDownRight } from 'lucide-react'
+import { createChart, ColorType, IChartApi, ISeriesApi, PriceScaleMode } from 'lightweight-charts'
 import { useTheme } from "next-themes"
-import { ArrowUpRight, ArrowDownRight } from 'lucide-react'
+import { stockCategories } from '@/lib/stockList'
 
 interface ChartData {
   time: string
@@ -24,7 +27,6 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   const chartContainerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<IChartApi | null>(null)
   const candlestickSeriesRef = useRef<ISeriesApi<"Bar"> | null>(null)
-  const volumeSeriesRef = useRef<ISeriesApi<"Histogram"> | null>(null)
   const [data, setData] = useState<ChartData[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
@@ -44,8 +46,8 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           textColor: theme === 'dark' ? '#E5E7EB' : '#09090b',
         },
         grid: {
-          vertLines: { visible:false },
-          horzLines: { visible:false },
+          vertLines: { visible: false },
+          horzLines: { visible: false },
         },
         timeScale: {
           timeVisible: false,
@@ -76,7 +78,6 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
       });
       chartRef.current.timeScale().fitContent();
 
-      // Set today's price and price change
       if (data.length > 0) {
         const latestData = data[data.length - 1]
         setTodayPrice(latestData.close)
@@ -103,7 +104,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
       const response = await fetch(
         `/api/stock?symbol=${encodeURIComponent(symbol)}&interval=${interval}&range=${range}`
       );
-            if (!response.ok) {
+      if (!response.ok) {
         throw new Error('Failed to fetch data')
       }
       const jsonData = await response.json()
@@ -117,7 +118,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full relative">
       {error && <div className="text-red-500 mb-4">{error}</div>}
       {loading ? (
         <div className="flex justify-center items-center h-[600px]">
@@ -125,7 +126,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         </div>
       ) : (
         <>
-          <div className="mt-4 ">
+          <div className="absolute top-4 left-4 z-10 bg-background/80 backdrop-blur-sm rounded-lg p-2">
             <h3 className="text-lg font-semibold">{symbol}</h3>
             {todayPrice !== null && priceChange !== null && (
               <div className="flex items-center text-sm mt-1">
@@ -140,9 +141,98 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           <div ref={chartContainerRef} className="w-full h-[600px]" />
         </>
       )}
-      
     </div>
   )
 }
 
-export default StockChart
+interface StockCarouselProps {
+  onCategoryChange: (index: number) => void;
+  onRangeChange: (range: string) => void;
+  currentCategoryIndex: number;
+  range: string;
+}
+
+const StockCarousel: React.FC<StockCarouselProps> = ({ 
+  onCategoryChange, 
+  onRangeChange, 
+  currentCategoryIndex, 
+  range 
+}) => {
+  const [currentStockIndex, setCurrentStockIndex] = useState(0)
+  const [interval, setInterval] = useState<string>('1d')
+
+  const currentCategory = stockCategories[currentCategoryIndex]
+  const currentStock = {
+    ...currentCategory.data[currentStockIndex],
+    PercentChange: Math.random() * 10 - 5 // This is a placeholder. Replace with actual data when available.
+  }
+  const totalStocks = currentCategory.data.length
+
+  useEffect(() => {
+    // Automatically adjust interval based on range
+    if (range === '1y') {
+      setInterval('1d')
+    } else if (range === '5y') {
+      setInterval('1wk')
+    } else if (range === 'max') {
+      setInterval('1mo')
+    }
+  }, [range])
+
+  const handleCategoryChange = (index: number) => {
+    onCategoryChange(index);
+    setCurrentStockIndex(0);
+  }
+
+  const handlePrevious = () => {
+    setCurrentStockIndex((prev) => (prev - 1 + totalStocks) % totalStocks)
+  }
+
+  const handleNext = () => {
+    setCurrentStockIndex((prev) => (prev + 1) % totalStocks)
+  }
+
+  const handleRangeChange = (value: string) => {
+    onRangeChange(value);
+  }
+
+  return (
+    <div className="relative w-full h-full flex flex-col">
+      <div className="flex-grow overflow-y-auto">
+        <div className="w-full">
+          <StockChart symbol={currentStock.Symbol} interval={interval} range={range} />
+        </div>
+      </div>
+      <div className="sticky bottom-0 mt-4 p-4 bg-background border-t border-muted-foreground/20 flex justify-between items-center">
+        <div className="text-sm">
+          Stock {currentStockIndex + 1} of {totalStocks}
+        </div>
+        <div className="flex gap-2">
+          <Button 
+            variant="outline" 
+            size="icon"
+            onClick={handlePrevious}
+            disabled={currentStockIndex === 0}
+            aria-label="Previous stock"
+            className="border-muted-foreground/20"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+          <Button 
+            variant="outline" 
+            size="icon"
+            onClick={handleNext}
+            disabled={currentStockIndex === totalStocks - 1}
+            aria-label="Next stock"
+            className="border-muted-foreground/20"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export { StockCarousel, StockChart }
+
