@@ -143,7 +143,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
       ) : (
         <>
           <div className="absolute top-0 left-0 z-10 bg-background/80 backdrop-blur-sm rounded-lg p-1">
-            <h3 className="text-lg font-semibold">{symbol}</h3>
+            <h3 className="text-md font-semibold">{symbol}</h3>
             {todayPrice !== null && priceChange !== null && (
               <div className="flex items-center text-sm mt-1">
                 <span className="font-medium mr-2">{todayPrice.toFixed(2)}</span>
@@ -217,7 +217,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
       <div className="flex-grow overflow-hidden">
         <StockChart symbol={currentStock.Symbol} interval={interval} range={range} />
       </div>
-      <div className="p-1 bg-background border-t border-muted-foreground/20 flex justify-between items-center">
+      <div className="px-2 bg-background border-t border-muted-foreground/20 flex justify-between items-center">
         <div className="text-sm">
           Stock {currentStockIndex + 1} of {totalStocks}
         </div>
