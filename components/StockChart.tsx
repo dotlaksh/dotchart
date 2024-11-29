@@ -217,7 +217,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
       <div className="flex-grow overflow-hidden">
         <StockChart symbol={currentStock.Symbol} interval={interval} range={range} />
       </div>
-      <div className="px-2 bg-background border-t border-muted-foreground/20 flex justify-between items-center">
+      <div className="mt-2 p-3 bg-background border-t border-muted-foreground/20 flex justify-between items-center">
         <div className="text-sm">
           Stock {currentStockIndex + 1} of {totalStocks}
         </div>
