@@ -1,17 +1,15 @@
-import nifty50Data from '../public/nifty50.json';
-import niftyNext50Data from '../public/niftynext50.json';
-import midcap150Data from '../public/midcap150.json';
-import smallcap250Data from '../public/smallcap250.json';
-import microCap250Data from '../public/microcap250.json';
+import largecapData from '../public/largecap.json';
+import midcapData from '../public/midcap.json';
+import smallcapData from '../public/smallcap.json';
+import microCapData from '../public/microcap.json';
 import othersData from '../public/others.json';
 
 
 export const stockCategories = [
-  { name: 'Nifty 50', data: nifty50Data },
-  { name: 'Nifty Next 50', data: niftyNext50Data },
-  { name: 'Midcap 150', data: midcap150Data },
-  { name: 'Smallcap 250', data: smallcap250Data },
-  { name: 'MicroCap 250', data: microCap250Data },
+  { name: 'Largecap', data: largecapData },
+  { name: 'Midcap', data: midcapData },
+  { name: 'Smallcap', data: smallcapData },
+  { name: 'MicroCap', data: microCapData },
   { name: 'Others', data: othersData },
 
 ];
@@ -25,5 +23,4 @@ export type StockCategory = {
   name: string;
   data: Stock[];
 };
-
 
