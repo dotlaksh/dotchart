@@ -4,9 +4,10 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, ArrowUpRight, ArrowDownRight } from 'lucide-react'
-import { createChart, ColorType, IChartApi, ISeriesApi, PriceScaleMode } from 'lightweight-charts'
+import { createChart, ColorType, IChartApi, ISeriesApi } from 'lightweight-charts'
 import { useTheme } from "next-themes"
 import { stockCategories } from '@/lib/stockList'
+import { Moon, Sun } from 'lucide-react'
 
 interface ChartData {
   time: string
@@ -21,6 +22,26 @@ interface StockChartProps {
   symbol: string
   interval: string
   range: string
+}
+
+// Add ThemeToggle component
+const ThemeToggle: React.FC = () => {
+  const { theme, setTheme } = useTheme()
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
+  }
+
+  return (
+    <Button 
+      variant="outline" 
+      size="icon" 
+      onClick={toggleTheme}
+      aria-label="Toggle Theme"
+    >
+      {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+    </Button>
+  )
 }
 
 const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
@@ -81,7 +102,6 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         candlestickSeriesRef.current?.setData(data)
 
         candlestickSeriesRef.current?.priceScale().applyOptions({
-        // mode: PriceScaleMode.Logarithmic,
           scaleMargins: {
             top: 0.2,
             bottom: 0.2,
@@ -181,7 +201,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   const currentCategory = stockCategories[currentCategoryIndex];
   const currentStock = {
     ...currentCategory.data[currentStockIndex],
-    PercentChange: Math.random() * 10 - 5, // This is a placeholder. Replace with actual data when available.
+    percentChange: currentCategory.data[currentStockIndex].PercentChange || 0,
   };
   const totalStocks = currentCategory.data.length;
 
@@ -291,3 +311,4 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   );
 };
 
+export { StockChart, StockCarousel }
