@@ -168,62 +168,59 @@ interface StockCarouselProps {
   range: string;
 }
 
-const StockCarousel: React.FC<StockCarouselProps> = ({ 
-  onCategoryChange, 
-  onRangeChange, 
-  currentCategoryIndex, 
-  range 
+const StockCarousel: React.FC<StockCarouselProps> = ({
+  onCategoryChange,
+  onRangeChange,
+  currentCategoryIndex,
+  range,
 }) => {
-  const [currentStockIndex, setCurrentStockIndex] = useState(0)
-  const [interval, setInterval] = useState<string>('1d')
+  const [currentStockIndex, setCurrentStockIndex] = useState(0);
+  const [interval, setInterval] = useState<string>('1d');
 
-  const currentCategory = stockCategories[currentCategoryIndex]
-  const currentStock = {
-    ...currentCategory.data[currentStockIndex],
-    PercentChange: Math.random() * 10 - 5 // This is a placeholder. Replace with actual data when available.
-  }
-  const totalStocks = currentCategory.data.length
+  const currentCategory = stockCategories[currentCategoryIndex];
+  const totalStocks = currentCategory.data.length;
 
   useEffect(() => {
     // Automatically adjust interval based on range
     if (range === '1y') {
-      setInterval('1d')
+      setInterval('1d');
     } else if (range === '5y') {
-      setInterval('1wk')
+      setInterval('1wk');
     } else if (range === 'max') {
-      setInterval('1mo')
+      setInterval('1mo');
     }
-  }, [range])
+  }, [range]);
+
+  const handlePrevious = () => {
+    setCurrentStockIndex((prev) => (prev - 1 + totalStocks) % totalStocks);
+  };
+
+  const handleNext = () => {
+    setCurrentStockIndex((prev) => (prev + 1) % totalStocks);
+  };
 
   const handleCategoryChange = (index: number) => {
     onCategoryChange(index);
     setCurrentStockIndex(0);
-  }
-
-  const handlePrevious = () => {
-    setCurrentStockIndex((prev) => (prev - 1 + totalStocks) % totalStocks)
-  }
-
-  const handleNext = () => {
-    setCurrentStockIndex((prev) => (prev + 1) % totalStocks)
-  }
+  };
 
   const handleRangeChange = (value: string) => {
     onRangeChange(value);
-  }
+  };
 
   return (
     <div className="flex flex-col h-full">
       <div className="flex-grow overflow-hidden">
-        <StockChart symbol={currentStock.Symbol} interval={interval} range={range} />
+        <StockChart
+          symbol={currentCategory.data[currentStockIndex].Symbol}
+          interval={interval}
+          range={range}
+        />
       </div>
       <div className="mt-2 p-3 bg-background border-t border-muted-foreground/20 flex justify-between items-center">
-        <div className="text-sm">
-          Stock {currentStockIndex + 1} of {totalStocks}
-        </div>
         <div className="flex gap-2">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             size="icon"
             onClick={handlePrevious}
             disabled={currentStockIndex === 0}
@@ -232,8 +229,8 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
           >
             <ChevronLeft className="h-4 w-4" />
           </Button>
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             size="icon"
             onClick={handleNext}
             disabled={currentStockIndex === totalStocks - 1}
@@ -243,10 +240,55 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
             <ChevronRight className="h-4 w-4" />
           </Button>
         </div>
+        <div className="flex items-center gap-4">
+          <Select
+            value={currentCategoryIndex.toString()}
+            onValueChange={(value) => handleCategoryChange(parseInt(value))}
+          >
+            <SelectTrigger className="w-[130px]">
+              <SelectValue placeholder="Category" />
+            </SelectTrigger>
+            <SelectContent className="z-[100]">
+              {stockCategories.map((category, index) => (
+                <SelectItem key={index} value={index.toString()}>
+                  {category.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Select value={range} onValueChange={handleRangeChange}>
+            <SelectTrigger className="w-[100px]">
+              <SelectValue placeholder="Range" />
+            </SelectTrigger>
+            <SelectContent className="z-[100]">
+              <SelectItem value="1y">Daily</SelectItem>
+              <SelectItem value="5y">Weekly</SelectItem>
+              <SelectItem value="max">Monthly</SelectItem>
+            </SelectContent>
+          </Select>
+          <ThemeToggle />
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => {
+              if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+              } else {
+                document.exitFullscreen();
+              }
+            }}
+            aria-label="Toggle Fullscreen"
+          >
+            {document.fullscreenElement ? (
+              <Minimize className="h-4 w-4" />
+            ) : (
+              <Maximize className="h-4 w-4" />
+            )}
+          </Button>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export { StockCarousel, StockChart }
 
