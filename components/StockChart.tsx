@@ -251,68 +251,68 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
         <StockChart symbol={currentStock.Symbol} interval={interval} range={range} />
       </div>
       <div className="mt-2 p-3 bg-background border-t border-muted-foreground/20 flex justify-between items-center gap-4">
-        {/* Pagination and Controls */}
-        <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={handlePrevious}
-            disabled={currentStockIndex === 0}
-            aria-label="Previous stock"
-            className="border-muted-foreground/20"
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </Button>
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={handleNext}
-            disabled={currentStockIndex === totalStocks - 1}
-            aria-label="Next stock"
-            className="border-muted-foreground/20"
-          >
-            <ChevronRight className="h-4 w-4" />
-          </Button>
-        </div>
+  {/* Left-side controls */}
+  <div className="flex items-center gap-4">
+    <Select
+      value={currentCategoryIndex.toString()}
+      onValueChange={(value) => handleCategoryChange(parseInt(value))}
+    >
+      <SelectTrigger className="w-[130px]">
+        <SelectValue placeholder="Category" />
+      </SelectTrigger>
+      <SelectContent>
+        {stockCategories.map((category, index) => (
+          <SelectItem key={index} value={index.toString()}>
+            {category.name}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+    <Select value={range} onValueChange={onRangeChange}>
+      <SelectTrigger className="w-[100px]">
+        <SelectValue placeholder="Range" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="1y">Daily</SelectItem>
+        <SelectItem value="5y">Weekly</SelectItem>
+        <SelectItem value="max">Monthly</SelectItem>
+      </SelectContent>
+    </Select>
+    <ThemeToggle />
+    <Button
+      variant="outline"
+      size="icon"
+      onClick={toggleFullscreen}
+      aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+    >
+      {isFullscreen ? <ChevronLeft className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
+    </Button>
+  </div>
 
-        {/* Selectors, Theme Toggle, and Fullscreen Button */}
-        <div className="flex items-center gap-4">
-          <Select
-            value={currentCategoryIndex.toString()}
-            onValueChange={(value) => handleCategoryChange(parseInt(value))}
-          >
-            <SelectTrigger className="w-[130px]">
-              <SelectValue placeholder="Category" />
-            </SelectTrigger>
-            <SelectContent>
-              {stockCategories.map((category, index) => (
-                <SelectItem key={index} value={index.toString()}>
-                  {category.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Select value={range} onValueChange={onRangeChange}>
-            <SelectTrigger className="w-[100px]">
-              <SelectValue placeholder="Range" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="1y">Daily</SelectItem>
-              <SelectItem value="5y">Weekly</SelectItem>
-              <SelectItem value="max">Monthly</SelectItem>
-            </SelectContent>
-          </Select>
-          <ThemeToggle />
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={toggleFullscreen}
-            aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
-          >
-            {isFullscreen ? <ChevronLeft className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
-          </Button>
-        </div>
-      </div>
+  {/* Right-side pagination controls */}
+  <div className="flex items-center gap-2 ml-auto">
+    <Button
+      variant="outline"
+      size="icon"
+      onClick={handlePrevious}
+      disabled={currentStockIndex === 0}
+      aria-label="Previous stock"
+      className="border-muted-foreground/20"
+    >
+      <ChevronLeft className="h-4 w-4" />
+    </Button>
+    <Button
+      variant="outline"
+      size="icon"
+      onClick={handleNext}
+      disabled={currentStockIndex === totalStocks - 1}
+      aria-label="Next stock"
+      className="border-muted-foreground/20"
+    >
+      <ChevronRight className="h-4 w-4" />
+    </Button>
+  </div>
+</div>
     </div>
   );
 };
