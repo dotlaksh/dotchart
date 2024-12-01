@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, ArrowUpRight, ArrowDownRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, ArrowUpRight, ArrowDownRight,Maximize2, Minimize2 } from 'lucide-react'
 import { createChart, ColorType, IChartApi, ISeriesApi } from 'lightweight-charts'
 import { useTheme } from "next-themes"
 import { stockCategories } from '@/lib/stockList'
