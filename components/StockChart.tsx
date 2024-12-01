@@ -139,6 +139,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
         />
       </div>
       <div className="mt-2 p-3 bg-background border-t border-muted-foreground/20 flex justify-between items-center gap-4">
+        {/* Pagination Buttons */}
         <div className="flex gap-2">
           <Button
             variant="outline"
@@ -157,6 +158,8 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
             <ChevronRight className="h-4 w-4" />
           </Button>
         </div>
+
+        {/* Selectors, Theme Toggle, and Fullscreen Button */}
         <div className="flex items-center gap-4">
           <Select
             value={currentCategoryIndex.toString()}
