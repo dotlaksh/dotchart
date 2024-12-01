@@ -1,47 +1,36 @@
-'use client'
+'use client';
 
-import { useState, useEffect, useRef } from 'react'
-import { StockCarousel } from '@/components/StockChart'
-import { ThemeToggle } from '@/components/theme-toggle'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Button } from "@/components/ui/button"
-import { stockCategories } from '@/lib/stockList'
-import { Maximize, Minimize } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react';
+import { StockCarousel } from '@/components/StockChart';
+import { ThemeToggle } from '@/components/theme-toggle';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { stockCategories } from '@/lib/stockList';
+import { Maximize, Minimize } from 'lucide-react';
 
 export default function Home() {
-  const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0)
-  const [range, setRange] = useState<string>('1y')
-  const [windowHeight, setWindowHeight] = useState(0)
-  const [isFullscreen, setIsFullscreen] = useState(false)
-  const pageRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowHeight(window.innerHeight)
-    }
-
-    handleResize()
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
+  const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
+  const [range, setRange] = useState<string>('1y');
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const pageRef = useRef<HTMLDivElement>(null);
 
   const handleCategoryChange = (index: number) => {
-    setCurrentCategoryIndex(index)
-  }
+    setCurrentCategoryIndex(index);
+  };
 
   const handleRangeChange = (value: string) => {
-    setRange(value)
-  }
+    setRange(value);
+  };
 
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
-      pageRef.current?.requestFullscreen().catch(err => {
+      pageRef.current?.requestFullscreen().catch((err) => {
         console.error(`Error attempting to enable fullscreen: ${err.message}`);
       });
     } else {
       document.exitFullscreen();
     }
-  }
+  };
 
   useEffect(() => {
     const fullscreenChangeHandler = () => {
@@ -49,7 +38,6 @@ export default function Home() {
     };
 
     document.addEventListener('fullscreenchange', fullscreenChangeHandler);
-
     return () => {
       document.removeEventListener('fullscreenchange', fullscreenChangeHandler);
     };
@@ -57,8 +45,16 @@ export default function Home() {
 
   return (
     <main className="flex flex-col h-screen" ref={pageRef}>
-      <div className="flex justify-between items-end p-2 bg-background relative z-50">
-        <div className="flex items-center gap-2">
+      <div className="flex-grow overflow-hidden">
+        <StockCarousel
+          onCategoryChange={handleCategoryChange}
+          onRangeChange={handleRangeChange}
+          currentCategoryIndex={currentCategoryIndex}
+          range={range}
+        />
+      </div>
+      <footer className="p-3 bg-background border-t border-muted-foreground/20 flex justify-between items-center">
+        <div className="flex gap-2">
           <Select
             value={currentCategoryIndex.toString()}
             onValueChange={(value) => handleCategoryChange(parseInt(value))}
@@ -84,6 +80,8 @@ export default function Home() {
               <SelectItem value="max">Monthly</SelectItem>
             </SelectContent>
           </Select>
+        </div>
+        <div className="flex gap-2 items-center">
           <ThemeToggle />
           <Button
             variant="outline"
@@ -94,16 +92,7 @@ export default function Home() {
             {isFullscreen ? <Minimize className="h-4 w-4" /> : <Maximize className="h-4 w-4" />}
           </Button>
         </div>
-      </div>
-      <div className="flex-grow overflow-hidden" style={{ height: `calc(${windowHeight}px - 8rem)` }}>
-        <StockCarousel 
-          onCategoryChange={handleCategoryChange}
-          onRangeChange={handleRangeChange}
-          currentCategoryIndex={currentCategoryIndex}
-          range={range}
-        />
-      </div>
+      </footer>
     </main>
-  )
+  );
 }
-
