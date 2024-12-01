@@ -279,14 +279,14 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
       </SelectContent>
     </Select>
     <ThemeToggle />
-    <Button
-      variant="outline"
-      size="icon"
-      onClick={toggleFullscreen}
-      aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
-    >
-      {isFullscreen ? <ChevronLeft className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
-    </Button>
+    <Button 
+    variant="outline" 
+    size="icon" 
+    onClick={toggleFullscreen} 
+    aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+  >
+    {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+  </Button>
   </div>
 
   {/* Right-side pagination controls */}
