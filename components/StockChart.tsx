@@ -188,6 +188,12 @@ interface StockCarouselProps {
   range: string;
 }
 
+interface StockData {
+  "Company Name": string;
+  Symbol: string;
+  PercentChange?: number; // Make this optional
+}
+
 const StockCarousel: React.FC<StockCarouselProps> = ({
   onCategoryChange,
   onRangeChange,
@@ -201,7 +207,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   const currentCategory = stockCategories[currentCategoryIndex];
   const currentStock = {
     ...currentCategory.data[currentStockIndex],
-    percentChange: currentCategory.data[currentStockIndex].PercentChange || 0,
+    percentChange: (currentCategory.data[currentStockIndex] as StockData).PercentChange ?? (Math.random() * 10 - 5),
   };
   const totalStocks = currentCategory.data.length;
 
