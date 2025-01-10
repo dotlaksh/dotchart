@@ -211,16 +211,6 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   };
   const totalStocks = currentCategory.data.length;
 
-  useEffect(() => {
-    if (range === '1y') {
-      setInterval('1d');
-    } else if (range === '5y') {
-      setInterval('1wk');
-    } else if (range === 'max') {
-      setInterval('1mo');
-    }
-  }, [range]);
-
   const handleCategoryChange = (index: number) => {
     onCategoryChange(index);
     setCurrentStockIndex(0);
