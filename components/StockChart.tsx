@@ -253,6 +253,15 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
       <div className="mt-2 p-3 bg-background border-t border-muted-foreground/20 flex justify-between items-center gap-4">
   {/* Left-side controls */}
   <div className="flex items-center gap-4">
+    <ThemeToggle />
+    <Button 
+    variant="outline" 
+    size="icon" 
+    onClick={toggleFullscreen} 
+    aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+  >
+    {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+  </Button>
     <Select
       value={currentCategoryIndex.toString()}
       onValueChange={(value) => handleCategoryChange(parseInt(value))}
@@ -273,20 +282,12 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
         <SelectValue placeholder="Range" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="1y">Daily</SelectItem>
-        <SelectItem value="5y">Weekly</SelectItem>
+        <SelectItem value="5y">Daily</SelectItem>
+        <SelectItem value="10y">Weekly</SelectItem>
         <SelectItem value="max">Monthly</SelectItem>
       </SelectContent>
     </Select>
-    <ThemeToggle />
-    <Button 
-    variant="outline" 
-    size="icon" 
-    onClick={toggleFullscreen} 
-    aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
-  >
-    {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
-  </Button>
+    
   </div>
 
   {/* Right-side pagination controls */}
