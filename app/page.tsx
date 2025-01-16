@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Maximize2, Minimize2 } from 'lucide-react';
 import { stockCategories } from '@/lib/stockList';
 import { StockChart } from '@/components/StockChart';
-import ThemeToggle from '@/components/ThemeToggle';
 
 const StockCarousel: React.FC = () => {
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState<number>(0);
