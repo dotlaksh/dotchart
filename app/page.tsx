@@ -14,8 +14,7 @@ const StockCarousel: React.FC = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const currentCategory = stockCategories[currentCategoryIndex];
-  const currentStock = {
-    ...currentCategory.data[currentStockIndex],
+  const currentStock = currentCategory.data[currentStockIndex],
     percentChange: currentCategory.data[currentStockIndex].PercentChange ?? (Math.random() * 10 - 5),
   };
   const totalStocks = currentCategory.data.length;
