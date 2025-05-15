@@ -1,11 +1,12 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Maximize2, Minimize2 } from 'lucide-react';
 import { stockCategories } from '@/lib/stockList';
 import { StockChart } from '@/components/StockChart';
+import { ThemeToggle } from '@/components/ThemeToggle'; // Include if you use it
 
 const StockCarousel: React.FC = () => {
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState<number>(0);
@@ -14,9 +15,8 @@ const StockCarousel: React.FC = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const currentCategory = stockCategories[currentCategoryIndex];
-  const currentStock = currentCategory.data[currentStockIndex],
-    percentChange: currentCategory.data[currentStockIndex].PercentChange ?? (Math.random() * 10 - 5),
-  };
+  const currentStock = currentCategory.data[currentStockIndex];
+  const percentChange = currentStock.PercentChange ?? (Math.random() * 10 - 5);
   const totalStocks = currentCategory.data.length;
 
   const handleCategoryChange = (index: number) => {
@@ -40,7 +40,7 @@ const StockCarousel: React.FC = () => {
     } else {
       document.exitFullscreen();
     }
-    setIsFullscreen(!!document.fullscreenElement);
+    setIsFullscreen(!document.fullscreenElement);
   };
 
   return (
@@ -116,27 +116,10 @@ const StockCarousel: React.FC = () => {
 };
 
 export default function Home() {
-  const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
-  const [range, setRange] = useState<string>('1y');
-  const pageRef = useRef<HTMLDivElement>(null);
-
-  const handleCategoryChange = (index: number) => {
-    setCurrentCategoryIndex(index);
-  };
-
-  const handleRangeChange = (value: string) => {
-    setRange(value);
-  };
-
   return (
-    <main className="flex flex-col h-screen" ref={pageRef}>
+    <main className="flex flex-col h-screen">
       <div className="flex-grow overflow-hidden">
-        <StockCarousel
-          onCategoryChange={handleCategoryChange}
-          onRangeChange={handleRangeChange}
-          currentCategoryIndex={currentCategoryIndex}
-          range={range}
-        />
+        <StockCarousel />
       </div>
     </main>
   );
