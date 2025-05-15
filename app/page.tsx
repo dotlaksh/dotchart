@@ -80,9 +80,9 @@ const StockCarousel: React.FC = () => {
               <SelectValue placeholder="Range" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="1d">Daily</SelectItem>
-              <SelectItem value="1w">Weekly</SelectItem>
-              <SelectItem value="1m">Monthly</SelectItem>
+              <SelectItem value="1d">D</SelectItem>
+              <SelectItem value="1wk">W</SelectItem>
+              <SelectItem value="1m">M</SelectItem>
             </SelectContent>
           </Select>
         </div>
