@@ -1,9 +1,13 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Button } from "@/components/ui/button"
+import { ChevronLeft, ChevronRight, ArrowUpRight, ArrowDownRight,Maximize2, Minimize2 } from 'lucide-react'
 import { createChart, ColorType, IChartApi, ISeriesApi } from 'lightweight-charts'
 import { useTheme } from "next-themes"
-import { ArrowUpRight, ArrowDownRight } from 'lucide-react'
+import { stockCategories } from '@/lib/stockList'
+import { Moon, Sun } from 'lucide-react'
 
 interface ChartData {
   time: string
@@ -18,6 +22,26 @@ interface StockChartProps {
   symbol: string
   interval: string
   range: string
+}
+
+// Add ThemeToggle component
+const ThemeToggle: React.FC = () => {
+  const { theme, setTheme } = useTheme()
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
+  }
+
+  return (
+    <Button 
+      variant="outline" 
+      size="icon" 
+      onClick={toggleTheme}
+      aria-label="Toggle Theme"
+    >
+      {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+    </Button>
+  )
 }
 
 const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
@@ -157,4 +181,131 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   )
 }
 
-export { StockChart }
+interface StockCarouselProps {
+  onCategoryChange: (index: number) => void;
+  onRangeChange: (range: string) => void;
+  currentCategoryIndex: number;
+  range: string;
+}
+
+interface StockData {
+  "Company Name": string;
+  Symbol: string;
+  PercentChange?: number; // Make this optional
+}
+
+const StockCarousel: React.FC<StockCarouselProps> = ({
+  onCategoryChange,
+  onRangeChange,
+  currentCategoryIndex,
+  range,
+}) => {
+  const [currentStockIndex, setCurrentStockIndex] = useState(0);
+  const [interval, setInterval] = useState<string>('1d');
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  const currentCategory = stockCategories[currentCategoryIndex];
+  const currentStock = {
+    ...currentCategory.data[currentStockIndex],
+    percentChange: (currentCategory.data[currentStockIndex] as StockData).PercentChange ?? (Math.random() * 10 - 5),
+  };
+  const totalStocks = currentCategory.data.length;
+
+  const handleCategoryChange = (index: number) => {
+    onCategoryChange(index);
+    setCurrentStockIndex(0);
+  };
+
+  const handlePrevious = () => {
+    setCurrentStockIndex((prev) => (prev - 1 + totalStocks) % totalStocks);
+  };
+
+  const handleNext = () => {
+    setCurrentStockIndex((prev) => (prev + 1) % totalStocks);
+  };
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch((err) => {
+        console.error(`Fullscreen error: ${err.message}`);
+      });
+    } else {
+      document.exitFullscreen();
+    }
+    setIsFullscreen(!!document.fullscreenElement);
+  };
+
+  return (
+    <div className="flex flex-col h-full">
+      <div className="flex-grow overflow-hidden">
+        <StockChart symbol={currentStock.Symbol} interval={interval} range={range} />
+      </div>
+      <div className="mt-2 p-3 bg-background border-t border-muted-foreground/20 flex justify-between items-center gap-4">
+  {/* Left-side controls */}
+  <div className="flex items-center gap-4">
+    <ThemeToggle />
+    <Button 
+    variant="outline" 
+    size="icon" 
+    onClick={toggleFullscreen} 
+    aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+  >
+    {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+  </Button>
+    <Select
+      value={currentCategoryIndex.toString()}
+      onValueChange={(value) => handleCategoryChange(parseInt(value))}
+    >
+      <SelectTrigger className="w-[120px] border-muted-foreground/20">
+        <SelectValue placeholder="Category" />
+      </SelectTrigger>
+      <SelectContent>
+        {stockCategories.map((category, index) => (
+          <SelectItem key={index} value={index.toString()}>
+            {category.name}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+    <Select value={range} onValueChange={onRangeChange}>
+      <SelectTrigger className="w-[80px] border-muted-foreground/20">
+        <SelectValue placeholder="Range" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="5y">Daily</SelectItem>
+        <SelectItem value="10y">Weekly</SelectItem>
+        <SelectItem value="max">Monthly</SelectItem>
+      </SelectContent>
+    </Select>
+    
+  </div>
+
+  {/* Right-side pagination controls */}
+  <div className="flex items-center gap-2 ml-auto">
+    <Button
+      variant="outline"
+      size="icon"
+      onClick={handlePrevious}
+      disabled={currentStockIndex === 0}
+      aria-label="Previous stock"
+      className="border-muted-foreground/20"
+    >
+      <ChevronLeft className="h-4 w-4" />
+    </Button>
+    <Button
+      variant="outline"
+      size="icon"
+      onClick={handleNext}
+      disabled={currentStockIndex === totalStocks - 1}
+      aria-label="Next stock"
+      className="border-muted-foreground/20"
+    >
+      <ChevronRight className="h-4 w-4" />
+    </Button>
+  </div>
+</div>
+    </div>
+  );
+};
+
+export { StockChart, StockCarousel }
