@@ -272,9 +272,12 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
         <SelectValue placeholder="Range" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="1y">D</SelectItem>
-        <SelectItem value="2y">W</SelectItem>
-        <SelectItem value="10y">M</SelectItem>
+        <SelectItem value="6mo">6M</SelectItem>
+        <SelectItem value="1y">1y</SelectItem>
+        <SelectItem value="2y">2Y</SelectItem>
+        <SelectItem value="5y">5Y</SelectItem>
+        <SelectItem value="10y">10Y</SelectItem>
+
       </SelectContent>
     </Select>
     
