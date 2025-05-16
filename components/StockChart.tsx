@@ -268,7 +268,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
       </SelectContent>
     </Select>
     <Select value={range} onValueChange={onRangeChange}>
-      <SelectTrigger className="w-[80px] border-muted-foreground/20">
+      <SelectTrigger className="w-[50px] border-muted-foreground/20">
         <SelectValue placeholder="Range" />
       </SelectTrigger>
       <SelectContent>
