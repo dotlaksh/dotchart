@@ -1,13 +1,22 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, ArrowUpRight, ArrowDownRight,Maximize2, Minimize2 } from 'lucide-react'
+import { ChevronLeft, ChevronRight, ArrowUpRight, ArrowDownRight, Maximize2, Minimize2, Moon, Sun } from 'lucide-react'
 import { createChart, ColorType, IChartApi, ISeriesApi } from 'lightweight-charts'
 import { useTheme } from "next-themes"
 import { stockCategories } from '@/lib/stockList'
-import { Moon, Sun } from 'lucide-react'
+import clsx from "clsx"
+
+// INTERVAL BUTTONS
+const intervals: { label: string; value: string; range: string }[] = [
+  { label: '6M', value: '1d', range: '6mo' },
+  { label: '1Y', value: '1d', range: '1y' },
+  { label: '2Y', value: '1wk', range: '2y' },
+  { label: '5Y', value: '1wk', range: '5y' },
+  { label: '10Y', value: '1mo', range: '10y' },
+  { label: 'All', value: '1mo', range: 'max' }
+];
 
 interface ChartData {
   time: string
@@ -24,14 +33,10 @@ interface StockChartProps {
   range: string
 }
 
-// Add ThemeToggle component
+// Theme toggle
 const ThemeToggle: React.FC = () => {
   const { theme, setTheme } = useTheme()
-
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
-  }
-
+  const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark')
   return (
     <Button 
       variant="outline" 
@@ -48,6 +53,8 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   const chartContainerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<IChartApi | null>(null)
   const candlestickSeriesRef = useRef<ISeriesApi<"Bar"> | null>(null)
+  const volumeSeriesRef = useRef<ISeriesApi<'Histogram'> | null>(null)
+  const maSeriesRef = useRef<ISeriesApi<'Line'> | null>(null)
   const [data, setData] = useState<ChartData[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
@@ -57,6 +64,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
 
   useEffect(() => {
     fetchData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [symbol, interval, range])
 
   useEffect(() => {
@@ -68,6 +76,27 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         })
       }
     }
+
+    // 10-period (interval-based) Moving Average
+    const calculateMovingAverage = (data: ChartData[], length: number) => {
+      const result: { time: string, value: number }[] = []
+      let sum = 0
+      for (let i = 0; i < data.length; ++i) {
+        sum += data[i].close
+        if (i >= length) {
+          sum -= data[i - length].close
+        }
+        if (i >= length - 1) {
+          result.push({
+            time: data[i].time,
+            value: +(sum / length).toFixed(2),
+          })
+        }
+      }
+      return result
+    }
+
+    const maLength = 10 // Always 10 periods, adjusts by interval
 
     const initChart = () => {
       if (chartContainerRef.current && data.length > 0) {
@@ -89,25 +118,49 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           height: chartContainerRef.current.clientHeight,
         }
 
-        if (!chartRef.current) {
-          chartRef.current = createChart(chartContainerRef.current, chartOptions)
-          candlestickSeriesRef.current = chartRef.current.addBarSeries({
-            upColor: '#089981',
-            downColor: '#f23645',
-          })
-        } else {
-          chartRef.current.applyOptions(chartOptions)
+        // Remove any existing chart instance before creating a new one
+        if (chartRef.current) {
+          chartRef.current.remove()
+          chartRef.current = null
         }
 
-        candlestickSeriesRef.current?.setData(data)
+        chartRef.current = createChart(chartContainerRef.current, chartOptions)
 
-        candlestickSeriesRef.current?.priceScale().applyOptions({
-          scaleMargins: {
-            top: 0.2,
-            bottom: 0.2,
-          }
-        });
-        chartRef.current.timeScale().fitContent();
+        // Candlestick
+        candlestickSeriesRef.current = chartRef.current.addBarSeries({
+          upColor: '#089981',
+          downColor: '#f23645',
+        })
+        candlestickSeriesRef.current.setData(data)
+        candlestickSeriesRef.current.priceScale().applyOptions({
+          scaleMargins: { top: 0.2, bottom: 0.25 }
+        })
+
+        // Volume Histogram
+        volumeSeriesRef.current = chartRef.current.addHistogramSeries({
+          color: '#8884d8',
+          priceFormat: { type: 'volume' },
+          priceScaleId: '',
+          scaleMargins: { top: 0.8, bottom: 0 },
+        })
+        const volumeData = data.map(bar => ({
+          time: bar.time,
+          value: bar.volume,
+          color: (bar.close >= bar.open) ? '#089981' : '#f23645',
+        }))
+        volumeSeriesRef.current.setData(volumeData)
+
+        // 10-period Moving Average
+        const maData = calculateMovingAverage(data, maLength)
+        maSeriesRef.current = chartRef.current.addLineSeries({
+          color: '#eab308', // yellow
+          lineWidth: 2,
+          priceLineVisible: false,
+          title: `MA${maLength}`,
+        })
+        maSeriesRef.current.setData(maData)
+
+        chartRef.current.timeScale().fitContent()
 
         if (data.length > 0) {
           const latestData = data[data.length - 1]
@@ -123,7 +176,6 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
 
     initChart()
     window.addEventListener('resize', handleResize)
-
     return () => {
       window.removeEventListener('resize', handleResize)
       if (chartRef.current) {
@@ -154,7 +206,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   }
 
   return (
-    <div className="w-full h-full relative" ref={chartContainerRef}>
+    <div className="w-full h-full relative">
       {error && <div className="text-red-500 mb-4">{error}</div>}
       {loading ? (
         <div className="flex justify-center items-center h-full">
@@ -181,27 +233,30 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   )
 }
 
-interface StockCarouselProps {
-  onCategoryChange: (index: number) => void;
-  onRangeChange: (range: string) => void;
-  currentCategoryIndex: number;
-  range: string;
-}
-
 interface StockData {
   "Company Name": string;
   Symbol: string;
   PercentChange?: number; // Make this optional
 }
 
+interface StockCarouselProps {
+  onCategoryChange: (index: number) => void;
+  currentCategoryIndex: number;
+  stockRange: string;
+  stockInterval: string;
+  setStockRange: (range: string) => void;
+  setStockInterval: (interval: string) => void;
+}
+
 const StockCarousel: React.FC<StockCarouselProps> = ({
   onCategoryChange,
-  onRangeChange,
   currentCategoryIndex,
-  range,
+  stockRange,
+  stockInterval,
+  setStockRange,
+  setStockInterval,
 }) => {
   const [currentStockIndex, setCurrentStockIndex] = useState(0);
-  const [interval, setInterval] = useState<string>('1d');
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const currentCategory = stockCategories[currentCategoryIndex];
@@ -235,78 +290,84 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
     setIsFullscreen(!!document.fullscreenElement);
   };
 
+  // Handle interval/range switching using buttons
+  const handleIntervalClick = (selected: typeof intervals[number]) => {
+    setStockRange(selected.range);
+    setStockInterval(selected.value);
+  };
+
   return (
     <div className="flex flex-col h-full">
       <div className="flex-grow overflow-hidden">
-        <StockChart symbol={currentStock.Symbol} interval={interval} range={range} />
+        <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
       </div>
-      <div className="mt-2 p-3 bg-background border-t border-muted-foreground/20 flex justify-between items-center gap-4">
-  {/* Left-side controls */}
-  <div className="flex items-center gap-4">
-    <ThemeToggle />
-    <Button 
-    variant="outline" 
-    size="icon" 
-    onClick={toggleFullscreen} 
-    aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
-  >
-    {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
-  </Button>
-    <Select
-      value={currentCategoryIndex.toString()}
-      onValueChange={(value) => handleCategoryChange(parseInt(value))}
-    >
-      <SelectTrigger className="w-[120px] border-muted-foreground/20">
-        <SelectValue placeholder="Category" />
-      </SelectTrigger>
-      <SelectContent>
-        {stockCategories.map((category, index) => (
-          <SelectItem key={index} value={index.toString()}>
-            {category.name}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
-    <Select value={range} onValueChange={onRangeChange}>
-      <SelectTrigger className="w-[50px] border-muted-foreground/20">
-        <SelectValue placeholder="Range" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="6mo">6M</SelectItem>
-        <SelectItem value="1y">1y</SelectItem>
-        <SelectItem value="2y">2Y</SelectItem>
-        <SelectItem value="5y">5Y</SelectItem>
-        <SelectItem value="10y">10Y</SelectItem>
+      <div className="mt-2 p-3 bg-background border-t border-muted-foreground/20 flex flex-col gap-2">
+        <div className="flex items-center gap-4">
+          <ThemeToggle />
+          <Button 
+            variant="outline" 
+            size="icon" 
+            onClick={toggleFullscreen} 
+            aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+          >
+            {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+          </Button>
+          {/* Category select as dropdown, you can replace with buttons/links if needed */}
+          <select
+            className="border border-muted-foreground/20 rounded px-2 py-1 text-sm bg-background"
+            value={currentCategoryIndex}
+            onChange={(e) => handleCategoryChange(Number(e.target.value))}
+          >
+            {stockCategories.map((category, index) => (
+              <option key={index} value={index}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      </SelectContent>
-    </Select>
-    
-  </div>
+        {/* Interval buttons, horizontally */}
+        <div className="flex flex-row justify-center gap-2">
+          {intervals.map((item) => (
+            <button
+              key={item.label}
+              className={clsx(
+                "px-3 py-1 rounded text-sm font-medium border border-muted-foreground/20 hover:bg-muted transition-colors",
+                stockRange === item.range && stockInterval === item.value
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-background text-foreground"
+              )}
+              onClick={() => handleIntervalClick(item)}
+              aria-current={stockRange === item.range && stockInterval === item.value ? "page" : undefined}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
 
-  {/* Right-side pagination controls */}
-  <div className="flex items-center gap-2 ml-auto">
-    <Button
-      variant="outline"
-      size="icon"
-      onClick={handlePrevious}
-      disabled={currentStockIndex === 0}
-      aria-label="Previous stock"
-      className="border-muted-foreground/20"
-    >
-      <ChevronLeft className="h-4 w-4" />
-    </Button>
-    <Button
-      variant="outline"
-      size="icon"
-      onClick={handleNext}
-      disabled={currentStockIndex === totalStocks - 1}
-      aria-label="Next stock"
-      className="border-muted-foreground/20"
-    >
-      <ChevronRight className="h-4 w-4" />
-    </Button>
-  </div>
-</div>
+        <div className="flex items-center gap-2 ml-auto">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={handlePrevious}
+            disabled={currentStockIndex === 0}
+            aria-label="Previous stock"
+            className="border-muted-foreground/20"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={handleNext}
+            disabled={currentStockIndex === totalStocks - 1}
+            aria-label="Next stock"
+            className="border-muted-foreground/20"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
