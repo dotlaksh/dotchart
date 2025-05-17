@@ -1,19 +1,16 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { StockCarousel } from '@/components/StockChart';
 
 export default function Home() {
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
-  const [range, setRange] = useState<string>('1y');
+  const [stockRange, setStockRange] = useState<string>('6mo');     // Default to '6mo' for 6M
+  const [stockInterval, setStockInterval] = useState<string>('1d'); // Default to '1d'
   const pageRef = useRef<HTMLDivElement>(null);
 
   const handleCategoryChange = (index: number) => {
     setCurrentCategoryIndex(index);
-  };
-
-  const handleRangeChange = (value: string) => {
-    setRange(value);
   };
 
   return (
@@ -21,9 +18,11 @@ export default function Home() {
       <div className="flex-grow overflow-hidden">
         <StockCarousel
           onCategoryChange={handleCategoryChange}
-          onRangeChange={handleRangeChange}
           currentCategoryIndex={currentCategoryIndex}
-          range={range}
+          stockRange={stockRange}
+          stockInterval={stockInterval}
+          setStockRange={setStockRange}
+          setStockInterval={setStockInterval}
         />
       </div>
     </main>
