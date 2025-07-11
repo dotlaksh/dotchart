@@ -195,7 +195,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
       {error && <div className="text-red-500 mb-4">{error}</div>}
       {loading ? (
         <div className="flex justify-center items-center h-full">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+          <div className="animate-spin rounded-full h-24 w-24 border-b-2 border-primary"></div>
         </div>
       ) : (
         <>
