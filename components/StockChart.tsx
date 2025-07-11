@@ -141,8 +141,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         maSeriesRef.current = chartRef.current.addLineSeries({
           color: '#eab308', // yellow
           lineWidth: 1,
-          priceLineVisible: false,
-          title: `MA${maLength}`,
+          priceLineVisible: false
         })
         maSeriesRef.current.setData(maData)
 
