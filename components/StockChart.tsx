@@ -10,10 +10,9 @@ import clsx from "clsx"
 
 // INTERVAL BUTTONS
 const intervals: { label: string; value: string; range: string }[] = [
-  { label: '6M', value: '1d', range: '6mo' },
-  { label: '1Y', value: '1d', range: '1y' },
-  { label: '2Y', value: '1wk', range: '2y' },
-  { label: '5Y', value: '1wk', range: '5y' }
+  { label: 'D', value: '1d', range: '6mo' },
+  { label: 'W', value: '1wk', range: '2y' },
+  { label: 'M', value: '1mo', range: '5y' }
   ];
 
 interface ChartData {
@@ -109,8 +108,8 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           },
           timeScale: {
             timeVisible: true,
-            rightOffset: 10,
-            minBarSpacing: 3,
+            rightOffset: 5,
+            minBarSpacing: 2,
           },
           width: chartContainerRef.current.clientWidth,
           height: chartContainerRef.current.clientHeight,
