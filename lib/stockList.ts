@@ -9,8 +9,7 @@ export const stockCategories = [
   { name: 'LargeCaps', data: largecapData },
   { name: 'MidCaps', data: midcapData },
   { name: 'SmallCaps', data: smallcapData },
-  { name: 'MicroCaps', data: microcapData },
-  { name: 'Others', data: othersData },
+  { name: 'MicroCaps', data: microcapData }
 
 ];
 
