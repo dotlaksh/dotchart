@@ -323,7 +323,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                 <button
                   key={item.label}
                   className={clsx(
-                    "px-3 py-1 rounded text-sm font-medium border border-muted-foreground/20 hover:bg-muted transition-colors",
+                    "px-3 py-1 rounded text-sm font-light border border-muted-foreground/20 hover:bg-muted transition-colors",
                     stockRange === item.range && stockInterval === item.value
                       ? "bg-primary text-primary-foreground"
                       : "bg-background text-foreground"
