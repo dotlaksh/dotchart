@@ -141,7 +141,6 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           color: '#8884d8',
           priceFormat: { type: 'volume' },
           priceScaleId: '',
-          scaleMargins: { top: 0.8, bottom: 0 },
         })
         const volumeData = data.map(bar => ({
           time: bar.time,
