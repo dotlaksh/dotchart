@@ -14,7 +14,7 @@ export default function Home() {
   };
 
   return (
-    <main className="max-w-3xl mx-auto flex flex-col h-screen" ref={pageRef}>
+    <main className="flex flex-col h-screen" ref={pageRef}>
       <div className="flex-grow overflow-hidden">
         <StockCarousel
           onCategoryChange={handleCategoryChange}
