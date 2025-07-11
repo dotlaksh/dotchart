@@ -299,7 +299,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
               onClick={toggleFullscreen} 
               aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
             >
-              {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+              {isFullscreen ? <Minimize2 className="h-3 w-4" /> : <Maximize2 className="h-3 w-4" />}
             </Button>
           </div>
 
@@ -347,7 +347,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
               aria-label="Previous stock"
               className="border-muted-foreground/20"
             >
-              <ChevronLeft className="h-4 w-4" />
+              <ChevronLeft className="h-3 w-4" />
             </Button>
             <Button
               variant="outline"
@@ -357,7 +357,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
               aria-label="Next stock"
               className="border-muted-foreground/20"
             >
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="h-3 w-4" />
             </Button>
           </div>
         </div>
