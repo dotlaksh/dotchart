@@ -10,10 +10,11 @@ import clsx from "clsx"
 
 // INTERVAL BUTTONS
 const intervals: { label: string; value: string; range: string }[] = [
-  { label: 'D', value: '1d', range: '6mo' },
-  { label: 'W', value: '1wk', range: '2y' },
-  { label: 'M', value: '1mo', range: '10y' },
-];
+  { label: '6M', value: '1d', range: '6mo' },
+  { label: '1Y', value: '1d', range: '1y' },
+  { label: '2Y', value: '1wk', range: '2y' },
+  { label: '5Y', value: '1wk', range: '5y' }
+  ];
 
 interface ChartData {
   time: string
@@ -289,7 +290,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
       </div>
       
       {/* Single row layout for all controls */}
-      <div className="mt-2 p-3 bg-background border-t border-muted-foreground/20">
+      <div className="p-3 bg-background border-t border-muted-foreground/20">
         <div className="flex items-center justify-between gap-4">
           {/* Left side - Theme toggle and fullscreen */}
           <div className="flex items-center gap-2">
