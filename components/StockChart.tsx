@@ -133,22 +133,8 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           scaleMargins: { top: 0.2, bottom: 0.25 }
         })
 
-        // Volume Histogram
-        volumeSeriesRef.current = chartRef.current.addHistogramSeries({
-          color: '#8884d8',
-          priceFormat: { type: 'volume' },
-          priceScaleId: 'volume',
-          scaleMargins: {
-            top: 0.7,
-            bottom: 0,
-        }
-        })
-        const volumeData = data.map(bar => ({
-          time: bar.time,
-          value: bar.volume,
-          color: (bar.close >= bar.open) ? '#089981' : '#f23645',
-        }))
-        volumeSeriesRef.current.setData(volumeData)
+        
+       
 
         // 10-period Moving Average
         const maData = calculateMovingAverage(data, maLength)
