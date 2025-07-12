@@ -129,13 +129,6 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           downColor: '#f23645',
         })
         candlestickSeriesRef.current.setData(data)
-        candlestickSeriesRef.current.priceScale().applyOptions({
-          scaleMargins: { top: 0.2, bottom: 0.25 }
-        })
-
-        
-       
-
         // 10-period Moving Average
         const maData = calculateMovingAverage(data, maLength)
         maSeriesRef.current = chartRef.current.addLineSeries({
