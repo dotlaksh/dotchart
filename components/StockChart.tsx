@@ -192,13 +192,13 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         </div>
       ) : (
         <>
-          <div className="absolute top-0 left-0 z-10 bg-background/80 backdrop-blur-sm rounded-lg p-1">
-            <h3 className="text-md font-semibold">{symbol}</h3>
+          <div className="absolute top-1 left-1 sm:top-2 sm:left-2 z-10 bg-background/90 backdrop-blur-sm rounded-md p-1 sm:p-2 text-xs sm:text-sm">
+            <h3 className="font-semibold leading-tight">{symbol}</h3>
             {todayPrice !== null && priceChange !== null && (
-              <div className="flex items-center text-sm mt-1">
-                <span className="font-medium mr-2">{todayPrice.toFixed(2)}</span>
+              <div className="flex items-center mt-0.5 sm:mt-1 text-xs sm:text-sm">
+                <span className="font-medium mr-1 sm:mr-2">{todayPrice.toFixed(2)}</span>
                 <span className={`flex items-center ${priceChange >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-                  {priceChange >= 0 ? <ArrowUpRight className="w-3 h-3 mr-1" /> : <ArrowDownRight className="w-3 h-3 mr-1" />}
+                  {priceChange >= 0 ? <ArrowUpRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-0.5 sm:mr-1" /> : <ArrowDownRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-0.5 sm:mr-1" />}
                   {Math.abs(priceChange).toFixed(2)}%
                 </span>
               </div>
@@ -275,33 +275,33 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   };
 
   return (
-    <div className="flex flex-col h-full max-w-2xl mx-auto mt-4 sm:mt-6 md:mt-8">
+    <div className="flex flex-col h-full w-full max-w-full sm:max-w-2xl mx-auto mt-2 sm:mt-4 md:mt-6 px-2 sm:px-4">
       {/* Updated chart container with responsive height for mobile portrait */}
-      <div className="h-[55vh] sm:h-[65vh] md:h-[70vh] lg:h-[75vh] xl:flex-grow overflow-hidden">
+      <div className="h-[50vh] xs:h-[55vh] sm:h-[60vh] md:h-[65vh] lg:h-[70vh] xl:flex-grow overflow-hidden rounded-lg border border-muted-foreground/10">
         <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
       </div>
       
       {/* Single row layout for all controls */}
-      <div className="bg-background border-t border-muted-foreground/20 p-2 sm:p-3">
-        <div className="flex items-center justify-between gap-2 sm:gap-4">
+      <div className="bg-background border-t border-muted-foreground/20 p-1.5 sm:p-2 md:p-3 mt-1">
+        <div className="flex items-center justify-between gap-1 sm:gap-2 md:gap-4">
           {/* Left side - Theme toggle and fullscreen */}
-          <div className="flex items-center gap-1 sm:gap-2">
+          <div className="flex items-center gap-1">
             <ThemeToggle />
             <Button 
               variant="outline" 
               size="icon" 
               onClick={toggleFullscreen} 
               aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
-              className="h-8 w-8 sm:h-10 sm:w-10"
+              className="h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10"
             >
               {isFullscreen ? <Minimize2 className="h-3 w-3 sm:h-4 sm:w-4" /> : <Maximize2 className="h-3 w-3 sm:h-4 sm:w-4" />}
             </Button>
           </div>
 
           {/* Center - Category selector and interval buttons */}
-          <div className="flex items-center gap-2 sm:gap-4">
+          <div className="flex items-center gap-1 sm:gap-2 md:gap-4 flex-1 justify-center">
             <select
-              className="border border-muted-foreground/20 rounded px-2 py-1 text-xs sm:text-sm bg-background max-w-[120px] sm:max-w-none"
+              className="border border-muted-foreground/20 rounded px-1.5 py-0.5 sm:px-2 sm:py-1 text-xs sm:text-sm bg-background max-w-[100px] sm:max-w-[120px] md:max-w-none truncate"
               value={currentCategoryIndex}
               onChange={(e) => handleCategoryChange(Number(e.target.value))}
             >
@@ -313,12 +313,12 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
             </select>
 
             {/* Interval buttons */}
-            <div className="flex gap-1">
+            <div className="flex gap-0.5 sm:gap-1">
               {intervals.map((item) => (
                 <button
                   key={item.label}
                   className={clsx(
-                    "px-2 py-1 sm:px-3 sm:py-1 rounded text-xs font-light border border-muted-foreground/20 hover:bg-muted transition-colors",
+                    "px-1.5 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded text-xs font-light border border-muted-foreground/20 hover:bg-muted transition-colors min-w-[24px] sm:min-w-[28px]",
                     stockRange === item.range && stockInterval === item.value
                       ? "bg-primary text-primary-foreground"
                       : "bg-background text-foreground"
@@ -333,14 +333,14 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
           </div>
 
           {/* Right side - Navigation buttons */}
-          <div className="flex items-center gap-1 sm:gap-2">
+          <div className="flex items-center gap-1">
             <Button
               variant="outline"
               size="icon"
               onClick={handlePrevious}
               disabled={currentStockIndex === 0}
               aria-label="Previous stock"
-              className="border-muted-foreground/20 h-8 w-8 sm:h-10 sm:w-10"
+              className="border-muted-foreground/20 h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10"
             >
               <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4" />
             </Button>
@@ -350,7 +350,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
               onClick={handleNext}
               disabled={currentStockIndex === totalStocks - 1}
               aria-label="Next stock"
-              className="border-muted-foreground/20 h-8 w-8 sm:h-10 sm:w-10"
+              className="border-muted-foreground/20 h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10"
             >
               <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />
             </Button>
