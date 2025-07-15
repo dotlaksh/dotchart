@@ -282,7 +282,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
       </div>
       
       {/* Single row layout for all controls */}
-      <div className="bg-background border-t border-muted-foreground/20 p-1.5 sm:p-2 md:p-3 mt-1">
+      <div className="bg-background border-t border-muted-foreground/20 p-1 sm:p-1.5 md:p-2 mt-1">
         <div className="flex items-center justify-between gap-1 sm:gap-2 md:gap-4">
           {/* Left side - Theme toggle and fullscreen */}
           <div className="flex items-center gap-1">
@@ -292,7 +292,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
               size="icon" 
               onClick={toggleFullscreen} 
               aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
-              className="h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10"
+              className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
             >
               {isFullscreen ? <Minimize2 className="h-3 w-3 sm:h-4 sm:w-4" /> : <Maximize2 className="h-3 w-3 sm:h-4 sm:w-4" />}
             </Button>
@@ -301,7 +301,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
           {/* Center - Category selector and interval buttons */}
           <div className="flex items-center gap-1 sm:gap-2 md:gap-4 flex-1 justify-center">
             <select
-              className="border border-muted-foreground/20 rounded px-1.5 py-0.5 sm:px-2 sm:py-1 text-xs sm:text-sm bg-background max-w-[100px] sm:max-w-[120px] md:max-w-none truncate"
+              className="border border-muted-foreground/20 rounded px-1 py-0.5 sm:px-1.5 sm:py-0.5 text-xs bg-background max-w-[90px] sm:max-w-[100px] md:max-w-none truncate"
               value={currentCategoryIndex}
               onChange={(e) => handleCategoryChange(Number(e.target.value))}
             >
@@ -318,7 +318,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                 <button
                   key={item.label}
                   className={clsx(
-                    "px-1.5 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded text-xs font-light border border-muted-foreground/20 hover:bg-muted transition-colors min-w-[24px] sm:min-w-[28px]",
+                    "px-1 py-0.5 sm:px-1.5 sm:py-0.5 md:px-2 md:py-1 rounded text-xs font-light border border-muted-foreground/20 hover:bg-muted transition-colors min-w-[20px] sm:min-w-[24px]",
                     stockRange === item.range && stockInterval === item.value
                       ? "bg-primary text-primary-foreground"
                       : "bg-background text-foreground"
@@ -340,7 +340,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
               onClick={handlePrevious}
               disabled={currentStockIndex === 0}
               aria-label="Previous stock"
-              className="border-muted-foreground/20 h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10"
+              className="border-muted-foreground/20 h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
             >
               <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4" />
             </Button>
@@ -350,7 +350,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
               onClick={handleNext}
               disabled={currentStockIndex === totalStocks - 1}
               aria-label="Next stock"
-              className="border-muted-foreground/20 h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10"
+              className="border-muted-foreground/20 h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
             >
               <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />
             </Button>
