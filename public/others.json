@@ -1,1995 +1,854 @@
 [
-	{
-		"Symbol": "3IINFOLTD"
-	},
-	{
-		"Symbol": "5PAISA"
-	},
-	{
-		"Symbol": "63MOONS"
-	},
-	{
-		"Symbol": "AARTECH"
-	},
-	{
-		"Symbol": "ABAN"
-	},
-	{
-		"Symbol": "ABINFRA"
-	},
-	{
-		"Symbol": "ABLBL"
-	},
-	{
-		"Symbol": "ACLGATI"
-	},
-	{
-		"Symbol": "ADFFOODS"
-	},
-	{
-		"Symbol": "ADOR"
-	},
-	{
-		"Symbol": "ADSL"
-	},
-	{
-		"Symbol": "ADVANIHOTR"
-	},
-	{
-		"Symbol": "AEGISVOPAK"
-	},
-	{
-		"Symbol": "AEROENTER"
-	},
-	{
-		"Symbol": "AEROFLEX"
-	},
-	{
-		"Symbol": "AFFORDABLE"
-	},
-	{
-		"Symbol": "AGARIND"
-	},
-	{
-		"Symbol": "AGARWALEYE"
-	},
-	{
-		"Symbol": "AGIIL"
-	},
-	{
-		"Symbol": "AGROPHOS"
-	},
-	{
-		"Symbol": "AIRAN"
-	},
-	{
-		"Symbol": "AJAXENGG"
-	},
-	{
-		"Symbol": "AJMERA"
-	},
-	{
-		"Symbol": "AKSHARCHEM"
-	},
-	{
-		"Symbol": "ALEMBICLTD"
-	},
-	{
-		"Symbol": "ALPA"
-	},
-	{
-		"Symbol": "AMJLAND"
-	},
-	{
-		"Symbol": "ANDHRAPAP"
-	},
-	{
-		"Symbol": "ANDHRSUGAR"
-	},
-	{
-		"Symbol": "ANUHPHR"
-	},
-	{
-		"Symbol": "ANURAS"
-	},
-	{
-		"Symbol": "APEX"
-	},
-	{
-		"Symbol": "APOLLO"
-	},
-	{
-		"Symbol": "APOLLOPIPE"
-	},
-	{
-		"Symbol": "APTECHT"
-	},
-	{
-		"Symbol": "ARCHIES"
-	},
-	{
-		"Symbol": "ARIES"
-	},
-	
-	{
-		"Symbol": "ARKADE"
-	},
-	
-	{
-		"Symbol": "ARTEMISMED"
-	},
-	{
-		"Symbol": "ARVSMART"
-	},
-	{
-		"Symbol": "ASAL"
-	},
-	{
-		"Symbol": "ASHAPURMIN"
-	},
-
-	{
-		"Symbol": "ASIANENE"
-	},
-	{
-		"Symbol": "ASIANTILES"
-	},
-	{
-		"Symbol": "ASTEC"
-	},
-	{
-		"Symbol": "ATHERENERG"
-	},
-	{
-		"Symbol": "ATL"
-	},
-	{
-		"Symbol": "ATLANTAA"
-	},
-	{
-		"Symbol": "ATULAUTO"
-	},
-	{
-		"Symbol": "AURUM"
-	},
-	{
-		"Symbol": "AUTOIND"
-	},
-	{
-		"Symbol": "AVADHSUGAR"
-	},
-	{
-		"Symbol": "AVANTEL"
-	},
-	{
-		"Symbol": "AVTNPL"
-	},
-	{
-		"Symbol": "AWHCL"
-	},
-	{
-		"Symbol": "AXISCADES"
-	},
-	{
-		"Symbol": "BAJAJCON"
-	},
-	{
-		"Symbol": "BAJAJELEC"
-	},
-	{
-		"Symbol": "BAJAJHCARE"
-	},
-	{
-		"Symbol": "BAJAJINDEF"
-	},
-	{
-		"Symbol": "BAJEL"
-	},
-	{
-		"Symbol": "BALAJEE"
-	},
-	{
-		"Symbol": "BALAXI"
-	},
-	{
-		"Symbol": "BALMLAWRIE"
-	},
-	
-	{
-		"Symbol": "BANSWRAS"
-	},
-	{
-		"Symbol": "BARBEQUE"
-	},
-	{
-		"Symbol": "BASML"
-	},
-	{
-		"Symbol": "BBOX"
-	},
-	{
-		"Symbol": "BCLIND"
-	},
-	{
-		"Symbol": "BEARDSELL"
-	},
-	{
-		"Symbol": "BELRISE"
-	},
-	{
-		"Symbol": "BESTAGRO"
-	},
-
-	{
-		"Symbol": "BFUTILITIE"
-	},
-
-	{
-		"Symbol": "BHAGCHEM"
-	},
-	{
-		"Symbol": "BHAGERIA"
-	},
-	{
-		"Symbol": "BHAGYANGR"
-	},
-	{
-		"Symbol": "BHARATSE"
-	},
-	{
-		"Symbol": "BHARATWIRE"
-	},
-	{
-		"Symbol": "BIGBLOC"
-	},
-	{
-		"Symbol": "BIRLAMONEY"
-	},
-	{
-		"Symbol": "BLAL"
-	},
-	{
-		"Symbol": "BLISSGVS"
-	},
-	{
-		"Symbol": "BLKASHYAP"
-	},
-	{
-		"Symbol": "BLSE"
-	},
-	{
-		"Symbol": "BLUSPRING"
-	},
-	{
-		"Symbol": "BODALCHEM"
-	},
-	{
-		"Symbol": "BORANA"
-	},
-	{
-		"Symbol": "BOROSCI"
-	},
-	{
-		"Symbol": "BPL"
-	},
-	{
-		"Symbol": "BRNL"
-	},
-	{
-		"Symbol": "BSHSL"
-	},
-	{
-		"Symbol": "CAMLINFINE"
-	},
-	{
-		"Symbol": "CANTABIL"
-	},
-	{
-		"Symbol": "CAPACITE"
-	},
-	{
-		"Symbol": "CAPITALSFB"
-	},
-	{
-		"Symbol": "CAPTRUST"
-	},
-	{
-		"Symbol": "CARERATING"
-	},
-	{
-		"Symbol": "CARRARO"
-	},
-	{
-		"Symbol": "CARYSIL"
-	},
-	{
-		"Symbol": "CENTEXT"
-	},
-	{
-		"Symbol": "CENTRUM"
-	},
-	{
-		"Symbol": "CENTUM"
-	},
-	{
-		"Symbol": "CHEMFAB"
-	},
-	{
-		"Symbol": "CLSEL"
-	},
-	{
-		"Symbol": "COASTCORP"
-	},
-	{
-		"Symbol": "COMPUSOFT"
-	},
-	{
-		"Symbol": "COMSYN"
-	},
-	{
-		"Symbol": "CONFIPET"
-	},
-	{
-		"Symbol": "CONTROLPR"
-	},
-	{
-		"Symbol": "CORDSCABLE"
-	},
-	{
-		"Symbol": "COSMOFIRST"
-	},
-	{
-		"Symbol": "CUBEXTUB"
-	},
-	{
-		"Symbol": "CUPID"
-	},
-	{
-		"Symbol": "DALMIASUG"
-	},
-	{
-		"Symbol": "DAMCAPITAL"
-	},
-	{
-		"Symbol": "DBCORP"
-	},
-	{
-		"Symbol": "DBEIL"
-	},
-
-	{
-		"Symbol": "DCMSRIND"
-	},
-	{
-		"Symbol": "DCW"
-	},
-	{
-		"Symbol": "DDEVPLSTIK"
-	},
-	{
-		"Symbol": "DECCANCE"
-	},
-	{
-		"Symbol": "DEEDEV"
-	},
-	{
-		"Symbol": "DEEPINDS"
-	},
-	
-	{
-		"Symbol": "DELTACORP"
-	},
-	{
-		"Symbol": "DEN"
-	},
-	{
-		"Symbol": "DENTA"
-	},
-	{
-		"Symbol": "DEVIT"
-	},
-	
-	{
-		"Symbol": "DHAMPURSUG"
-	},
-	{
-		"Symbol": "DHANBANK"
-	},
-	{
-		"Symbol": "DHANUKA"
-	},
-	{
-		"Symbol": "DHARMAJ"
-	},
-	{
-		"Symbol": "DIACABS"
-	},
-	{
-		"Symbol": "DIAMONDYD"
-	},
-	
-	{
-		"Symbol": "DIGISPICE"
-	},
-	{
-		"Symbol": "DIGITIDE"
-	},
-	
-	{
-		"Symbol": "DLINKINDIA"
-	},
-	{
-		"Symbol": "DMCC"
-	},
-	{
-		"Symbol": "DOLATALGO"
-	},
-	{
-		"Symbol": "DOLLAR"
-	},
-	{
-		"Symbol": "DONEAR"
-	},
-	{
-		"Symbol": "DPABHUSHAN"
-	},
-	{
-		"Symbol": "DREAMFOLKS"
-	},
-	{
-		"Symbol": "DREDGECORP"
-	},
-	{
-		"Symbol": "DSSL"
-	},
-	{
-		"Symbol": "DWARKESH"
-	},
-	{
-		"Symbol": "DYCL"
-	},
-	{
-		"Symbol": "DYNPRO"
-	},
-	{
-		"Symbol": "E2E"
-	},
-	{
-		"Symbol": "ECOSMOBLTY"
-	},
-	{
-		"Symbol": "EIFFL"
-	},
-	{
-		"Symbol": "EKC"
-	},
-	{
-		"Symbol": "EMSLIMITED"
-	},
-	{
-		"Symbol": "ENIL"
-	},
-	{
-		"Symbol": "EPACK"
-	},
-	{
-		"Symbol": "ESAFSFB"
-	},
-	{
-		"Symbol": "ESSARSHPNG"
-	},
-	{
-		"Symbol": "ESTER"
-	},
-	{
-		"Symbol": "EVEREADY"
-	},
-	{
-		"Symbol": "EXICOM"
-	},
-	{
-		"Symbol": "EXPLEOSOL"
-	},
-	{
-		"Symbol": "FAIRCHEMOR"
-	},
-	{
-		"Symbol": "FAZE3Q"
-	},
-	{
-		"Symbol": "FEDFINA"
-	},
-	{
-		"Symbol": "FIBERWEB"
-	},
-	{
-		"Symbol": "FILATEX"
-	},
-	{
-		"Symbol": "FINOPB"
-	},
-	{
-		"Symbol": "FLAIR"
-	},
-	{
-		"Symbol": "FMGOETZE"
-	},
-	{
-		"Symbol": "FOCUS"
-	},
-	{
-		"Symbol": "FOODSIN"
-	},
-	{
-		"Symbol": "FUSION"
-	},
-	{
-		"Symbol": "GALLANTT"
-	},
-	{
-		"Symbol": "GANDHAR"
-	},
-	{
-		"Symbol": "GANESHBE"
-	},
-	{
-		"Symbol": "GARUDA"
-	},
-	{
-		"Symbol": "GEEKAYWIRE"
-	},
-	{
-		"Symbol": "GENESYS"
-	},
-	{
-		"Symbol": "GENSOL"
-	},
-	{
-		"Symbol": "GENUSPOWER"
-	},
-	
-	{
-		"Symbol": "GEPIL"
-	},
-	{
-		"Symbol": "GFLLIMITED"
-	},
-	{
-		"Symbol": "GHCLTEXTIL"
-	},
-	{
-		"Symbol": "GICHSGFIN"
-	},
-	
-	{
-		"Symbol": "GIPCL"
-	},
-	{
-		"Symbol": "GLOBAL"
-	},
-	{
-		"Symbol": "GLOBALVECT"
-	},
-	{
-		"Symbol": "GLOBUSSPR"
-	},
-	{
-		"Symbol": "GMBREW"
-	},
-	{
-		"Symbol": "GOCLCORP"
-	},
-	{
-		"Symbol": "GOCOLORS"
-	},
-	{
-		"Symbol": "GODAVARIB"
-	},
-	{
-		"Symbol": "GOKUL"
-	},
-	{
-		"Symbol": "GOKULAGRO"
-	},
-	{
-		"Symbol": "GOLDIAM"
-	},
-	{
-		"Symbol": "GOLDTECH"
-	},
-	{
-		"Symbol": "GOODLUCK"
-	},
-	{
-		"Symbol": "GPTHEALTH"
-	},
-	{
-		"Symbol": "GPTINFRA"
-	},
-	{
-		"Symbol": "GRINDWELL"
-	},
-	{
-		"Symbol": "GRMOVER"
-	},
-	{
-		"Symbol": "GSLSU"
-	},
-	{
-		"Symbol": "GTPL"
-	},
-	{
-		"Symbol": "GUFICBIO"
-	},
-	{
-		"Symbol": "GUJALKALI"
-	},
-	{
-		"Symbol": "GUJTHEM"
-	},
-	{
-		"Symbol": "GULFPETRO"
-	},
-	{
-		"Symbol": "GULPOLY"
-	},
-	{
-		"Symbol": "HARIOMPIPE"
-	},
-	{
-		"Symbol": "HARSHA"
-	},
-	{
-		"Symbol": "HATSUN"
-	},
-	{
-		"Symbol": "HERANBA"
-	},
-	{
-		"Symbol": "HERCULES"
-	},
-	{
-		"Symbol": "HEXATRADEX"
-	},
-	{
-		"Symbol": "HEXT"
-	},
-	{
-		"Symbol": "HILTON"
-	},
-	{
-		"Symbol": "HIMATSEIDE"
-	},
-	{
-		"Symbol": "HINDCON"
-	},
-	{
-		"Symbol": "HINDMOTORS"
-	},
-	{
-		"Symbol": "HINDOILEXP"
-	},
-	{
-		"Symbol": "HINDWAREAP"
-	},
-	{
-		"Symbol": "HIRECT"
-	},
-	{
-		"Symbol": "HITECH"
-	},
-	{
-		"Symbol": "HLEGLAS"
-	},
-	{
-		"Symbol": "HMAAGRO"
-	},
-	{
-		"Symbol": "HMVL"
-	},
-	{
-		"Symbol": "HNDFDS"
-	},
-	{
-		"Symbol": "HPAL"
-	},
-	{
-		"Symbol": "HPL"
-	},
-	{
-		"Symbol": "HTMEDIA"
-	},
-	{
-		"Symbol": "HUBTOWN"
-	},
-	{
-		"Symbol": "HUHTAMAKI"
-	},
-	{
-		"Symbol": "ICRA"
-	},
-	{
-		"Symbol": "IDEAFORGE"
-	},
-	{
-		"Symbol": "IEL"
-	},
-	{
-		"Symbol": "IFGLEXPOR"
-	},
-	{
-		"Symbol": "IGARASHI"
-	},
-	{
-		"Symbol": "IGPL"
-	},
-	{
-		"Symbol": "IKIO"
-	},
-	{
-		"Symbol": "INDBANK"
-	},
-	{
-		"Symbol": "INDIANHUME"
-	},
-	{
-		"Symbol": "INDNIPPON"
-	},
-	{
-		"Symbol": "INDOAMIN"
-	},
-	{
-		"Symbol": "INDOBORAX"
-	},
-	{
-		"Symbol": "INDOCO"
-	},
-	{
-		"Symbol": "INDORAMA"
-	},
-	{
-		"Symbol": "INDOSTAR"
-	},
-	{
-		"Symbol": "INDOTECH"
-	},
-	{
-		"Symbol": "INDOWIND"
-	},
-	{
-		"Symbol": "INDRAMEDCO"
-	},
-	{
-		"Symbol": "INDSWFTLAB"
-	},
-	{
-		"Symbol": "INDTERRAIN"
-	},
-	{
-		"Symbol": "INNOVANA"
-	},
-	{
-		"Symbol": "INSECTICID"
-	},
-	{
-		"Symbol": "INTENTECH"
-	},
-	{
-		"Symbol": "INTLCONV"
-	},
-	{
-		"Symbol": "IOLCP"
-	},
-	{
-		"Symbol": "IPL"
-	},
-	{
-		"Symbol": "IRIS"
-	},
-	{
-		"Symbol": "IRISDOREME"
-	},
-	{
-		"Symbol": "IRMENERGY"
-	},
-	{
-		"Symbol": "ISHANCH"
-	},
-	{
-		"Symbol": "ITCHOTELS"
-	},
-	{
-		"Symbol": "IZMO"
-	},
-	{
-		"Symbol": "JAGRAN"
-	},
-	{
-		"Symbol": "JAGSNPHARM"
-	},
-	{
-		"Symbol": "JASH"
-	},
-	{
-		"Symbol": "JAYBARMARU"
-	},
-	{
-		"Symbol": "JAYNECOIND"
-	},
-	
-	{
-		"Symbol": "JGCHEM"
-	},
-	{
-		"Symbol": "JINDALPOLY"
-	},
-	{
-		"Symbol": "JINDRILL"
-	},
-	{
-		"Symbol": "JISLDVREQS"
-	},
-	
-	{
-		"Symbol": "JNKINDIA"
-	},
-	{
-		"Symbol": "JTEKTINDIA"
-	},
-	{
-		"Symbol": "JUNIPER"
-	},
-	{
-		"Symbol": "KALAMANDIR"
-	},
-	{
-		"Symbol": "KAMATHOTEL"
-	},
-	{
-		"Symbol": "KAMDHENU"
-	},
-	{
-		"Symbol": "KCP"
-	},
-	{
-		"Symbol": "KCPSUGIND"
-	},
-	{
-		"Symbol": "KECL"
-	},
-	{
-		"Symbol": "KELLTONTEC"
-	},
-	{
-		"Symbol": "KERNEX"
-	},
-	{
-		"Symbol": "KHADIM"
-	},
-	{
-		"Symbol": "KHAICHEM"
-	},
-	{
-		"Symbol": "KILITCH"
-	},
-	{
-		"Symbol": "KIOCL"
-	},
-	{
-		"Symbol": "KIRIINDUS"
-	},
-	{
-		"Symbol": "KITEX"
-	},
-	{
-		"Symbol": "KKCL"
-	},
-	{
-		"Symbol": "KMEW"
-	},
-	{
-		"Symbol": "KMSUGAR"
-	},
-	{
-		"Symbol": "KOHINOOR"
-	},
-	{
-		"Symbol": "KOKUYOCMLN"
-	},
-	{
-		"Symbol": "KOLTEPATIL"
-	},
-	{
-		"Symbol": "KOPRAN"
-	},
-	{
-		"Symbol": "KOTARISUG"
-	},
-	{
-		"Symbol": "KOTHARIPET"
-	},
-	{
-		"Symbol": "KPEL"
-	},
-	{
-		"Symbol": "KRISHANA"
-	},
-	{
-		"Symbol": "KRITI"
-	},
-	{
-		"Symbol": "KRN"
-	},
-	{
-		"Symbol": "KRONOX"
-	},
-	{
-		"Symbol": "KROSS"
-	},
-	{
-		"Symbol": "KRSNAA"
-	},
-	{
-		"Symbol": "KRYSTAL"
-	},
-	{
-		"Symbol": "KSOLVES"
-	},
-	{
-		"Symbol": "KUANTUM"
-	},
-	{
-		"Symbol": "LANCORHOL"
-	},
-	{
-		"Symbol": "LAOPALA"
-	},
-	{
-		"Symbol": "LAXMIDENTL"
-	},
-	{
-		"Symbol": "LIKHITHA"
-	},
-	{
-		"Symbol": "LINCOLN"
-	},
-	{
-		"Symbol": "LOKESHMACH"
-	},
-	{
-		"Symbol": "LORDSCHLO"
-	},
-	{
-		"Symbol": "LUMAXTECH"
-	},
-	{
-		"Symbol": "LYKALABS"
-	},
-	{
-		"Symbol": "MAANALU"
-	},
-	{
-		"Symbol": "MADRASFERT"
-	},
-	{
-		"Symbol": "MAGNUM"
-	},
-	{
-		"Symbol": "MAHEPC"
-	},
-	{
-		"Symbol": "MAHLOG"
-	},
-	{
-		"Symbol": "MAITHANALL"
-	},
-	{
-		"Symbol": "MAMATA"
-	},
-	{
-		"Symbol": "MANAKALUCO"
-	},
-	{
-		"Symbol": "MANAKCOAT"
-	},
-	{
-		"Symbol": "MANAKSIA"
-	},
-	{
-		"Symbol": "MANAKSTEEL"
-	},
-	{
-		"Symbol": "MANALIPETC"
-	},
-	{
-		"Symbol": "MANGALAM"
-	},
-	{
-		"Symbol": "MANGCHEFER"
-	},
-	{
-		"Symbol": "MANGLMCEM"
-	},
-	{
-		"Symbol": "MANINDS"
-	},
-	{
-		"Symbol": "MANORAMA"
-	},
-	{
-		"Symbol": "MANUGRAPH"
-	},
-	{
-		"Symbol": "MARALOVER"
-	},
-	{
-		"Symbol": "MARATHON"
-	},
-	{
-		"Symbol": "MARINE"
-	},
-	{
-		"Symbol": "MASFIN"
-	},
-
-	{
-		"Symbol": "MAWANASUG"
-	},
-	{
-		"Symbol": "MAXIND"
-	},
-	{
-		"Symbol": "MAYURUNIQ"
-	},
-	{
-		"Symbol": "MBAPL"
-	},
-	{
-		"Symbol": "MBLINFRA"
-	},
-	{
-		"Symbol": "MCL"
-	},
-	{
-		"Symbol": "MCLEODRUSS"
-	},
-	{
-		"Symbol": "MCLOUD"
-	},
-	{
-		"Symbol": "MEDIASSIST"
-	},
-	{
-		"Symbol": "MEDICO"
-	},
-	{
-		"Symbol": "MENONBE"
-	},
-	{
-		"Symbol": "METROBRAND"
-	},
-	{
-		"Symbol": "MHLXMIRU"
-	},
-	{
-		"Symbol": "MHRIL"
-	},
-	{
-		"Symbol": "MICEL"
-	},
-	{
-		"Symbol": "MIRZAINT"
-	},
-	{
-		"Symbol": "MMFL"
-	},
-	{
-		"Symbol": "MMP"
-	},
-	{
-		"Symbol": "MOBIKWIK"
-	},
-	{
-		"Symbol": "MODISONLTD"
-	},
-	{
-		"Symbol": "MOL"
-	},
-	{
-		"Symbol": "MOLDTECH"
-	},
-	{
-		"Symbol": "MOLDTKPAC"
-	},
-	{
-		"Symbol": "MONARCH"
-	},
-	{
-		"Symbol": "MONTECARLO"
-	},
-	{
-		"Symbol": "MOREPENLAB"
-	},
-	{
-		"Symbol": "MOSCHIP"
-	},
-	{
-		"Symbol": "MOTISONS"
-	},
-	{
-		"Symbol": "MSPL"
-	},
-	{
-		"Symbol": "MTNL"
-	},
-	{
-		"Symbol": "MUFIN"
-	},
-	{
-		"Symbol": "MUFTI"
-	},
-	{
-		"Symbol": "MUKANDLTD"
-	},
-	{
-		"Symbol": "MUKKA"
-	},
-	{
-		"Symbol": "MUNJALAU"
-	},
-	{
-		"Symbol": "MUNJALSHOW"
-	},
-	{
-		"Symbol": "MUTHOOTMF"
-	},
-	{
-		"Symbol": "MVGJL"
-	},
-	{
-		"Symbol": "NACLIND"
-	},
-	{
-		"Symbol": "NAHARSPING"
-	},
-	{
-		"Symbol": "NATHBIOGEN"
-	},
-	{
-		"Symbol": "NAVKARCORP"
-	},
-	{
-		"Symbol": "NAVNETEDUL"
-	},
-	{
-		"Symbol": "NCLIND"
-	},
-	{
-		"Symbol": "NDRAUTO"
-	},
-	{
-		"Symbol": "NDTV"
-	},
-	{
-		"Symbol": "NECCLTD"
-	},
-	{
-		"Symbol": "NECLIFE"
-	},
-	{
-		"Symbol": "NELCAST"
-	},
-	{
-		"Symbol": "NELCO"
-	},
-	{
-		"Symbol": "NGIL"
-	},
-	{
-		"Symbol": "NIBE"
-	},
-	{
-		"Symbol": "NIITLTD"
-	},
-	{
-		"Symbol": "NIITMTS"
-	},
-	{
-		"Symbol": "NIRAJ"
-	},
-	{
-		"Symbol": "NITCO"
-	},
-	{
-		"Symbol": "NITINSPIN"
-	},
-	{
-		"Symbol": "NORTHARC"
-	},
-	{
-		"Symbol": "NOVAAGRI"
-	},
-	{
-		"Symbol": "NRBBEARING"
-	},
-	{
-		"Symbol": "NRL"
-	},
-	{
-		"Symbol": "NSIL"
-	},
-	{
-		"Symbol": "OCCLLTD"
-	},
-	
-	{
-		"Symbol": "OILCOUNTUB"
-	},
-	{
-		"Symbol": "OMAXE"
-	},
-	{
-		"Symbol": "OMINFRAL"
-	},
-	{
-		"Symbol": "ONEPOINT"
-	},
-	{
-		"Symbol": "ONESOURCE"
-	},
-	{
-		"Symbol": "ONMOBILE"
-	},
-	{
-		"Symbol": "ONWARDTEC"
-	},
-	{
-		"Symbol": "ORICONENT"
-	},
-	{
-		"Symbol": "ORIENTCER"
-	},
-	{
-		"Symbol": "ORIENTELEC"
-	},
-	{
-		"Symbol": "ORIENTHOT"
-	},
-	{
-		"Symbol": "ORIENTPPR"
-	},
-	{
-		"Symbol": "ORIENTTECH"
-	},
-	{
-		"Symbol": "OSWALAGRO"
-	},
-	{
-		"Symbol": "OSWALGREEN"
-	},
-	{
-		"Symbol": "OSWALPUMPS"
-	},
-	{
-		"Symbol": "PAKKA"
-	},
-	{
-		"Symbol": "PANACEABIO"
-	},
-	{
-		"Symbol": "PARACABLES"
-	},
-	{
-		"Symbol": "PARAGMILK"
-	},
-	{
-		"Symbol": "PASUPTAC"
-	},
-	{
-		"Symbol": "PAVNAIND"
-	},
-	{
-		"Symbol": "PDMJEPAPER"
-	},
-	{
-		"Symbol": "PDSL"
-	},
-	{
-		"Symbol": "PEARLPOLY"
-	},
-	{
-		"Symbol": "PENIND"
-	},
-	{
-		"Symbol": "PENINLAND"
-	},
-	{
-		"Symbol": "PFOCUS"
-	},
-	{
-		"Symbol": "PFS"
-	},
-	{
-		"Symbol": "PIGL"
-	},
-	{
-		"Symbol": "PLATIND"
-	},
-	{
-		"Symbol": "PLAZACABLE"
-	},
-	{
-		"Symbol": "PNBGILTS"
-	},
-	{
-		"Symbol": "POCL"
-	},
-	{
-		"Symbol": "POKARNA"
-	},
-	{
-		"Symbol": "PPL"
-	},
-	{
-		"Symbol": "PRABHA"
-	},
-	{
-		"Symbol": "PRAENG"
-	},
-	{
-		"Symbol": "PRAKASH"
-	},
-	{
-		"Symbol": "PRECAM"
-	},
-	{
-		"Symbol": "PRECWIRE"
-	},
-	{
-		"Symbol": "PREMEXPLN"
-	},
-	{
-		"Symbol": "PREMIERPOL"
-	},
-
-	{
-		"Symbol": "PRIMO"
-	},
-	{
-		"Symbol": "PRIVISCL"
-	},
-	{
-		"Symbol": "PROSTARM"
-	},
-	{
-		"Symbol": "PROTEAN"
-	},
-	{
-		"Symbol": "PROZONER"
-	},
-	{
-		"Symbol": "PSB"
-	},
-	{
-		"Symbol": "PSPPROJECT"
-	},
-	{
-		"Symbol": "PTL"
-	},
-	{
-		"Symbol": "PURVA"
-	},
-		
-	{
-		"Symbol": "QPOWER"
-	},
-	{
-		"Symbol": "QUADFUTURE"
-	},
-	{
-		"Symbol": "QUESS"
-	},
-	{
-		"Symbol": "QUICKHEAL"
-	},
-	{
-		"Symbol": "RADHIKAJWE"
-	},
-	{
-		"Symbol": "RADIANTCMS"
-	},
-	{
-		"Symbol": "RAJOOENG"
-	},
-	{
-		"Symbol": "RAJRATAN"
-	},
-
-	{
-		"Symbol": "RAJSREESUG"
-	},
-	{
-		"Symbol": "RAMANEWS"
-	},
-	{
-		"Symbol": "RAMAPHO"
-	},
-	{
-		"Symbol": "RAMCOIND"
-	},
-	{
-		"Symbol": "RAMCOSYS"
-	},
-	{
-		"Symbol": "RAMKY"
-	},
-	{
-		"Symbol": "RATNAVEER"
-	},
-	{
-		"Symbol": "RBZJEWEL"
-	},
-	{
-		"Symbol": "RELAXO"
-	},
-	{
-		"Symbol": "RELTD"
-	},
-	{
-		"Symbol": "REMSONSIND"
-	},
-	{
-		"Symbol": "REPCOHOME"
-	},
-	{
-		"Symbol": "REPRO"
-	},
-	{
-		"Symbol": "RGL"
-	},
-	{
-		"Symbol": "RICOAUTO"
-	},
-	{
-		"Symbol": "RIIL"
-	},
-	
-	{
-		"Symbol": "RITCO"
-	},
-	{
-		"Symbol": "RKSWAMY"
-	},
-	{
-		"Symbol": "RML"
-	},
-	{
-		"Symbol": "ROHLTD"
-	},
-	{
-		"Symbol": "ROML"
-	},
-	{
-		"Symbol": "ROTO"
-	},
-	{
-		"Symbol": "RPEL"
-	},
-	{
-		"Symbol": "RPPINFRA"
-	},
-	{
-		"Symbol": "RPPL"
-	},
-	{
-		"Symbol": "RSWM"
-	},
-	{
-		"Symbol": "RSYSTEMS"
-	},
-	{
-		"Symbol": "RUBFILA"
-	},
-	{
-		"Symbol": "RUCHIRA"
-	},
-	{
-		"Symbol": "RUPA"
-	},
-	{
-		"Symbol": "RUSHIL"
-	},
-	{
-		"Symbol": "RUSTOMJEE"
-	},
-	{
-		"Symbol": "SAGCEM"
-	},
-	{
-		"Symbol": "SAH"
-	},
-	{
-		"Symbol": "SAKAR"
-	},
-	{
-		"Symbol": "SAKHTISUG"
-	},
-	{
-		"Symbol": "SAKSOFT"
-	},
-	{
-		"Symbol": "SALZERELEC"
-	},
-	{
-		"Symbol": "SAMPANN"
-	},
-	{
-		"Symbol": "SANATHAN"
-	},
-	{
-		"Symbol": "SANDHAR"
-	},
-	{
-		"Symbol": "SANDUMA"
-	},
-	{
-		"Symbol": "SANGAMIND"
-	},
-	{
-		"Symbol": "SANGHIIND"
-	},
-	{
-		"Symbol": "SANGHVIMOV"
-	},
-	{
-		"Symbol": "SANSTAR"
-	},
-	{
-		"Symbol": "SARLAPOLY"
-	},
-	{
-		"Symbol": "SASKEN"
-	},
-	{
-		"Symbol": "SATIA"
-	},
-	{
-		"Symbol": "SATIN"
-	},
-	{
-		"Symbol": "SAURASHCEM"
-	},
-	{
-		"Symbol": "SCHAND"
-	},
-	{
-		"Symbol": "SCILAL"
-	},
-	{
-		"Symbol": "SCODATUBES"
-	},
-	{
-		"Symbol": "SDBL"
-	},
-	{
-		"Symbol": "SELAN"
-	},
-	{
-		"Symbol": "SENORES"
-	},
-	{
-		"Symbol": "SERVOTECH"
-	},
-	{
-		"Symbol": "SESHAPAPER"
-	},
-	{
-		"Symbol": "SGIL"
-	},
-	{
-		"Symbol": "SGLTL"
-	},
-	{
-		"Symbol": "SHAHALLOYS"
-	},
-	{
-		"Symbol": "SHALBY"
-	},
-	{
-		"Symbol": "SHALPAINTS"
-	},
-	{
-		"Symbol": "SHANKARA"
-	},
-	{
-		"Symbol": "SHANTIGEAR"
-	},
-	{
-		"Symbol": "SHARDAMOTR"
-	},
-	{
-		"Symbol": "SHEKHAWATI"
-	},
-	{
-		"Symbol": "SHEMAROO"
-	},
-	{
-		"Symbol": "SHIVAMAUTO"
-	},
-	{
-		"Symbol": "SHK"
-	},
-	{
-		"Symbol": "SHREDIGCEM"
-	},
-	{
-		"Symbol": "SHREEPUSHK"
-	},
-	{
-		"Symbol": "SHREERAMA"
-	},
-	{
-		"Symbol": "SHRIRAMPPS"
-	},
-	{
-		"Symbol": "SIGACHI"
-	},
-	{
-		"Symbol": "SIGNPOST"
-	},
-	{
-		"Symbol": "SIKKO"
-	},
-	{
-		"Symbol": "SINCLAIR"
-	},
-	{
-		"Symbol": "SINDHUTRAD"
-	},
-	{
-		"Symbol": "SIRCA"
-	},
-	{
-		"Symbol": "SIS"
-	},
-	{
-		"Symbol": "SIYSIL"
-	},
-	{
-		"Symbol": "SJS"
-	},
-	{
-		"Symbol": "SKMEGGPROD"
-	},
-	{
-		"Symbol": "SKYGOLD"
-	},
-	{
-		"Symbol": "SMCGLOBAL"
-	},
-	{
-		"Symbol": "SMLISUZU"
-	},
-	{
-		"Symbol": "SMLT"
-	},
-	{
-		"Symbol": "SMSPHARMA"
-	},
-	{
-		"Symbol": "SNOWMAN"
-	},
-	{
-		"Symbol": "SOLARA"
-	},
-	{
-		"Symbol": "SOMANYCERA"
-	},
-	{
-		"Symbol": "SOMATEX"
-	},
-	{
-		"Symbol": "SONAMLTD"
-	},
-	{
-		"Symbol": "SOTL"
-	},
-	{
-		"Symbol": "SPECIALITY"
-	},
-	{
-		"Symbol": "SPENCERS"
-	},
-	{
-		"Symbol": "SPIC"
-	},
-	{
-		"Symbol": "SPLPETRO"
-	},
-	{
-		"Symbol": "SPMLINFRA"
-	},
-	{
-		"Symbol": "SPORTKING"
-	},
-	{
-		"Symbol": "SRD"
-	},
-	{
-		"Symbol": "SRM"
-	},
-	{
-		"Symbol": "SSDL"
-	},
-	{
-		"Symbol": "SSWL"
-	},
-	{
-		"Symbol": "STALLION"
-	},
-	{
-		"Symbol": "STANLEY"
-	},
-	{
-		"Symbol": "STARPAPER"
-	},
-	{
-		"Symbol": "STERTOOLS"
-	},
-	{
-		"Symbol": "STOVEKRAFT"
-	},
-	{
-		"Symbol": "STYLEBAAZA"
-	},
-
-	{
-		"Symbol": "SUPREME"
-	},
-	{
-		"Symbol": "SUPREMEINF"
-	},
-	{
-		"Symbol": "SURAJEST"
-	},
-	{
-		"Symbol": "SURAKSHA"
-	},
-	{
-		"Symbol": "SURANASOL"
-	},
-	{
-		"Symbol": "SURYODAY"
-	},
-	{
-		"Symbol": "SUTLEJTEX"
-	},
-	{
-		"Symbol": "SUVEN"
-	},
-	{
-		"Symbol": "TAJGVK"
-	},
-	{
-		"Symbol": "TALBROAUTO"
-	},
-	{
-		"Symbol": "TARACHAND"
-	},
-	{
-		"Symbol": "TARMAT"
-	},
-	{
-		"Symbol": "TATVA"
-	},
-	{
-		"Symbol": "TBZ"
-	},
-	{
-		"Symbol": "TEXINFRA"
-	},
-	{
-		"Symbol": "TEXMOPIPES"
-	},
-	{
-		"Symbol": "TFCILTD"
-	},
-	{
-		"Symbol": "THELEELA"
-	},
-	{
-		"Symbol": "THEMISMED"
-	},
-	{
-		"Symbol": "THOMASCOTT"
-	},
-	{
-		"Symbol": "THYROCARE"
-	},
-	{
-		"Symbol": "TICL"
-	},
-	{
-		"Symbol": "TIRUPATIFL"
-	},
-	{
-		"Symbol": "TMB"
-	},
-	{
-		"Symbol": "TNPETRO"
-	},
-	{
-		"Symbol": "TNPL"
-	},
-	{
-		"Symbol": "TOLINS"
-	},
-	{
-		"Symbol": "TPLPLASTEH"
-	},
-	{
-		"Symbol": "TRACXN"
-	},
-	{
-		"Symbol": "TREL"
-	},
-	{
-		"Symbol": "TRF"
-	},
-	{
-		"Symbol": "TTKPRESTIG"
-	},
-	{
-		"Symbol": "TVSSRICHAK"
-	},
-	{
-		"Symbol": "UCAL"
-	},
-	{
-		"Symbol": "UDAICEMENT"
-	},
-	{
-		"Symbol": "UDS"
-	},
-	{
-		"Symbol": "UFO"
-	},
-	{
-		"Symbol": "UGARSUGAR"
-	},
-	
-	{
-		"Symbol": "UNIECOM"
-	},
-	{
-		"Symbol": "UNIPARTS"
-	},
-	{
-		"Symbol": "UNITEDPOLY"
-	},
-	{
-		"Symbol": "UNIVASTU"
-	},
-	{
-		"Symbol": "UNIVCABLES"
-	},
-	{
-		"Symbol": "UNIVPHOTO"
-	},
-	{
-		"Symbol": "USK"
-	},
-	{
-		"Symbol": "UTKARSHBNK"
-	},
-	
-	{
-		"Symbol": "V2RETAIL"
-	},
-	{
-		"Symbol": "VARDHACRLC"
-	},
-	{
-		"Symbol": "VASCONEQ"
-	},
-	{
-		"Symbol": "VASWANI"
-	},
-	{
-		"Symbol": "VENKEYS"
-	},
-	{
-		"Symbol": "VENUSREM"
-	},
-	{
-		"Symbol": "VERANDA"
-	},
-	{
-		"Symbol": "VETO"
-	},
-	{
-		"Symbol": "VIMTALABS"
-	},
-	{
-		"Symbol": "VINATIORGA"
-	},
-	{
-		"Symbol": "VINCOFE"
-	},
-	{
-		"Symbol": "VIPCLOTHNG"
-	},
-	{
-		"Symbol": "VIRINCHI"
-	},
-	{
-		"Symbol": "VISAKAIND"
-	},
-	
-	{
-		"Symbol": "VISHNU"
-	},
-	{
-		"Symbol": "VLEGOV"
-	},
-	{
-		"Symbol": "VPRPL"
-	},
-	{
-		"Symbol": "VRLLOG"
-	},
-	{
-		"Symbol": "VSSL"
-	},
-	{
-		"Symbol": "VSTTILLERS"
-	},
-	{
-		"Symbol": "WAAREERTL"
-	},
-	{
-		"Symbol": "WALCHANNAG"
-	},
-	{
-		"Symbol": "WCIL"
-	},
-	{
-		"Symbol": "WEL"
-	},
-	{
-		"Symbol": "WENDT"
-	},
-	{
-		"Symbol": "WHEELS"
-	},
-	{
-		"Symbol": "WINDMACHIN"
-	},
-	{
-		"Symbol": "WSTCSTPAPR"
-	},
-	{
-		"Symbol": "XCHANGING"
-	},
-	{
-		"Symbol": "XPROINDIA"
-	},
-	{
-		"Symbol": "YATRA"
-	},
-	{
-		"Symbol": "ZIMLAB"
-	},
-	{
-		"Symbol": "ZODIAC"
-	},
-	{
-		"Symbol": "ZOTA"
-	},
-	{
-		"Symbol": "ZUARI"
-	},
-	{
-		"Symbol": "ZUARIIND"
-	}
+  {
+    "Stock Name": "3i Infotech Ltd",
+    "Symbol": "3IINFOLTD"
+  },
+  {
+    "Stock Name": "63 Moons Technologies",
+    "Symbol": "63MOONS"
+  },
+  {
+    "Stock Name": "Aditya Birla Lifestyle Brands Ltd",
+    "Symbol": "ABLBL"
+  },
+  {
+    "Stock Name": "Allcargo Gati Ltd",
+    "Symbol": "ACLGATI"
+  },
+  {
+    "Stock Name": "Aegis Vopak Terminals Ltd",
+    "Symbol": "AEGISVOPAK"
+  },
+  {
+    "Stock Name": "Aeroflex Enterprises Ltd",
+    "Symbol": "AEROENTER"
+  },
+  {
+    "Stock Name": "Aeroflex Industries Ltd",
+    "Symbol": "AEROFLEX"
+  },
+  {
+    "Stock Name": "Alembic Limited",
+    "Symbol": "ALEMBICLTD"
+  },
+  {
+    "Stock Name": "The Andhra Sugars Limited",
+    "Symbol": "ANDHRSUGAR"
+  },
+  {
+    "Stock Name": "Apollo Micro Systems Ltd",
+    "Symbol": "APOLLO"
+  },
+  {
+    "Stock Name": "Arkade Developers Ltd",
+    "Symbol": "ARKADE"
+  },
+  {
+    "Stock Name": "Ashapura Minechem Limited",
+    "Symbol": "ASHAPURMIN"
+  },
+  {
+    "Stock Name": "Ather Energy Ltd",
+    "Symbol": "ATHERENERG"
+  },
+  {
+    "Stock Name": "Allcargo Terminals Ltd",
+    "Symbol": "ATL"
+  },
+  {
+    "Stock Name": "Avantel Ltd",
+    "Symbol": "AVANTEL"
+  },
+  {
+    "Stock Name": "Bajaj Consumer Care Ltd",
+    "Symbol": "BAJAJCON"
+  },
+  {
+    "Stock Name": "Bajaj Healthcare Ltd",
+    "Symbol": "BAJAJHCARE"
+  },
+  {
+    "Stock Name": "Indef Manufacturing Ltd",
+    "Symbol": "BAJAJINDEF"
+  },
+  {
+    "Stock Name": "BCL Industries Ltd",
+    "Symbol": "BCLIND"
+  },
+  {
+    "Stock Name": "BELRISE",
+    "Symbol": "BELRISE"
+  },
+  {
+    "Stock Name": "Best Agrolife Ltd",
+    "Symbol": "BESTAGRO"
+  },
+  {
+    "Stock Name": "Bf Utilities Limited",
+    "Symbol": "BFUTILITIE"
+  },
+  {
+    "Stock Name": "Bliss Gvs Pharma Limited",
+    "Symbol": "BLISSGVS"
+  },
+  {
+    "Stock Name": "B. L. Kashyap And Sons Limited",
+    "Symbol": "BLKASHYAP"
+  },
+  {
+    "Stock Name": "Bluspring Enterprises Ltd",
+    "Symbol": "BLUSPRING"
+  },
+  {
+    "Stock Name": "Bodal Chemicals Limited",
+    "Symbol": "BODALCHEM"
+  },
+  {
+    "Stock Name": "Century Extrusions Limited",
+    "Symbol": "CENTEXT"
+  },
+  {
+    "Stock Name": "Centrum Capital Ltd",
+    "Symbol": "CENTRUM"
+  },
+  {
+    "Stock Name": "Capital India Finance Ltd",
+    "Symbol": "CIFL"
+  },
+  {
+    "Stock Name": "Coffee Day Enterprises Limited",
+    "Symbol": "COFFEEDAY"
+  },
+  {
+    "Stock Name": "Commercial Syn Bags Ltd",
+    "Symbol": "COMSYN"
+  },
+  {
+    "Stock Name": "Confidence Petroleum India Ltd",
+    "Symbol": "CONFIPET"
+  },
+  {
+    "Stock Name": "Cupid Limited",
+    "Symbol": "CUPID"
+  },
+  {
+    "Stock Name": "Dam Capital Advisors Ltd",
+    "Symbol": "DAMCAPITAL"
+  },
+  {
+    "Stock Name": "Dhampur Bio Organics Ltd",
+    "Symbol": "DBOL"
+  },
+  {
+    "Stock Name": "Dcw Limited",
+    "Symbol": "DCW"
+  },
+  {
+    "Stock Name": "DDev Plastiks Industries Ltd",
+    "Symbol": "DDEVPLSTIK"
+  },
+  {
+    "Stock Name": "Delta Corp Limited",
+    "Symbol": "DELTACORP"
+  },
+  {
+    "Stock Name": "Den Networks Limited",
+    "Symbol": "DEN"
+  },
+  {
+    "Stock Name": "Denta Water & Infra Solutions Ltd",
+    "Symbol": "DENTA"
+  },
+  {
+    "Stock Name": "Dhanlaxmi Bank Limited",
+    "Symbol": "DHANBANK"
+  },
+  {
+    "Stock Name": "Dhanuka Agritech Limited",
+    "Symbol": "DHANUKA"
+  },
+  {
+    "Stock Name": "Diamond Power Infrastructure Ltd",
+    "Symbol": "DIACABS"
+  },
+  {
+    "Stock Name": "Diffusion Engineers Ltd",
+    "Symbol": "DIFFNKG"
+  },
+  {
+    "Stock Name": "Digitide Solutions Ltd",
+    "Symbol": "DIGITIDE"
+  },
+  {
+    "Stock Name": "DMCC Speciality Chemicals Ltd",
+    "Symbol": "DMCC"
+  },
+  {
+    "Stock Name": "Dolat Algotech Ltd",
+    "Symbol": "DOLATALGO"
+  },
+  {
+    "Stock Name": "Dreamfolks Services Ltd",
+    "Symbol": "DREAMFOLKS"
+  },
+  {
+    "Stock Name": "Dwarikesh Sugar Industries Limited",
+    "Symbol": "DWARKESH"
+  },
+  {
+    "Stock Name": "Dynamic Cables Ltd",
+    "Symbol": "DYCL"
+  },
+  {
+    "Stock Name": "Epack Durable Ltd",
+    "Symbol": "EPACK"
+  },
+  {
+    "Stock Name": "ESAF Small Finance Bank Ltd",
+    "Symbol": "ESAFSFB"
+  },
+  {
+    "Stock Name": "Eveready Industries India Limited",
+    "Symbol": "EVEREADY"
+  },
+  {
+    "Stock Name": "Exicom Tele-Systems Ltd",
+    "Symbol": "EXICOM"
+  },
+  {
+    "Stock Name": "Faze Three Ltd",
+    "Symbol": "FAZE3Q"
+  },
+  {
+    "Stock Name": "Fedbank Financial Services Ltd",
+    "Symbol": "FEDFINA"
+  },
+  {
+    "Stock Name": "Filatex India Limited",
+    "Symbol": "FILATEX"
+  },
+  {
+    "Stock Name": "Fino Payments Bank Ltd",
+    "Symbol": "FINOPB"
+  },
+  {
+    "Stock Name": "Flair Writing Industries Ltd",
+    "Symbol": "FLAIR"
+  },
+  {
+    "Stock Name": "Fusion Micro Finance Ltd",
+    "Symbol": "FUSION"
+  },
+  {
+    "Stock Name": "Garuda Construction and Engineering Ltd",
+    "Symbol": "GARUDA"
+  },
+  {
+    "Stock Name": "Genus Power Infrastructures Limited",
+    "Symbol": "GENUSPOWER"
+  },
+  {
+    "Stock Name": "Geojit Financial Services",
+    "Symbol": "GEOJITFSL"
+  },
+  {
+    "Stock Name": "Ge Power India Limited",
+    "Symbol": "GEPIL"
+  },
+  {
+    "Stock Name": "Gic Housing Finance Limited",
+    "Symbol": "GICHSGFIN"
+  },
+  {
+    "Stock Name": "Gokul Agro Resources Limited",
+    "Symbol": "GOKULAGRO"
+  },
+  {
+    "Stock Name": "GPT Healthcare Ltd",
+    "Symbol": "GPTHEALTH"
+  },
+  {
+    "Stock Name": "GRM Overseas Ltd",
+    "Symbol": "GRMOVER"
+  },
+  {
+    "Stock Name": "Hariom Pipe Industries Ltd",
+    "Symbol": "HARIOMPIPE"
+  },
+  {
+    "Stock Name": "Heranba Industries Ltd",
+    "Symbol": "HERANBA"
+  },
+  {
+    "Stock Name": "Hexaware Technologies Ltd",
+    "Symbol": "HEXT"
+  },
+  {
+    "Stock Name": "Himatsingka Seide Limited",
+    "Symbol": "HIMATSEIDE"
+  },
+  {
+    "Stock Name": "Hindustan Motors Limited",
+    "Symbol": "HINDMOTORS"
+  },
+  {
+    "Stock Name": "Hindustan Oil Exploration Company Limited",
+    "Symbol": "HINDOILEXP"
+  },
+  {
+    "Stock Name": "Hi-Tech Pipes Ltd",
+    "Symbol": "HITECH"
+  },
+  {
+    "Stock Name": "HP Adhesives Ltd",
+    "Symbol": "HPAL"
+  },
+  {
+    "Stock Name": "Hpl Electric & Power Limited",
+    "Symbol": "HPL"
+  },
+  {
+    "Stock Name": "Hubtown Limited",
+    "Symbol": "HUBTOWN"
+  },
+  {
+    "Stock Name": "Huhtamaki India Ltd",
+    "Symbol": "HUHTAMAKI"
+  },
+  {
+    "Stock Name": "Igarashi Motors India Limited",
+    "Symbol": "IGARASHI"
+  },
+  {
+    "Stock Name": "Indo Borax & Chemicals Ltd",
+    "Symbol": "INDOBORAX"
+  },
+  {
+    "Stock Name": "Indostar Capital Finance Ltd",
+    "Symbol": "INDOSTAR"
+  },
+  {
+    "Stock Name": "Insecticides (india) Limited",
+    "Symbol": "INSECTICID"
+  },
+  {
+    "Stock Name": "International Conveyors Ltd",
+    "Symbol": "INTLCONV"
+  },
+  {
+    "Stock Name": "Iol Chemicals And Pharmaceuticals Limited",
+    "Symbol": "IOLCP"
+  },
+  {
+    "Stock Name": "India Pesticides Ltd",
+    "Symbol": "IPL"
+  },
+  {
+    "Stock Name": "ITC Hotels Ltd",
+    "Symbol": "ITCHOTELS"
+  },
+  {
+    "Stock Name": "Jagran Prakashan Limited",
+    "Symbol": "JAGRAN"
+  },
+  {
+    "Stock Name": "Jagsonpal Pharmaceuticals Limited",
+    "Symbol": "JAGSNPHARM"
+  },
+  {
+    "Stock Name": "Jayaswal Neco Industries Limited",
+    "Symbol": "JAYNECOIND"
+  },
+  {
+    "Stock Name": "J.G.Chemicals Ltd",
+    "Symbol": "JGCHEM"
+  },
+  {
+    "Stock Name": "JTEKT India Ltd",
+    "Symbol": "JTEKTINDIA"
+  },
+  {
+    "Stock Name": "Sai Silks (Kalamandir) Ltd",
+    "Symbol": "KALAMANDIR"
+  },
+  {
+    "Stock Name": "Kamdhenu Limited",
+    "Symbol": "KAMDHENU"
+  },
+  {
+    "Stock Name": "Kellton Tech Solutions Limited",
+    "Symbol": "KELLTONTEC"
+  },
+  {
+    "Stock Name": "Kiri Industries Limited",
+    "Symbol": "KIRIINDUS"
+  },
+  {
+    "Stock Name": "Kitex Garments Limited",
+    "Symbol": "KITEX"
+  },
+  {
+    "Stock Name": "Kokuyo Camlin Limited",
+    "Symbol": "KOKUYOCMLN"
+  },
+  {
+    "Stock Name": "K.P. Energy Ltd",
+    "Symbol": "KPEL"
+  },
+  {
+    "Stock Name": "KRN Heat Exchanger and Refrigeration Ltd",
+    "Symbol": "KRN"
+  },
+  {
+    "Stock Name": "Laxmi Dental Ltd",
+    "Symbol": "LAXMIDENTL"
+  },
+  {
+    "Stock Name": "Lokesh Machines Limited",
+    "Symbol": "LOKESHMACH"
+  },
+  {
+    "Stock Name": "Madras Fertilizers Limited",
+    "Symbol": "MADRASFERT"
+  },
+  {
+    "Stock Name": "Mahindra Logistics Ltd",
+    "Symbol": "MAHLOG"
+  },
+  {
+    "Stock Name": "Mamata Machinery Ltd",
+    "Symbol": "MAMATA"
+  },
+  {
+    "Stock Name": "Manali Petrochemicals Limited",
+    "Symbol": "MANALIPETC"
+  },
+  {
+    "Stock Name": "Mangalore Chemicals & Fertilizers Limited",
+    "Symbol": "MANGCHEFER"
+  },
+  {
+    "Stock Name": "Manorama Industries Ltd",
+    "Symbol": "MANORAMA"
+  },
+  {
+    "Stock Name": "Marathon Nextgen Realty Limited",
+    "Symbol": "MARATHON"
+  },
+  {
+    "Stock Name": "MAS Financial Services Ltd",
+    "Symbol": "MASFIN"
+  },
+  {
+    "Stock Name": "Madhya Bharat Agro Products Ltd",
+    "Symbol": "MBAPL"
+  },
+  {
+    "Stock Name": "Mcleod Russel India Limited",
+    "Symbol": "MCLEODRUSS"
+  },
+  {
+    "Stock Name": "Magellanic Cloud Ltd",
+    "Symbol": "MCLOUD"
+  },
+  {
+    "Stock Name": "Medi Assist Healthcare Services Ltd",
+    "Symbol": "MEDIASSIST"
+  },
+  {
+    "Stock Name": "Medico Remedies Ltd",
+    "Symbol": "MEDICO"
+  },
+  {
+    "Stock Name": "MIC Electronics Ltd",
+    "Symbol": "MICEL"
+  },
+  {
+    "Stock Name": "One Mobikwik Systems Ltd",
+    "Symbol": "MOBIKWIK"
+  },
+  {
+    "Stock Name": "Meghmani Organics Ltd",
+    "Symbol": "MOL"
+  },
+  {
+    "Stock Name": "Morepen Laboratories Limited",
+    "Symbol": "MOREPENLAB"
+  },
+  {
+    "Stock Name": "Moschip Technologies Ltd",
+    "Symbol": "MOSCHIP"
+  },
+  {
+    "Stock Name": "Motisons Jewellers Ltd",
+    "Symbol": "MOTISONS"
+  },
+  {
+    "Stock Name": "Msp Steel & Power Limited",
+    "Symbol": "MSPL"
+  },
+  {
+    "Stock Name": "Mahanagar Telephone Nigam Limited",
+    "Symbol": "MTNL"
+  },
+  {
+    "Stock Name": "Mufin Green Finance Ltd",
+    "Symbol": "MUFIN"
+  },
+  {
+    "Stock Name": "Muthoot Microfin Ltd",
+    "Symbol": "MUTHOOTMF"
+  },
+  {
+    "Stock Name": "NACL Industries Ltd",
+    "Symbol": "NACLIND"
+  },
+  {
+    "Stock Name": "Navkar Corporation Limited",
+    "Symbol": "NAVKARCORP"
+  },
+  {
+    "Stock Name": "Nectar Lifesciences Limited",
+    "Symbol": "NECLIFE"
+  },
+  {
+    "Stock Name": "Nelco Limited",
+    "Symbol": "NELCO"
+  },
+  {
+    "Stock Name": "Northern ARC Capital Ltd",
+    "Symbol": "NORTHARC"
+  },
+  {
+    "Stock Name": "Nova Agritech Ltd",
+    "Symbol": "NOVAAGRI"
+  },
+  {
+    "Stock Name": "OCCL Ltd",
+    "Symbol": "OCCLLTD"
+  },
+  {
+    "Stock Name": "Omaxe Limited",
+    "Symbol": "OMAXE"
+  },
+  {
+    "Stock Name": "One Point One Solutions Ltd",
+    "Symbol": "ONEPOINT"
+  },
+  {
+    "Stock Name": "OneSource Specialty Pharma Ltd",
+    "Symbol": "ONESOURCE"
+  },
+  {
+    "Stock Name": "Oriental Hotels Limited",
+    "Symbol": "ORIENTHOT"
+  },
+  {
+    "Stock Name": "Orient Paper & Industries Limited",
+    "Symbol": "ORIENTPPR"
+  },
+  {
+    "Stock Name": "Oswal Agro Mills Ltd",
+    "Symbol": "OSWALAGRO"
+  },
+  {
+    "Stock Name": "OSWALPUMPS",
+    "Symbol": "OSWALPUMPS"
+  },
+  {
+    "Stock Name": "Paramount Communications Limited",
+    "Symbol": "PARACABLES"
+  },
+  {
+    "Stock Name": "Parag Milk Foods Limited",
+    "Symbol": "PARAGMILK"
+  },
+  {
+    "Stock Name": "Pennar Industries Limited",
+    "Symbol": "PENIND"
+  },
+  {
+    "Stock Name": "Peninsula Land Limited",
+    "Symbol": "PENINLAND"
+  },
+  {
+    "Stock Name": "Prime Focus Limited",
+    "Symbol": "PFOCUS"
+  },
+  {
+    "Stock Name": "Ptc India Financial Services Limited",
+    "Symbol": "PFS"
+  },
+  {
+    "Stock Name": "Pnb Gilts Limited",
+    "Symbol": "PNBGILTS"
+  },
+  {
+    "Stock Name": "Pondy Oxides & Chemicals Ltd",
+    "Symbol": "POCL"
+  },
+  {
+    "Stock Name": "Prakash Industries Limited",
+    "Symbol": "PRAKASH"
+  },
+  {
+    "Stock Name": "Precision Wires India Limited",
+    "Symbol": "PRECWIRE"
+  },
+  {
+    "Stock Name": "Premier Explosives Limited",
+    "Symbol": "PREMEXPLN"
+  },
+  {
+    "Stock Name": "Prostarm Info Systems Ltd",
+    "Symbol": "PROSTARM"
+  },
+  {
+    "Stock Name": "Protean eGov Technologies Ltd",
+    "Symbol": "PROTEAN"
+  },
+  {
+    "Stock Name": "Prozone Realty Ltd",
+    "Symbol": "PROZONER"
+  },
+  {
+    "Stock Name": "Punjab & Sind Bank",
+    "Symbol": "PSB"
+  },
+  {
+    "Stock Name": "PSP Projects",
+    "Symbol": "PSPPROJECT"
+  },
+  {
+    "Stock Name": "Quality Power Electrical Equipments Ltd",
+    "Symbol": "QPOWER"
+  },
+  {
+    "Stock Name": "Quadrant Future Tek Ltd",
+    "Symbol": "QUADFUTURE"
+  },
+  {
+    "Stock Name": "Quess Corp Limited",
+    "Symbol": "QUESS"
+  },
+  {
+    "Stock Name": "Rajoo Engineers Ltd",
+    "Symbol": "RAJOOENG"
+  },
+  {
+    "Stock Name": "Ramky Infrastructure Limited",
+    "Symbol": "RAMKY"
+  },
+  {
+    "Stock Name": "Ratnaveer Precision Engineering Ltd",
+    "Symbol": "RATNAVEER"
+  },
+  {
+    "Stock Name": "Relaxo Footwears Limited",
+    "Symbol": "RELAXO"
+  },
+  {
+    "Stock Name": "Remsons Industries Limited",
+    "Symbol": "REMSONSIND"
+  },
+  {
+    "Stock Name": "Repco Home Finance Limited",
+    "Symbol": "REPCOHOME"
+  },
+  {
+    "Stock Name": "Renaissance Global Ltd",
+    "Symbol": "RGL"
+  },
+  {
+    "Stock Name": "Roto Pumps Ltd",
+    "Symbol": "ROTO"
+  },
+  {
+    "Stock Name": "Rupa & Company Limited",
+    "Symbol": "RUPA"
+  },
+  {
+    "Stock Name": "Rushil Decor Limited",
+    "Symbol": "RUSHIL"
+  },
+  {
+    "Stock Name": "Saksoft Limited",
+    "Symbol": "SAKSOFT"
+  },
+  {
+    "Stock Name": "Sampann Utpadan India Ltd",
+    "Symbol": "SAMPANN"
+  },
+  {
+    "Stock Name": "Sanghi Industries Limited",
+    "Symbol": "SANGHIIND"
+  },
+  {
+    "Stock Name": "Sanghvi Movers Limited",
+    "Symbol": "SANGHVIMOV"
+  },
+  {
+    "Stock Name": "Sanstar Ltd",
+    "Symbol": "SANSTAR"
+  },
+  {
+    "Stock Name": "Shipping Corporation of India Land & Assets Ltd",
+    "Symbol": "SCILAL"
+  },
+  {
+    "Stock Name": "SCODATUBES",
+    "Symbol": "SCODATUBES"
+  },
+  {
+    "Stock Name": "Som Distilleries & Breweries Limited",
+    "Symbol": "SDBL"
+  },
+  {
+    "Stock Name": "Senores Pharmaceuticals Ltd",
+    "Symbol": "SENORES"
+  },
+  {
+    "Stock Name": "Servotech Power Systems Ltd",
+    "Symbol": "SERVOTECH"
+  },
+  {
+    "Stock Name": "Shalby Ltd",
+    "Symbol": "SHALBY"
+  },
+  {
+    "Stock Name": "Shriram Properties Ltd",
+    "Symbol": "SHRIRAMPPS"
+  },
+  {
+    "Stock Name": "Sigachi Industries Ltd",
+    "Symbol": "SIGACHI"
+  },
+  {
+    "Stock Name": "Sindhu Trade Links Ltd",
+    "Symbol": "SINDHUTRAD"
+  },
+  {
+    "Stock Name": "Sirca Paints India Ltd",
+    "Symbol": "SIRCA"
+  },
+  {
+    "Stock Name": "Skm Egg Products Export (india) Limited",
+    "Symbol": "SKMEGGPROD"
+  },
+  {
+    "Stock Name": "Sky Gold Ltd",
+    "Symbol": "SKYGOLD"
+  },
+  {
+    "Stock Name": "Sml Isuzu Limited",
+    "Symbol": "SMLISUZU"
+  },
+  {
+    "Stock Name": "Snowman Logistics Limited",
+    "Symbol": "SNOWMAN"
+  },
+  {
+    "Stock Name": "Soma Textiles & Industries Limited",
+    "Symbol": "SOMATEX"
+  },
+  {
+    "Stock Name": "Southern Petrochemicals Industries Corporation  Limited",
+    "Symbol": "SPIC"
+  },
+  {
+    "Stock Name": "Spml Infra Limited",
+    "Symbol": "SPMLINFRA"
+  },
+  {
+    "Stock Name": "Sportking India Ltd",
+    "Symbol": "SPORTKING"
+  },
+  {
+    "Stock Name": "Shankar Lal Rampal Dye-Chem Ltd",
+    "Symbol": "SRD"
+  },
+  {
+    "Stock Name": "Stallion India Fluorochemicals Ltd",
+    "Symbol": "STALLION"
+  },
+  {
+    "Stock Name": "Suven Life Sciences Limited",
+    "Symbol": "SUVEN"
+  },
+  {
+    "Stock Name": "Tara Chand Infralogistic Solutions Ltd",
+    "Symbol": "TARACHAND"
+  },
+  {
+    "Stock Name": "Tourism Finance Corporation Of India Limited",
+    "Symbol": "TFCILTD"
+  },
+  {
+    "Stock Name": "Schloss Bangalore Ltd",
+    "Symbol": "THELEELA"
+  },
+  {
+    "Stock Name": "Tirupati Forge Ltd",
+    "Symbol": "TIRUPATIFL"
+  },
+  {
+    "Stock Name": "Tamilnadu Petroproducts Limited",
+    "Symbol": "TNPETRO"
+  },
+  {
+    "Stock Name": "Tracxn Technologies Ltd",
+    "Symbol": "TRACXN"
+  },
+  {
+    "Stock Name": "Udaipur Cement Works Ltd",
+    "Symbol": "UDAICEMENT"
+  },
+  {
+    "Stock Name": "Unicommerce eSolutions Ltd",
+    "Symbol": "UNIECOM"
+  },
+  {
+    "Stock Name": "United Polyfab Gujarat Ltd",
+    "Symbol": "UNITEDPOLY"
+  },
+  {
+    "Stock Name": "Utkarsh Small Finance Bank Ltd",
+    "Symbol": "UTKARSHBNK"
+  },
+  {
+    "Stock Name": "Vascon Engineers Limited",
+    "Symbol": "VASCONEQ"
+  },
+  {
+    "Stock Name": "Vaswani Industries Limited",
+    "Symbol": "VASWANI"
+  },
+  {
+    "Stock Name": "Veranda Learning Solutions Ltd",
+    "Symbol": "VERANDA"
+  },
+  {
+    "Stock Name": "Vintage Coffee & Beverages Ltd",
+    "Symbol": "VINCOFE"
+  },
+  {
+    "Stock Name": "Virinchi Ltd",
+    "Symbol": "VIRINCHI"
+  },
+  {
+    "Stock Name": "Vishnu Prakash R Punglia Ltd",
+    "Symbol": "VPRPL"
+  },
+  {
+    "Stock Name": "Waaree Renewables Technologies Ltd",
+    "Symbol": "WAAREERTL"
+  },
+  {
+    "Stock Name": "Wonder Electricals Ltd",
+    "Symbol": "WEL"
+  },
+  {
+    "Stock Name": "Windsor Machines Limited",
+    "Symbol": "WINDMACHIN"
+  }
 ]
