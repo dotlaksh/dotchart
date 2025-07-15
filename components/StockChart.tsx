@@ -277,7 +277,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   return (
     <div className="flex flex-col h-full w-full max-w-full sm:max-w-2xl mx-auto mt-2 sm:mt-4 md:mt-6 px-2 sm:px-4">
       {/* Updated chart container with responsive height for mobile portrait */}
-      <div className="h-[50vh] xs:h-[55vh] sm:h-[60vh] md:h-[65vh] lg:h-[70vh] xl:flex-grow overflow-hidden rounded-lg border border-muted-foreground/10">
+      <div className="h-[60vh] xs:h-[65vh] sm:h-[70vh] md:h-[75vh] lg:h-[80vh] xl:flex-grow overflow-hidden rounded-lg border border-muted-foreground/10">
         <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
       </div>
       
