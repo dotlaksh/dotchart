@@ -75,9 +75,6 @@
 		"Symbol": "ALEMBICLTD"
 	},
 	{
-		"Symbol": "ALMONDZ"
-	},
-	{
 		"Symbol": "ALPA"
 	},
 	{
@@ -113,18 +110,11 @@
 	{
 		"Symbol": "ARIES"
 	},
-	{
-		"Symbol": "ARIHANTCAP"
-	},
-	{
-		"Symbol": "ARIHANTSUP"
-	},
+	
 	{
 		"Symbol": "ARKADE"
 	},
-	{
-		"Symbol": "ARMANFIN"
-	},
+	
 	{
 		"Symbol": "ARTEMISMED"
 	},
@@ -137,9 +127,7 @@
 	{
 		"Symbol": "ASHAPURMIN"
 	},
-	{
-		"Symbol": "ASHIMASYN"
-	},
+
 	{
 		"Symbol": "ASIANENE"
 	},
@@ -209,9 +197,7 @@
 	{
 		"Symbol": "BALMLAWRIE"
 	},
-	{
-		"Symbol": "BANG"
-	},
+	
 	{
 		"Symbol": "BANSWRAS"
 	},
@@ -236,9 +222,7 @@
 	{
 		"Symbol": "BESTAGRO"
 	},
-	{
-		"Symbol": "BFINVEST"
-	},
+
 	{
 		"Symbol": "BFUTILITIE"
 	},
@@ -388,9 +372,6 @@
 	},
 	{
 		"Symbol": "DBOL"
-	},
-	{
-		"Symbol": "DBSTOCKBRO"
 	},
 	{
 		"Symbol": "DCMSRIND"
@@ -863,9 +844,7 @@
 	{
 		"Symbol": "JAYNECOIND"
 	},
-	{
-		"Symbol": "JAYSREETEA"
-	},
+	
 	{
 		"Symbol": "JGCHEM"
 	},
@@ -878,9 +857,7 @@
 	{
 		"Symbol": "JISLDVREQS"
 	},
-	{
-		"Symbol": "JMA"
-	},
+	
 	{
 		"Symbol": "JNKINDIA"
 	},
@@ -996,16 +973,7 @@
 		"Symbol": "LAOPALA"
 	},
 	{
-		"Symbol": "LATTEYS"
-	},
-	{
-		"Symbol": "LAXMICOT"
-	},
-	{
 		"Symbol": "LAXMIDENTL"
-	},
-	{
-		"Symbol": "LGHL"
 	},
 	{
 		"Symbol": "LIKHITHA"
@@ -1062,12 +1030,6 @@
 		"Symbol": "MANALIPETC"
 	},
 	{
-		"Symbol": "MANBA"
-	},
-	{
-		"Symbol": "MANCREDIT"
-	},
-	{
 		"Symbol": "MANGALAM"
 	},
 	{
@@ -1097,9 +1059,7 @@
 	{
 		"Symbol": "MASFIN"
 	},
-	{
-		"Symbol": "MASTERTR"
-	},
+
 	{
 		"Symbol": "MAWANASUG"
 	},
@@ -1940,12 +1900,7 @@
 	{
 		"Symbol": "UGARSUGAR"
 	},
-	{
-		"Symbol": "UGROCAP"
-	},
-	{
-		"Symbol": "UMAEXPORTS"
-	},
+	
 	{
 		"Symbol": "UNIECOM"
 	},
@@ -1970,9 +1925,7 @@
 	{
 		"Symbol": "UTKARSHBNK"
 	},
-	{
-		"Symbol": "UYFINCORP"
-	},
+	
 	{
 		"Symbol": "V2RETAIL"
 	},
@@ -2015,9 +1968,7 @@
 	{
 		"Symbol": "VISAKAIND"
 	},
-	{
-		"Symbol": "VISASTEEL"
-	},
+	
 	{
 		"Symbol": "VISHNU"
 	},
