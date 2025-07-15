@@ -27,5 +27,4 @@ export type StockCategory = {
   data: Stock[];
 };
 
-};
 
