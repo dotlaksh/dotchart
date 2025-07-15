@@ -279,9 +279,6 @@
 		"Symbol": "BSHSL"
 	},
 	{
-		"Symbol": "BSL"
-	},
-	{
 		"Symbol": "CAMLINFINE"
 	},
 	{
@@ -318,16 +315,10 @@
 		"Symbol": "CHEMFAB"
 	},
 	{
-		"Symbol": "CIFL"
-	},
-	{
 		"Symbol": "CLSEL"
 	},
 	{
 		"Symbol": "COASTCORP"
-	},
-	{
-		"Symbol": "COFFEEDAY"
 	},
 	{
 		"Symbol": "COMPUSOFT"
@@ -365,9 +356,7 @@
 	{
 		"Symbol": "DBEIL"
 	},
-	{
-		"Symbol": "DBOL"
-	},
+
 	{
 		"Symbol": "DCMSRIND"
 	},
@@ -386,9 +375,7 @@
 	{
 		"Symbol": "DEEPINDS"
 	},
-	{
-		"Symbol": "DELPHIFX"
-	},
+	
 	{
 		"Symbol": "DELTACORP"
 	},
@@ -401,9 +388,7 @@
 	{
 		"Symbol": "DEVIT"
 	},
-	{
-		"Symbol": "DGCONTENT"
-	},
+	
 	{
 		"Symbol": "DHAMPURSUG"
 	},
@@ -422,18 +407,14 @@
 	{
 		"Symbol": "DIAMONDYD"
 	},
-	{
-		"Symbol": "DIFFNKG"
-	},
+	
 	{
 		"Symbol": "DIGISPICE"
 	},
 	{
 		"Symbol": "DIGITIDE"
 	},
-	{
-		"Symbol": "DJML"
-	},
+	
 	{
 		"Symbol": "DLINKINDIA"
 	},
@@ -566,9 +547,7 @@
 	{
 		"Symbol": "GENUSPOWER"
 	},
-	{
-		"Symbol": "GEOJITFSL"
-	},
+	
 	{
 		"Symbol": "GEPIL"
 	},
@@ -581,9 +560,7 @@
 	{
 		"Symbol": "GICHSGFIN"
 	},
-	{
-		"Symbol": "GILLANDERS"
-	},
+	
 	{
 		"Symbol": "GIPCL"
 	},
