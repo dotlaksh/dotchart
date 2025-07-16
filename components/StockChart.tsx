@@ -13,7 +13,7 @@ const intervals: { label: string; value: string; range: string }[] = [
   { label: 'D', value: '1d', range: '6mo' },
   { label: 'W', value: '1wk', range: '3y' },
   { label: 'M', value: '1mo', range: '10y' }
-];
+  ];
 
 interface ChartData {
   time: string
@@ -192,13 +192,13 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         </div>
       ) : (
         <>
-          <div className="absolute top-1 left-1 sm:top-2 sm:left-2 z-10 bg-background/90 backdrop-blur-sm rounded-md p-1 sm:p-2 text-xs sm:text-sm">
-            <h3 className="font-semibold leading-tight">{symbol}</h3>
+          <div className="absolute top-0 left-0 z-10 bg-background/80 backdrop-blur-sm rounded-lg p-1">
+            <h3 className="text-md font-semibold">{symbol}</h3>
             {todayPrice !== null && priceChange !== null && (
-              <div className="flex items-center mt-0.5 sm:mt-1 text-xs sm:text-sm">
-                <span className="font-medium mr-1 sm:mr-2">{todayPrice.toFixed(2)}</span>
+              <div className="flex items-center text-sm mt-1">
+                <span className="font-medium mr-2">{todayPrice.toFixed(2)}</span>
                 <span className={`flex items-center ${priceChange >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-                  {priceChange >= 0 ? <ArrowUpRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-0.5 sm:mr-1" /> : <ArrowDownRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-0.5 sm:mr-1" />}
+                  {priceChange >= 0 ? <ArrowUpRight className="w-3 h-3 mr-1" /> : <ArrowDownRight className="w-3 h-3 mr-1" />}
                   {Math.abs(priceChange).toFixed(2)}%
                 </span>
               </div>
@@ -275,33 +275,31 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   };
 
   return (
-    <div className="flex flex-col h-full w-full max-w-full sm:max-w-2xl mx-auto">
-      {/* Updated chart container with responsive height for mobile portrait */}
-      <div className="h-[75vh] xs:h-[80vh] sm:h-[80vh] md:h-[85h] lg:h-[85vh] xl:flex-grow overflow-hidden rounded-lg border border-muted-foreground/10">
+    <div className="flex flex-col h-full max-w-2xl mx-auto">
+      <div className="flex-grow overflow-hidden">
         <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
       </div>
       
       {/* Single row layout for all controls */}
-      <div className="bg-background border-t border-muted-foreground/20 p-1 sm:p-1.5 md:p-2 mt-1">
-        <div className="flex items-center justify-between gap-1 sm:gap-2 md:gap-4">
+      <div className="bg-background border-t border-muted-foreground/20">
+        <div className="flex items-center justify-between gap-4">
           {/* Left side - Theme toggle and fullscreen */}
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2">
             <ThemeToggle />
             <Button 
               variant="outline" 
               size="icon" 
               onClick={toggleFullscreen} 
               aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
-              className="h-4 w-4 sm:h-7 sm:w-7 md:h-8 md:w-8"
             >
-              {isFullscreen ? <Minimize2 className="h-3 w-3 sm:h-4 sm:w-4" /> : <Maximize2 className="h-3 w-3 sm:h-4 sm:w-4" />}
+              {isFullscreen ? <Minimize2 className="h-3 w-4" /> : <Maximize2 className="h-3 w-4" />}
             </Button>
           </div>
 
           {/* Center - Category selector and interval buttons */}
-          <div className="flex items-center gap-1 sm:gap-2 md:gap-4 flex-1 justify-center">
+          <div className="flex items-center gap-4">
             <select
-              className="border border-muted-foreground/20 rounded px-1 py-0.5 sm:px-1.5 sm:py-0.5 text-xs bg-background max-w-[90px] sm:max-w-[100px] md:max-w-none truncate"
+              className="border border-muted-foreground/20 rounded px-2 py-1 text-xs bg-background"
               value={currentCategoryIndex}
               onChange={(e) => handleCategoryChange(Number(e.target.value))}
             >
@@ -313,12 +311,12 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
             </select>
 
             {/* Interval buttons */}
-            <div className="flex gap-0.5 sm:gap-1">
+            <div className="flex gap-1">
               {intervals.map((item) => (
                 <button
                   key={item.label}
                   className={clsx(
-                    "px-1 py-0.5 sm:px-1.5 sm:py-0.5 md:px-2 md:py-1 rounded text-xs font-light border border-muted-foreground/20 hover:bg-muted transition-colors min-w-[20px] sm:min-w-[24px]",
+                    "px-3 py-1 rounded text-xs font-light border border-muted-foreground/20 hover:bg-muted transition-colors",
                     stockRange === item.range && stockInterval === item.value
                       ? "bg-primary text-primary-foreground"
                       : "bg-background text-foreground"
@@ -333,16 +331,16 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
           </div>
 
           {/* Right side - Navigation buttons */}
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2">
             <Button
               variant="outline"
               size="icon"
               onClick={handlePrevious}
               disabled={currentStockIndex === 0}
               aria-label="Previous stock"
-              className="border-muted-foreground/20 h-4 w-4 sm:h-4 sm:w-4 md:h-4 md:w-4"
+              className="border-muted-foreground/20"
             >
-              <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4" />
+              <ChevronLeft className="h-3 w-4" />
             </Button>
             <Button
               variant="outline"
@@ -350,9 +348,9 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
               onClick={handleNext}
               disabled={currentStockIndex === totalStocks - 1}
               aria-label="Next stock"
-              className="border-muted-foreground/20 h-4 w-4 sm:h-4 sm:w-4 md:h-4 md:w-4"
+              className="border-muted-foreground/20"
             >
-              <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />
+              <ChevronRight className="h-3 w-4" />
             </Button>
           </div>
         </div>
