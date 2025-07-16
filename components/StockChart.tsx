@@ -277,7 +277,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   return (
     <div className="flex flex-col h-full w-full max-w-full sm:max-w-2xl mx-auto">
       {/* Updated chart container with responsive height for mobile portrait */}
-      <div className="h-[70vh] xs:h-[75vh] sm:h-[75vh] md:h-[80vh] lg:h-[80vh] xl:flex-grow overflow-hidden rounded-lg border border-muted-foreground/10">
+      <div className="h-[75vh] xs:h-[80vh] sm:h-[80vh] md:h-[85h] lg:h-[85vh] xl:flex-grow overflow-hidden rounded-lg border border-muted-foreground/10">
         <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
       </div>
       
@@ -292,7 +292,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
               size="icon" 
               onClick={toggleFullscreen} 
               aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
-              className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
+              className="h-4 w-4 sm:h-7 sm:w-7 md:h-8 md:w-8"
             >
               {isFullscreen ? <Minimize2 className="h-3 w-3 sm:h-4 sm:w-4" /> : <Maximize2 className="h-3 w-3 sm:h-4 sm:w-4" />}
             </Button>
@@ -340,7 +340,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
               onClick={handlePrevious}
               disabled={currentStockIndex === 0}
               aria-label="Previous stock"
-              className="border-muted-foreground/20 h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
+              className="border-muted-foreground/20 h-4 w-4 sm:h-4 sm:w-4 md:h-4 md:w-4"
             >
               <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4" />
             </Button>
