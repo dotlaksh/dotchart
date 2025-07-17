@@ -1,18 +1,12 @@
 
 import smallcapData from '../public/smallcap.json';
 import microcapData from '../public/microcap.json';
-import ipoData from '../public/ipo.json';
-
-
-
-
+import midcapData from '../public/midcap.json';
 
 export const stockCategories = [
+  { name: 'MidCaps', data: midcapData },
   { name: 'SmallCaps', data: smallcapData },
-  { name: 'MicroCaps', data: microcapData },
-  { name: 'IPOs', data: ipoData }
-
-
+  { name: 'MicroCaps', data: microcapData }
 ];
 
 export type Stock = {
