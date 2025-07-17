@@ -1,15 +1,13 @@
 
 import smallcapData from '../public/smallcap.json';
 import microcapData from '../public/microcap.json';
-import othersData from '../public/others.json';
 
 
 
 
 export const stockCategories = [
   { name: 'SmallCaps', data: smallcapData },
-  { name: 'MicroCaps', data: microcapData },
-  { name: 'Others', data: othersData }
+  { name: 'MicroCaps', data: microcapData }
 
 ];
 
