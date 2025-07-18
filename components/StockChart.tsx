@@ -139,6 +139,11 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         })
         maSeriesRef.current.setData(maData)
 
+        // Create a separate pane for volume
+        const volumePane = chartRef.current.addPane({
+          height: 30, // 30% of the chart height
+        })
+
         // Volume series - positioned on separate pane at bottom
         const volumeData = data.map(item => ({
           time: item.time,
@@ -146,14 +151,13 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           color: item.close >= item.open ? '#089981' : '#f23645'
         }))
         
-        volumeSeriesRef.current = chartRef.current.addHistogramSeries({
+        volumeSeriesRef.current = volumePane.addHistogramSeries({
           color: '#26a69a',
           priceFormat: {
             type: 'volume',
           },
           priceLineVisible: false,
           lastValueVisible: false,
-          pane: 1, // Place volume on separate pane
         })
         volumeSeriesRef.current.setData(volumeData)
 
