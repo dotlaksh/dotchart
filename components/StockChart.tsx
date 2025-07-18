@@ -280,14 +280,9 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
       <div className="w-full h-4/5 border border-muted-foreground/10 rounded-lg bg-background shadow-sm overflow-hidden">
         {/* Chart and footer components */}
         <div className="flex flex-col h-full">
-          <div className="flex-grow overflow-hidden p-4" style={{ minHeight: '400px' }}>
-            <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
-          </div>
-          
-          {/* Footer controls - 2 rows layout */}
-          <div className="bg-background border-t border-muted-foreground/10 p-4">
-            {/* First row - Theme toggle, fullscreen, and category selector */}
-            <div className="flex items-center justify-between gap-4 mb-3">
+          {/* Top controls - single row */}
+          <div className="bg-background border-b border-muted-foreground/10 p-4">
+            <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-2">
                 <ThemeToggle />
                 <Button 
@@ -312,6 +307,33 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                 ))}
               </select>
 
+              <div className="flex gap-2">
+                {intervals.map((item) => (
+                  <button
+                    key={item.label}
+                    className={clsx(
+                      "px-4 py-2 rounded text-sm font-medium border border-muted-foreground/20 hover:bg-muted transition-colors",
+                      stockRange === item.range && stockInterval === item.value
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-background text-foreground"
+                    )}
+                    onClick={() => handleIntervalClick(item)}
+                    aria-current={stockRange === item.range && stockInterval === item.value ? "page" : undefined}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="flex-grow overflow-hidden p-4" style={{ minHeight: '400px' }}>
+            <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
+          </div>
+          
+          {/* Footer controls - pagination only */}
+          <div className="bg-background border-t border-muted-foreground/10 p-4">
+            <div className="flex justify-center">
               <div className="flex items-center gap-2">
                 <Button
                   variant="outline"
@@ -333,27 +355,6 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                 >
                   <ChevronRight className="h-3 w-4" />
                 </Button>
-              </div>
-            </div>
-
-            {/* Second row - Interval buttons centered */}
-            <div className="flex justify-center">
-              <div className="flex gap-2">
-                {intervals.map((item) => (
-                  <button
-                    key={item.label}
-                    className={clsx(
-                      "px-4 py-2 rounded text-sm font-medium border border-muted-foreground/20 hover:bg-muted transition-colors",
-                      stockRange === item.range && stockInterval === item.value
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-background text-foreground"
-                    )}
-                    onClick={() => handleIntervalClick(item)}
-                    aria-current={stockRange === item.range && stockInterval === item.value ? "page" : undefined}
-                  >
-                    {item.label}
-                  </button>
-                ))}
               </div>
             </div>
           </div>
