@@ -275,9 +275,9 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   };
 
   return (
-    // Single card with reduced margin
-    <div className="w-full h-screen p-3 bg-background">
-      <div className="w-full h-full border border-muted-foreground/10 rounded-lg bg-background shadow-sm overflow-hidden">
+    // Single card centered on screen with reduced height
+    <div className="w-full h-screen p-3 bg-background flex items-center justify-center">
+      <div className="w-full h-4/5 border border-muted-foreground/10 rounded-lg bg-background shadow-sm overflow-hidden">
         {/* Chart and footer components */}
         <div className="flex flex-col h-full">
           <div className="flex-grow overflow-hidden p-4" style={{ minHeight: '400px' }}>
