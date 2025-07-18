@@ -275,13 +275,13 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   };
 
   return (
-    // Responsive padding and height for landscape mode
-    <div className="w-full h-screen bg-background flex items-center justify-center p-4 landscape:p-2">
-      <div className="w-full h-4/5 landscape:h-full border border-muted-foreground/10 bg-background shadow-sm overflow-hidden rounded-lg landscape:rounded-none">
+    // Consistent sizing regardless of orientation
+    <div className="w-full h-screen bg-background flex items-center justify-center p-4">
+      <div className="w-full h-4/5 border border-muted-foreground/10 bg-background shadow-sm overflow-hidden rounded-lg">
         {/* Chart and footer components */}
         <div className="flex flex-col h-full">
-          {/* Top controls - responsive padding for landscape */}
-          <div className="bg-background border-b border-muted-foreground/10 p-2 landscape:p-1 flex-shrink-0">
+          {/* Top controls - consistent padding */}
+          <div className="bg-background border-b border-muted-foreground/10 p-2 flex-shrink-0">
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-2">
                 <ThemeToggle />
@@ -327,12 +327,12 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
             </div>
           </div>
 
-          <div className="flex-grow overflow-hidden p-2 landscape:p-1">
+          <div className="flex-grow overflow-hidden p-2">
             <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
           </div>
           
-          {/* Footer controls - responsive padding for landscape */}
-          <div className="bg-background border-t border-muted-foreground/10 p-2 landscape:p-1 flex-shrink-0">
+          {/* Footer controls - consistent padding */}
+          <div className="bg-background border-t border-muted-foreground/10 p-2 flex-shrink-0">
             <div className="flex justify-between items-center">
               <Button
                 variant="outline"
