@@ -47,10 +47,8 @@ const ThemeToggle: React.FC = () => {
 }
 
 const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
-  const priceChartContainerRef = useRef<HTMLDivElement>(null)
-  const volumeChartContainerRef = useRef<HTMLDivElement>(null)
-  const priceChartRef = useRef<IChartApi | null>(null)
-  const volumeChartRef = useRef<IChartApi | null>(null)
+  const chartContainerRef = useRef<HTMLDivElement>(null)
+  const chartRef = useRef<IChartApi | null>(null)
   const candlestickSeriesRef = useRef<ISeriesApi<"Bar"> | null>(null)
   const volumeSeriesRef = useRef<ISeriesApi<'Histogram'> | null>(null)
   const maSeriesRef = useRef<ISeriesApi<'Line'> | null>(null)
@@ -68,16 +66,10 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (priceChartRef.current && priceChartContainerRef.current) {
-        priceChartRef.current.applyOptions({ 
-          width: priceChartContainerRef.current.clientWidth,
-          height: priceChartContainerRef.current.clientHeight
-        })
-      }
-      if (volumeChartRef.current && volumeChartContainerRef.current) {
-        volumeChartRef.current.applyOptions({ 
-          width: volumeChartContainerRef.current.clientWidth,
-          height: volumeChartContainerRef.current.clientHeight
+      if (chartRef.current && chartContainerRef.current) {
+        chartRef.current.applyOptions({ 
+          width: chartContainerRef.current.clientWidth,
+          height: chartContainerRef.current.clientHeight
         })
       }
     }
@@ -103,9 +95,9 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
 
     const maLength = 10 // Always 10 periods, adjusts by interval
 
-    const initCharts = () => {
-      if (priceChartContainerRef.current && volumeChartContainerRef.current && data.length > 0) {
-        const commonOptions = {
+    const initChart = () => {
+      if (chartContainerRef.current && data.length > 0) {
+        const chartOptions = {
           layout: {
             background: { type: ColorType.Solid, color: theme === 'dark' ? '#09090b' : 'white' },
             textColor: theme === 'dark' ? '#E5E7EB' : '#09090b',
@@ -119,81 +111,53 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
             rightOffset: 5,
             minBarSpacing: 4,
           },
+          width: chartContainerRef.current.clientWidth,
+          height: chartContainerRef.current.clientHeight,
         }
 
-        // Remove any existing chart instances
-        if (priceChartRef.current) {
-          priceChartRef.current.remove()
-          priceChartRef.current = null
-        }
-        if (volumeChartRef.current) {
-          volumeChartRef.current.remove()
-          volumeChartRef.current = null
+        // Remove any existing chart instance before creating a new one
+        if (chartRef.current) {
+          chartRef.current.remove()
+          chartRef.current = null
         }
 
-        // Create price chart
-        priceChartRef.current = createChart(priceChartContainerRef.current, {
-          ...commonOptions,
-          width: priceChartContainerRef.current.clientWidth,
-          height: priceChartContainerRef.current.clientHeight,
-        })
+        chartRef.current = createChart(chartContainerRef.current, chartOptions)
 
-        // Create volume chart
-        volumeChartRef.current = createChart(volumeChartContainerRef.current, {
-          ...commonOptions,
-          width: volumeChartContainerRef.current.clientWidth,
-          height: volumeChartContainerRef.current.clientHeight,
-        })
-
-        // Candlestick series on price chart
-        candlestickSeriesRef.current = priceChartRef.current.addBarSeries({
+        // Candlestick series - positioned on main pane
+        candlestickSeriesRef.current = chartRef.current.addBarSeries({
           upColor: '#089981',
           downColor: '#f23645',
         })
         candlestickSeriesRef.current.setData(data)
 
-        // 10-period Moving Average on price chart
+        // 10-period Moving Average - positioned on main pane
         const maData = calculateMovingAverage(data, maLength)
-        maSeriesRef.current = priceChartRef.current.addLineSeries({
+        maSeriesRef.current = chartRef.current.addLineSeries({
           color: '#eab308', // yellow
           lineWidth: 1,
           priceLineVisible: false
         })
         maSeriesRef.current.setData(maData)
 
-        // Volume series on volume chart
+        // Volume series - positioned on separate pane at bottom
         const volumeData = data.map(item => ({
           time: item.time,
           value: item.volume,
           color: item.close >= item.open ? '#089981' : '#f23645'
         }))
         
-        volumeSeriesRef.current = volumeChartRef.current.addHistogramSeries({
+        volumeSeriesRef.current = chartRef.current.addHistogramSeries({
           color: '#26a69a',
           priceFormat: {
             type: 'volume',
           },
           priceLineVisible: false,
           lastValueVisible: false,
+          pane: 1, // Place volume on separate pane
         })
         volumeSeriesRef.current.setData(volumeData)
 
-        // Synchronize time scales
-        priceChartRef.current.timeScale().subscribeVisibleTimeRangeChange((timeRange) => {
-          if (volumeChartRef.current && timeRange) {
-            volumeChartRef.current.timeScale().setVisibleRange(timeRange)
-          }
-        })
-
-        volumeChartRef.current.timeScale().subscribeVisibleTimeRangeChange((timeRange) => {
-          if (priceChartRef.current && timeRange) {
-            priceChartRef.current.timeScale().setVisibleRange(timeRange)
-          }
-        })
-
-        // Fit content for both charts
-        priceChartRef.current.timeScale().fitContent()
-        volumeChartRef.current.timeScale().fitContent()
+        chartRef.current.timeScale().fitContent()
 
         if (data.length > 0) {
           const latestData = data[data.length - 1]
@@ -207,17 +171,13 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
       }
     }
 
-    initCharts()
+    initChart()
     window.addEventListener('resize', handleResize)
     return () => {
       window.removeEventListener('resize', handleResize)
-      if (priceChartRef.current) {
-        priceChartRef.current.remove()
-        priceChartRef.current = null
-      }
-      if (volumeChartRef.current) {
-        volumeChartRef.current.remove()
-        volumeChartRef.current = null
+      if (chartRef.current) {
+        chartRef.current.remove()
+        chartRef.current = null
       }
     }
   }, [data, theme])
@@ -243,7 +203,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   }
 
   return (
-    <div className="w-full h-full relative flex flex-col">
+    <div className="w-full h-full relative">
       {error && <div className="text-red-500 mb-4">{error}</div>}
       {loading ? (
         <div className="flex justify-center items-center h-full">
@@ -263,12 +223,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
               </div>
             )}
           </div>
-          
-          {/* Price Chart - Takes up 70% of the height */}
-          <div ref={priceChartContainerRef} className="w-full flex-grow" style={{ height: '70%' }} />
-          
-          {/* Volume Chart - Takes up 30% of the height */}
-          <div ref={volumeChartContainerRef} className="w-full flex-shrink-0" style={{ height: '30%' }} />
+          <div ref={chartContainerRef} className="w-full h-full" />
         </>
       )}
     </div>
