@@ -275,13 +275,13 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   };
 
   return (
-    // Single card centered on screen with reduced height
-    <div className="w-full h-screen p-3 bg-background flex items-center justify-center">
-      <div className="w-full h-4/5 border border-muted-foreground/10 rounded-lg bg-background shadow-sm overflow-hidden">
+    // Remove all padding and use full viewport height
+    <div className="w-full h-screen bg-background flex items-center justify-center">
+      <div className="w-full h-full border border-muted-foreground/10 bg-background shadow-sm overflow-hidden">
         {/* Chart and footer components */}
         <div className="flex flex-col h-full">
-          {/* Top controls - single row */}
-          <div className="bg-background border-b border-muted-foreground/10 p-4">
+          {/* Top controls - single row with reduced padding */}
+          <div className="bg-background border-b border-muted-foreground/10 p-2 flex-shrink-0">
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-2">
                 <ThemeToggle />
@@ -327,12 +327,12 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
             </div>
           </div>
 
-          <div className="flex-grow overflow-hidden p-4" style={{ minHeight: '400px' }}>
+          <div className="flex-grow overflow-hidden p-2">
             <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
           </div>
           
-          {/* Footer controls - pagination only */}
-          <div className="bg-background border-t border-muted-foreground/10 p-4">
+          {/* Footer controls - pagination only with reduced padding */}
+          <div className="bg-background border-t border-muted-foreground/10 p-2 flex-shrink-0">
             <div className="flex justify-between items-center">
               <Button
                 variant="outline"
