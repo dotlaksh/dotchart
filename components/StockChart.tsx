@@ -275,9 +275,9 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   };
 
   return (
-    // Remove all padding and use full viewport height
-    <div className="w-full h-screen bg-background flex items-center justify-center">
-      <div className="w-full h-full border border-muted-foreground/10 bg-background shadow-sm overflow-hidden">
+    // Add margin and reduce chart height
+    <div className="w-full h-screen bg-background flex items-center justify-center p-4">
+      <div className="w-full h-4/5 border border-muted-foreground/10 bg-background shadow-sm overflow-hidden rounded-lg">
         {/* Chart and footer components */}
         <div className="flex flex-col h-full">
           {/* Top controls - single row with reduced padding */}
