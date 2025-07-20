@@ -11,8 +11,8 @@ import clsx from "clsx"
 // INTERVAL BUTTONS
 const intervals: { label: string; value: string; range: string }[] = [
   { label: 'D', value: '1d', range: '6mo' },
-  { label: 'W', value: '1wk', range: '2y' },
-  { label: 'M', value: '1mo', range: '5y' }
+  { label: 'W', value: '1wk', range: '3y' },
+  { label: 'M', value: '1mo', range: '10y' }
   ];
 
 interface ChartData {
@@ -109,7 +109,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           timeScale: {
             timeVisible: true,
             rightOffset: 5,
-            minBarSpacing: 4,
+            minBarSpacing: 2,
           },
           width: chartContainerRef.current.clientWidth,
           height: chartContainerRef.current.clientHeight,
@@ -123,14 +123,13 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
 
         chartRef.current = createChart(chartContainerRef.current, chartOptions)
 
-        // Candlestick series - positioned on main pane
+        // Candlestick
         candlestickSeriesRef.current = chartRef.current.addBarSeries({
           upColor: '#089981',
           downColor: '#f23645',
         })
         candlestickSeriesRef.current.setData(data)
-
-        // 10-period Moving Average - positioned on main pane
+        // 10-period Moving Average
         const maData = calculateMovingAverage(data, maLength)
         maSeriesRef.current = chartRef.current.addLineSeries({
           color: '#eab308', // yellow
@@ -138,28 +137,6 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           priceLineVisible: false
         })
         maSeriesRef.current.setData(maData)
-
-        // Create a separate pane for volume
-        const volumePane = chartRef.current.addPane({
-          height: 30, // 30% of the chart height
-        })
-
-        // Volume series - positioned on separate pane at bottom
-        const volumeData = data.map(item => ({
-          time: item.time,
-          value: item.volume,
-          color: item.close >= item.open ? '#089981' : '#f23645'
-        }))
-        
-        volumeSeriesRef.current = volumePane.addHistogramSeries({
-          color: '#26a69a',
-          priceFormat: {
-            type: 'volume',
-          },
-          priceLineVisible: false,
-          lastValueVisible: false,
-        })
-        volumeSeriesRef.current.setData(volumeData)
 
         chartRef.current.timeScale().fitContent()
 
@@ -298,86 +275,83 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   };
 
   return (
-    // Consistent sizing regardless of orientation
-    <div className="w-full h-screen bg-background flex items-center justify-center p-4">
-      <div className="w-full h-4/5 border border-muted-foreground/10 bg-background shadow-sm overflow-hidden rounded-lg">
-        {/* Chart and footer components */}
-        <div className="flex flex-col h-full">
-          {/* Top controls - consistent padding */}
-          <div className="bg-background border-b border-muted-foreground/10 p-2 flex-shrink-0">
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
-                <ThemeToggle />
-                <Button 
-                  variant="outline" 
-                  size="icon" 
-                  onClick={toggleFullscreen} 
-                  aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+    <div className="flex flex-col h-full max-w-2xl mx-auto">
+      <div className="flex-grow overflow-hidden">
+        <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
+      </div>
+      
+      {/* Single row layout for all controls */}
+      <div className="bg-background border-muted-foreground/20">
+        <div className="flex items-center justify-between gap-4">
+          {/* Left side - Theme toggle and fullscreen */}
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Button 
+              variant="outline" 
+              size="icon" 
+              onClick={toggleFullscreen} 
+              aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+            >
+              {isFullscreen ? <Minimize2 className="h-3 w-4" /> : <Maximize2 className="h-3 w-4" />}
+            </Button>
+          </div>
+
+          {/* Center - Category selector and interval buttons */}
+          <div className="flex items-center gap-4">
+            <select
+              className="border border-muted-foreground/20 rounded px-2 py-1 text-xs bg-background"
+              value={currentCategoryIndex}
+              onChange={(e) => handleCategoryChange(Number(e.target.value))}
+            >
+              {stockCategories.map((category, index) => (
+                <option key={index} value={index}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+
+            {/* Interval buttons */}
+            <div className="flex gap-1">
+              {intervals.map((item) => (
+                <button
+                  key={item.label}
+                  className={clsx(
+                    "px-3 py-1 rounded text-xs font-light border border-muted-foreground/20 hover:bg-muted transition-colors",
+                    stockRange === item.range && stockInterval === item.value
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-background text-foreground"
+                  )}
+                  onClick={() => handleIntervalClick(item)}
+                  aria-current={stockRange === item.range && stockInterval === item.value ? "page" : undefined}
                 >
-                  {isFullscreen ? <Minimize2 className="h-3 w-4" /> : <Maximize2 className="h-3 w-4" />}
-                </Button>
-              </div>
-
-              <select
-                className="border border-muted-foreground/20 rounded px-3 py-2 text-sm bg-background"
-                value={currentCategoryIndex}
-                onChange={(e) => handleCategoryChange(Number(e.target.value))}
-              >
-                {stockCategories.map((category, index) => (
-                  <option key={index} value={index}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
-
-              <div className="flex gap-2">
-                {intervals.map((item) => (
-                  <button
-                    key={item.label}
-                    className={clsx(
-                      "px-4 py-2 rounded text-sm font-medium border border-muted-foreground/20 hover:bg-muted transition-colors",
-                      stockRange === item.range && stockInterval === item.value
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-background text-foreground"
-                    )}
-                    onClick={() => handleIntervalClick(item)}
-                    aria-current={stockRange === item.range && stockInterval === item.value ? "page" : undefined}
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
+                  {item.label}
+                </button>
+              ))}
             </div>
           </div>
 
-          <div className="flex-grow overflow-hidden p-2">
-            <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
-          </div>
-          
-          {/* Footer controls - consistent padding */}
-          <div className="bg-background border-t border-muted-foreground/10 p-2 flex-shrink-0">
-            <div className="flex justify-between items-center">
-              <Button
-                variant="outline"
-                onClick={handlePrevious}
-                disabled={currentStockIndex === 0}
-                aria-label="Previous stock"
-                className="border-muted-foreground/20 flex items-center gap-2"
-              >
-                <ChevronLeft className="h-4 w-4" />
-                Prev
-              </Button>
-              <Button
-                variant="outline"
-                onClick={handleNext}
-                disabled={currentStockIndex === totalStocks - 1}
-                aria-label="Next stock"
-                className="border-muted-foreground/20 flex items-center gap-2"
-              >
-                Next
-                <ChevronRight className="h-4 w-4" />
-              </Button>
-            </div>
+          {/* Right side - Navigation buttons */}
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={handlePrevious}
+              disabled={currentStockIndex === 0}
+              aria-label="Previous stock"
+              className="border-muted-foreground/20"
+            >
+              <ChevronLeft className="h-3 w-4" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={handleNext}
+              disabled={currentStockIndex === totalStocks - 1}
+              aria-label="Next stock"
+              className="border-muted-foreground/20"
+            >
+              <ChevronRight className="h-3 w-4" />
+            </Button>
           </div>
         </div>
       </div>
