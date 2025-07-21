@@ -339,7 +339,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                 aria-label="Previous stock"
                 className="border-muted-foreground/20 flex items-center gap-2"
               >
-                <ChevronLeft className="h-4 w-4" />
+                <ChevronLeft className="h-3 w-3" />
                 Prev
               </Button>
               <Button
@@ -350,7 +350,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                 className="border-muted-foreground/20 flex items-center gap-2"
               >
                 Next
-                <ChevronRight className="h-4 w-4" />
+                <ChevronRight className="h-3 w-3" />
               </Button>
             </div>
           </div>
