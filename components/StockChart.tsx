@@ -288,7 +288,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
             <ThemeToggle />
             <Button 
               variant="outline" 
-              size="icon" 
+              size="sm" 
               onClick={toggleFullscreen} 
               aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
             >
