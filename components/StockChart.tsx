@@ -330,28 +330,29 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
             </div>
           </div>
 
-          {/* Right side - Navigation buttons */}
-          <div className="flex items-center gap-2">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={handlePrevious}
-              disabled={currentStockIndex === 0}
-              aria-label="Previous stock"
-              className="border-muted-foreground/20"
-            >
-              <ChevronLeft className="h-3 w-4" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={handleNext}
-              disabled={currentStockIndex === totalStocks - 1}
-              aria-label="Next stock"
-              className="border-muted-foreground/20"
-            >
-              <ChevronRight className="h-3 w-4" />
-            </Button>
+         <div className="bg-background border-t border-muted-foreground/10 p-2 flex-shrink-0">
+            <div className="flex justify-between items-center">
+              <Button
+                variant="outline"
+                onClick={handlePrevious}
+                disabled={currentStockIndex === 0}
+                aria-label="Previous stock"
+                className="border-muted-foreground/20 flex items-center gap-2"
+              >
+                <ChevronLeft className="h-4 w-4" />
+                Prev
+              </Button>
+              <Button
+                variant="outline"
+                onClick={handleNext}
+                disabled={currentStockIndex === totalStocks - 1}
+                aria-label="Next stock"
+                className="border-muted-foreground/20 flex items-center gap-2"
+              >
+                Next
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
         </div>
       </div>
