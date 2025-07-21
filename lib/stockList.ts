@@ -5,7 +5,7 @@ import microcapData from '../public/microcap.json';
 import midcapData from '../public/midcap.json';
 
 export const stockCategories = [
-    { name: 'Nifty', data: niftyData },
+    
 
   { name: 'MidCaps', data: midcapData },
   { name: 'SmallCaps', data: smallcapData },
