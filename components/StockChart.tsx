@@ -277,114 +277,85 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   return (
     <div className="my-4 max-w-xl mx-auto">
       <div className="bg-card border border-border rounded-lg shadow-sm overflow-hidden">
-        <div className="flex flex-col h-[500px]">
-          <div className="flex-grow overflow-hidden">
+        <div className="flex flex-col h-full">
+          <div className="flex-grow overflow-hidden min-h-[400px]">
             <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
           </div>
           
-          {/* Controls section - responsive layout */}
-          <div className="bg-card border-t border-border p-2 flex-shrink-0">
-            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
-              {/* Top row on mobile / Left side on desktop */}
-              <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-start">
-                <div className="flex items-center gap-2">
-                  <ThemeToggle />
-                  <Button 
-                    variant="outline" 
-                    size="icon" 
-                    onClick={toggleFullscreen} 
-                    aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
-                    className="h-8 w-8"
-                  >
-                    {isFullscreen ? <Minimize2 className="h-3 w-3" /> : <Maximize2 className="h-3 w-3" />}
-                  </Button>
-                </div>
-                
-                {/* Navigation buttons on mobile */}
-                <div className="flex items-center gap-1 sm:hidden">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handlePrevious}
-                    disabled={currentStockIndex === 0}
-                    aria-label="Previous stock"
-                    className="border-muted-foreground/20 px-2 py-1 h-7 text-xs"
-                  >
-                    <ChevronLeft className="h-3 w-3" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleNext}
-                    disabled={currentStockIndex === totalStocks - 1}
-                    aria-label="Next stock"
-                    className="border-muted-foreground/20 px-2 py-1 h-7 text-xs"
-                  >
-                    <ChevronRight className="h-3 w-3" />
-                  </Button>
+          {/* Single row layout for all controls */}
+          <div className="bg-card border-t border-border p-3">
+            <div className="flex items-center justify-between gap-4">
+              {/* Left side - Theme toggle and fullscreen */}
+              <div className="flex items-center gap-2">
+                <ThemeToggle />
+                <Button 
+                  variant="outline" 
+                  size="icon" 
+                  onClick={toggleFullscreen} 
+                  aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+                >
+                  {isFullscreen ? <Minimize2 className="h-3 w-4" /> : <Maximize2 className="h-3 w-4" />}
+                </Button>
+              </div>
+
+              {/* Center - Category selector and interval buttons */}
+              <div className="flex items-center gap-4">
+                <select
+                  className="border border-muted-foreground/20 rounded px-2 py-1 text-xs bg-background"
+                  value={currentCategoryIndex}
+                  onChange={(e) => handleCategoryChange(Number(e.target.value))}
+                >
+                  {stockCategories.map((category, index) => (
+                    <option key={index} value={index}>
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
+
+                {/* Interval buttons */}
+                <div className="flex gap-1">
+                  {intervals.map((item) => (
+                    <button
+                      key={item.label}
+                      className={clsx(
+                        "px-3 py-1 rounded text-xs font-light border border-muted-foreground/20 hover:bg-muted transition-colors",
+                        stockRange === item.range && stockInterval === item.value
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-background text-foreground"
+                      )}
+                      onClick={() => handleIntervalClick(item)}
+                      aria-current={stockRange === item.range && stockInterval === item.value ? "page" : undefined}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
                 </div>
               </div>
 
-              {/* Bottom row on mobile / Center-right on desktop */}
-              <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end flex-1">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <select
-                    className="border border-muted-foreground/20 rounded px-2 py-1 text-xs bg-background min-w-0"
-                    value={currentCategoryIndex}
-                    onChange={(e) => handleCategoryChange(Number(e.target.value))}
-                  >
-                    {stockCategories.map((category, index) => (
-                      <option key={index} value={index}>
-                        {category.name}
-                      </option>
-                    ))}
-                  </select>
-
-                  {/* Interval buttons */}
-                  <div className="flex gap-1">
-                    {intervals.map((item) => (
-                      <button
-                        key={item.label}
-                        className={clsx(
-                          "px-2 py-1 rounded text-xs font-light border border-muted-foreground/20 hover:bg-muted transition-colors min-w-[24px]",
-                          stockRange === item.range && stockInterval === item.value
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-background text-foreground"
-                        )}
-                        onClick={() => handleIntervalClick(item)}
-                        aria-current={stockRange === item.range && stockInterval === item.value ? "page" : undefined}
-                      >
-                        {item.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Navigation buttons on desktop */}
-                <div className="hidden sm:flex items-center gap-1">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handlePrevious}
-                    disabled={currentStockIndex === 0}
-                    aria-label="Previous stock"
-                    className="border-muted-foreground/20 px-2 py-1 h-7 text-xs"
-                  >
-                    <ChevronLeft className="h-3 w-3 mr-1" />
-                    Prev
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleNext}
-                    disabled={currentStockIndex === totalStocks - 1}
-                    aria-label="Next stock"
-                    className="border-muted-foreground/20 px-2 py-1 h-7 text-xs"
-                  >
-                    Next
-                    <ChevronRight className="h-3 w-3 ml-1" />
-                  </Button>
-                </div>
+              {/* Right side - Navigation buttons (reduced size) */}
+              <div className="flex items-center gap-1">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handlePrevious}
+                  disabled={currentStockIndex === 0}
+                  aria-label="Previous stock"
+                  className="border-muted-foreground/20 px-2 py-1 h-7 text-xs"
+                >
+                  <ChevronLeft className="h-3 w-3 mr-1" />
+                  Prev
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleNext}
+                  disabled={currentStockIndex === totalStocks - 1}
+                  aria-label="Next stock"
+                  className="border-muted-foreground/20 px-2 py-1 h-7 text-xs"
+                >
+                  Next
+                  <ChevronRight className="h-3 w-3 ml-1" />
+                </Button>
               </div>
             </div>
           </div>
