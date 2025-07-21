@@ -292,7 +292,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
               onClick={toggleFullscreen} 
               aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
             >
-              {isFullscreen ? <Minimize2 className="h-3 w-4" /> : <Maximize2 className="h-3 w-4" />}
+              {isFullscreen ? <Minimize2 className="h-3 w-3" /> : <Maximize2 className="h-3 w-3" />}
             </Button>
           </div>
 
