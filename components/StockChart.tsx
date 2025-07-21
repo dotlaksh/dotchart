@@ -285,7 +285,6 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
         <div className="flex items-center justify-between gap-4">
           {/* Left side - Theme toggle and fullscreen */}
           <div className="flex items-center gap-2">
-            <ThemeToggle />
             <Button 
               variant="outline" 
               size="sm" 
