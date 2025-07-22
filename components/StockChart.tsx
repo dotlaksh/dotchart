@@ -109,7 +109,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           },
           timeScale: {
             timeVisible: true,
-            rightOffset: 5,
+            rightOffset: 10,
             minBarSpacing: 3,
           },
           width: chartContainerRef.current.clientWidth,
@@ -124,13 +124,14 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
 
         chartRef.current = createChart(chartContainerRef.current, chartOptions)
 
-        // Candlestick
+        // Candlestick series on main pane
         candlestickSeriesRef.current = chartRef.current.addBarSeries({
           upColor: '#089981',
           downColor: '#f23645',
         })
         candlestickSeriesRef.current.setData(data)
-        // 10-period Moving Average
+        
+        // 20-period Moving Average on main pane
         const maData = calculateMovingAverage(data, maLength)
         maSeriesRef.current = chartRef.current.addLineSeries({
           color: '#eab308', // yellow
@@ -138,6 +139,30 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           priceLineVisible: false
         })
         maSeriesRef.current.setData(maData)
+
+        // Volume series on separate pane at bottom
+        volumeSeriesRef.current = chartRef.current.addHistogramSeries({
+          color: theme === 'dark' ? '#4B5563' : '#9CA3AF',
+          priceFormat: {
+            type: 'volume',
+          },
+          priceScaleId: 'volume',
+          scaleMargins: {
+            top: 0.8,
+            bottom: 0,
+          },
+        })
+        
+        // Prepare volume data with color based on price movement
+        const volumeData = data.map((item, index) => {
+          const isUp = index > 0 ? item.close >= data[index - 1].close : true
+          return {
+            time: item.time,
+            value: item.volume,
+            color: isUp ? '#089981' : '#f23645'
+          }
+        })
+        volumeSeriesRef.current.setData(volumeData)
 
         chartRef.current.timeScale().fitContent()
 
@@ -287,7 +312,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
             {/* Single row layout for all controls */}
             <div className="bg-background border-muted-foreground/20">
               <div className="flex items-center justify-between gap-4">
-                {/* Left side - Theme toggle and fullscreen */}
+                {/* Left side - Theme toggle and fullscreen (hide fullscreen on small screens) */}
                 <div className="flex items-center gap-2">
                   <Button 
                     variant="outline" 
@@ -301,9 +326,9 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                 </div>
 
                 {/* Center - Category selector and interval buttons */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-4">
                   <select
-                    className="border border-muted-foreground/20 rounded px-1 py-1 text-xs bg-background"
+                    className="border border-muted-foreground/20 rounded px-2 py-1 text-xs bg-background"
                     value={currentCategoryIndex}
                     onChange={(e) => handleCategoryChange(Number(e.target.value))}
                   >
