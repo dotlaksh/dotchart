@@ -278,7 +278,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   return (
     <div className="m-2">
       <Card className="w-full max-w-xl mx-auto">
-        <CardContent className="p-2">
+        <CardContent>
           <div className="flex flex-col h-[400px]">
             <div className="flex-grow overflow-hidden mb-2">
               <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
@@ -286,7 +286,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
             
             {/* Single row layout for all controls */}
             <div className="bg-background border-muted-foreground/20">
-              <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center justify-between gap-2">
                 {/* Left side - Theme toggle and fullscreen */}
                 <div className="flex items-center gap-2">
                   <Button 
