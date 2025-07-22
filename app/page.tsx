@@ -5,7 +5,7 @@ import { StockCarousel } from '@/components/StockChart';
 
 export default function Home() {
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
-  const [stockRange, setStockRange] = useState<string>('6mo');     // Default to '6mo' for 6M
+  const [stockRange, setStockRange] = useState<string>('1y');     // Default to '6mo' for 6M
   const [stockInterval, setStockInterval] = useState<string>('1d'); // Default to '1d'
   const pageRef = useRef<HTMLDivElement>(null);
 
