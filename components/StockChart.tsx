@@ -277,7 +277,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
 
   return (
     <div className="m-4">
-      <Card className="w-full max-w-6xl mx-auto">
+      <Card className="w-full max-w-xl mx-auto">
         <CardContent className="p-6">
           <div className="flex flex-col h-[600px]">
             <div className="flex-grow overflow-hidden mb-4">
