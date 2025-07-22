@@ -93,7 +93,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
       return result
     }
 
-    const maLength = 10 // Always 10 periods, adjusts by interval
+    const maLength = 20 // Always 10 periods, adjusts by interval
 
     const initChart = () => {
       if (chartContainerRef.current && data.length > 0) {
@@ -108,7 +108,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           },
           timeScale: {
             timeVisible: true,
-            rightOffset: 5,
+            rightOffset: 10,
             minBarSpacing: 3,
           },
           width: chartContainerRef.current.clientWidth,
