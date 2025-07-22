@@ -109,7 +109,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           },
           timeScale: {
             timeVisible: true,
-            rightOffset: 10,
+            rightOffset: 5,
             minBarSpacing: 3,
           },
           width: chartContainerRef.current.clientWidth,
@@ -294,6 +294,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                     size="sm" 
                     onClick={toggleFullscreen} 
                     aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+                    className="hidden sm:flex"
                   >
                     {isFullscreen ? <Minimize2 className="h-3 w-3" /> : <Maximize2 className="h-3 w-3" />}
                   </Button>
