@@ -75,26 +75,28 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
       }
     }
 
-    // 10-period (interval-based) Moving Average
-    const calculateMovingAverage = (data: ChartData[], length: number) => {
+    // 21-period Exponential Moving Average
+    const calculateExponentialMovingAverage = (data: ChartData[], length: number) => {
       const result: { time: string, value: number }[] = []
-      let sum = 0
-      for (let i = 0; i < data.length; ++i) {
-        sum += data[i].close
-        if (i >= length) {
-          sum -= data[i - length].close
+      const multiplier = 2 / (length + 1)
+      let ema = data[0].close // Start with first close price
+      
+      for (let i = 0; i < data.length; i++) {
+        if (i === 0) {
+          ema = data[i].close
+        } else {
+          ema = (data[i].close * multiplier) + (ema * (1 - multiplier))
         }
-        if (i >= length - 1) {
-          result.push({
-            time: data[i].time,
-            value: +(sum / length).toFixed(2),
-          })
-        }
+        
+        result.push({
+          time: data[i].time,
+          value: +ema.toFixed(2),
+        })
       }
       return result
     }
 
-    const maLength = 20 // Always 10 periods, adjusts by interval
+    const emaLength = 21 // 21-period EMA
 
     const initChart = () => {
       if (chartContainerRef.current && data.length > 0) {
@@ -131,14 +133,14 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         })
         candlestickSeriesRef.current.setData(data)
         
-        // 20-period Moving Average on main pane
-        const maData = calculateMovingAverage(data, maLength)
+        // 21-period Exponential Moving Average on main pane
+        const emaData = calculateExponentialMovingAverage(data, emaLength)
         maSeriesRef.current = chartRef.current.addLineSeries({
           color: '#eab308', // yellow
           lineWidth: 1,
           priceLineVisible: false
         })
-        maSeriesRef.current.setData(maData)
+        maSeriesRef.current.setData(emaData)
 
         // Volume series on separate pane at bottom
         volumeSeriesRef.current = chartRef.current.addHistogramSeries({
@@ -330,9 +332,9 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                 </div>
 
                 {/* Center - Category selector and interval buttons */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-4">
                   <select
-                    className="border border-muted-foreground/20 rounded py-1 text-xs bg-background"
+                    className="border border-muted-foreground/20 rounded px-2 py-1 text-xs bg-background"
                     value={currentCategoryIndex}
                     onChange={(e) => handleCategoryChange(Number(e.target.value))}
                   >
