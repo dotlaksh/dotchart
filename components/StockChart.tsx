@@ -104,9 +104,12 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         chartRef.current = createChart(chartContainerRef.current, chartOptions)
 
         // Candlestick series on main pane
-        candlestickSeriesRef.current = chartRef.current.addBarSeries({
+        candlestickSeriesRef.current = chartRef.current.addCandlestickSeries({
           upColor: '#089981',
           downColor: '#f23645',
+          borderVisible: false,
+          wickUpColor: '#089981',
+          wickDownColor: '#f23645',
         })
         candlestickSeriesRef.current.setData(data)
 
