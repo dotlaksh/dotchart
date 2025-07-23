@@ -147,6 +147,10 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
             type: 'volume',
           },
           priceScaleId: 'volume',
+        })
+        
+        // Configure the volume price scale
+        chartRef.current.priceScale('volume').applyOptions({
           scaleMargins: {
             top: 0.8,
             bottom: 0,
