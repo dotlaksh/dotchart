@@ -7,7 +7,6 @@ import midcapData from '../public/midcap.json';
 export const stockCategories = [
     
 
-  { name: 'MidCaps', data: midcapData },
   { name: 'SmallCaps', data: smallcapData },
   { name: 'MicroCaps', data: microcapData }
   
