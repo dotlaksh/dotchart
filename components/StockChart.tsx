@@ -75,29 +75,6 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
       }
     }
 
-    // 21-period Exponential Moving Average
-    const calculateExponentialMovingAverage = (data: ChartData[], length: number) => {
-      const result: { time: string, value: number }[] = []
-      const multiplier = 2 / (length + 1)
-      let ema = data[0].close // Start with first close price
-      
-      for (let i = 0; i < data.length; i++) {
-        if (i === 0) {
-          ema = data[i].close
-        } else {
-          ema = (data[i].close * multiplier) + (ema * (1 - multiplier))
-        }
-        
-        result.push({
-          time: data[i].time,
-          value: +ema.toFixed(2),
-        })
-      }
-      return result
-    }
-
-    const emaLength = 21 // 21-period EMA
-
     const initChart = () => {
       if (chartContainerRef.current && data.length > 0) {
         const chartOptions = {
@@ -111,7 +88,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           },
           timeScale: {
             timeVisible: true,
-            rightOffset: 10,
+            rightOffset: 5,
             minBarSpacing: 3,
           },
           width: chartContainerRef.current.clientWidth,
@@ -132,15 +109,6 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           downColor: '#f23645',
         })
         candlestickSeriesRef.current.setData(data)
-        
-        // 21-period Exponential Moving Average on main pane
-        const emaData = calculateExponentialMovingAverage(data, emaLength)
-        maSeriesRef.current = chartRef.current.addLineSeries({
-          color: '#eab308', // yellow
-          lineWidth: 1,
-          priceLineVisible: false
-        })
-        maSeriesRef.current.setData(emaData)
 
         // Volume series on separate pane at bottom
         volumeSeriesRef.current = chartRef.current.addHistogramSeries({
