@@ -50,7 +50,7 @@ const ThemeToggle: React.FC = () => {
 const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   const chartContainerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<IChartApi | null>(null)
-  const candlestickSeriesRef = useRef<ISeriesApi<"Bar"> | null>(null)
+  const candlestickSeriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null)
   const volumeSeriesRef = useRef<ISeriesApi<'Histogram'> | null>(null)
   const maSeriesRef = useRef<ISeriesApi<'Line'> | null>(null)
   const [data, setData] = useState<ChartData[]>([])
