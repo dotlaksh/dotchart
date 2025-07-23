@@ -332,9 +332,9 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                 </div>
 
                 {/* Center - Category selector and interval buttons */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-center">
                   <select
-                    className="border border-muted-foreground/20 rounded px-2 py-1 text-xs bg-background"
+                    className="border border-muted-foreground/20 rounded py-1 text-xs bg-background"
                     value={currentCategoryIndex}
                     onChange={(e) => handleCategoryChange(Number(e.target.value))}
                   >
