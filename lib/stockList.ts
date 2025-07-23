@@ -2,14 +2,14 @@ import niftyData from '../public/nifty.json';
 
 import smallcapData from '../public/smallcap.json';
 import microcapData from '../public/microcap.json';
-import midcapData from '../public/midcap.json';
+import othersData from '../public/others.json';
 
 export const stockCategories = [
     
 
   { name: 'SmallCaps', data: smallcapData },
-  { name: 'MicroCaps', data: microcapData }
-  
+  { name: 'MicroCaps', data: microcapData },
+  { name: 'Others', data: othersData }
 ];
 
 export type Stock = {
