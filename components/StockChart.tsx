@@ -288,7 +288,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
             
             {/* Single row layout for all controls */}
             <div className="bg-background border-muted-foreground/20">
-              <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center justify-between gap-2">
                 {/* Left side - Theme toggle and fullscreen (hide fullscreen on small screens) */}
         
 
