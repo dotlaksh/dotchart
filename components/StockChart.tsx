@@ -288,12 +288,12 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
             
             {/* Single row layout for all controls */}
             <div className="bg-background border-muted-foreground/20">
-              <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center justify-between">
                 {/* Left side - Theme toggle and fullscreen (hide fullscreen on small screens) */}
         
 
                 {/* Center - Category selector and interval buttons */}
-                <div className="flex items-center gap-2">
+                <div className="flex gap-2">
                   <select
                     className="border border-muted-foreground/20 rounded py-1 text-xs bg-background"
                     value={currentCategoryIndex}
