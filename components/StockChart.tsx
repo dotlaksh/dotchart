@@ -290,17 +290,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
             <div className="bg-background border-muted-foreground/20">
               <div className="flex items-center justify-between gap-4">
                 {/* Left side - Theme toggle and fullscreen (hide fullscreen on small screens) */}
-                <div className="flex items-center gap-2">
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    onClick={toggleFullscreen} 
-                    aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
-                    className="hidden sm:flex"
-                  >
-                    {isFullscreen ? <Minimize2 className="h-3 w-3" /> : <Maximize2 className="h-3 w-3" />}
-                  </Button>
-                </div>
+        
 
                 {/* Center - Category selector and interval buttons */}
                 <div className="flex items-center gap-2">
