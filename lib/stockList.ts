@@ -1,7 +1,7 @@
 
 import smallcapData from '../public/smallcap.json';
 import microcapData from '../public/microcap.json';
-import microcapData from '../public/ipo.json';
+import ipoData from '../public/ipo.json';
 
 
 export const stockCategories = [
