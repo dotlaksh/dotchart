@@ -1,9 +1,12 @@
 [
   {
-    "Symbol": "AADHARHFC"
+    "Symbol": "ACMESOLAR"
   },
   {
-    "Symbol": "ACMESOLAR"
+    "Symbol": "CPPLUS"
+  },
+  {
+    "Symbol": "ADVANCE"
   },
   {
     "Symbol": "AEGISVOPAK"
@@ -15,16 +18,16 @@
     "Symbol": "AJAXENGG"
   },
   {
-    "Symbol": "AFIL"
+    "Symbol": "ALLTIME"
   },
   {
-    "Symbol": "AKUMS"
+    "Symbol": "ARSSBL"
   },
   {
-    "Symbol": "ABDL"
+    "Symbol": "AHCL"
   },
   {
-    "Symbol": "PARKHOTELS"
+    "Symbol": "ANTHEM"
   },
   {
     "Symbol": "ARISINFRA"
@@ -33,16 +36,13 @@
     "Symbol": "ARKADE"
   },
   {
-    "Symbol": "ASKAUTOLTD"
-  },
-  {
     "Symbol": "ATHERENERG"
   },
   {
-    "Symbol": "AWFIS"
+    "Symbol": "ATLANTAELE"
   },
   {
-    "Symbol": "AZAD"
+    "Symbol": "BMWVENTLTD"
   },
   {
     "Symbol": "STYLEBAAZA"
@@ -51,46 +51,31 @@
     "Symbol": "BAJAJHFL"
   },
   {
-    "Symbol": "BANSALWIRE"
-  },
-  {
     "Symbol": "BELRISE"
   },
   {
-    "Symbol": "BHARTIHEXA"
+    "Symbol": "BLACKBUCK"
   },
   {
-    "Symbol": "BLSE"
-  },
-  {
-    "Symbol": "BLUEJET"
+    "Symbol": "BLUESTONE"
   },
   {
     "Symbol": "FIRSTCRY"
   },
   {
-    "Symbol": "CAPITALSFB"
+    "Symbol": "BRIGHOTEL"
   },
   {
     "Symbol": "CARRARO"
   },
   {
-    "Symbol": "CEIGALL"
-  },
-  {
-    "Symbol": "CELLO"
-  },
-  {
     "Symbol": "CEWATER"
   },
   {
-    "Symbol": "MUFTI"
+    "Symbol": "CRIZAC"
   },
   {
     "Symbol": "DAMCAPITAL"
-  },
-  {
-    "Symbol": "DEEDEV"
   },
   {
     "Symbol": "DBEIL"
@@ -102,88 +87,73 @@
     "Symbol": "DIFFNKG"
   },
   {
-    "Symbol": "DOMS"
+    "Symbol": "AGARWALEYE"
   },
   {
-    "Symbol": "AGARWALEYE"
+    "Symbol": "EPACKPEB"
   },
   {
     "Symbol": "ECOSMOBLTY"
   },
   {
-    "Symbol": "EMCURE"
-  },
-  {
-    "Symbol": "ENTERO"
+    "Symbol": "ELLEN"
   },
   {
     "Symbol": "EIEL"
   },
   {
-    "Symbol": "EPACK"
+    "Symbol": "EUROPRATIK"
   },
   {
-    "Symbol": "ESAFSFB"
+    "Symbol": "FABTECH"
   },
   {
-    "Symbol": "EXICOM"
+    "Symbol": "GKENERGY"
   },
   {
-    "Symbol": "FEDFINA"
-  },
-  {
-    "Symbol": "FLAIR"
+    "Symbol": "EBGNG"
   },
   {
     "Symbol": "GALAPREC"
   },
   {
-    "Symbol": "GANDHAR"
+    "Symbol": "GANESHCP"
   },
   {
     "Symbol": "GARUDA"
   },
   {
+    "Symbol": "GEMAROMA"
+  },
+  {
+    "Symbol": "GLOBECIVIL"
+  },
+  {
+    "Symbol": "GLOTTIS"
+  },
+  {
     "Symbol": "GODAVARIB"
   },
   {
-    "Symbol": "GODIGIT"
-  },
-  {
-    "Symbol": "GOPAL"
-  },
-  {
-    "Symbol": "GPTHEALTH"
-  },
-  {
-    "Symbol": "HAPPYFORGE"
+    "Symbol": "HDBFS"
   },
   {
     "Symbol": "HEXT"
   },
   {
-    "Symbol": "HONASA"
+    "Symbol": "HILINFRA"
   },
   {
     "Symbol": "HYUNDAI"
   },
   {
-    "Symbol": "INDGN"
-  },
-  {
-    "Symbol": "IREDA"
-  },
-  {
-    "Symbol": "INDIASHLTR"
+    "Symbol": "INDIQUBE"
   },
   {
     "Symbol": "INDOFARM"
   },
   {
-    "Symbol": "INNOVACAP"
-  },
-  {
-    "Symbol": "INOXINDIA"
+    "Symbol": "IGCL"
   },
   {
     "Symbol": "INTERARCH"
@@ -195,37 +165,40 @@
     "Symbol": "IKS"
   },
   {
-    "Symbol": "JSFB"
+    "Symbol": "IVALUE"
   },
   {
-    "Symbol": "JGCHEM"
+    "Symbol": "JSWCEMENT"
   },
   {
-    "Symbol": "JNKINDIA"
+    "Symbol": "JAINREC"
   },
   {
-    "Symbol": "JUNIPER"
-  },
-  {
-    "Symbol": "JYOTICNC"
+    "Symbol": "JARO"
   },
   {
     "Symbol": "KRN"
   },
   {
-    "Symbol": "KRONOX"
+    "Symbol": "KALPATARU"
   },
   {
     "Symbol": "KROSS"
   },
   {
-    "Symbol": "KRYSTAL"
+    "Symbol": "LGEINDIA"
   },
   {
     "Symbol": "LAXMIDENTL"
   },
   {
-    "Symbol": "IXIGO"
+    "Symbol": "LAXMIINDIA"
+  },
+  {
+    "Symbol": "THELEELA"
+  },
+  {
+    "Symbol": "MBEL"
   },
   {
     "Symbol": "MAMATA"
@@ -234,31 +207,16 @@
     "Symbol": "MANBA"
   },
   {
-    "Symbol": "MEDIASSIST"
+    "Symbol": "MEIL"
   },
   {
-    "Symbol": "MOTISONS"
-  },
-  {
-    "Symbol": "MUKKA"
-  },
-  {
-    "Symbol": "MUTHOOTMF"
+    "Symbol": "NTPCGREEN"
   },
   {
     "Symbol": "NIVABUPA"
   },
   {
     "Symbol": "NORTHARC"
-  },
-  {
-    "Symbol": "NOVAAGRI"
-  },
-  {
-    "Symbol": "NTPCGREEN"
-  },
-  {
-    "Symbol": "OLAELEC"
   },
   {
     "Symbol": "MOBIKWIK"
@@ -270,13 +228,13 @@
     "Symbol": "OSWALPUMPS"
   },
   {
-    "Symbol": "PLATIND"
-  },
-  {
     "Symbol": "PNGJL"
   },
   {
-    "Symbol": "PVSL"
+    "Symbol": "PACEDIGITK"
+  },
+  {
+    "Symbol": "PATELRMART"
   },
   {
     "Symbol": "PREMIERENE"
@@ -291,10 +249,10 @@
     "Symbol": "QPOWER"
   },
   {
-    "Symbol": "RPTECH"
+    "Symbol": "REGAAL"
   },
   {
-    "Symbol": "RKSWAMY"
+    "Symbol": "SAATVIKGL"
   },
   {
     "Symbol": "SAGILITY"
@@ -303,16 +261,13 @@
     "Symbol": "SAILIFE"
   },
   {
+    "Symbol": "SAMBHV"
+  },
+  {
     "Symbol": "SANATHAN"
   },
   {
-    "Symbol": "SANSTAR"
-  },
-  {
     "Symbol": "SSDL"
-  },
-  {
-    "Symbol": "THELEELA"
   },
   {
     "Symbol": "SCODATUBES"
@@ -321,7 +276,28 @@
     "Symbol": "SENORES"
   },
   {
+    "Symbol": "STYL"
+  },
+  {
+    "Symbol": "SHANTIGOLD"
+  },
+  {
     "Symbol": "BALAJEE"
+  },
+  {
+    "Symbol": "SHREEJISPG"
+  },
+  {
+    "Symbol": "SHRINGARMS"
+  },
+  {
+    "Symbol": "SMARTWORKS"
+  },
+  {
+    "Symbol": "SOLARWORLD"
+  },
+  {
+    "Symbol": "LOTUSDEV"
   },
   {
     "Symbol": "STALLION"
@@ -330,22 +306,13 @@
     "Symbol": "SGLTL"
   },
   {
-    "Symbol": "STANLEY"
-  },
-  {
-    "Symbol": "SURAJEST"
-  },
-  {
     "Symbol": "SURAKSHA"
   },
   {
     "Symbol": "SWIGGY"
   },
   {
-    "Symbol": "TATATECH"
-  },
-  {
-    "Symbol": "TBOTEK"
+    "Symbol": "TATACAP"
   },
   {
     "Symbol": "TOLINS"
@@ -354,30 +321,42 @@
     "Symbol": "TRANSRAILL"
   },
   {
+    "Symbol": "TRAVELFOOD"
+  },
+  {
+    "Symbol": "TRUALT"
+  },
+  {
     "Symbol": "UNIECOM"
   },
   {
     "Symbol": "UNIMECH"
   },
   {
+    "Symbol": "URBANCO"
+  },
+  {
+    "Symbol": "VMSTMT"
+  },
+  {
     "Symbol": "VENTIVE"
   },
   {
-    "Symbol": "VSTL"
+    "Symbol": "VIKRAMSOLR"
+  },
+  {
+    "Symbol": "VIKRAN"
   },
   {
     "Symbol": "VMM"
   },
   {
-    "Symbol": "VRAJ"
-  },
-  {
     "Symbol": "WAAREEENER"
   },
   {
-    "Symbol": "WCIL"
+    "Symbol": "WEWORK"
   },
   {
-    "Symbol": "BLACKBUCK"
+    "Symbol": "WCIL"
   }
 ]
