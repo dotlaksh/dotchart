@@ -50,7 +50,7 @@ const ThemeToggle: React.FC = () => {
 const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   const chartContainerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<IChartApi | null>(null)
-  const lineSeriesRef = useRef<ISeriesApi<"Line"> | null>(null)
+  const barSeriesRef = useRef<ISeriesApi<"Bar"> | null>(null)
   const volumeSeriesRef = useRef<ISeriesApi<'Histogram'> | null>(null)
   const maSeriesRef = useRef<ISeriesApi<'Line'> | null>(null)
   const [data, setData] = useState<ChartData[]>([])
@@ -103,16 +103,14 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
 
         chartRef.current = createChart(chartContainerRef.current, chartOptions)
 
-        // Line series on main pane
-        lineSeriesRef.current = chartRef.current.addLineSeries({
-          color: '#089981',
-          lineWidth: 2,
+        // Bar series on main pane (without open price)
+        barSeriesRef.current = chartRef.current.addBarSeries({
+          upColor: '#089981',
+          downColor: '#f23645',
+          thinBars: false,
+          openVisible: false,
         })
-        const lineData = data.map(item => ({
-          time: item.time,
-          value: item.close
-        }))
-        lineSeriesRef.current.setData(lineData)
+        barSeriesRef.current.setData(data)
 
         // Volume series on separate pane at bottom
         volumeSeriesRef.current = chartRef.current.addHistogramSeries({
