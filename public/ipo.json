@@ -1,362 +1,602 @@
 [
   {
+    "Company Name": "ACME Solar Holdings Ltd.",
+    "Industry": "Power",
     "Symbol": "ACMESOLAR"
   },
   {
+    "Company Name": "Aditya Infotech Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "CPPLUS"
   },
   {
+    "Company Name": "Advance Agrolife Ltd.",
+    "Industry": "Chemicals",
     "Symbol": "ADVANCE"
   },
   {
+    "Company Name": "Aegis Vopak Terminals Ltd.",
+    "Industry": "Oil Gas & Consumable Fuels",
     "Symbol": "AEGISVOPAK"
   },
   {
+    "Company Name": "Afcons Infrastructure Ltd.",
+    "Industry": "Construction",
     "Symbol": "AFCONS"
   },
   {
+    "Company Name": "Ajax Engineering Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "AJAXENGG"
   },
   {
+    "Company Name": "All Time Plastics Ltd.",
+    "Industry": "Consumer Durables",
     "Symbol": "ALLTIME"
   },
   {
+    "Company Name": "Anand Rathi Share and Stock Brokers Ltd.",
+    "Industry": "Financial Services",
     "Symbol": "ARSSBL"
   },
   {
+    "Company Name": "Anlon Healthcare Ltd.",
+    "Industry": "Healthcare",
     "Symbol": "AHCL"
   },
   {
+    "Company Name": "Anthem Biosciences Ltd.",
+    "Industry": "Healthcare",
     "Symbol": "ANTHEM"
   },
   {
+    "Company Name": "Arisinfra Solutions Ltd.",
+    "Industry": "Construction Materials",
     "Symbol": "ARISINFRA"
   },
   {
+    "Company Name": "Arkade Developers Ltd.",
+    "Industry": "Realty",
     "Symbol": "ARKADE"
   },
   {
+    "Company Name": "Ather Energy Ltd.",
+    "Industry": "Automobile and Auto Components",
     "Symbol": "ATHERENERG"
   },
   {
+    "Company Name": "Atlanta Electricals Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "ATLANTAELE"
   },
   {
+    "Company Name": "BMW Ventures Ltd.",
+    "Industry": "Metals & Mining",
     "Symbol": "BMWVENTLTD"
   },
   {
+    "Company Name": "Baazar Style Retail Ltd.",
+    "Industry": "Consumer Services",
     "Symbol": "STYLEBAAZA"
   },
   {
+    "Company Name": "Bajaj Housing Finance Ltd.",
+    "Industry": "Financial Services",
     "Symbol": "BAJAJHFL"
   },
   {
+    "Company Name": "Belrise Industries Ltd.",
+    "Industry": "Automobile and Auto Components",
     "Symbol": "BELRISE"
   },
   {
+    "Company Name": "Blackbuck Ltd.",
+    "Industry": "Services",
     "Symbol": "BLACKBUCK"
   },
   {
+    "Company Name": "BlueStone Jewellery and Lifestyle Ltd.",
+    "Industry": "Consumer Durables",
     "Symbol": "BLUESTONE"
   },
   {
+    "Company Name": "Brainbees Solutions Ltd.",
+    "Industry": "Consumer Services",
     "Symbol": "FIRSTCRY"
   },
   {
+    "Company Name": "Brigade Hotel Ventures Ltd.",
+    "Industry": "Consumer Services",
     "Symbol": "BRIGHOTEL"
   },
   {
+    "Company Name": "Carraro India Ltd.",
+    "Industry": "Automobile and Auto Components",
     "Symbol": "CARRARO"
   },
   {
+    "Company Name": "Concord Enviro Systems Ltd.",
+    "Industry": "Utilities",
     "Symbol": "CEWATER"
   },
   {
+    "Company Name": "Crizac Ltd.",
+    "Industry": "Consumer Services",
     "Symbol": "CRIZAC"
   },
   {
+    "Company Name": "Dam Capital Advisors Ltd.",
+    "Industry": "Financial Services",
     "Symbol": "DAMCAPITAL"
   },
   {
+    "Company Name": "Deepak Builders & Engineers India Ltd.",
+    "Industry": "Construction",
     "Symbol": "DBEIL"
   },
   {
+    "Company Name": "Denta Water and Infra Solutions Ltd.",
+    "Industry": "Utilities",
     "Symbol": "DENTA"
   },
   {
+    "Company Name": "Diffusion Engineers Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "DIFFNKG"
   },
   {
+    "Company Name": "Dr. Agarwal's Health Care Ltd.",
+    "Industry": "Healthcare",
     "Symbol": "AGARWALEYE"
   },
   {
+    "Company Name": "EPack Prefab Technologies Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "EPACKPEB"
   },
   {
+    "Company Name": "Ecos (India) Mobility & Hospitality Ltd.",
+    "Industry": "Services",
     "Symbol": "ECOSMOBLTY"
   },
   {
+    "Company Name": "Ellenbarrie Industrial Gases Ltd.",
+    "Industry": "Chemicals",
     "Symbol": "ELLEN"
   },
   {
+    "Company Name": "Enviro Infra Engineers Ltd.",
+    "Industry": "Utilities",
     "Symbol": "EIEL"
   },
   {
+    "Company Name": "Euro Pratik Sales Ltd.",
+    "Industry": "Consumer Durables",
     "Symbol": "EUROPRATIK"
   },
   {
+    "Company Name": "Fabtech Technologies Ltd.",
+    "Industry": "Healthcare",
     "Symbol": "FABTECH"
   },
   {
+    "Company Name": "GK Energy Ltd.",
+    "Industry": "Construction",
     "Symbol": "GKENERGY"
   },
   {
+    "Company Name": "GNG Electronics Ltd.",
+    "Industry": "Information Technology",
     "Symbol": "EBGNG"
   },
   {
+    "Company Name": "Gala Precision Engineering Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "GALAPREC"
   },
   {
+    "Company Name": "Ganesh Consumer Products Ltd.",
+    "Industry": "Fast Moving Consumer Goods",
     "Symbol": "GANESHCP"
   },
   {
+    "Company Name": "Garuda Construction and Engineering Ltd.",
+    "Industry": "Construction",
     "Symbol": "GARUDA"
   },
   {
+    "Company Name": "Gem Aromatics Ltd.",
+    "Industry": "Chemicals",
     "Symbol": "GEMAROMA"
   },
   {
+    "Company Name": "Globe Civil Projects Ltd.",
+    "Industry": "Construction",
     "Symbol": "GLOBECIVIL"
   },
   {
+    "Company Name": "Glottis Ltd.",
+    "Industry": "Services",
     "Symbol": "GLOTTIS"
   },
   {
+    "Company Name": "Godavari Biorefineries Ltd.",
+    "Industry": "Fast Moving Consumer Goods",
     "Symbol": "GODAVARIB"
   },
   {
+    "Company Name": "HDB Financial Services Ltd.",
+    "Industry": "Financial Services",
     "Symbol": "HDBFS"
   },
   {
+    "Company Name": "Hexaware Technologies Ltd.",
+    "Industry": "Information Technology",
     "Symbol": "HEXT"
   },
   {
+    "Company Name": "Highway Infrastructure Ltd.",
+    "Industry": "Services",
     "Symbol": "HILINFRA"
   },
   {
+    "Company Name": "Hyundai Motor India Ltd.",
+    "Industry": "Automobile and Auto Components",
     "Symbol": "HYUNDAI"
   },
   {
+    "Company Name": "Indiqube Spaces Ltd.",
+    "Industry": "Services",
     "Symbol": "INDIQUBE"
   },
   {
+    "Company Name": "Indo Farm Equipment Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "INDOFARM"
   },
   {
+    "Company Name": "Indogulf Cropsciences Ltd.",
+    "Industry": "Chemicals",
     "Symbol": "IGCL"
   },
   {
+    "Company Name": "Interarch Building Solutions Ltd.",
+    "Industry": "Construction",
     "Symbol": "INTERARCH"
   },
   {
+    "Company Name": "International Gemmological Institute (India) Ltd.",
+    "Industry": "Services",
     "Symbol": "IGIL"
   },
   {
+    "Company Name": "Inventurus Knowledge Solutions Ltd.",
+    "Industry": "Information Technology",
     "Symbol": "IKS"
   },
   {
+    "Company Name": "Ivalue Infosolutions Ltd.",
+    "Industry": "Information Technology",
     "Symbol": "IVALUE"
   },
   {
+    "Company Name": "JSW Cement Ltd.",
+    "Industry": "Construction Materials",
     "Symbol": "JSWCEMENT"
   },
   {
+    "Company Name": "Jain Resource Recycling Ltd.",
+    "Industry": "Metals & Mining",
     "Symbol": "JAINREC"
   },
   {
+    "Company Name": "Jaro Institute of Technology Management and Research Ltd.",
+    "Industry": "Consumer Services",
     "Symbol": "JARO"
   },
   {
+    "Company Name": "KRN Heat Exchanger and Refrigeration Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "KRN"
   },
   {
+    "Company Name": "Kalpataru Ltd.",
+    "Industry": "Realty",
     "Symbol": "KALPATARU"
   },
   {
+    "Company Name": "Kross Ltd.",
+    "Industry": "Automobile and Auto Components",
     "Symbol": "KROSS"
   },
   {
+    "Company Name": "LG Electronics India Ltd.",
+    "Industry": "Consumer Durables",
     "Symbol": "LGEINDIA"
   },
   {
+    "Company Name": "Laxmi Dental Ltd.",
+    "Industry": "Healthcare",
     "Symbol": "LAXMIDENTL"
   },
   {
+    "Company Name": "Laxmi India Finance Ltd.",
+    "Industry": "Financial Services",
     "Symbol": "LAXMIINDIA"
   },
   {
+    "Company Name": "Leela Palaces Hotels & Resorts Ltd.",
+    "Industry": "Consumer Services",
     "Symbol": "THELEELA"
   },
   {
+    "Company Name": "M & B Engineering Ltd.",
+    "Industry": "Construction",
     "Symbol": "MBEL"
   },
   {
+    "Company Name": "Mamata Machinery Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "MAMATA"
   },
   {
+    "Company Name": "Manba Finance Ltd.",
+    "Industry": "Financial Services",
     "Symbol": "MANBA"
   },
   {
+    "Company Name": "Mangal Electrical Industries Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "MEIL"
   },
   {
+    "Company Name": "NTPC Green Energy Ltd.",
+    "Industry": "Power",
     "Symbol": "NTPCGREEN"
   },
   {
+    "Company Name": "Niva Bupa Health Insurance Company Ltd.",
+    "Industry": "Financial Services",
     "Symbol": "NIVABUPA"
   },
   {
+    "Company Name": "Northern Arc Capital Ltd.",
+    "Industry": "Financial Services",
     "Symbol": "NORTHARC"
   },
   {
+    "Company Name": "One Mobikwik Systems Ltd.",
+    "Industry": "Financial Services",
     "Symbol": "MOBIKWIK"
   },
   {
+    "Company Name": "Orient Technologies Ltd.",
+    "Industry": "Information Technology",
     "Symbol": "ORIENTTECH"
   },
   {
+    "Company Name": "Oswal Pumps Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "OSWALPUMPS"
   },
   {
+    "Company Name": "P N Gadgil Jewellers Ltd.",
+    "Industry": "Consumer Durables",
     "Symbol": "PNGJL"
   },
   {
+    "Company Name": "Pace Digitek Ltd.",
+    "Industry": "Telecommunication",
     "Symbol": "PACEDIGITK"
   },
   {
+    "Company Name": "Patel Retail Ltd.",
+    "Industry": "Consumer Services",
     "Symbol": "PATELRMART"
   },
   {
+    "Company Name": "Premier Energies Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "PREMIERENE"
   },
   {
+    "Company Name": "Prostarm Info Systems Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "PROSTARM"
   },
   {
+    "Company Name": "Quadrant Future Tek Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "QUADFUTURE"
   },
   {
+    "Company Name": "Quality Power Electrical Equipments Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "QPOWER"
   },
   {
+    "Company Name": "Regaal Resources Ltd.",
+    "Industry": "Fast Moving Consumer Goods",
     "Symbol": "REGAAL"
   },
   {
+    "Company Name": "Saatvik Green Energy Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "SAATVIKGL"
   },
   {
+    "Company Name": "Sagility Ltd.",
+    "Industry": "Information Technology",
     "Symbol": "SAGILITY"
   },
   {
+    "Company Name": "Sai Life Sciences Ltd.",
+    "Industry": "Healthcare",
     "Symbol": "SAILIFE"
   },
   {
+    "Company Name": "Sambhv Steel Tubes Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "SAMBHV"
   },
   {
+    "Company Name": "Sanathan Textiles Ltd.",
+    "Industry": "Textiles",
     "Symbol": "SANATHAN"
   },
   {
+    "Company Name": "Saraswati Saree Depot Ltd.",
+    "Industry": "Textiles",
     "Symbol": "SSDL"
   },
   {
+    "Company Name": "Scoda Tubes Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "SCODATUBES"
   },
   {
+    "Company Name": "Senores Pharmaceuticals Ltd.",
+    "Industry": "Healthcare",
     "Symbol": "SENORES"
   },
   {
+    "Company Name": "Seshaasai Technologies Ltd.",
+    "Industry": "Financial Services",
     "Symbol": "STYL"
   },
   {
+    "Company Name": "Shanti Gold International Ltd.",
+    "Industry": "Consumer Durables",
     "Symbol": "SHANTIGOLD"
   },
   {
+    "Company Name": "Shree Tirupati Balajee Agro Trading Company Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "BALAJEE"
   },
   {
+    "Company Name": "Shreeji Shipping Global Ltd.",
+    "Industry": "Services",
     "Symbol": "SHREEJISPG"
   },
   {
+    "Company Name": "Shringar House of Mangalsutra Ltd.",
+    "Industry": "Consumer Durables",
     "Symbol": "SHRINGARMS"
   },
   {
+    "Company Name": "Smartworks Coworking Spaces Ltd.",
+    "Industry": "Services",
     "Symbol": "SMARTWORKS"
   },
   {
+    "Company Name": "Solarworld Energy Solutions Ltd.",
+    "Industry": "Construction",
     "Symbol": "SOLARWORLD"
   },
   {
+    "Company Name": "Sri Lotus Developers and Realty Ltd.",
+    "Industry": "Realty",
     "Symbol": "LOTUSDEV"
   },
   {
+    "Company Name": "Stallion India Fluorochemicals Ltd.",
+    "Industry": "Chemicals",
     "Symbol": "STALLION"
   },
   {
+    "Company Name": "Standard Glass Lining Technology Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "SGLTL"
   },
   {
+    "Company Name": "Suraksha Diagnostic Ltd.",
+    "Industry": "Healthcare",
     "Symbol": "SURAKSHA"
   },
   {
+    "Company Name": "Swiggy Ltd.",
+    "Industry": "Consumer Services",
     "Symbol": "SWIGGY"
   },
   {
+    "Company Name": "Tata Capital Ltd.",
+    "Industry": "Financial Services",
     "Symbol": "TATACAP"
   },
   {
+    "Company Name": "Tolins Tyres Ltd.",
+    "Industry": "Automobile and Auto Components",
     "Symbol": "TOLINS"
   },
   {
+    "Company Name": "Transrail Lighting Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "TRANSRAILL"
   },
   {
+    "Company Name": "Travel Food Services Ltd.",
+    "Industry": "Consumer Services",
     "Symbol": "TRAVELFOOD"
   },
   {
+    "Company Name": "TruAlt Bioenergy Ltd.",
+    "Industry": "Fast Moving Consumer Goods",
     "Symbol": "TRUALT"
   },
   {
+    "Company Name": "Unicommerce Esolutions Ltd.",
+    "Industry": "Information Technology",
     "Symbol": "UNIECOM"
   },
   {
+    "Company Name": "Unimech Aerospace and Manufacturing Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "UNIMECH"
   },
   {
+    "Company Name": "Urban Company Ltd.",
+    "Industry": "Consumer Services",
     "Symbol": "URBANCO"
   },
   {
+    "Company Name": "VMS TMT Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "VMSTMT"
   },
   {
+    "Company Name": "Ventive Hospitality Ltd.",
+    "Industry": "Consumer Services",
     "Symbol": "VENTIVE"
   },
   {
+    "Company Name": "Vikram Solar Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "VIKRAMSOLR"
   },
   {
+    "Company Name": "Vikran Engineering Ltd.",
+    "Industry": "Construction",
     "Symbol": "VIKRAN"
   },
   {
+    "Company Name": "Vishal Mega Mart Ltd.",
+    "Industry": "Consumer Services",
     "Symbol": "VMM"
   },
   {
+    "Company Name": "Waaree Energies Ltd.",
+    "Industry": "Capital Goods",
     "Symbol": "WAAREEENER"
   },
   {
+    "Company Name": "WeWork India Management Ltd.",
+    "Industry": "Services",
     "Symbol": "WEWORK"
   },
   {
+    "Company Name": "Western Carriers (India) Ltd.",
+    "Industry": "Services",
     "Symbol": "WCIL"
   }
 ]
