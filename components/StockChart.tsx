@@ -79,8 +79,8 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
       if (chartContainerRef.current && data.length > 0) {
         const chartOptions = {
           layout: {
-            background: { type: ColorType.Solid, color: theme === 'dark' ? '#09090b' : 'white' },
-            textColor: theme === 'dark' ? '#E5E7EB' : '#09090b',
+            background: { type: ColorType.Solid, color: '#09090b' },
+            textColor: '#E5E7EB',
           },
           grid: {
             vertLines: { visible: false },
@@ -105,8 +105,8 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
 
         // Bar series on main pane (without open price)
         barSeriesRef.current = chartRef.current.addBarSeries({
-          upColor: '#089981',
-          downColor: '#f23645',
+          upColor: '#26a69a',
+          downColor: '#ef5350',
           thinBars: false,
           openVisible: false,
         })
@@ -114,7 +114,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
 
         // Volume series on separate pane at bottom
         volumeSeriesRef.current = chartRef.current.addHistogramSeries({
-          color: theme === 'dark' ? '#4B5563' : '#9CA3AF',
+          color: '#4B5563',
           priceFormat: {
             type: 'volume',
           },
@@ -135,7 +135,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           return {
             time: item.time,
             value: item.volume,
-            color: isUp ? '#089981' : '#f23645'
+            color: isUp ? '#26a69a' : '#ef5350'
           }
         })
         volumeSeriesRef.current.setData(volumeData)
