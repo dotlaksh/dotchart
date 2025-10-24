@@ -105,9 +105,9 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
 
         // Bar series on main pane (without open price)
         barSeriesRef.current = chartRef.current.addBarSeries({
-          upColor: '#26a69a',
-          downColor: '#ef5350',
-          thinBars: false,
+          upColor: '#24f709',
+          downColor: '#fb0707',
+          thinBars: true,
           openVisible: false,
         })
         barSeriesRef.current.setData(data)
@@ -135,7 +135,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           return {
             time: item.time,
             value: item.volume,
-            color: isUp ? '#26a69a' : '#ef5350'
+            color: isUp ? '#24f709' : '#fb0707'
           }
         })
         volumeSeriesRef.current.setData(volumeData)
