@@ -344,10 +344,11 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                     onClick={handleNext}
                     disabled={currentStockIndex === totalStocks - 1}
                     aria-label="Next stock"
-                    className="border-muted-foreground/20 p-1 h-7 flex items-center justify-center"
+                    className="border-muted-foreground/20 p-1 h-7 flex items-center justify-center ml-2"
                   >
                     <ChevronRight className="h-3 w-3" />
                   </Button>
+
 
                 </div>
               </div>
