@@ -1,12 +1,10 @@
 
-import smallcapData from '../public/smallcap.json';
-import microcapData from '../public/microcap.json';
+import niftyData from '../public/nifty.json';
 import ipoData from '../public/ipo.json';
 
 
 export const stockCategories = [
-  { name: 'SmallCaps', data: smallcapData },
-  { name: 'MicroCaps', data: microcapData },
+  { name: 'Nifty', data: niftyData },
   { name: 'IPO', data: ipoData }
 
 ];
