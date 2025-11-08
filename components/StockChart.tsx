@@ -124,7 +124,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         // Configure the volume price scale
         chartRef.current.priceScale('volume').applyOptions({
           scaleMargins: {
-            top: 0.8,
+            top: 0.7,
             bottom: 0,
           },
         })
@@ -194,7 +194,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         </div>
       ) : (
         <>
-          <div className="absolute top-0 left-0 z-10 bg-background/80 backdrop-blur-sm rounded-lg">
+          <div className="absolute top-0 left-0 z-0 bg-background/80 backdrop-blur-sm rounded-lg">
             <h3 className="text-md font-semibold">{symbol}</h3>
             {todayPrice !== null && priceChange !== null && (
               <div className="flex items-center text-sm mt-1">
