@@ -112,6 +112,14 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         })
         barSeriesRef.current.setData(data)
 
+        // Configure the price scale for the main series
+        chartRef.current.priceScale('right').applyOptions({
+          scaleMargins: {
+            top: 0.2,
+            bottom: 0.2,
+          },
+        })
+        
         // Volume series on separate pane at bottom
         volumeSeriesRef.current = chartRef.current.addHistogramSeries({
           color: '#4B5563',
