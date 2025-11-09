@@ -11,7 +11,7 @@ import clsx from "clsx"
 
 // INTERVAL BUTTONS
 const intervals: { label: string; value: string; range: string }[] = [
-  { label: 'D', value: '1d', range: '3mo' },
+  { label: 'D', value: '1d', range: '6mo' },
   { label: 'W', value: '1wk', range: '2y' },
   { label: 'M', value: '1mo', range: '10y' }
   ];
@@ -89,7 +89,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           timeScale: {
             timeVisible: true,
             rightOffset: 5,
-            minBarSpacing: 2,
+            minBarSpacing: 4,
           },
           width: chartContainerRef.current.clientWidth,
           height: chartContainerRef.current.clientHeight,
