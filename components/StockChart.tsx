@@ -246,10 +246,10 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   const [currentStockIndex, setCurrentStockIndex] = useState(0);
 
   const currentCategory = stockCategories[currentCategoryIndex];
-  const currentStock = {
+  const currentStock: StockData = {
     ...currentCategory.data[currentStockIndex],
     percentChange: (currentCategory.data[currentStockIndex] as StockData).PercentChange ?? (Math.random() * 10 - 5),
-  };
+  } as StockData;
   const totalStocks = currentCategory.data.length;
 
   const handleCategoryChange = (index: number) => {
