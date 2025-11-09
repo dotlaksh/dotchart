@@ -63,21 +63,17 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
       if (chartContainerRef.current && data.length > 0) {
         const chartOptions = {
           layout: {
-            background: { type: ColorType.Solid, color: theme === 'dark' ? '#09090b' : '#ffffff' },
-            textColor: theme === 'dark' ? '#E5E7EB' : '#1f2937',
+            background: { type: ColorType.Solid, color: '#09090b' },
+            textColor: '#E5E7EB',
           },
           grid: {
-            vertLines: { color: theme === 'dark' ? '#1f2937' : '#f3f4f6' },
-            horzLines: { color: theme === 'dark' ? '#1f2937' : '#f3f4f6' },
+            vertLines: { visible: false },
+            horzLines: { visible: false },
           },
           timeScale: {
             timeVisible: true,
             rightOffset: 5,
             minBarSpacing: 2,
-            borderColor: theme === 'dark' ? '#374151' : '#e5e7eb',
-          },
-          rightPriceScale: {
-            borderColor: theme === 'dark' ? '#374151' : '#e5e7eb',
           },
           width: chartContainerRef.current.clientWidth,
           height: chartContainerRef.current.clientHeight,
