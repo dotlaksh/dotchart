@@ -307,7 +307,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                 {/* First row - Category selector and interval buttons */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 md:gap-4">
                   <div className="flex items-center gap-2 md:gap-3 w-full sm:w-auto">
-                    <span className="text-xs md:text-sm font-medium text-muted-foreground whitespace-nowrap">Category:</span>
+                    <span className="text-sm md:text-sm font-medium text-muted-foreground whitespace-nowrap">Category:</span>
                     <select
                       className="border-2 border-border rounded-lg px-2 sm:px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm bg-background hover:border-primary transition-colors cursor-pointer font-medium shadow-sm flex-1 sm:flex-none"
                       value={currentCategoryIndex}
@@ -323,7 +323,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
 
                   {/* Interval buttons */}
                   <div className="flex items-center gap-2 md:gap-3 w-full sm:w-auto">
-                    <span className="text-xs md:text-sm font-medium text-muted-foreground whitespace-nowrap">Timeframe:</span>
+                    <span className="text-sm md:text-sm font-medium text-muted-foreground whitespace-nowrap">Timeframe:</span>
                     <div className="flex gap-1 md:gap-2 bg-background rounded-lg p-0.5 md:p-1 border-2 border-border shadow-sm flex-1 sm:flex-none">
                       {intervals.map((item) => (
                         <button
