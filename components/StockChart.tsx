@@ -112,14 +112,6 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         })
         barSeriesRef.current.setData(data)
 
-        // Configure the price scale for the main series
-        chartRef.current.priceScale('right').applyOptions({
-          scaleMargins: {
-            top: 0.2,
-            bottom: 0.2,
-          },
-        })
-        
         // Volume series on separate pane at bottom
         volumeSeriesRef.current = chartRef.current.addHistogramSeries({
           color: '#4B5563',
@@ -132,7 +124,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         // Configure the volume price scale
         chartRef.current.priceScale('volume').applyOptions({
           scaleMargins: {
-            top: 0.7,
+            top: 0.8,
             bottom: 0,
           },
         })
@@ -202,7 +194,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         </div>
       ) : (
         <>
-          <div className="absolute top-0 left-0 z-0 bg-background/80 backdrop-blur-sm rounded-lg">
+          <div className="absolute top-0 left-0 z-10 bg-background/80 backdrop-blur-sm rounded-lg p-1">
             <h3 className="text-md font-semibold">{symbol}</h3>
             {todayPrice !== null && priceChange !== null && (
               <div className="flex items-center text-sm mt-1">
@@ -287,7 +279,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   return (
     <div className="mt-10">
       <Card className="w-full max-w-2xl mx-auto">
-        <CardContent className="mt-5 mb-5 px-0"> 
+        <CardContent className="mt-5 mb-5">
           <div className="flex flex-col h-[500px]">
             <div className="flex-grow overflow-hidden mb-2">
               <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
