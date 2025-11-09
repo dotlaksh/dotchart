@@ -204,7 +204,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           <div className="absolute top-0 left-0 z-10 bg-background/80 backdrop-blur-sm rounded-lg">
             <h3 className="text-md font-semibold">{symbol}</h3>
             {todayPrice !== null && priceChange !== null && (
-              <div className="flex items-center text-sm mt-1">
+              <div className="flex items-center text-sm m-1">
                 <span className="font-medium mr-2">{todayPrice.toFixed(2)}</span>
                 <span className={`flex items-center ${priceChange >= 0 ? 'text-green-500' : 'text-red-500'}`}>
                   {priceChange >= 0 ? <ArrowUpRight className="w-3 h-3 mr-1" /> : <ArrowDownRight className="w-3 h-3 mr-1" />}
