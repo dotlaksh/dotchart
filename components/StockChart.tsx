@@ -201,7 +201,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         </div>
       ) : (
         <>
-          <div className="absolute top-0 left-0 z-10 bg-background/80 backdrop-blur-sm rounded-lg m-2">
+          <div className="absolute top-0 left-0 z-10 bg-background/80 backdrop-blur-sm rounded-lg mx-2">
             <h3 className="text-md font-semibold">{symbol}</h3>
             {todayPrice !== null && priceChange !== null && (
               <div className="flex items-center text-sm">
