@@ -295,7 +295,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
            {/* Two row layout for controls */}
 <div className="bg-background border-muted-foreground/20 space-y-2">
   {/* First row - Category selector and interval buttons */}
-  <div className="flex items-center justify-center gap-2">
+  <div className="flex items-center  gap-2">
     <select
       className="border border-muted-foreground/20 rounded py-1 text-xs bg-background"
       value={currentCategoryIndex}
@@ -329,29 +329,32 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   </div>
 
   {/* Second row - Navigation buttons */}
-  <div className="flex items-center justify-center gap-1">
-    <Button
-      variant="outline"
-      size="sm"
-      onClick={handlePrevious}
-      disabled={currentStockIndex === 0}
-      aria-label="Previous stock"
-      className="border-muted-foreground/20 p-1 h-7 flex items-center justify-center"
-    >
-      <ChevronLeft className="h-3 w-3" />
-    </Button>
-    
-    <Button
-      variant="outline"
-      size="sm"
-      onClick={handleNext}
-      disabled={currentStockIndex === totalStocks - 1}
-      aria-label="Next stock"
-      className="border-muted-foreground/20 p-1 h-7 flex items-center justify-center ml-2"
-    >
-      <ChevronRight className="h-3 w-3" />
-    </Button>
-  </div>
+  {/* Second row - Navigation buttons */}
+<div className="flex items-center gap-1">
+  <Button
+    variant="outline"
+    size="sm"
+    onClick={handlePrevious}
+    disabled={currentStockIndex === 0}
+    aria-label="Previous stock"
+    className="border-muted-foreground/20 px-2 h-7 flex items-center justify-center gap-1"
+  >
+    <ChevronLeft className="h-3 w-3" />
+    <span className="text-xs">Prev</span>
+  </Button>
+  
+  <Button
+    variant="outline"
+    size="sm"
+    onClick={handleNext}
+    disabled={currentStockIndex === totalStocks - 1}
+    aria-label="Next stock"
+    className="border-muted-foreground/20 px-2 h-7 flex items-center justify-center gap-1"
+  >
+    <span className="text-xs">Next</span>
+    <ChevronRight className="h-3 w-3" />
+  </Button>
+</div>
 </div>
           </div>
         </CardContent>
