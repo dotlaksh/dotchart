@@ -284,14 +284,13 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   };
 
  return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 py-4 md:py-12 px-2 sm:px-4">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 py-4 md:py-12">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-4 md:mb-8">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent mb-2 md:mb-3">
             Stock Market Dashboard
           </h1>
-          <p className="text-muted-foreground text-sm md:text-lg">Real-time market data and analytics</p>
         </div>
 
         {/* Main Card */}
