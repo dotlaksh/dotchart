@@ -129,6 +129,15 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           },
         })
         
+    barSeries.priceScale().applyOptions({
+      scaleMargins: {
+        top: 0.2,
+        bottom: 0.2,
+      },
+      borderColor: '#444444',
+      mode :1,
+    });
+        
         // Prepare volume data with color based on price movement
         const volumeData = data.map((item, index) => {
           const isUp = index > 0 ? item.close >= data[index - 1].close : true
