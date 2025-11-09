@@ -283,82 +283,108 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
     setStockInterval(selected.value);
   };
 
-  return (
-    <div className="mt-10">
-      <Card className="w-full max-w-2xl mx-auto">
-        <CardContent className="mt-5 mb-5 mx-0 px-0">
-          <div className="flex flex-col h-[500px]">
-            <div className="flex-grow overflow-hidden mb-2">
-              <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
+ return (
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 py-4 md:py-12 px-2 sm:px-4">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-4 md:mb-8">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent mb-2 md:mb-3">
+            Stock Market Dashboard
+          </h1>
+          <p className="text-muted-foreground text-sm md:text-lg">Real-time market data and analytics</p>
+        </div>
+
+        {/* Main Card */}
+        <Card className="border-2 shadow-2xl overflow-hidden backdrop-blur-sm bg-card/50">
+          <CardContent className="p-0">
+            <div className="flex flex-col">
+              {/* Chart Area */}
+              <div className="h-[400px] sm:h-[500px] md:h-[550px] p-3 sm:p-4 md:p-6">
+                <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
+              </div>
+              
+              {/* Controls Area */}
+              <div className="bg-muted/30 border-t-2 border-border p-3 sm:p-4 md:p-6 space-y-3 md:space-y-5">
+                {/* First row - Category selector and interval buttons */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 md:gap-4">
+                  <div className="flex items-center gap-2 md:gap-3 w-full sm:w-auto">
+                    <span className="text-xs md:text-sm font-medium text-muted-foreground whitespace-nowrap">Category:</span>
+                    <select
+                      className="border-2 border-border rounded-lg px-2 sm:px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm bg-background hover:border-primary transition-colors cursor-pointer font-medium shadow-sm flex-1 sm:flex-none"
+                      value={currentCategoryIndex}
+                      onChange={(e) => handleCategoryChange(Number(e.target.value))}
+                    >
+                      {stockCategories.map((category, index) => (
+                        <option key={index} value={index}>
+                          {category.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Interval buttons */}
+                  <div className="flex items-center gap-2 md:gap-3 w-full sm:w-auto">
+                    <span className="text-xs md:text-sm font-medium text-muted-foreground whitespace-nowrap">Timeframe:</span>
+                    <div className="flex gap-1 md:gap-2 bg-background rounded-lg p-0.5 md:p-1 border-2 border-border shadow-sm flex-1 sm:flex-none">
+                      {intervals.map((item) => (
+                        <button
+                          key={item.label}
+                          className={clsx(
+                            "px-3 sm:px-4 md:px-5 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-semibold transition-all duration-200 flex-1 sm:flex-none",
+                            stockRange === item.range && stockInterval === item.value
+                              ? "bg-primary text-primary-foreground shadow-md scale-105"
+                              : "bg-transparent text-foreground hover:bg-muted"
+                          )}
+                          onClick={() => handleIntervalClick(item)}
+                          aria-current={stockRange === item.range && stockInterval === item.value ? "page" : undefined}
+                        >
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Second row - Prev button on left, Next button on right */}
+                <div className="flex items-center justify-between pt-1 md:pt-2 gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handlePrevious}
+                    disabled={currentStockIndex === 0}
+                    aria-label="Previous stock"
+                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-3 sm:px-4 md:px-6 font-semibold shadow-sm disabled:opacity-40 text-xs sm:text-sm h-8 md:h-10"
+                  >
+                    <ChevronLeft className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
+                    <span className="hidden xs:inline">Previous</span>
+                    <span className="xs:hidden">Prev</span>
+                  </Button>
+                  
+                  <div className="text-center">
+                    <div className="text-xs md:text-sm text-muted-foreground mb-0.5 md:mb-1">Stock</div>
+                    <div className="text-sm md:text-lg font-bold">
+                      {currentStockIndex + 1} / {totalStocks}
+                    </div>
+                  </div>
+                  
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleNext}
+                    disabled={currentStockIndex === totalStocks - 1}
+                    aria-label="Next stock"
+                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-3 sm:px-4 md:px-6 font-semibold shadow-sm disabled:opacity-40 text-xs sm:text-sm h-8 md:h-10"
+                  >
+                    <span className="xs:hidden">Next</span>
+                    <span className="hidden xs:inline">Next</span>
+                    <ChevronRight className="h-3 w-3 md:h-4 md:w-4 ml-1 md:ml-2" />
+                  </Button>
+                </div>
+              </div>
             </div>
-            
-           {/* Two row layout for controls */}
-{/* Two row layout for controls */}
-<div className="bg-background border-muted-foreground/20 space-y-4 mx-2">
-  {/* First row - Category selector on left, interval buttons on right */}
-  <div className="flex items-center justify-between">
-    <select
-      className="border border-muted-foreground/20 rounded py-1 text-xs bg-background"
-      value={currentCategoryIndex}
-      onChange={(e) => handleCategoryChange(Number(e.target.value))}
-    >
-      {stockCategories.map((category, index) => (
-        <option key={index} value={index}>
-          {category.name}
-        </option>
-      ))}
-    </select>
-
-    {/* Interval buttons */}
-    <div className="flex gap-1">
-      {intervals.map((item) => (
-        <button
-          key={item.label}
-          className={clsx(
-            "px-3 py-1 rounded text-xs font-light border border-muted-foreground/20 hover:bg-muted transition-colors",
-            stockRange === item.range && stockInterval === item.value
-              ? "bg-primary text-primary-foreground"
-              : "bg-background text-foreground"
-          )}
-          onClick={() => handleIntervalClick(item)}
-          aria-current={stockRange === item.range && stockInterval === item.value ? "page" : undefined}
-        >
-          {item.label}
-        </button>
-      ))}
-    </div>
-  </div>
-
-  {/* Second row - Prev button on left, Next button on right */}
-  <div className="flex items-center justify-between">
-    <Button
-      variant="outline"
-      size="sm"
-      onClick={handlePrevious}
-      disabled={currentStockIndex === 0}
-      aria-label="Previous stock"
-      className="border-muted-foreground/20 px-2 h-7 flex items-center justify-center gap-1"
-    >
-      <ChevronLeft className="h-3 w-3" />
-      <span className="text-xs">Prev</span>
-    </Button>
-    
-    <Button
-      variant="outline"
-      size="sm"
-      onClick={handleNext}
-      disabled={currentStockIndex === totalStocks - 1}
-      aria-label="Next stock"
-      className="border-muted-foreground/20 px-2 h-7 flex items-center justify-center gap-1"
-    >
-      <span className="text-xs">Next</span>
-      <ChevronRight className="h-3 w-3" />
-    </Button>
-  </div>
-</div>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>      
+      </div>
     </div>
   );
 };
