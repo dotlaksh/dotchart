@@ -93,9 +93,9 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
 
         // Bar series on main pane (without open price)
         barSeriesRef.current = chartRef.current.addBarSeries({
-          upColor: '#10b981',
-          downColor: '#ef4444',
-          thinBars: false,
+          upColor: '#24f709',
+          downColor: '#fb0707',
+          thinBars: true,
           openVisible: false,
         })
         barSeriesRef.current.setData(data)
@@ -130,7 +130,7 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           return {
             time: item.time,
             value: item.volume,
-            color: isUp ? 'rgba(16, 185, 129, 0.5)' : 'rgba(239, 68, 68, 0.5)'
+            color: isUp ? '#24f709' : '#fb0707'
           }
         })
         volumeSeriesRef.current.setData(volumeData)
@@ -272,14 +272,14 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 py-4 md:py-12 px-2 sm:px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent mb-3">
+        <div className="text-center mb-4 md:mb-8">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent mb-2 md:mb-3">
             Stock Market Dashboard
           </h1>
-          <p className="text-muted-foreground text-lg">Real-time market data and analytics</p>
+          <p className="text-muted-foreground text-sm md:text-lg">Real-time market data and analytics</p>
         </div>
 
         {/* Main Card */}
@@ -287,18 +287,18 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
           <CardContent className="p-0">
             <div className="flex flex-col">
               {/* Chart Area */}
-              <div className="h-[550px] p-6">
+              <div className="h-[400px] sm:h-[500px] md:h-[550px] p-3 sm:p-4 md:p-6">
                 <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
               </div>
               
               {/* Controls Area */}
-              <div className="bg-muted/30 border-t-2 border-border p-6 space-y-5">
-                {/* First row - Category selector on left, interval buttons on right */}
-                <div className="flex items-center justify-between flex-wrap gap-4">
-                  <div className="flex items-center gap-3">
-                    <span className="text-sm font-medium text-muted-foreground">Category:</span>
+              <div className="bg-muted/30 border-t-2 border-border p-3 sm:p-4 md:p-6 space-y-3 md:space-y-5">
+                {/* First row - Category selector and interval buttons */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 md:gap-4">
+                  <div className="flex items-center gap-2 md:gap-3 w-full sm:w-auto">
+                    <span className="text-xs md:text-sm font-medium text-muted-foreground whitespace-nowrap">Category:</span>
                     <select
-                      className="border-2 border-border rounded-lg px-4 py-2 text-sm bg-background hover:border-primary transition-colors cursor-pointer font-medium shadow-sm"
+                      className="border-2 border-border rounded-lg px-2 sm:px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm bg-background hover:border-primary transition-colors cursor-pointer font-medium shadow-sm flex-1 sm:flex-none"
                       value={currentCategoryIndex}
                       onChange={(e) => handleCategoryChange(Number(e.target.value))}
                     >
@@ -311,14 +311,14 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                   </div>
 
                   {/* Interval buttons */}
-                  <div className="flex items-center gap-3">
-                    <span className="text-sm font-medium text-muted-foreground">Timeframe:</span>
-                    <div className="flex gap-2 bg-background rounded-lg p-1 border-2 border-border shadow-sm">
+                  <div className="flex items-center gap-2 md:gap-3 w-full sm:w-auto">
+                    <span className="text-xs md:text-sm font-medium text-muted-foreground whitespace-nowrap">Timeframe:</span>
+                    <div className="flex gap-1 md:gap-2 bg-background rounded-lg p-0.5 md:p-1 border-2 border-border shadow-sm flex-1 sm:flex-none">
                       {intervals.map((item) => (
                         <button
                           key={item.label}
                           className={clsx(
-                            "px-5 py-2 rounded-md text-sm font-semibold transition-all duration-200",
+                            "px-3 sm:px-4 md:px-5 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-semibold transition-all duration-200 flex-1 sm:flex-none",
                             stockRange === item.range && stockInterval === item.value
                               ? "bg-primary text-primary-foreground shadow-md scale-105"
                               : "bg-transparent text-foreground hover:bg-muted"
@@ -334,36 +334,38 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                 </div>
 
                 {/* Second row - Prev button on left, Next button on right */}
-                <div className="flex items-center justify-between pt-2">
+                <div className="flex items-center justify-between pt-1 md:pt-2 gap-2">
                   <Button
                     variant="outline"
-                    size="lg"
+                    size="sm"
                     onClick={handlePrevious}
                     disabled={currentStockIndex === 0}
                     aria-label="Previous stock"
-                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-6 font-semibold shadow-sm disabled:opacity-40"
+                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-3 sm:px-4 md:px-6 font-semibold shadow-sm disabled:opacity-40 text-xs sm:text-sm h-8 md:h-10"
                   >
-                    <ChevronLeft className="h-4 w-4 mr-2" />
-                    Previous
+                    <ChevronLeft className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
+                    <span className="hidden xs:inline">Previous</span>
+                    <span className="xs:hidden">Prev</span>
                   </Button>
                   
                   <div className="text-center">
-                    <div className="text-sm text-muted-foreground mb-1">Stock</div>
-                    <div className="text-lg font-bold">
+                    <div className="text-xs md:text-sm text-muted-foreground mb-0.5 md:mb-1">Stock</div>
+                    <div className="text-sm md:text-lg font-bold">
                       {currentStockIndex + 1} / {totalStocks}
                     </div>
                   </div>
                   
                   <Button
                     variant="outline"
-                    size="lg"
+                    size="sm"
                     onClick={handleNext}
                     disabled={currentStockIndex === totalStocks - 1}
                     aria-label="Next stock"
-                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-6 font-semibold shadow-sm disabled:opacity-40"
+                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-3 sm:px-4 md:px-6 font-semibold shadow-sm disabled:opacity-40 text-xs sm:text-sm h-8 md:h-10"
                   >
-                    Next
-                    <ChevronRight className="h-4 w-4 ml-2" />
+                    <span className="xs:hidden">Next</span>
+                    <span className="hidden xs:inline">Next</span>
+                    <ChevronRight className="h-3 w-3 md:h-4 md:w-4 ml-1 md:ml-2" />
                   </Button>
                 </div>
               </div>
@@ -372,8 +374,8 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
         </Card>
 
         {/* Footer Info */}
-        <div className="mt-8 text-center">
-          <p className="text-sm text-muted-foreground">
+        <div className="mt-4 md:mt-8 text-center px-2">
+          <p className="text-xs sm:text-sm text-muted-foreground">
             Viewing: <span className="font-semibold text-foreground">{currentStock["Company Name"]}</span>
           </p>
         </div>
