@@ -4,7 +4,7 @@ import ipoData from '../public/ipo.json';
 
 
 export const stockCategories = [
-  { name: 'Nifty', data: niftyData },
+  { name: 'F&O', data: niftyData },
   { name: 'IPO', data: ipoData }
 
 ];
