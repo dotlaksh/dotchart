@@ -197,12 +197,12 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
           <div className="absolute top-4 left-4 z-10 bg-card/95 backdrop-blur-md rounded-xl p-4 shadow-lg border border-border/50">
             <div className="flex items-center gap-2 mb-2">
               <TrendingUp className="h-4 w-4 text-primary" />
-              <h3 className="text-lg font-bold tracking-tight">{symbol}</h3>
+              <h3 className="text-md font-bold tracking-tight">{symbol}</h3>
             </div>
             {todayPrice !== null && priceChange !== null && (
               <div className="space-y-1">
-                <div className="text-2xl font-bold">${todayPrice.toFixed(2)}</div>
-                <div className={`flex items-center text-sm font-medium ${priceChange >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+                <div className="text-sm font-bold">${todayPrice.toFixed(2)}</div>
+                <div className={`flex items-center text-xs font-medium ${priceChange >= 0 ? 'text-green-500' : 'text-red-500'}`}>
                   {priceChange >= 0 ? <ArrowUpRight className="w-4 h-4 mr-1" /> : <ArrowDownRight className="w-4 h-4 mr-1" />}
                   {Math.abs(priceChange).toFixed(2)}%
                 </div>
