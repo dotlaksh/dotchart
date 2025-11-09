@@ -1,5 +1,5 @@
 
-import niftyData from '../public/nifty.json';
+import niftyData from '../public/fno.json';
 import ipoData from '../public/ipo.json';
 
 
