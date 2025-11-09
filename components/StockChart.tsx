@@ -292,74 +292,67 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
               <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
             </div>
             
-            {/* Single row layout for all controls */}
-            <div className="bg-background border-muted-foreground/20">
-              <div className="flex items-center justify-between">
-                {/* Left side - Theme toggle and fullscreen (hide fullscreen on small screens) */}
-        
+           {/* Two row layout for controls */}
+<div className="bg-background border-muted-foreground/20 space-y-2">
+  {/* First row - Category selector and interval buttons */}
+  <div className="flex items-center justify-center gap-2">
+    <select
+      className="border border-muted-foreground/20 rounded py-1 text-xs bg-background"
+      value={currentCategoryIndex}
+      onChange={(e) => handleCategoryChange(Number(e.target.value))}
+    >
+      {stockCategories.map((category, index) => (
+        <option key={index} value={index}>
+          {category.name}
+        </option>
+      ))}
+    </select>
 
-                {/* Center - Category selector and interval buttons */}
-                <div className="flex gap-2">
-                  <select
-                    className="border border-muted-foreground/20 rounded py-1 text-xs bg-background"
-                    value={currentCategoryIndex}
-                    onChange={(e) => handleCategoryChange(Number(e.target.value))}
-                  >
-                    {stockCategories.map((category, index) => (
-                      <option key={index} value={index}>
-                        {category.name}
-                      </option>
-                    ))}
-                  </select>
+    {/* Interval buttons */}
+    <div className="flex gap-1">
+      {intervals.map((item) => (
+        <button
+          key={item.label}
+          className={clsx(
+            "px-3 py-1 rounded text-xs font-light border border-muted-foreground/20 hover:bg-muted transition-colors",
+            stockRange === item.range && stockInterval === item.value
+              ? "bg-primary text-primary-foreground"
+              : "bg-background text-foreground"
+          )}
+          onClick={() => handleIntervalClick(item)}
+          aria-current={stockRange === item.range && stockInterval === item.value ? "page" : undefined}
+        >
+          {item.label}
+        </button>
+      ))}
+    </div>
+  </div>
 
-                  {/* Interval buttons */}
-                  <div className="flex gap-1">
-                    {intervals.map((item) => (
-                      <button
-                        key={item.label}
-                        className={clsx(
-                          "px-3 py-1 rounded text-xs font-light border border-muted-foreground/20 hover:bg-muted transition-colors",
-                          stockRange === item.range && stockInterval === item.value
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-background text-foreground"
-                        )}
-                        onClick={() => handleIntervalClick(item)}
-                        aria-current={stockRange === item.range && stockInterval === item.value ? "page" : undefined}
-                      >
-                        {item.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Right side - Navigation buttons (reduced size) */}
-                <div className="flex items-center gap-1">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handlePrevious}
-                    disabled={currentStockIndex === 0}
-                    aria-label="Previous stock"
-                    className="border-muted-foreground/20 p-1 h-7 flex items-center justify-center"
-                  >
-                    <ChevronLeft className="h-3 w-3" />
-                  </Button>
-                  
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleNext}
-                    disabled={currentStockIndex === totalStocks - 1}
-                    aria-label="Next stock"
-                    className="border-muted-foreground/20 p-1 h-7 flex items-center justify-center ml-2"
-                  >
-                    <ChevronRight className="h-3 w-3" />
-                  </Button>
-
-
-                </div>
-              </div>
-            </div>
+  {/* Second row - Navigation buttons */}
+  <div className="flex items-center justify-center gap-1">
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={handlePrevious}
+      disabled={currentStockIndex === 0}
+      aria-label="Previous stock"
+      className="border-muted-foreground/20 p-1 h-7 flex items-center justify-center"
+    >
+      <ChevronLeft className="h-3 w-3" />
+    </Button>
+    
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={handleNext}
+      disabled={currentStockIndex === totalStocks - 1}
+      aria-label="Next stock"
+      className="border-muted-foreground/20 p-1 h-7 flex items-center justify-center ml-2"
+    >
+      <ChevronRight className="h-3 w-3" />
+    </Button>
+  </div>
+</div>
           </div>
         </CardContent>
       </Card>
