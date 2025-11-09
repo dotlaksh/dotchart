@@ -95,10 +95,6 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
         barSeriesRef.current = chartRef.current.addBarSeries({
           upColor: '#10b981',
           downColor: '#ef4444',
-          borderUpColor: '#10b981',
-          borderDownColor: '#ef4444',
-          wickUpColor: '#10b981',
-          wickDownColor: '#ef4444',
           thinBars: false,
           openVisible: false,
         })
