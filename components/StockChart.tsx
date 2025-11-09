@@ -294,7 +294,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
             
            {/* Two row layout for controls */}
 {/* Two row layout for controls */}
-<div className="bg-background border-muted-foreground/20 space-y-4">
+<div className="bg-background border-muted-foreground/20 space-y-4 mx-2">
   {/* First row - Category selector on left, interval buttons on right */}
   <div className="flex items-center justify-between">
     <select
