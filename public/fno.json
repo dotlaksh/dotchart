@@ -7,12 +7,6 @@
     "Symbol": "ADANIPORTS"
   },
   {
-    "Symbol": "ANGELONE"
-  },
-  {
-    "Symbol": "APLAPOLLO"
-  },
-  {
     "Symbol": "APOLLOHOSP"
   },
   {
@@ -20,9 +14,6 @@
   },
   {
     "Symbol": "ASIANPAINT"
-  },
-  {
-    "Symbol": "ASTRAL"
   },
   {
     "Symbol": "AXISBANK"
@@ -48,9 +39,7 @@
   {
     "Symbol": "BHEL"
   },
-  {
-    "Symbol": "BIOCON"
-  },
+  
   {
     "Symbol": "BPCL"
   },
@@ -78,12 +67,7 @@
   {
     "Symbol": "DIVISLAB"
   },
-  {
-    "Symbol": "DIXON"
-  },
-  {
-    "Symbol": "DLF"
-  },
+ 
   {
     "Symbol": "DRREDDY"
   },
@@ -93,9 +77,7 @@
   {
     "Symbol": "ETERNAL"
   }, 
-  {
-    "Symbol": "GMRAIRPORT"
-  },
+ 
   {
     "Symbol": "GODREJPROP"
   },
@@ -136,16 +118,7 @@
     "Symbol": "INFY"
   },
   {
-    "Symbol": "ITC"
-  },
-  {
-    "Symbol": "JINDALSTEL"
-  },
-  {
     "Symbol": "JIOFIN"
-  },
-  {
-    "Symbol": "JSWENERGY"
   },
   {
     "Symbol": "JSWSTEEL"
@@ -186,9 +159,7 @@
   {
     "Symbol": "MUTHOOTFIN"
   },
-  {
-    "Symbol": "ONGC"
-  },
+ 
   {
     "Symbol": "PERSISTENT"
   },
@@ -201,9 +172,7 @@
   {
     "Symbol": "RBLBANK"
   },
-  {
-    "Symbol": "RECLTD"
-  },
+ 
   {
     "Symbol": "RELIANCE"
   },
@@ -213,9 +182,7 @@
   {
     "Symbol": "SHRIRAMFIN"
   },
-  {
-    "Symbol": "SRF"
-  },
+ 
   {
     "Symbol": "SUNPHARMA"
   },
@@ -235,28 +202,10 @@
     "Symbol": "TECHM"
   },
   {
-    "Symbol": "TITAGARH"
-  },
-  {
     "Symbol": "TITAN"
   },
   {
     "Symbol": "TRENT"
-  },
-  {
-    "Symbol": "TVSMOTOR"
-  },
-  {
-    "Symbol": "ULTRACEMCO"
-  },
-  {
-    "Symbol": "UNITDSPR"
-  },
-  {
-    "Symbol": "VBL"
-  },
-  {
-    "Symbol": "VOLTAS"
   },
   {
     "Symbol": "WIPRO"
