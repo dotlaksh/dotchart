@@ -292,7 +292,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
           <CardContent className="p-0">
             <div className="flex flex-col">
               {/* Chart Area */}
-              <div className="h-[600px] sm:h-[650px] md:h-[650px]">
+              <div className="h-[600px] sm:h-[600px] md:h-[600px]">
                 <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
               </div>
               
