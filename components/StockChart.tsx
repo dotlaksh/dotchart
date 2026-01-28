@@ -292,7 +292,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
           <CardContent className="p-0">
             <div className="flex flex-col">
               {/* Chart Area */}
-              <div className="h-[1000px] sm:h-[800px] md:h-[800px]">
+              <div className="h-[800px] sm:h-[600px] md:h-[600px]">
                 <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
               </div>
               
@@ -303,7 +303,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                   <div className="flex items-center gap-2 md:gap-3 w-full sm:w-auto">
                     <span className="text-md font-medium text-muted-foreground whitespace-nowrap">Category:</span>
                     <select
-                      className="border-2 border-border rounded-lg px-2 sm:px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm bg-background hover:border-primary transition-colors cursor-pointer font-mediu[...]
+                      className="border-2 border-border rounded-lg px-2 sm:px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm bg-background hover:border-primary transition-colors cursor-pointer font-medium shadow-sm flex-1 sm:flex-none"
                       value={currentCategoryIndex}
                       onChange={(e) => handleCategoryChange(Number(e.target.value))}
                     >
@@ -346,7 +346,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                     onClick={handlePrevious}
                     disabled={currentStockIndex === 0}
                     aria-label="Previous stock"
-                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-3 sm:px-4 md:px-6 font-semibold shadow-sm disabled:opacity-40 text-xs sm:text-sm h-8 md:[...]
+                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-3 sm:px-4 md:px-6 font-semibold shadow-sm disabled:opacity-40 text-xs sm:text-sm h-8 md:h-10"
                   >
                     <ChevronLeft className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
                     <span className="hidden xs:inline">Previous</span>
@@ -366,7 +366,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                     onClick={handleNext}
                     disabled={currentStockIndex === totalStocks - 1}
                     aria-label="Next stock"
-                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-3 sm:px-4 md:px-6 font-semibold shadow-sm disabled:opacity-40 text-xs sm:text-sm h-8 md:[...]
+                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-3 sm:px-4 md:px-6 font-semibold shadow-sm disabled:opacity-40 text-xs sm:text-sm h-8 md:h-10"
                   >
                     <span className="xs:hidden">Next</span>
                     <span className="hidden xs:inline">Next</span>
