@@ -115,8 +115,8 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
          // Configure the price scale for the main series
         chartRef.current.priceScale('right').applyOptions({
           scaleMargins: {
-            top: 0.3,
-            bottom: 0.3,
+            top: 0.2,
+            bottom: 0.2,
           },
         })
         // Volume series on separate pane at bottom
