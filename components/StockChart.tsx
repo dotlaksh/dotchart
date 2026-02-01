@@ -11,9 +11,10 @@ import clsx from "clsx"
 
 // INTERVAL BUTTONS
 const intervals: { label: string; value: string; range: string }[] = [
-  { label: 'D', value: '1d', range: '6mo' },
-  { label: 'W', value: '1wk', range: '2y' },
-  { label: 'M', value: '1mo', range: '10y' }
+  { label: 'D', value: '6M', range: '6mo' },
+  { label: 'D', value: '1Y', range: '1y' },
+  { label: 'W', value: '2Y', range: '2y' },
+  { label: 'M', value: 'XY', range: '10y' }
   ];
 
 interface ChartData {
