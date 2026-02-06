@@ -285,15 +285,13 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   };
 
  return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 py-1 md:py-1">
-      <div className="max-w-7xl mx-auto">
-
+    <div className="h-screen w-screen bg-gradient-to-br from-background via-background to-muted/20 overflow-hidden">
         {/* Main Card */}
-        <Card className="border-2 shadow-2xl overflow-hidden backdrop-blur-sm bg-card/50">
-          <CardContent className="p-0">
-            <div className="flex flex-col md:flex-row">
+        <Card className="h-full w-full border-0 shadow-none overflow-hidden backdrop-blur-sm bg-card/50 rounded-none">
+          <CardContent className="p-0 h-full">
+            <div className="flex h-full">
               {/* Controls Area - Left Side */}
-              <div className="bg-muted/30 border-b-2 md:border-b-0 md:border-r-2 border-border p-3 sm:p-4 md:p-6 space-y-3 md:space-y-5 md:w-80 lg:w-96">
+              <div className="bg-muted/30 border-r-2 border-border p-6 space-y-6 w-80 lg:w-96 flex flex-col">
                 {/* Category selector */}
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-muted-foreground">Category</label>
@@ -370,13 +368,12 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
               </div>
 
               {/* Chart Area - Right Side */}
-              <div className="flex-1 h-[500px] sm:h-[600px] md:h-[800px]">
+              <div className="flex-1 h-full">
                 <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
               </div>
             </div>
           </CardContent>
-        </Card>      
-      </div>
+        </Card>
     </div>
   );
 };
