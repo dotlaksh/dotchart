@@ -84,8 +84,8 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
             textColor: '#E5E7EB',
           },
           grid: {
-            vertLines: { visible: false },
-            horzLines: { visible: false },
+            vertLines: { visible: true },
+            horzLines: { visible: true },
           },
           timeScale: {
             timeVisible: true,
