@@ -285,7 +285,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
   };
 
  return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 p-2">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 m-2">
       <div className="max-w-7xl mx-auto">
 
         {/* Main Card */}
