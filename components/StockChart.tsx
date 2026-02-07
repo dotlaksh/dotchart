@@ -84,8 +84,8 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
             textColor: '#E5E7EB',
           },
           grid: {
-            vertLines: { visible: true },
-            horzLines: { visible: true },
+            vertLines: { visible: false },
+            horzLines: { visible: false },
           },
           timeScale: {
             timeVisible: true,
@@ -293,7 +293,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
           <CardContent className="p-0">
             <div className="flex flex-col">
               {/* Chart Area */}
-              <div className="h-[950px] sm:h-[600px] md:h-[800px]">
+              <div className="h-[940px] sm:h-[600px] md:h-[790px]">
                 <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
               </div>
               
