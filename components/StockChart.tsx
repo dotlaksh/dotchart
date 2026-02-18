@@ -16,7 +16,7 @@ const intervals: { label: string; value: string; range: string }[] = [
   { label: '2Y', value: '1wk', range: '2y' },
   { label: '5Y', value: '1wk', range: '5y' },
   { label: '10Y', value: '1mo', range: '10y' },
-  { label: 'All', value: 'All', range: 'All' }
+  { label: 'All', value: '3mo', range: 'max' }
 
   ];
 
