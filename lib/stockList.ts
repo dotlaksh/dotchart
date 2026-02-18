@@ -1,11 +1,14 @@
 
 import niftyData from '../public/fno.json';
-import smallcapData from '../public/midcap.json';
+import midcapData from '../public/midcap.json';
+import smallcapData from '../public/smallcap.json';
+
 
 
 export const stockCategories = [
   { name: 'F&O', data: niftyData },
-  { name: 'Midcaps', data: smallcapData }
+  { name: 'Midcaps', data: midcapData },
+  { name: 'Smallcaps', data: smallcapData }
 
 ];
 
