@@ -11,6 +11,7 @@ import clsx from "clsx"
 
 // INTERVAL BUTTONS
 const intervals: { label: string; value: string; range: string }[] = [
+  { label: '3M', value: '1d', range: '3mo' },
   { label: '6M', value: '1d', range: '6mo' },
   { label: '1Y', value: '1d', range: '1y' },
   { label: '2Y', value: '1wk', range: '2y' },
