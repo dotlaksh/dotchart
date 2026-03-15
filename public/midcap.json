@@ -3,7 +3,13 @@
     "Symbol": "360ONE"
   },
   {
+    "Symbol": "3MINDIA"
+  },
+  {
     "Symbol": "ACC"
+  },
+  {
+    "Symbol": "AIAENG"
   },
   {
     "Symbol": "APLAPOLLO"
@@ -12,13 +18,28 @@
     "Symbol": "AUBANK"
   },
   {
+    "Symbol": "AWL"
+  },
+  {
+    "Symbol": "ABBOTINDIA"
+  },
+  {
     "Symbol": "ATGL"
   },
   {
     "Symbol": "ABCAPITAL"
   },
   {
+    "Symbol": "AJANTPHARM"
+  },
+  {
     "Symbol": "ALKEM"
+  },
+  {
+    "Symbol": "APARINDS"
+  },
+  {
+    "Symbol": "APOLLOTYRE"
   },
   {
     "Symbol": "ASHOKLEY"
@@ -33,7 +54,16 @@
     "Symbol": "BSE"
   },
   {
+    "Symbol": "BALKRISIND"
+  },
+  {
     "Symbol": "BANKINDIA"
+  },
+  {
+    "Symbol": "MAHABANK"
+  },
+  {
+    "Symbol": "BERGEPAINT"
   },
   {
     "Symbol": "BDL"
@@ -52,6 +82,9 @@
   },
   {
     "Symbol": "BLUESTARCO"
+  },
+  {
+    "Symbol": "CRISIL"
   },
   {
     "Symbol": "COCHINSHIP"
@@ -75,7 +108,19 @@
     "Symbol": "DABUR"
   },
   {
+    "Symbol": "DALBHARAT"
+  },
+  {
+    "Symbol": "DEEPAKNTR"
+  },
+  {
     "Symbol": "DIXON"
+  },
+  {
+    "Symbol": "ENDURANCE"
+  },
+  {
+    "Symbol": "ESCORTS"
   },
   {
     "Symbol": "EXIDEIND"
@@ -87,19 +132,43 @@
     "Symbol": "FEDERALBNK"
   },
   {
+    "Symbol": "FACT"
+  },
+  {
     "Symbol": "FORTIS"
+  },
+  {
+    "Symbol": "GVT&D"
   },
   {
     "Symbol": "GMRAIRPORT"
   },
   {
+    "Symbol": "GICRE"
+  },
+  {
+    "Symbol": "GLAXO"
+  },
+  {
     "Symbol": "GLENMARK"
+  },
+  {
+    "Symbol": "MEDANTA"
   },
   {
     "Symbol": "GODFRYPHLP"
   },
   {
+    "Symbol": "GODREJIND"
+  },
+  {
     "Symbol": "GODREJPROP"
+  },
+  {
+    "Symbol": "FLUOROCHEM"
+  },
+  {
+    "Symbol": "GUJGASLTD"
   },
   {
     "Symbol": "HDFCAMC"
@@ -108,13 +177,25 @@
     "Symbol": "HEROMOTOCO"
   },
   {
+    "Symbol": "HEXT"
+  },
+  {
     "Symbol": "HINDPETRO"
   },
   {
     "Symbol": "POWERINDIA"
   },
   {
+    "Symbol": "HONAUT"
+  },
+  {
     "Symbol": "HUDCO"
+  },
+  {
+    "Symbol": "ICICIPRULI"
+  },
+  {
+    "Symbol": "IDBI"
   },
   {
     "Symbol": "IDFCFIRSTB"
@@ -127,6 +208,9 @@
   },
   {
     "Symbol": "INDIANB"
+  },
+  {
+    "Symbol": "IOB"
   },
   {
     "Symbol": "IRCTC"
@@ -144,7 +228,22 @@
     "Symbol": "INDUSINDBK"
   },
   {
+    "Symbol": "IPCALAB"
+  },
+  {
+    "Symbol": "JKCEMENT"
+  },
+  {
+    "Symbol": "JSWINFRA"
+  },
+  {
+    "Symbol": "JSL"
+  },
+  {
     "Symbol": "JUBLFOOD"
+  },
+  {
+    "Symbol": "KPRMILL"
   },
   {
     "Symbol": "KEI"
@@ -159,7 +258,16 @@
     "Symbol": "LTF"
   },
   {
+    "Symbol": "LTTS"
+  },
+  {
     "Symbol": "LICHSGFIN"
+  },
+  {
+    "Symbol": "LINDEINDIA"
+  },
+  {
+    "Symbol": "LLOYDSME"
   },
   {
     "Symbol": "LUPIN"
@@ -192,6 +300,9 @@
     "Symbol": "NHPC"
   },
   {
+    "Symbol": "NLCINDIA"
+  },
+  {
     "Symbol": "NMDC"
   },
   {
@@ -199,6 +310,9 @@
   },
   {
     "Symbol": "NATIONALUM"
+  },
+  {
+    "Symbol": "NAM-INDIA"
   },
   {
     "Symbol": "OBEROIRLTY"
@@ -228,6 +342,9 @@
     "Symbol": "PERSISTENT"
   },
   {
+    "Symbol": "PETRONET"
+  },
+  {
     "Symbol": "PHOENIXLTD"
   },
   {
@@ -240,19 +357,31 @@
     "Symbol": "PRESTIGE"
   },
   {
+    "Symbol": "PGHH"
+  },
+  {
     "Symbol": "RVNL"
   },
   {
     "Symbol": "SBICARD"
   },
   {
+    "Symbol": "SJVN"
+  },
+  {
     "Symbol": "SRF"
+  },
+  {
+    "Symbol": "SCHAEFFLER"
   },
   {
     "Symbol": "SONACOMS"
   },
   {
     "Symbol": "SAIL"
+  },
+  {
+    "Symbol": "SUNDARMFIN"
   },
   {
     "Symbol": "SUPREMEIND"
@@ -264,13 +393,25 @@
     "Symbol": "SWIGGY"
   },
   {
+    "Symbol": "SYNGENE"
+  },
+  {
     "Symbol": "TATACOMM"
   },
   {
     "Symbol": "TATAELXSI"
   },
   {
+    "Symbol": "TATAINVEST"
+  },
+  {
     "Symbol": "TATATECH"
+  },
+  {
+    "Symbol": "NIACL"
+  },
+  {
+    "Symbol": "THERMAX"
   },
   {
     "Symbol": "TORNTPOWER"
@@ -279,10 +420,19 @@
     "Symbol": "TIINDIA"
   },
   {
+    "Symbol": "UCOBANK"
+  },
+  {
+    "Symbol": "UNOMINDA"
+  },
+  {
     "Symbol": "UPL"
   },
   {
     "Symbol": "UNIONBANK"
+  },
+  {
+    "Symbol": "UBL"
   },
   {
     "Symbol": "VMM"
