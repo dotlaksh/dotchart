@@ -250,6 +250,8 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
 }) => {
   const [currentStockIndex, setCurrentStockIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   const currentCategory = stockCategories[currentCategoryIndex];
   const currentStock = {
@@ -269,6 +271,33 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
 
   const handleNext = () => {
     setCurrentStockIndex((prev) => (prev + 1) % totalStocks);
+  };
+
+  // Touch gesture handlers
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && currentStockIndex < totalStocks - 1) {
+      handleNext();
+    }
+    if (isRightSwipe && currentStockIndex > 0) {
+      handlePrevious();
+    }
   };
 
   const toggleFullscreen = () => {
@@ -295,20 +324,26 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
         {/* Main Card */}
         <Card className="border-2 shadow-2xl overflow-hidden backdrop-blur-sm bg-card/50">
           <CardContent className="p-0">
-            <div className="flex flex-col">
+            <div className="flex flex-col h-screen max-h-[100vh]">
               {/* Chart Area */}
-              <div className="h-[940px] sm:h-[600px] md:h-[790px]">
+              <div 
+                className="flex-1 min-h-0"
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+              >
                 <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
               </div>
               
               {/* Controls Area */}
-              <div className="bg-muted/30 border-t-2 border-border p-3 sm:p-4 md:p-6 space-y-3 md:space-y-5">
+              <div className="bg-muted/30 border-t-2 border-border p-2 sm:p-3 md:p-4 space-y-2 sm:space-y-3 md:space-y-4 flex-shrink-0">
                 {/* First row - Category selector and interval buttons */}
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 md:gap-4">
-                  <div className="flex items-center gap-2 md:gap-3 w-full sm:w-auto">
-                    <span className="text-md font-medium text-muted-foreground whitespace-nowrap">Category:</span>
+                <div className="flex flex-col gap-2 sm:gap-3">
+                  {/* Category selector */}
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <span className="text-sm font-medium text-muted-foreground whitespace-nowrap">Category:</span>
                     <select
-                      className="border-2 border-border rounded-lg px-2 sm:px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm bg-background hover:border-primary transition-colors cursor-pointer font-medium shadow-sm flex-1 sm:flex-none"
+                      className="border-2 border-border rounded-lg px-2 sm:px-3 py-1.5 text-sm bg-background hover:border-primary transition-colors cursor-pointer font-medium shadow-sm flex-1"
                       value={currentCategoryIndex}
                       onChange={(e) => handleCategoryChange(Number(e.target.value))}
                     >
@@ -321,14 +356,14 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                   </div>
 
                   {/* Interval buttons */}
-                  <div className="flex items-center gap-2 md:gap-3 w-full sm:w-auto">
-                    <span className="text-md font-medium text-muted-foreground whitespace-nowrap">Timeframe:</span>
-                    <div className="flex gap-1 md:gap-2 bg-background rounded-lg p-0.5 md:p-1 border-2 border-border shadow-sm flex-1 sm:flex-none">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
+                    <span className="text-sm font-medium text-muted-foreground whitespace-nowrap">Timeframe:</span>
+                    <div className="flex flex-wrap gap-1 sm:gap-2 bg-background rounded-lg p-1 border-2 border-border shadow-sm flex-1">
                       {intervals.map((item) => (
                         <button
                           key={item.label}
                           className={clsx(
-                            "px-3 sm:px-4 md:px-5 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-semibold transition-all duration-200 flex-1 sm:flex-none",
+                            "px-2 sm:px-3 py-1.5 rounded-md text-xs sm:text-sm font-semibold transition-all duration-200 flex-1 sm:flex-none min-w-[40px]",
                             stockRange === item.range && stockInterval === item.value
                               ? "bg-primary text-primary-foreground shadow-md scale-105"
                               : "bg-transparent text-foreground hover:bg-muted"
@@ -343,24 +378,24 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                   </div>
                 </div>
 
-                {/* Second row - Prev button on left, Next button on right */}
-                <div className="flex items-center justify-between pt-1 md:pt-2 gap-2">
+                {/* Second row - Navigation buttons */}
+                <div className="flex items-center justify-between gap-2 pt-1">
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={handlePrevious}
                     disabled={currentStockIndex === 0}
                     aria-label="Previous stock"
-                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-3 sm:px-4 md:px-6 font-semibold shadow-sm disabled:opacity-40 text-xs sm:text-sm h-8 md:h-10"
+                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-3 sm:px-4 font-semibold shadow-sm disabled:opacity-40 text-sm h-9 sm:h-10 flex-1 sm:flex-none"
                   >
-                    <ChevronLeft className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
-                    <span className="hidden xs:inline">Previous</span>
-                    <span className="xs:hidden">Prev</span>
+                    <ChevronLeft className="h-4 w-4 sm:mr-2" />
+                    <span className="hidden sm:inline">Previous</span>
+                    <span className="sm:hidden">Prev</span>
                   </Button>
                   
-                  <div className="text-center">
-                    <div className="text-xs md:text-sm text-muted-foreground mb-0.5 md:mb-1">Stock</div>
-                    <div className="text-sm md:text-lg font-bold">
+                  <div className="text-center px-2 sm:px-4">
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-0.5">Stock</div>
+                    <div className="text-sm sm:text-base font-bold">
                       {currentStockIndex + 1} / {totalStocks}
                     </div>
                   </div>
@@ -371,11 +406,11 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                     onClick={handleNext}
                     disabled={currentStockIndex === totalStocks - 1}
                     aria-label="Next stock"
-                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-3 sm:px-4 md:px-6 font-semibold shadow-sm disabled:opacity-40 text-xs sm:text-sm h-8 md:h-10"
+                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-3 sm:px-4 font-semibold shadow-sm disabled:opacity-40 text-sm h-9 sm:h-10 flex-1 sm:flex-none"
                   >
-                    <span className="xs:hidden">Next</span>
-                    <span className="hidden xs:inline">Next</span>
-                    <ChevronRight className="h-3 w-3 md:h-4 md:w-4 ml-1 md:ml-2" />
+                    <span className="sm:hidden">Next</span>
+                    <span className="hidden sm:inline">Next</span>
+                    <ChevronRight className="h-4 w-4 sm:ml-2" />
                   </Button>
                 </div>
               </div>
