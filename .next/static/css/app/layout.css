@@ -788,6 +788,9 @@ video {
 .min-h-\[300px\] {
   min-height: 300px;
 }
+.min-h-\[200px\] {
+  min-height: 200px;
+}
 .w-2 {
   width: 0.5rem;
 }
@@ -1809,6 +1812,10 @@ video {
     min-height: 400px;
   }
 
+  .sm\:min-h-\[350px\] {
+    min-height: 350px;
+  }
+
   .sm\:min-w-\[160px\] {
     min-width: 160px;
   }
@@ -1919,6 +1926,10 @@ video {
 }
 
 @media (min-width: 768px) {
+
+  .md\:min-h-\[400px\] {
+    min-height: 400px;
+  }
 
   .md\:space-y-4 > :not([hidden]) ~ :not([hidden]) {
     --tw-space-y-reverse: 0;
