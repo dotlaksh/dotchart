@@ -327,7 +327,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
             <div className="flex flex-col h-full">
               {/* Chart Area */}
               <div 
-                className="flex-1 min-h-[200px] sm:min-h-[350px] md:min-h-[400px]"
+                className="flex-1 min-h-[150px] sm:min-h-[250px] md:min-h-[300px]"
                 onTouchStart={onTouchStart}
                 onTouchMove={onTouchMove}
                 onTouchEnd={onTouchEnd}
@@ -338,8 +338,8 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
               {/* Controls Area */}
               <div className="bg-muted/30 border-t-2 border-border p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4 md:space-y-5 flex-shrink-0">
                 {/* First row - Timeframe and Category selector */}
-                <div className="flex items-center justify-between gap-2 sm:gap-4">
-                  {/* Interval buttons - left side */}
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
+                  {/* Interval buttons - top row on mobile, left on desktop */}
                   <div className="flex items-center gap-2 flex-shrink-0">
                     <span className="text-xs sm:text-sm font-medium text-muted-foreground whitespace-nowrap">Timeframe:</span>
                     <div className="flex gap-1 bg-background rounded-lg p-1 border-2 border-border shadow-sm">
@@ -361,11 +361,11 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                     </div>
                   </div>
 
-                  {/* Category selector - right side */}
-                  <div className="flex items-center gap-2 flex-shrink-0">
+                  {/* Category selector - next row on mobile, right on desktop */}
+                  <div className="flex items-center gap-2 flex-shrink-0 w-full sm:w-auto">
                     <span className="text-xs sm:text-sm font-medium text-muted-foreground whitespace-nowrap">Category:</span>
                     <select
-                      className="border-2 border-border rounded-lg px-2 py-1.5 text-xs sm:text-sm bg-background hover:border-primary transition-colors cursor-pointer font-medium shadow-sm min-w-[100px] sm:min-w-[160px]"
+                      className="border-2 border-border rounded-lg px-2 py-1.5 text-xs sm:text-sm bg-background hover:border-primary transition-colors cursor-pointer font-medium shadow-sm flex-1 sm:flex-none min-w-[120px] max-w-[200px]"
                       value={currentCategoryIndex}
                       onChange={(e) => handleCategoryChange(Number(e.target.value))}
                     >

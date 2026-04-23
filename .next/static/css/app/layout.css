@@ -791,6 +791,9 @@ video {
 .min-h-\[200px\] {
   min-height: 200px;
 }
+.min-h-\[150px\] {
+  min-height: 150px;
+}
 .w-2 {
   width: 0.5rem;
 }
@@ -851,6 +854,9 @@ video {
 .min-w-\[30px\] {
   min-width: 30px;
 }
+.min-w-\[120px\] {
+  min-width: 120px;
+}
 .max-w-7xl {
   max-width: 80rem;
 }
@@ -859,6 +865,9 @@ video {
 }
 .max-w-xs {
   max-width: 20rem;
+}
+.max-w-\[200px\] {
+  max-width: 200px;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -1816,6 +1825,14 @@ video {
     min-height: 350px;
   }
 
+  .sm\:min-h-\[250px\] {
+    min-height: 250px;
+  }
+
+  .sm\:w-auto {
+    width: auto;
+  }
+
   .sm\:min-w-\[160px\] {
     min-width: 160px;
   }
@@ -1842,6 +1859,10 @@ video {
 
   .sm\:justify-end {
     justify-content: flex-end;
+  }
+
+  .sm\:justify-between {
+    justify-content: space-between;
   }
 
   .sm\:gap-2 {
@@ -1929,6 +1950,10 @@ video {
 
   .md\:min-h-\[400px\] {
     min-height: 400px;
+  }
+
+  .md\:min-h-\[300px\] {
+    min-height: 300px;
   }
 
   .md\:space-y-4 > :not([hidden]) ~ :not([hidden]) {
