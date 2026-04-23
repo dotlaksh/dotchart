@@ -327,7 +327,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
             <div className="flex flex-col h-full">
               {/* Chart Area */}
               <div 
-                className="flex-1 min-h-[150px] sm:min-h-[250px] md:min-h-[300px]"
+                className="flex-1 min-h-[100px] sm:min-h-[250px] md:min-h-[300px]"
                 onTouchStart={onTouchStart}
                 onTouchMove={onTouchMove}
                 onTouchEnd={onTouchEnd}
