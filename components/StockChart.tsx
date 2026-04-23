@@ -3,7 +3,9 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { ChevronLeft, ChevronRight, ArrowUpRight, ArrowDownRight, Maximize2, Minimize2, Moon, Sun } from 'lucide-react'
+import { Badge } from "@/components/ui/badge"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { ChevronLeft, ChevronRight, ArrowUpRight, ArrowDownRight, Maximize2, Minimize2, Moon, Sun, Star, Bell, Share2, ArrowLeft, TrendingUp } from 'lucide-react'
 import { createChart, ColorType, IChartApi, ISeriesApi } from 'lightweight-charts'
 import { useTheme } from "next-themes"
 import { stockCategories } from '@/lib/stockList'
@@ -34,6 +36,9 @@ interface StockChartProps {
   symbol: string
   interval: string
   range: string
+  onIntervalClick?: (item: { label: string; value: string; range: string }) => void
+  currentCategoryIndex: number
+  onCategoryChange?: (index: number) => void
 }
 
 // Theme toggle
@@ -52,7 +57,7 @@ const ThemeToggle: React.FC = () => {
   )
 }
 
-const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
+const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range, onIntervalClick, currentCategoryIndex, onCategoryChange }) => {
   const chartContainerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<IChartApi | null>(null)
   const barSeriesRef = useRef<ISeriesApi<"Bar"> | null>(null)
@@ -63,6 +68,12 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   const [error, setError] = useState<string | null>(null)
   const [todayPrice, setTodayPrice] = useState<number | null>(null)
   const [priceChange, setPriceChange] = useState<number | null>(null)
+  const [highPrice, setHighPrice] = useState<number | null>(null)
+  const [lowPrice, setLowPrice] = useState<number | null>(null)
+  const [volume, setVolume] = useState<number | null>(null)
+  const [openPrice, setOpenPrice] = useState<number | null>(null)
+  const [prevClose, setPrevClose] = useState<number | null>(null)
+  const [marketCap, setMarketCap] = useState<number | null>(null)
   const { theme } = useTheme()
 
   useEffect(() => {
@@ -156,12 +167,26 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
 
         if (data.length > 0) {
           const latestData = data[data.length - 1]
-          setTodayPrice(latestData.close)
           const yesterdayClose = data[data.length - 2]?.close
+          
+          setTodayPrice(latestData.close)
+          setOpenPrice(yesterdayClose || latestData.open)
+          setPrevClose(yesterdayClose || latestData.close)
+          
           if (yesterdayClose) {
             const change = ((latestData.close - yesterdayClose) / yesterdayClose) * 100
             setPriceChange(change)
           }
+          
+          // Calculate additional metrics
+          const high = Math.max(...data.map(d => d.high))
+          const low = Math.min(...data.map(d => d.low))
+          const totalVolume = data.reduce((sum, d) => sum + d.volume, 0)
+          
+          setHighPrice(high)
+          setLowPrice(low)
+          setVolume(totalVolume)
+          setMarketCap(latestData.close * 1000000000) // Mock market cap calculation
         }
       }
     }
@@ -198,28 +223,127 @@ const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range }) => {
   }
 
   return (
-    <div className="w-full h-full relative">
-      {error && <div className="text-red-500 mb-4">{error}</div>}
+    <div className="w-full h-full bg-background text-foreground">
+      {error && <div className="text-red-500 p-4">{error}</div>}
       {loading ? (
         <div className="flex justify-center items-center h-full">
           <div className="animate-spin rounded-full h-24 w-24 border-b-2 border-primary"></div>
         </div>
       ) : (
-        <>
-          <div className="absolute top-0 left-0 z-10 bg-background/80 backdrop-blur-sm rounded-lg m-2">
-            <h3 className="text-sm font-medium,">{symbol}</h3>
-            {todayPrice !== null && priceChange !== null && (
-              <div className="flex items-center text-sm">
-                <span className="font-normal mr-2">{todayPrice.toFixed(2)}</span>
-                <span className={`flex items-center ${priceChange >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-                  {priceChange >= 0 ? <ArrowUpRight className="w-3 h-3 mr-1" /> : <ArrowDownRight className="w-3 h-3 mr-1" />}
-                  {Math.abs(priceChange).toFixed(2)}%
-                </span>
+        <div className="flex flex-col h-full">
+          {/* Header */}
+          <div className="flex items-center justify-between p-4 border-b border-border">
+            <div className="flex items-center gap-3">
+              <Button variant="ghost" size="icon" className="p-2">
+                <ArrowLeft className="w-5 h-5" />
+              </Button>
+              <div>
+                <h1 className="text-lg font-semibold">dotChart</h1>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs sm:text-sm font-medium text-muted-foreground whitespace-nowrap">Category:</span>
+              <Select
+                value={currentCategoryIndex.toString()}
+                onValueChange={(value) => onCategoryChange?.(Number(value))}
+              >
+                <SelectTrigger className="w-[120px] sm:w-[140px]">
+                  <SelectValue placeholder="Select category" />
+                </SelectTrigger>
+                <SelectContent>
+                  {stockCategories.map((category, index) => (
+                    <SelectItem key={index} value={index.toString()}>
+                      {category.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          {/* Stock Price and Timeframe */}
+          <div className="p-4 border-b border-border">
+            <div className="mb-3">
+              <div className="flex items-baseline gap-2">
+                <span className="text-2xl font-semibold text-muted-foreground">{symbol}</span>
+                <span className="text-2xl font-bold">{todayPrice?.toFixed(2) || '0.00'}</span>
+              </div>
+              {priceChange !== null && (
+                <div className={`flex items-center text-sm mt-1 ${priceChange >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+                  {priceChange >= 0 ? <ArrowUpRight className="w-4 h-4 mr-1" /> : <ArrowDownRight className="w-4 h-4 mr-1" />}
+                  <span>{Math.abs(priceChange).toFixed(2)} ({Math.abs(priceChange).toFixed(2)}%) Today</span>
+                </div>
+              )}
+            </div>
+
+            {/* Timeframe Selector */}
+            <div className="flex items-center justify-between">
+              <div className="flex gap-1 bg-muted rounded-lg p-1">
+                {intervals.map((item) => (
+                  <Button
+                    key={item.label}
+                    variant={range === item.range && interval === item.value ? "default" : "ghost"}
+                    size="sm"
+                    className={clsx(
+                      "px-3 py-2 rounded-md text-xs font-semibold transition-all duration-200 min-w-[30px] h-8"
+                    )}
+                    onClick={() => onIntervalClick?.(item)}
+                  >
+                    {item.label}
+                  </Button>
+                ))}
+              </div>
+              <Button variant="ghost" size="icon" className="p-1">
+                <TrendingUp className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Chart Area */}
+          <div className="flex-1 relative min-h-[200px]">
+            <div ref={chartContainerRef} className="w-full h-full" />
+            {/* Current Price Line */}
+            {todayPrice && (
+              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary/10 border border-primary px-2 py-1 rounded text-xs font-medium">
+                {todayPrice.toFixed(2)}
               </div>
             )}
+            {/* Interval Dropdown */}
+            <div className="absolute bottom-2 right-2 bg-muted/80 backdrop-blur-sm px-2 py-1 rounded text-xs">
+              {intervals.find(i => i.range === range && i.value === interval)?.label} • {interval.toUpperCase()}
+            </div>
           </div>
-          <div ref={chartContainerRef} className="w-full h-full" />
-        </>
+
+          {/* Detailed Stock Information */}
+          <div className="p-4 border-t border-border">
+            <div className="grid grid-cols-3 gap-4 text-sm">
+              <div>
+                <span className="text-muted-foreground text-xs">Open</span>
+                <div className="font-medium">{openPrice?.toFixed(2) || '0.00'}</div>
+              </div>
+              <div>
+                <span className="text-muted-foreground text-xs">High</span>
+                <div className="font-medium text-green-500">{highPrice?.toFixed(2) || '0.00'}</div>
+              </div>
+              <div>
+                <span className="text-muted-foreground text-xs">Low</span>
+                <div className="font-medium text-red-500">{lowPrice?.toFixed(2) || '0.00'}</div>
+              </div>
+              <div>
+                <span className="text-muted-foreground text-xs">Prev Close</span>
+                <div className="font-medium">{prevClose?.toFixed(2) || '0.00'}</div>
+              </div>
+              <div>
+                <span className="text-muted-foreground text-xs">Mkt Cap</span>
+                <div className="font-medium">{marketCap ? `${(marketCap / 1000000000).toFixed(2)}B` : '0.00B'}</div>
+              </div>
+              <div>
+                <span className="text-muted-foreground text-xs">Volume</span>
+                <div className="font-medium">{volume ? `${(volume / 1000000).toFixed(2)}M` : '0.00M'}</div>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   )
@@ -325,77 +449,43 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
         <Card className="border-2 shadow-2xl overflow-hidden backdrop-blur-sm bg-card/50 h-full">
           <CardContent className="p-0 h-full">
             <div className="flex flex-col h-full">
-              {/* Chart Area */}
+              {/* Chart Area with full StockChart component */}
               <div 
-                className="flex-1 min-h-[100px] sm:min-h-[250px] md:min-h-[300px]"
+                className="flex-1 min-h-[400px] sm:min-h-[500px] md:min-h-[600px]"
                 onTouchStart={onTouchStart}
                 onTouchMove={onTouchMove}
                 onTouchEnd={onTouchEnd}
               >
-                <StockChart symbol={currentStock.Symbol} interval={stockInterval} range={stockRange} />
+                <StockChart 
+                  symbol={currentStock.Symbol} 
+                  interval={stockInterval} 
+                  range={stockRange}
+                  onIntervalClick={handleIntervalClick}
+                  currentCategoryIndex={currentCategoryIndex}
+                  onCategoryChange={handleCategoryChange}
+                />
               </div>
               
-              {/* Controls Area */}
-              <div className="bg-muted/30 border-t-2 border-border p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4 md:space-y-5 flex-shrink-0">
-                {/* First row - Timeframe and Category selector */}
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
-                  {/* Interval buttons - top row on mobile, left on desktop */}
-                  <div className="flex items-center gap-2 flex-shrink-0">
-                    <span className="text-xs sm:text-sm font-medium text-muted-foreground whitespace-nowrap">Timeframe:</span>
-                    <div className="flex gap-1 bg-background rounded-lg p-1 border-2 border-border shadow-sm">
-                      {intervals.map((item) => (
-                        <button
-                          key={item.label}
-                          className={clsx(
-                            "px-2 py-1.5 rounded-md text-xs font-semibold transition-all duration-200 min-w-[30px]",
-                            stockRange === item.range && stockInterval === item.value
-                              ? "bg-primary text-primary-foreground shadow-md scale-105"
-                              : "bg-transparent text-foreground hover:bg-muted"
-                          )}
-                          onClick={() => handleIntervalClick(item)}
-                          aria-current={stockRange === item.range && stockInterval === item.value ? "page" : undefined}
-                        >
-                          {item.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Category selector - next row on mobile, right on desktop */}
-                  <div className="flex items-center gap-2 flex-shrink-0 w-full sm:w-auto">
-                    <span className="text-xs sm:text-sm font-medium text-muted-foreground whitespace-nowrap">Category:</span>
-                    <select
-                      className="border-2 border-border rounded-lg px-2 py-1.5 text-xs sm:text-sm bg-background hover:border-primary transition-colors cursor-pointer font-medium shadow-sm flex-1 sm:flex-none min-w-[120px] max-w-[200px]"
-                      value={currentCategoryIndex}
-                      onChange={(e) => handleCategoryChange(Number(e.target.value))}
-                    >
-                      {stockCategories.map((category, index) => (
-                        <option key={index} value={index}>
-                          {category.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                {/* Second row - Navigation buttons */}
-                <div className="flex items-center justify-between gap-3 pt-2">
+              {/* Navigation Controls Only */}
+              <div className="bg-muted/30 border-t-2 border-border p-3 sm:p-4 flex-shrink-0">
+                {/* Navigation buttons only */}
+                <div className="flex items-center justify-center gap-3">
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={handlePrevious}
                     disabled={currentStockIndex === 0}
                     aria-label="Previous stock"
-                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-4 sm:px-6 font-semibold shadow-sm disabled:opacity-40 text-sm sm:text-base h-10 sm:h-11 flex-1 sm:flex-none min-w-[100px]"
+                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-3 sm:px-4 font-semibold shadow-sm disabled:opacity-40 text-sm h-9 sm:h-10"
                   >
                     <ChevronLeft className="h-4 w-4 sm:mr-2" />
                     <span className="hidden sm:inline">Previous</span>
                     <span className="sm:hidden">Prev</span>
                   </Button>
                   
-                  <div className="text-center px-3 sm:px-4">
-                    <div className="text-sm sm:text-base text-muted-foreground mb-1">Stock</div>
-                    <div className="text-base sm:text-lg font-bold">
+                  <div className="text-center px-2 sm:px-3">
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-0.5">Stock</div>
+                    <div className="text-sm sm:text-base font-bold">
                       {currentStockIndex + 1} / {totalStocks}
                     </div>
                   </div>
@@ -406,7 +496,7 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                     onClick={handleNext}
                     disabled={currentStockIndex === totalStocks - 1}
                     aria-label="Next stock"
-                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-4 sm:px-6 font-semibold shadow-sm disabled:opacity-40 text-sm sm:text-base h-10 sm:h-11 flex-1 sm:flex-none min-w-[100px]"
+                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-3 sm:px-4 font-semibold shadow-sm disabled:opacity-40 text-sm h-9 sm:h-10"
                   >
                     <span className="sm:hidden">Next</span>
                     <span className="hidden sm:inline">Next</span>
