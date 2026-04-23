@@ -337,33 +337,17 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
               
               {/* Controls Area */}
               <div className="bg-muted/30 border-t-2 border-border p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4 md:space-y-5 flex-shrink-0">
-                {/* First row - Category selector and interval buttons */}
-                <div className="flex flex-col gap-3 sm:gap-4">
-                  {/* Category selector */}
-                  <div className="flex items-center gap-3 sm:gap-4">
-                    <span className="text-sm sm:text-base font-medium text-muted-foreground whitespace-nowrap">Category:</span>
-                    <select
-                      className="border-2 border-border rounded-lg px-3 sm:px-4 py-2 text-sm sm:text-base bg-background hover:border-primary transition-colors cursor-pointer font-medium shadow-sm flex-1 max-w-xs"
-                      value={currentCategoryIndex}
-                      onChange={(e) => handleCategoryChange(Number(e.target.value))}
-                    >
-                      {stockCategories.map((category, index) => (
-                        <option key={index} value={index}>
-                          {category.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  {/* Interval buttons */}
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+                {/* First row - Timeframe and Category selector */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+                  {/* Interval buttons - moved to left */}
+                  <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
                     <span className="text-sm sm:text-base font-medium text-muted-foreground whitespace-nowrap">Timeframe:</span>
-                    <div className="flex flex-wrap gap-2 sm:gap-3 bg-background rounded-lg p-1.5 sm:p-2 border-2 border-border shadow-sm flex-1">
+                    <div className="flex flex-wrap gap-1 sm:gap-2 bg-background rounded-lg p-1.5 sm:p-2 border-2 border-border shadow-sm">
                       {intervals.map((item) => (
                         <button
                           key={item.label}
                           className={clsx(
-                            "px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base font-semibold transition-all duration-200 flex-1 sm:flex-none min-w-[45px]",
+                            "px-2 sm:px-3 py-2 rounded-md text-xs sm:text-sm font-semibold transition-all duration-200 min-w-[35px] sm:min-w-[40px]",
                             stockRange === item.range && stockInterval === item.value
                               ? "bg-primary text-primary-foreground shadow-md scale-105"
                               : "bg-transparent text-foreground hover:bg-muted"
@@ -375,6 +359,22 @@ const StockCarousel: React.FC<StockCarouselProps> = ({
                         </button>
                       ))}
                     </div>
+                  </div>
+
+                  {/* Category selector - moved to extreme right */}
+                  <div className="flex items-center gap-3 sm:gap-4 ml-auto sm:ml-auto">
+                    <span className="text-sm sm:text-base font-medium text-muted-foreground whitespace-nowrap">Category:</span>
+                    <select
+                      className="border-2 border-border rounded-lg px-3 sm:px-4 py-2 text-sm sm:text-base bg-background hover:border-primary transition-colors cursor-pointer font-medium shadow-sm min-w-[140px] sm:min-w-[160px]"
+                      value={currentCategoryIndex}
+                      onChange={(e) => handleCategoryChange(Number(e.target.value))}
+                    >
+                      {stockCategories.map((category, index) => (
+                        <option key={index} value={index}>
+                          {category.name}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </div>
 
