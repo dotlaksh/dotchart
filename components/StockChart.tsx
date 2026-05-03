@@ -130,7 +130,7 @@ const StockChart: React.FC<StockChartProps> = ({
         </div>
 
         {/* Added px-4 horizontal padding as requested */}
-        <div ref={chartContainerRef} className="w-full h-full px-4"></div>
+        <div ref={chartContainerRef} className="w-full h-full"></div>
       </div>
 
       <div className="flex flex-col sm:flex-row items-center gap-1 shrink-0 px-1 pb-1">
