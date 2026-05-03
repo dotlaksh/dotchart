@@ -78,17 +78,20 @@ const StockChart: React.FC<StockChartProps> = ({
       })))
       volumeSeriesRef.current = vSeries
 
-      chart.priceScale('right').applyOptions({ scaleMargins: { top: 0.15, bottom: 0.1 } })
-      chart.priceScale('volume').applyOptions({ scaleMargins: { top: 0.85, bottom: 0 } })
+      // Create a clear 10% gap between price bars and volume bars using scaleMargins
+      chart.priceScale('right').applyOptions({ scaleMargins: { top: 0.1, bottom: 0.3 } })
+      chart.priceScale('volume').applyOptions({ scaleMargins: { top: 0.8, bottom: 0 } })
       chart.timeScale().fitContent()
 
       const latest = data[data.length - 1]
-      const prev = data[data.length - 2]?.close
+      const prevDay = data[data.length - 2]?.close
       setTodayPrice(latest.close)
-      if (prev) setPriceChange(((latest.close - prev) / prev) * 100)
+      if (prevDay) setPriceChange(((latest.close - prevDay) / prevDay) * 100)
       setStats({
-        open: latest.open, prev: prev || latest.close,
-        high: Math.max(...data.map(d => d.high)), low: Math.min(...data.map(d => d.low)),
+        open: latest.open,
+        high: Math.max(...data.map(d => d.high)),
+        low: Math.min(...data.map(d => d.low)),
+        close: latest.close,
         vol: data.reduce((s, d) => s + d.volume, 0)
       })
 
@@ -99,56 +102,67 @@ const StockChart: React.FC<StockChartProps> = ({
   }, [data])
 
   const StatCard = ({ label, value, color = "text-white" }: any) => (
-    <div className="flex flex-col p-1 bg-white/5 rounded-lg border border-white/5">
-      <span className="text-[7px] uppercase text-white/20 font-black mb-0.5">{label}</span>
-      <span className={clsx("text-[9px] font-black tabular-nums leading-none", color)}>{(value !== undefined && value !== null) ? value.toLocaleString(undefined, { maximumFractionDigits: 1 }) : '--'}</span>
+    <div className="flex flex-col p-2 bg-white/5 rounded-xl border border-white/5 shadow-inner">
+      <span className="text-[8px] uppercase text-white/30 font-black mb-1">{label}</span>
+      <span className={clsx("text-sm font-black tabular-nums leading-none tracking-tighter", color)}>{(value !== undefined && value !== null) ? value.toLocaleString(undefined, { maximumFractionDigits: 1 }) : '--'}</span>
     </div>
   )
 
   return (
-    <div className="flex flex-col gap-1 h-full max-w-2xl mx-auto min-h-0 overflow-hidden">
-      <div className="flex-1 min-h-0 glass rounded-xl relative overflow-hidden">
-        <div className="absolute top-1 left-2 right-2 z-20 flex items-center justify-between pointer-events-none">
-          <div className="flex items-center gap-2 bg-black/80 backdrop-blur-3xl px-2 py-1 rounded-md border border-white/10 pointer-events-auto">
-            <span className="text-[10px] font-black text-white uppercase">{symbol}</span>
-            <div className="w-[1px] h-2 bg-white/20" />
-            <span className="text-[10px] font-black text-white tabular-nums">
-              ₹{todayPrice?.toLocaleString(undefined, { minimumFractionDigits: 2 }) ?? '--'}
-            </span>
-            <span className={clsx("text-[8px] font-black tabular-nums", priceChange && priceChange >= 0 ? 'text-emerald-400' : 'text-rose-400')}>
-              {priceChange !== null && priceChange !== undefined ? (priceChange >= 0 ? '+' : '') + priceChange.toFixed(2) + '%' : '--'}
-            </span>
-          </div>
-
-          <div className="flex bg-black/80 backdrop-blur-3xl p-0.5 rounded-md border border-white/10 pointer-events-auto gap-0.5">
-            {intervals.map(i => (
-              <button key={i.label} onClick={() => onIntervalClick(i)} className={clsx("px-1.5 py-0.5 rounded-sm text-[8px] font-black transition-all", i.range === range ? "bg-white text-black" : "text-white/40")}>
-                {i.label}
-              </button>
-            ))}
+    <div className="flex flex-col justify-center items-center gap-6 h-full w-full max-w-2xl mx-auto min-h-0 overflow-hidden px-4">
+      {/* Information Section */}
+      <div className="flex flex-col gap-3 w-full shrink-0">
+        <div className="flex items-center justify-center gap-4 bg-white/[0.02] backdrop-blur-3xl px-6 py-3 rounded-2xl border border-white/5 shadow-2xl">
+          <span className="text-sm font-black text-white uppercase tracking-widest">{symbol}</span>
+          <div className="w-[1px] h-4 bg-white/10" />
+          <span className="text-base font-black text-white tabular-nums tracking-tighter">
+            ₹{todayPrice?.toLocaleString(undefined, { minimumFractionDigits: 2 }) ?? '--'}
+          </span>
+          <div className={clsx(
+            "px-2 py-1 rounded-lg text-[10px] font-black tabular-nums border",
+            priceChange && priceChange >= 0 ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border-rose-500/20'
+          )}>
+            {priceChange !== null && priceChange !== undefined ? (priceChange >= 0 ? '+' : '') + priceChange.toFixed(2) + '%' : '--'}
           </div>
         </div>
 
-        {/* Added px-4 horizontal padding as requested */}
-        <div ref={chartContainerRef} className="w-full h-full"></div>
+        <div className="flex justify-center gap-1.5 bg-black/40 backdrop-blur-2xl p-1 rounded-xl border border-white/5 self-center">
+          {intervals.map(i => (
+            <button key={i.label} onClick={() => onIntervalClick(i)} className={clsx("px-3 py-1.5 rounded-lg text-[10px] font-black transition-all", i.range === range ? "bg-white text-black shadow-lg" : "text-white/40 hover:text-white")}>
+              {i.label}
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row items-center gap-1 shrink-0 px-1 pb-1">
-        <div className="grid grid-cols-5 gap-1 flex-1 w-full sm:w-auto">
+      {/* Chart Section */}
+      <div className="w-full h-[50dvh] glass rounded-3xl relative overflow-hidden shadow-2xl border border-white/5 mb-6">
+        <div ref={chartContainerRef} className="w-full h-full px-2"></div>
+      </div>
+
+      {/* Control Section */}
+      <div className="flex flex-col items-center gap-6 w-full shrink-0">
+        <div className="grid grid-cols-5 gap-2 w-full">
           <StatCard label="Open" value={stats.open} />
-          <StatCard label="Prev" value={stats.prev} />
           <StatCard label="High" value={stats.high} color="text-emerald-400" />
           <StatCard label="Low" value={stats.low} color="text-rose-400" />
-          <StatCard label="Vol" value={stats.vol ? `${(stats.vol / 100000).toFixed(1)}L` : null} />
+          <StatCard label="Close" value={stats.close} />
+          <StatCard label="Volume" value={stats.vol ? `${(stats.vol / 100000).toFixed(1)}L` : null} />
         </div>
 
-        <div className="flex items-center gap-1 bg-indigo-600/5 p-0.5 rounded-md border border-indigo-500/10">
-          <button onClick={onPrev} disabled={currentStockIndex === 0} className="p-1.5 rounded-md bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-400 disabled:opacity-5">
-            <ChevronLeft size={14} strokeWidth={3} />
+        {/* Navigation */}
+        <div className="flex items-center gap-4 bg-indigo-600/10 p-2 rounded-2xl border border-indigo-500/20">
+          <button onClick={onPrev} disabled={currentStockIndex === 0} className="p-4 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-400 disabled:opacity-10 transition-all active:scale-90">
+            <ChevronLeft size={24} strokeWidth={3} />
           </button>
-          <span className="text-[9px] font-black text-indigo-300 tabular-nums px-1">{currentStockIndex + 1}/{totalStocks}</span>
-          <button onClick={onNext} disabled={currentStockIndex === totalStocks - 1} className="p-1.5 rounded-md bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-400 disabled:opacity-5">
-            <ChevronRight size={14} strokeWidth={3} />
+          <div className="flex flex-col items-center px-4">
+            <span className="text-[10px] font-black text-indigo-400/40 uppercase tracking-widest mb-1">Index</span>
+            <span className="text-xl font-black text-indigo-300 tabular-nums leading-none tracking-tighter">
+              {currentStockIndex + 1} <span className="text-indigo-900 mx-1">/</span> {totalStocks}
+            </span>
+          </div>
+          <button onClick={onNext} disabled={currentStockIndex === totalStocks - 1} className="p-4 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-400 disabled:opacity-10 transition-all active:scale-90">
+            <ChevronRight size={24} strokeWidth={3} />
           </button>
         </div>
       </div>
@@ -163,33 +177,36 @@ const StockCarousel: React.FC<any> = (props) => {
   const totalStocks = currentCategory.data.length;
 
   return (
-    <div className="h-[100dvh] w-full bg-[#010103] text-slate-200 flex flex-col font-sans relative overflow-hidden fixed inset-0">
+    <div className="h-[100dvh] w-full bg-[#020205] text-slate-200 flex flex-col font-sans relative overflow-hidden fixed inset-0">
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-15%] left-[-15%] w-[60%] h-[60%] rounded-full bg-indigo-600/5 blur-[150px]" />
-        <div className="absolute bottom-[-15%] right-[-15%] w-[60%] h-[60%] rounded-full bg-purple-600/5 blur-[150px]" />
+        <div className="absolute top-[-20%] left-[-20%] w-[80%] h-[80%] rounded-full bg-indigo-600/[0.03] blur-[150px]" />
+        <div className="absolute bottom-[-20%] right-[-20%] w-[80%] h-[80%] rounded-full bg-purple-600/[0.03] blur-[150px]" />
       </div>
 
-      <div className="relative z-10 flex-1 flex flex-col m-0.5 sm:m-1 rounded-xl border border-white/5 bg-black/40 backdrop-blur-3xl overflow-hidden shadow-2xl">
-        <header className="flex items-center justify-between px-3 py-1 border-b border-white/[0.03] bg-black/60 shrink-0">
-          <div className="flex items-center gap-1.5">
-            <div className="w-5 h-5 rounded bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg"><Activity className="w-3 h-3 text-white" /></div>
-            <span className="text-xs font-black tracking-tighter text-white uppercase">dotChart</span>
+      <div className="relative z-10 flex-1 flex flex-col overflow-hidden">
+        <header className="flex items-center justify-between px-6 py-4 bg-transparent shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg border border-white/10"><Activity className="w-6 h-6 text-white" /></div>
+            <div className="flex flex-col">
+              <span className="text-xl font-black tracking-tighter text-white leading-none">dotChart</span>
+              <span className="text-[10px] font-black text-indigo-500 uppercase tracking-[0.3em] mt-1">Terminal</span>
+            </div>
           </div>
           <Select value={props.currentCategoryIndex.toString()} onValueChange={(v) => { props.onCategoryChange(Number(v)); setCurrentStockIndex(0); }}>
-            <SelectTrigger className="w-[120px] bg-white/5 border-white/5 rounded text-[8px] font-black h-6 px-1.5">
-              <SelectValue placeholder="Index" />
+            <SelectTrigger className="w-[180px] bg-white/[0.03] border-white/5 rounded-xl text-[10px] font-black h-10 px-4 backdrop-blur-xl">
+              <SelectValue placeholder="Market Index" />
             </SelectTrigger>
-            <SelectContent className="bg-slate-900 border-white/10 rounded-lg">
+            <SelectContent className="bg-slate-900/95 border-white/10 backdrop-blur-3xl rounded-2xl">
               {stockCategories.map((cat, idx) => (
-                <SelectItem key={idx} value={idx.toString()} className="text-[8px] font-bold py-1 px-2">{cat.name}</SelectItem>
+                <SelectItem key={idx} value={idx.toString()} className="text-[10px] font-bold py-2.5">{cat.name}</SelectItem>
               ))}
             </SelectContent>
           </Select>
         </header>
 
-        <main className="flex-1 overflow-hidden min-h-0 p-0">
+        <main className="flex-1 overflow-hidden min-h-0">
           <AnimatePresence mode="wait">
-            <motion.div key={`${props.currentCategoryIndex}-${currentStockIndex}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }} className="h-full w-full">
+            <motion.div key={`${props.currentCategoryIndex}-${currentStockIndex}`} initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.02 }} transition={{ duration: 0.25 }} className="h-full w-full">
               <StockChart
                 symbol={currentStock.Symbol} interval={props.stockInterval} range={props.stockRange}
                 onIntervalClick={(i: any) => { props.setStockRange(i.range); props.setStockInterval(i.value); }}
