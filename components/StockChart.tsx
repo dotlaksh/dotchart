@@ -2,17 +2,15 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { ChevronLeft, ChevronRight, ArrowUpRight, ArrowDownRight, Maximize2, Minimize2, Moon, Sun, Star, Bell, Share2, ArrowLeft, TrendingUp } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Activity, Search } from 'lucide-react'
 import { createChart, ColorType, IChartApi, ISeriesApi } from 'lightweight-charts'
-import { useTheme } from "next-themes"
 import { stockCategories } from '@/lib/stockList'
+import { motion, AnimatePresence } from "framer-motion"
 import clsx from "clsx"
 
-// INTERVAL BUTTONS
-const intervals: { label: string; value: string; range: string }[] = [
+const intervals = [
   { label: '3M', value: '1d', range: '3mo' },
   { label: '6M', value: '1d', range: '6mo' },
   { label: '1Y', value: '1d', range: '1y' },
@@ -20,494 +18,189 @@ const intervals: { label: string; value: string; range: string }[] = [
   { label: '5Y', value: '1wk', range: '5y' },
   { label: '10Y', value: '1mo', range: '10y' },
   { label: 'All', value: '1mo', range: 'max' }
+];
 
-  ];
-
-interface ChartData {
-  time: string
-  open: number
-  high: number
-  low: number
-  close: number
-  volume: number
-}
+interface ChartData { time: string; open: number; high: number; low: number; close: number; volume: number; }
 
 interface StockChartProps {
-  symbol: string
-  interval: string
-  range: string
-  onIntervalClick?: (item: { label: string; value: string; range: string }) => void
-  currentCategoryIndex: number
-  onCategoryChange?: (index: number) => void
+  symbol: string; interval: string; range: string; onIntervalClick: (item: any) => void;
+  currentCategoryIndex: number; currentStockIndex: number; totalStocks: number;
+  onPrev: () => void; onNext: () => void;
 }
 
-// Theme toggle
-const ThemeToggle: React.FC = () => {
-  const { theme, setTheme } = useTheme()
-  const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark')
-  return (
-    <Button 
-      variant="outline" 
-      size="icon" 
-      onClick={toggleTheme}
-      aria-label="Toggle Theme"
-    >
-      {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-    </Button>
-  )
-}
-
-const StockChart: React.FC<StockChartProps> = ({ symbol, interval, range, onIntervalClick, currentCategoryIndex, onCategoryChange }) => {
+const StockChart: React.FC<StockChartProps> = ({
+  symbol, interval, range, onIntervalClick,
+  currentStockIndex, totalStocks, onPrev, onNext
+}) => {
   const chartContainerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<IChartApi | null>(null)
   const barSeriesRef = useRef<ISeriesApi<"Bar"> | null>(null)
   const volumeSeriesRef = useRef<ISeriesApi<'Histogram'> | null>(null)
-  const maSeriesRef = useRef<ISeriesApi<'Line'> | null>(null)
   const [data, setData] = useState<ChartData[]>([])
   const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string | null>(null)
   const [todayPrice, setTodayPrice] = useState<number | null>(null)
   const [priceChange, setPriceChange] = useState<number | null>(null)
-  const [highPrice, setHighPrice] = useState<number | null>(null)
-  const [lowPrice, setLowPrice] = useState<number | null>(null)
-  const [volume, setVolume] = useState<number | null>(null)
-  const [openPrice, setOpenPrice] = useState<number | null>(null)
-  const [prevClose, setPrevClose] = useState<number | null>(null)
-  const [marketCap, setMarketCap] = useState<number | null>(null)
-  const { theme } = useTheme()
+  const [stats, setStats] = useState<any>({})
 
   useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true)
+      try {
+        const res = await fetch(`/api/stock?symbol=${encodeURIComponent(symbol)}&interval=${interval}&range=${range}`);
+        const jsonData = await res.json()
+        setData(jsonData)
+      } catch (e) { console.error(e) } finally { setLoading(false) }
+    }
     fetchData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [symbol, interval, range])
 
   useEffect(() => {
-    const handleResize = () => {
-      if (chartRef.current && chartContainerRef.current) {
-        chartRef.current.applyOptions({ 
-          width: chartContainerRef.current.clientWidth,
-          height: chartContainerRef.current.clientHeight
-        })
-      }
+    if (chartContainerRef.current && data.length > 0) {
+      const chart = createChart(chartContainerRef.current, {
+        layout: { background: { type: ColorType.Solid, color: 'transparent' }, textColor: 'rgba(255, 255, 255, 0.4)', fontSize: 10 },
+        grid: { vertLines: { visible: false }, horzLines: { color: 'rgba(255, 255, 255, 0.02)' } },
+        timeScale: { borderColor: 'rgba(255, 255, 255, 0.1)', visible: true, rightOffset: 5 },
+        rightPriceScale: { borderColor: 'rgba(255, 255, 255, 0.1)', visible: true },
+        width: chartContainerRef.current.clientWidth,
+        height: chartContainerRef.current.clientHeight,
+        handleScroll: true, handleScale: true,
+      })
+      chartRef.current = chart
+
+      const series = chart.addBarSeries({ upColor: '#10b981', downColor: '#f43f5e', thinBars: true })
+      series.setData(data)
+      barSeriesRef.current = series
+
+      const vSeries = chart.addHistogramSeries({ color: 'rgba(255, 255, 255, 0.05)', priceFormat: { type: 'volume' }, priceScaleId: 'volume' })
+      vSeries.setData(data.map((d, i) => ({
+        time: d.time, value: d.volume,
+        color: i > 0 ? (d.close >= data[i - 1].close ? 'rgba(16, 185, 129, 0.6)' : 'rgba(244, 63, 94, 0.6)') : 'rgba(16, 185, 129, 0.6)'
+      })))
+      volumeSeriesRef.current = vSeries
+
+      chart.priceScale('right').applyOptions({ scaleMargins: { top: 0.15, bottom: 0.1 } })
+      chart.priceScale('volume').applyOptions({ scaleMargins: { top: 0.85, bottom: 0 } })
+      chart.timeScale().fitContent()
+
+      const latest = data[data.length - 1]
+      const prev = data[data.length - 2]?.close
+      setTodayPrice(latest.close)
+      if (prev) setPriceChange(((latest.close - prev) / prev) * 100)
+      setStats({
+        open: latest.open, prev: prev || latest.close,
+        high: Math.max(...data.map(d => d.high)), low: Math.min(...data.map(d => d.low)),
+        vol: data.reduce((s, d) => s + d.volume, 0)
+      })
+
+      const handleResize = () => chart.applyOptions({ width: chartContainerRef.current?.clientWidth, height: chartContainerRef.current?.clientHeight })
+      window.addEventListener('resize', handleResize)
+      return () => { window.removeEventListener('resize', handleResize); chart.remove(); }
     }
+  }, [data])
 
-    const initChart = () => {
-      if (chartContainerRef.current && data.length > 0) {
-        const chartOptions = {
-          layout: {
-            background: { type: ColorType.Solid, color: '#09090b' },
-            textColor: '#E5E7EB',
-          },
-          grid: {
-            vertLines: { visible: false },
-            horzLines: { visible: false },
-          },
-          timeScale: {
-            timeVisible: true,
-            rightOffset: 5,
-            minBarSpacing: 2,
-          },
-          width: chartContainerRef.current.clientWidth,
-          height: chartContainerRef.current.clientHeight,
-        }
-
-        // Remove any existing chart instance before creating a new one
-        if (chartRef.current) {
-          chartRef.current.remove()
-          chartRef.current = null
-        }
-
-        chartRef.current = createChart(chartContainerRef.current, chartOptions)
-
-        // Bar series on main pane (without open price)
-        barSeriesRef.current = chartRef.current.addBarSeries({
-          upColor: '#24f709',
-          downColor: '#fb0707',
-          thinBars: true,
-          openVisible: false,
-        })
-        barSeriesRef.current.setData(data)
-
-         // Configure the price scale for the main series
-        chartRef.current.priceScale('right').applyOptions({
-          scaleMargins: {
-            top: 0.2,
-            bottom: 0.2,
-          },
-        })
-        // Volume series on separate pane at bottom
-        volumeSeriesRef.current = chartRef.current.addHistogramSeries({
-          color: '#4B5563',
-          priceFormat: {
-            type: 'volume',
-          },
-          priceScaleId: 'volume',
-        })
-        
-        // Configure the volume price scale
-        chartRef.current.priceScale('volume').applyOptions({
-          scaleMargins: {
-            top: 0.8,
-            bottom: 0,
-          },
-        })
-        
-        // Prepare volume data with color based on price movement
-        const volumeData = data.map((item, index) => {
-          const isUp = index > 0 ? item.close >= data[index - 1].close : true
-          return {
-            time: item.time,
-            value: item.volume,
-            color: isUp ? '#24f709' : '#fb0707'
-          }
-        })
-        volumeSeriesRef.current.setData(volumeData)
-
-        chartRef.current.timeScale().fitContent()
-
-        if (data.length > 0) {
-          const latestData = data[data.length - 1]
-          const yesterdayClose = data[data.length - 2]?.close
-          
-          setTodayPrice(latestData.close)
-          setOpenPrice(yesterdayClose || latestData.open)
-          setPrevClose(yesterdayClose || latestData.close)
-          
-          if (yesterdayClose) {
-            const change = ((latestData.close - yesterdayClose) / yesterdayClose) * 100
-            setPriceChange(change)
-          }
-          
-          // Calculate additional metrics
-          const high = Math.max(...data.map(d => d.high))
-          const low = Math.min(...data.map(d => d.low))
-          const totalVolume = data.reduce((sum, d) => sum + d.volume, 0)
-          
-          setHighPrice(high)
-          setLowPrice(low)
-          setVolume(totalVolume)
-          setMarketCap(latestData.close * 1000000000) // Mock market cap calculation
-        }
-      }
-    }
-
-    initChart()
-    window.addEventListener('resize', handleResize)
-    return () => {
-      window.removeEventListener('resize', handleResize)
-      if (chartRef.current) {
-        chartRef.current.remove()
-        chartRef.current = null
-      }
-    }
-  }, [data, theme])
-
-  const fetchData = async () => {
-    setLoading(true)
-    setError(null)
-    try {
-      const response = await fetch(
-        `/api/stock?symbol=${encodeURIComponent(symbol)}&interval=${interval}&range=${range}`
-      );
-      if (!response.ok) {
-        throw new Error('Failed to fetch data')
-      }
-      const jsonData = await response.json()
-      setData(jsonData)
-    } catch (error) {
-      console.error('Error fetching data:', error)
-      setError('Failed to load stock data. Please try again later.')
-    } finally {
-      setLoading(false)
-    }
-  }
+  const StatCard = ({ label, value, color = "text-white" }: any) => (
+    <div className="flex flex-col p-1 bg-white/5 rounded-lg border border-white/5">
+      <span className="text-[7px] uppercase text-white/20 font-black mb-0.5">{label}</span>
+      <span className={clsx("text-[9px] font-black tabular-nums leading-none", color)}>{(value !== undefined && value !== null) ? value.toLocaleString(undefined, { maximumFractionDigits: 1 }) : '--'}</span>
+    </div>
+  )
 
   return (
-    <div className="w-full h-full bg-background text-foreground">
-      {error && <div className="text-red-500 p-4">{error}</div>}
-      {loading ? (
-        <div className="flex justify-center items-center h-full">
-          <div className="animate-spin rounded-full h-24 w-24 border-b-2 border-primary"></div>
-        </div>
-      ) : (
-        <div className="flex flex-col h-full">
-          {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-border">
-            <div className="flex items-center gap-3">
-              <Button variant="ghost" size="icon" className="p-2">
-                <ArrowLeft className="w-5 h-5" />
-              </Button>
-              <div>
-                <h1 className="text-lg font-semibold">dotChart</h1>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs sm:text-sm font-medium text-muted-foreground whitespace-nowrap">Category:</span>
-              <Select
-                value={currentCategoryIndex.toString()}
-                onValueChange={(value) => onCategoryChange?.(Number(value))}
-              >
-                <SelectTrigger className="w-[120px] sm:w-[140px]">
-                  <SelectValue placeholder="Select category" />
-                </SelectTrigger>
-                <SelectContent>
-                  {stockCategories.map((category, index) => (
-                    <SelectItem key={index} value={index.toString()}>
-                      {category.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+    <div className="flex flex-col gap-1 h-full max-w-2xl mx-auto min-h-0 overflow-hidden">
+      <div className="flex-1 min-h-0 glass rounded-xl relative overflow-hidden">
+        <div className="absolute top-1 left-2 right-2 z-20 flex items-center justify-between pointer-events-none">
+          <div className="flex items-center gap-2 bg-black/80 backdrop-blur-3xl px-2 py-1 rounded-md border border-white/10 pointer-events-auto">
+            <span className="text-[10px] font-black text-white uppercase">{symbol}</span>
+            <div className="w-[1px] h-2 bg-white/20" />
+            <span className="text-[10px] font-black text-white tabular-nums">
+              ₹{todayPrice?.toLocaleString(undefined, { minimumFractionDigits: 2 }) ?? '--'}
+            </span>
+            <span className={clsx("text-[8px] font-black tabular-nums", priceChange && priceChange >= 0 ? 'text-emerald-400' : 'text-rose-400')}>
+              {priceChange !== null && priceChange !== undefined ? (priceChange >= 0 ? '+' : '') + priceChange.toFixed(2) + '%' : '--'}
+            </span>
           </div>
 
-          {/* Stock Price and Timeframe */}
-          <div className="p-4 border-b border-border">
-            <div className="mb-3">
-              <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-semibold text-muted-foreground">{symbol}</span>
-                <span className="text-2xl font-bold">{todayPrice?.toFixed(2) || '0.00'}</span>
-              </div>
-              {priceChange !== null && (
-                <div className={`flex items-center text-sm mt-1 ${priceChange >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-                  {priceChange >= 0 ? <ArrowUpRight className="w-4 h-4 mr-1" /> : <ArrowDownRight className="w-4 h-4 mr-1" />}
-                  <span>{Math.abs(priceChange).toFixed(2)} ({Math.abs(priceChange).toFixed(2)}%) Today</span>
-                </div>
-              )}
-            </div>
-
-            {/* Timeframe Selector */}
-            <div className="flex items-center justify-between">
-              <div className="flex gap-1 bg-muted rounded-lg p-1">
-                {intervals.map((item) => (
-                  <Button
-                    key={item.label}
-                    variant={range === item.range && interval === item.value ? "default" : "ghost"}
-                    size="sm"
-                    className={clsx(
-                      "px-3 py-2 rounded-md text-xs font-semibold transition-all duration-200 min-w-[30px] h-8"
-                    )}
-                    onClick={() => onIntervalClick?.(item)}
-                  >
-                    {item.label}
-                  </Button>
-                ))}
-              </div>
-              <Button variant="ghost" size="icon" className="p-1">
-                <TrendingUp className="w-4 h-4" />
-              </Button>
-            </div>
-          </div>
-
-          {/* Chart Area */}
-          <div className="flex-1 relative min-h-[200px]">
-            <div ref={chartContainerRef} className="w-full h-full" />
-            {/* Current Price Line */}
-            {todayPrice && (
-              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary/10 border border-primary px-2 py-1 rounded text-xs font-medium">
-                {todayPrice.toFixed(2)}
-              </div>
-            )}
-            {/* Interval Dropdown */}
-            <div className="absolute bottom-2 right-2 bg-muted/80 backdrop-blur-sm px-2 py-1 rounded text-xs">
-              {intervals.find(i => i.range === range && i.value === interval)?.label} • {interval.toUpperCase()}
-            </div>
-          </div>
-
-          {/* Detailed Stock Information */}
-          <div className="p-4 border-t border-border">
-            <div className="grid grid-cols-3 gap-4 text-sm">
-              <div>
-                <span className="text-muted-foreground text-xs">Open</span>
-                <div className="font-medium">{openPrice?.toFixed(2) || '0.00'}</div>
-              </div>
-              <div>
-                <span className="text-muted-foreground text-xs">High</span>
-                <div className="font-medium text-green-500">{highPrice?.toFixed(2) || '0.00'}</div>
-              </div>
-              <div>
-                <span className="text-muted-foreground text-xs">Low</span>
-                <div className="font-medium text-red-500">{lowPrice?.toFixed(2) || '0.00'}</div>
-              </div>
-              <div>
-                <span className="text-muted-foreground text-xs">Prev Close</span>
-                <div className="font-medium">{prevClose?.toFixed(2) || '0.00'}</div>
-              </div>
-              <div>
-                <span className="text-muted-foreground text-xs">Mkt Cap</span>
-                <div className="font-medium">{marketCap ? `${(marketCap / 1000000000).toFixed(2)}B` : '0.00B'}</div>
-              </div>
-              <div>
-                <span className="text-muted-foreground text-xs">Volume</span>
-                <div className="font-medium">{volume ? `${(volume / 1000000).toFixed(2)}M` : '0.00M'}</div>
-              </div>
-            </div>
+          <div className="flex bg-black/80 backdrop-blur-3xl p-0.5 rounded-md border border-white/10 pointer-events-auto gap-0.5">
+            {intervals.map(i => (
+              <button key={i.label} onClick={() => onIntervalClick(i)} className={clsx("px-1.5 py-0.5 rounded-sm text-[8px] font-black transition-all", i.range === range ? "bg-white text-black" : "text-white/40")}>
+                {i.label}
+              </button>
+            ))}
           </div>
         </div>
-      )}
+
+        {/* Added px-4 horizontal padding as requested */}
+        <div ref={chartContainerRef} className="w-full h-full px-4"></div>
+      </div>
+
+      <div className="flex flex-col sm:flex-row items-center gap-1 shrink-0 px-1 pb-1">
+        <div className="grid grid-cols-5 gap-1 flex-1 w-full sm:w-auto">
+          <StatCard label="Open" value={stats.open} />
+          <StatCard label="Prev" value={stats.prev} />
+          <StatCard label="High" value={stats.high} color="text-emerald-400" />
+          <StatCard label="Low" value={stats.low} color="text-rose-400" />
+          <StatCard label="Vol" value={stats.vol ? `${(stats.vol / 100000).toFixed(1)}L` : null} />
+        </div>
+
+        <div className="flex items-center gap-1 bg-indigo-600/5 p-0.5 rounded-md border border-indigo-500/10">
+          <button onClick={onPrev} disabled={currentStockIndex === 0} className="p-1.5 rounded-md bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-400 disabled:opacity-5">
+            <ChevronLeft size={14} strokeWidth={3} />
+          </button>
+          <span className="text-[9px] font-black text-indigo-300 tabular-nums px-1">{currentStockIndex + 1}/{totalStocks}</span>
+          <button onClick={onNext} disabled={currentStockIndex === totalStocks - 1} className="p-1.5 rounded-md bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-400 disabled:opacity-5">
+            <ChevronRight size={14} strokeWidth={3} />
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
 
-interface StockData {
-  "Company Name": string;
-  Symbol: string;
-  PercentChange?: number; // Make this optional
-}
-
-interface StockCarouselProps {
-  onCategoryChange: (index: number) => void;
-  currentCategoryIndex: number;
-  stockRange: string;
-  stockInterval: string;
-  setStockRange: (range: string) => void;
-  setStockInterval: (interval: string) => void;
-}
-
-const StockCarousel: React.FC<StockCarouselProps> = ({
-  onCategoryChange,
-  currentCategoryIndex,
-  stockRange,
-  stockInterval,
-  setStockRange,
-  setStockInterval,
-}) => {
+const StockCarousel: React.FC<any> = (props) => {
   const [currentStockIndex, setCurrentStockIndex] = useState(0);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-
-  const currentCategory = stockCategories[currentCategoryIndex];
-  const currentStock = {
-    ...currentCategory.data[currentStockIndex],
-    percentChange: (currentCategory.data[currentStockIndex] as StockData).PercentChange ?? (Math.random() * 10 - 5),
-  };
+  const currentCategory = stockCategories[props.currentCategoryIndex];
+  const currentStock = currentCategory.data[currentStockIndex] as any;
   const totalStocks = currentCategory.data.length;
 
-  const handleCategoryChange = (index: number) => {
-    onCategoryChange(index);
-    setCurrentStockIndex(0);
-  };
-
-  const handlePrevious = () => {
-    setCurrentStockIndex((prev) => (prev - 1 + totalStocks) % totalStocks);
-  };
-
-  const handleNext = () => {
-    setCurrentStockIndex((prev) => (prev + 1) % totalStocks);
-  };
-
-  // Touch gesture handlers
-  const minSwipeDistance = 50;
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe && currentStockIndex < totalStocks - 1) {
-      handleNext();
-    }
-    if (isRightSwipe && currentStockIndex > 0) {
-      handlePrevious();
-    }
-  };
-
-  const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch((err) => {
-        console.error(`Fullscreen error: ${err.message}`);
-      });
-    } else {
-      document.exitFullscreen();
-    }
-    setIsFullscreen(!!document.fullscreenElement);
-  };
-
-  // Handle interval/range switching using buttons
-  const handleIntervalClick = (selected: typeof intervals[number]) => {
-    setStockRange(selected.range);
-    setStockInterval(selected.value);
-  };
-
- return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 p-2 sm:p-4">
-      <div className="max-w-7xl mx-auto h-[calc(100vh-1rem)] sm:h-[calc(100vh-2rem)]">
-
-        {/* Main Card */}
-        <Card className="border-2 shadow-2xl overflow-hidden backdrop-blur-sm bg-card/50 h-full">
-          <CardContent className="p-0 h-full">
-            <div className="flex flex-col h-full">
-              {/* Chart Area with full StockChart component */}
-              <div 
-                className="flex-1 min-h-[400px] sm:min-h-[500px] md:min-h-[600px]"
-                onTouchStart={onTouchStart}
-                onTouchMove={onTouchMove}
-                onTouchEnd={onTouchEnd}
-              >
-                <StockChart 
-                  symbol={currentStock.Symbol} 
-                  interval={stockInterval} 
-                  range={stockRange}
-                  onIntervalClick={handleIntervalClick}
-                  currentCategoryIndex={currentCategoryIndex}
-                  onCategoryChange={handleCategoryChange}
-                />
-              </div>
-              
-              {/* Navigation Controls Only */}
-              <div className="bg-muted/30 border-t-2 border-border p-3 sm:p-4 flex-shrink-0">
-                {/* Navigation buttons only */}
-                <div className="flex items-center justify-center gap-3">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handlePrevious}
-                    disabled={currentStockIndex === 0}
-                    aria-label="Previous stock"
-                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-3 sm:px-4 font-semibold shadow-sm disabled:opacity-40 text-sm h-9 sm:h-10"
-                  >
-                    <ChevronLeft className="h-4 w-4 sm:mr-2" />
-                    <span className="hidden sm:inline">Previous</span>
-                    <span className="sm:hidden">Prev</span>
-                  </Button>
-                  
-                  <div className="text-center px-2 sm:px-3">
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-0.5">Stock</div>
-                    <div className="text-sm sm:text-base font-bold">
-                      {currentStockIndex + 1} / {totalStocks}
-                    </div>
-                  </div>
-                  
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleNext}
-                    disabled={currentStockIndex === totalStocks - 1}
-                    aria-label="Next stock"
-                    className="border-2 hover:border-primary hover:bg-primary/10 transition-all duration-200 px-3 sm:px-4 font-semibold shadow-sm disabled:opacity-40 text-sm h-9 sm:h-10"
-                  >
-                    <span className="sm:hidden">Next</span>
-                    <span className="hidden sm:inline">Next</span>
-                    <ChevronRight className="h-4 w-4 sm:ml-2" />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>      
+  return (
+    <div className="h-[100dvh] w-full bg-[#010103] text-slate-200 flex flex-col font-sans relative overflow-hidden fixed inset-0">
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[-15%] left-[-15%] w-[60%] h-[60%] rounded-full bg-indigo-600/5 blur-[150px]" />
+        <div className="absolute bottom-[-15%] right-[-15%] w-[60%] h-[60%] rounded-full bg-purple-600/5 blur-[150px]" />
       </div>
+
+      <div className="relative z-10 flex-1 flex flex-col m-0.5 sm:m-1 rounded-xl border border-white/5 bg-black/40 backdrop-blur-3xl overflow-hidden shadow-2xl">
+        <header className="flex items-center justify-between px-3 py-1 border-b border-white/[0.03] bg-black/60 shrink-0">
+          <div className="flex items-center gap-1.5">
+            <div className="w-5 h-5 rounded bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg"><Activity className="w-3 h-3 text-white" /></div>
+            <span className="text-xs font-black tracking-tighter text-white uppercase">dotChart</span>
+          </div>
+          <Select value={props.currentCategoryIndex.toString()} onValueChange={(v) => { props.onCategoryChange(Number(v)); setCurrentStockIndex(0); }}>
+            <SelectTrigger className="w-[120px] bg-white/5 border-white/5 rounded text-[8px] font-black h-6 px-1.5">
+              <SelectValue placeholder="Index" />
+            </SelectTrigger>
+            <SelectContent className="bg-slate-900 border-white/10 rounded-lg">
+              {stockCategories.map((cat, idx) => (
+                <SelectItem key={idx} value={idx.toString()} className="text-[8px] font-bold py-1 px-2">{cat.name}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </header>
+
+        <main className="flex-1 overflow-hidden min-h-0 p-0">
+          <AnimatePresence mode="wait">
+            <motion.div key={`${props.currentCategoryIndex}-${currentStockIndex}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }} className="h-full w-full">
+              <StockChart
+                symbol={currentStock.Symbol} interval={props.stockInterval} range={props.stockRange}
+                onIntervalClick={(i: any) => { props.setStockRange(i.range); props.setStockInterval(i.value); }}
+                currentCategoryIndex={props.currentCategoryIndex} currentStockIndex={currentStockIndex} totalStocks={totalStocks}
+                onPrev={() => setCurrentStockIndex(p => Math.max(0, p - 1))} onNext={() => setCurrentStockIndex(p => Math.min(totalStocks - 1, p + 1))}
+              />
+            </motion.div>
+          </AnimatePresence>
+        </main>
+      </div>
+
     </div>
   );
 };
