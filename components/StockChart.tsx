@@ -136,7 +136,7 @@ const StockChart: React.FC<StockChartProps> = ({
       </div>
 
       {/* Chart Section */}
-      <div className="w-full h-[50dvh] glass rounded-3xl relative overflow-hidden shadow-2xl border border-white/5 mb-6">
+      <div className="w-full h-[60dvh] glass rounded-3xl relative overflow-hidden shadow-2xl border border-white/5 mb-6">
         <div ref={chartContainerRef} className="w-full h-full px-2"></div>
       </div>
 
@@ -186,10 +186,9 @@ const StockCarousel: React.FC<any> = (props) => {
       <div className="relative z-10 flex-1 flex flex-col overflow-hidden">
         <header className="flex items-center justify-between px-6 py-4 bg-transparent shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg border border-white/10"><Activity className="w-6 h-6 text-white" /></div>
+            <div className="w-10 h-6 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg border border-white/10"><Activity className="w-6 h-6 text-white" /></div>
             <div className="flex flex-col">
               <span className="text-xl font-black tracking-tighter text-white leading-none">dotChart</span>
-              <span className="text-[10px] font-black text-indigo-500 uppercase tracking-[0.3em] mt-1">Terminal</span>
             </div>
           </div>
           <Select value={props.currentCategoryIndex.toString()} onValueChange={(v) => { props.onCategoryChange(Number(v)); setCurrentStockIndex(0); }}>
