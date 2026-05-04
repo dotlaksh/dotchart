@@ -109,7 +109,7 @@ const StockChart: React.FC<StockChartProps> = ({
   )
 
   return (
-    <div className="flex flex-col justify-center items-center gap-6 h-full w-full max-w-2xl mx-auto min-h-0 overflow-hidden px-4">
+    <div className="flex flex-col justify-center items-center gap-6 h-full w-full max-w-2xl mx-auto min-h-0 overflow-hidden px-2">
       {/* Information Section */}
       <div className="flex flex-col gap-3 w-full shrink-0">
         <div className="flex items-center justify-center gap-4 bg-white/[0.02] backdrop-blur-3xl px-6 py-3 rounded-2xl border border-white/5 shadow-2xl">
