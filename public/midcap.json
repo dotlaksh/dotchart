@@ -3,16 +3,10 @@
     "Symbol": "360ONE"
   },
   {
-    "Symbol": "AIAENG"
-  },
-  {
     "Symbol": "APLAPOLLO"
   },
   {
     "Symbol": "AUBANK"
-  },
-  {
-    "Symbol": "ABBOTINDIA"
   },
   {
     "Symbol": "ATGL"
@@ -21,22 +15,10 @@
     "Symbol": "ABCAPITAL"
   },
   {
-    "Symbol": "AJANTPHARM"
-  },
-  {
-    "Symbol": "ALKEM"
-  },
-  {
-    "Symbol": "ANTHEM"
-  },
-  {
     "Symbol": "APARINDS"
   },
   {
     "Symbol": "ASHOKLEY"
-  },
-  {
-    "Symbol": "ASTERDM"
   },
   {
     "Symbol": "ASTRAL"
@@ -45,22 +27,10 @@
     "Symbol": "AUROPHARMA"
   },
   {
-    "Symbol": "AIIL"
-  },
-  {
-    "Symbol": "BAJAJHFL"
-  },
-  {
-    "Symbol": "BALKRISIND"
-  },
-  {
     "Symbol": "BANKINDIA"
   },
   {
     "Symbol": "MAHABANK"
-  },
-  {
-    "Symbol": "BERGEPAINT"
   },
   {
     "Symbol": "BDL"
@@ -72,9 +42,6 @@
     "Symbol": "BHEL"
   },
   {
-    "Symbol": "BHARTIHEXA"
-  },
-  {
     "Symbol": "GROWW"
   },
   {
@@ -82,9 +49,6 @@
   },
   {
     "Symbol": "BLUESTARCO"
-  },
-  {
-    "Symbol": "CRISIL"
   },
   {
     "Symbol": "COCHINSHIP"
@@ -99,25 +63,10 @@
     "Symbol": "CONCOR"
   },
   {
-    "Symbol": "COROMANDEL"
-  },
-  {
     "Symbol": "DABUR"
   },
   {
-    "Symbol": "DALBHARAT"
-  },
-  {
     "Symbol": "DIXON"
-  },
-  {
-    "Symbol": "EMBASSY"
-  },
-  {
-    "Symbol": "ENDURANCE"
-  },
-  {
-    "Symbol": "ESCORTS"
   },
   {
     "Symbol": "EXIDEIND"
@@ -129,9 +78,6 @@
     "Symbol": "FEDERALBNK"
   },
   {
-    "Symbol": "FACT"
-  },
-  {
     "Symbol": "FORTIS"
   },
   {
@@ -141,31 +87,13 @@
     "Symbol": "GMRAIRPORT"
   },
   {
-    "Symbol": "GICRE"
-  },
-  {
-    "Symbol": "GLAXO"
-  },
-  {
     "Symbol": "GLENMARK"
-  },
-  {
-    "Symbol": "MEDANTA"
   },
   {
     "Symbol": "GODFRYPHLP"
   },
   {
-    "Symbol": "GODREJIND"
-  },
-  {
     "Symbol": "GODREJPROP"
-  },
-  {
-    "Symbol": "FLUOROCHEM"
-  },
-  {
-    "Symbol": "HDBFS"
   },
   {
     "Symbol": "HAVELLS"
@@ -174,16 +102,10 @@
     "Symbol": "HEROMOTOCO"
   },
   {
-    "Symbol": "HEXT"
-  },
-  {
     "Symbol": "HINDCOPPER"
   },
   {
     "Symbol": "HINDPETRO"
-  },
-  {
-    "Symbol": "HUDCO"
   },
   {
     "Symbol": "ICICIGI"
@@ -192,22 +114,13 @@
     "Symbol": "ICICIAMC"
   },
   {
-    "Symbol": "ICICIPRULI"
-  },
-  {
     "Symbol": "IDFCFIRSTB"
-  },
-  {
-    "Symbol": "ITCHOTELS"
   },
   {
     "Symbol": "INDIANB"
   },
   {
     "Symbol": "INDHOTEL"
-  },
-  {
-    "Symbol": "IOB"
   },
   {
     "Symbol": "IRCTC"
@@ -225,25 +138,10 @@
     "Symbol": "NAUKRI"
   },
   {
-    "Symbol": "IPCALAB"
-  },
-  {
-    "Symbol": "JKCEMENT"
-  },
-  {
     "Symbol": "JSWENERGY"
   },
   {
-    "Symbol": "JSWINFRA"
-  },
-  {
-    "Symbol": "JSL"
-  },
-  {
     "Symbol": "JUBLFOOD"
-  },
-  {
-    "Symbol": "KPRMILL"
   },
   {
     "Symbol": "KEI"
@@ -253,9 +151,6 @@
   },
   {
     "Symbol": "LTF"
-  },
-  {
-    "Symbol": "LTTS"
   },
   {
     "Symbol": "LGEINDIA"
@@ -271,12 +166,6 @@
   },
   {
     "Symbol": "LICI"
-  },
-  {
-    "Symbol": "LINDEINDIA"
-  },
-  {
-    "Symbol": "LLOYDSME"
   },
   {
     "Symbol": "LODHA"
@@ -321,16 +210,7 @@
     "Symbol": "NMDC"
   },
   {
-    "Symbol": "NTPCGREEN"
-  },
-  {
-    "Symbol": "NH"
-  },
-  {
     "Symbol": "NATIONALUM"
-  },
-  {
-    "Symbol": "NAM-INDIA"
   },
   {
     "Symbol": "OBEROIRLTY"
@@ -360,13 +240,7 @@
     "Symbol": "PERSISTENT"
   },
   {
-    "Symbol": "PETRONET"
-  },
-  {
     "Symbol": "PHOENIXLTD"
-  },
-  {
-    "Symbol": "PIRAMALFIN"
   },
   {
     "Symbol": "PREMIERENE"
@@ -390,16 +264,7 @@
     "Symbol": "SRF"
   },
   {
-    "Symbol": "SCHAEFFLER"
-  },
-  {
-    "Symbol": "SHREECEM"
-  },
-  {
     "Symbol": "SAIL"
-  },
-  {
-    "Symbol": "SUNDARMFIN"
   },
   {
     "Symbol": "SUPREMEIND"
@@ -414,25 +279,10 @@
     "Symbol": "TATACOMM"
   },
   {
-    "Symbol": "TATAINVEST"
-  },
-  {
-    "Symbol": "THERMAX"
-  },
-  {
-    "Symbol": "TORNTPOWER"
-  },
-  {
     "Symbol": "TIINDIA"
   },
   {
-    "Symbol": "UNOMINDA"
-  },
-  {
     "Symbol": "UPL"
-  },
-  {
-    "Symbol": "UBL"
   },
   {
     "Symbol": "UNITDSPR"
