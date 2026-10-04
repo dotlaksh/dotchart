@@ -33,6 +33,9 @@
     "Symbol": "AXISBANK"
   },
   {
+    "Symbol": "BSE"
+  },
+  {
     "Symbol": "BAJAJ-AUTO"
   },
   {
@@ -43,9 +46,6 @@
   },
   {
     "Symbol": "BAJAJHLDNG"
-  },
-  {
-    "Symbol": "BAJAJHFL"
   },
   {
     "Symbol": "BANKBARODA"
@@ -81,6 +81,9 @@
     "Symbol": "COALINDIA"
   },
   {
+    "Symbol": "CUMMINSIND"
+  },
+  {
     "Symbol": "DLF"
   },
   {
@@ -108,13 +111,13 @@
     "Symbol": "HCLTECH"
   },
   {
+    "Symbol": "HDFCAMC"
+  },
+  {
     "Symbol": "HDFCBANK"
   },
   {
     "Symbol": "HDFCLIFE"
-  },
-  {
-    "Symbol": "HAVELLS"
   },
   {
     "Symbol": "HINDALCO"
@@ -129,19 +132,16 @@
     "Symbol": "HINDZINC"
   },
   {
+    "Symbol": "POWERINDIA"
+  },
+  {
     "Symbol": "HYUNDAI"
   },
   {
     "Symbol": "ICICIBANK"
   },
   {
-    "Symbol": "ICICIGI"
-  },
-  {
     "Symbol": "ITC"
-  },
-  {
-    "Symbol": "INDHOTEL"
   },
   {
     "Symbol": "IOC"
@@ -150,16 +150,10 @@
     "Symbol": "IRFC"
   },
   {
-    "Symbol": "NAUKRI"
-  },
-  {
     "Symbol": "INFY"
   },
   {
     "Symbol": "INDIGO"
-  },
-  {
-    "Symbol": "JSWENERGY"
   },
   {
     "Symbol": "JSWSTEEL"
@@ -180,12 +174,6 @@
     "Symbol": "LT"
   },
   {
-    "Symbol": "LICI"
-  },
-  {
-    "Symbol": "LODHA"
-  },
-  {
     "Symbol": "M&M"
   },
   {
@@ -196,6 +184,9 @@
   },
   {
     "Symbol": "MAZDOCK"
+  },
+  {
+    "Symbol": "MUTHOOTFIN"
   },
   {
     "Symbol": "NTPC"
@@ -210,6 +201,9 @@
     "Symbol": "PIDILITIND"
   },
   {
+    "Symbol": "POLYCAB"
+  },
+  {
     "Symbol": "PFC"
   },
   {
@@ -219,9 +213,6 @@
     "Symbol": "PNB"
   },
   {
-    "Symbol": "RECLTD"
-  },
-  {
     "Symbol": "RELIANCE"
   },
   {
@@ -229,9 +220,6 @@
   },
   {
     "Symbol": "MOTHERSON"
-  },
-  {
-    "Symbol": "SHREECEM"
   },
   {
     "Symbol": "SHRIRAMFIN"
@@ -255,10 +243,16 @@
     "Symbol": "TVSMOTOR"
   },
   {
+    "Symbol": "TATACAP"
+  },
+  {
     "Symbol": "TCS"
   },
   {
     "Symbol": "TATACONSUM"
+  },
+  {
+    "Symbol": "TMCV"
   },
   {
     "Symbol": "TMPV"
@@ -285,13 +279,19 @@
     "Symbol": "ULTRACEMCO"
   },
   {
-    "Symbol": "UNITDSPR"
+    "Symbol": "UNIONBANK"
   },
   {
     "Symbol": "VBL"
   },
   {
+    "Symbol": "VAML"
+  },
+  {
     "Symbol": "VEDL"
+  },
+  {
+    "Symbol": "IDEA"
   },
   {
     "Symbol": "WIPRO"
